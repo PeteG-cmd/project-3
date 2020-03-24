@@ -97,6 +97,7 @@ api/bookclub/new POST => create a new book club
 api/bookclubs GET => get a list of all book clubs
 api/bookclub GET => displaying the bio of the bookclub and requesting join. this could potentially be a modal.
 api/bookclubs/myBookclubs => GET / DELETE
+
 api/bookclubs/myBookClubs/:bookclubID POST => THIS IS TO JOIN & send the invite request
 api/bookclubs/myBookClubs/:bookclubId/comments POST => Add a comment on a book club if authorised
 
