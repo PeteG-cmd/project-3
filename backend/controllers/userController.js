@@ -1,5 +1,5 @@
 //Need to complete address for user once confirmed by Pete
-const User = require('')
+const User = require('../models/user')
 const jwt = require('jsonwebtoken')
 const { secret } = require('../config/enviroment')
 
@@ -18,7 +18,8 @@ function login(req, res) {
     // Find the user by using the email they're trying to login with
     .findOne({ email: req.body.email })
     .then(user => {
-      if (!user.validatePassword(req.body.password)) {
+      if (!user) return res.status(400).send({ message: 'User does not exist' })
+      else if (!user.validatePassword(req.body.password)) {
         return res.status(401).send({ message: 'Unauthorized' })
       }
       // We now know the user is valid, and know that their email & password that they are trying to log in with matches what we have saved
