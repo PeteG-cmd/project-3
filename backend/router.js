@@ -69,8 +69,4 @@ router.route('/profile/:user_id')
 // router.route('/bookclubs/mybookclubs/:bookclub_id/comments')
 //   .post(secureRoute, virtualBookClubsController.addBookClubComment)
 
-
-
-
-
 module.exports = router
