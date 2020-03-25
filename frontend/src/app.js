@@ -46,19 +46,11 @@ const App = () => (
       <Route path="/book/:book_id/comments" component={CommentsForSingleBook} />
       <Route path="/book/:book_id/comment/:comment_id" component={UpdateComments} />
       <Route path="/bookclub/create" component={CreateBookClub} />
-<<<<<<< HEAD
-      <Route exact path="/bookclubs" component={AllBookClubs}/>
-      <Route exact path="/bookclub" component={SingleBookClub}/>
-      <Route path="/bookclubs/mybookclubs" component={MyBookClubs} />
-      <Route path="/bookclubs/mybookclubs/:bookclub_id" component={JoinMyBookClub} />
-      <Route path="/bookclubs/mybookclubs/:bookclub_id/comments" component={CommentsOnTheBookClub} />
-=======
       <Route exact path="/bookclubs" component={AllBookClubs} />
       <Route exact path="/bookclub" component={SingleBookClub} />
       <Route path="/bookclubs/myBookClubs" component={MyBookClubs} />
       <Route path="/bookclubs/myBookClubs/:bookclub_id" component={JoinMyBookClub} />
       <Route path="/bookclubs/myBookClubs/:bookclub_id/comments" component={CommentsOnTheBookClub} />
->>>>>>> development
     </Switch>
   </BrowserRouter>
   
