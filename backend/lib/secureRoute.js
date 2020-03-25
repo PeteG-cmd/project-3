@@ -16,7 +16,7 @@ function secureRoute(req, res, next) {
   }
 
   // If we get here we know that we have a token that meets basic requirements, but need to check full validity with jwt
-  const token = authToken.replace('Bearer', '')
+  const token = authToken.replace('Bearer ', '')
 
   // Verify our token, the payload will contain our token data
   jwt.verify(token, secret, (err, payload) => {
@@ -32,6 +32,7 @@ function secureRoute(req, res, next) {
         // Let express know we are done
         next()
       })
+      .catch(() => res.status(401).send({ message: 'Unathorized' } ))
   })
 
 }

@@ -23,12 +23,12 @@ class Login extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    axios.post('/api/login',
-      this.state.data)
+    axios.post('/api/login', this.state.data)
       .then(res => {
         const token = res.data.token
+        console.log(token)
         auth.setToken(token)
-        this.props.history.push('/players')
+        this.props.history.push('/')
       })
       .catch(err => this.setState({ error: err.response.data.message }))
   }
