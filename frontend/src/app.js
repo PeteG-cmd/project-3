@@ -6,7 +6,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import 'bulma'
 import './styles/style.scss'
 
-// import NavBar from './Components/Navbar'
+import NavBar from './Components/Navbar'
 import Home from './Components/Home'
 
 import Register from './Components/Register'
@@ -33,7 +33,7 @@ import CommentsOnTheBookClub from './Components/CommentsOnTheBookClub'
 const App = () => (
   
   <BrowserRouter>
-    {/* <NavBar /> */}
+    <NavBar />
     <Switch>
       <Route exact path="/" component={Home} />
       <Route path="/register" component={Register} />
