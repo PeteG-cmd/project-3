@@ -2,6 +2,6 @@
 
 const secret = 'Forget Piri Piri we got the secret sauce'
 
-module.exports ={
+module.exports = {
   secret
 }
