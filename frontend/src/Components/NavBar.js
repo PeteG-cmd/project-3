@@ -15,8 +15,6 @@ class NavBar extends React.Component {
     this.props.history.push('/')
   }
 
-
-
   render() {
     const isLoggedIn = auth.isLoggedIn()
     return <nav className="navbar" role="navigation" aria-label="main navigation">
