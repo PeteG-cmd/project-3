@@ -1,7 +1,7 @@
 // secureRoute used to check the validity of a users token and retrive the user from the database
 
 //Need to complete address for user once confirmed by Pete
-const User = require('')
+const User = require('../models/user')
 const { secret } = require('../config/enviroment')
 const jwt = require('jsonwebtoken')
 

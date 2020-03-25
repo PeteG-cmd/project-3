@@ -1,5 +1,5 @@
 //Need to complete address for user once confirmed by Pete
-const User = require('')
+const User = require('../models/user')
 const jwt = require('jsonwebtoken')
 const { secret } = require('../config/enviroment')
 
