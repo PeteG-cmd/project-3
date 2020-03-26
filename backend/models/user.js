@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 // const Book = require('./book').schema
-// const Category = require('./category').schema
+const Catergory = require('./catergory').schema
 // const BookClub = require('./bookClub').schema
 const Invite = require('./invite').schema
 
@@ -15,7 +15,8 @@ const schema = new mongoose.Schema({
   userBio: { type: String },
   booksRead: [{ type: mongoose.Schema.ObjectId, ref: 'Book' }],
   booksWishList: [{ type: mongoose.Schema.ObjectId, ref: 'Book' }],
-  likedCategories: [{ type: mongoose.Schema.ObjectId, ref: 'Category' }],
+  // likedCategories: [{ type: mongoose.Schema.ObjectId, ref: 'Category' }],
+  likedCatergories: [Catergory],
   bookClubs: [{ type: mongoose.Schema.ObjectId, ref: 'BookClub' }],
   // invites: [{ type: mongoose.Schema.ObjectId, ref: 'Invite' }]
   invites: [Invite]

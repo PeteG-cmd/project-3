@@ -19,8 +19,10 @@ router.route('/register')
   .post(userController.register)
 router.route('/login')
   .post(userController.login)
-router.route('/profile/:user_id')
-  .get(secureRoute, userController.profile)
+router.route('/profile')
+  .post(secureRoute, userController.profile)
+
+
 
 
 // // Catergory Routes

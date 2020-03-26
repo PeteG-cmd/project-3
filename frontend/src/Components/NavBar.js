@@ -41,44 +41,64 @@ class NavBar extends React.Component {
       <div className={`navbar-menu ${this.state.navMobileOpen ? 'is-active' : ''}`}>
         <div className="navbar-start">
           <Link className="navbar-item" to="/">Home</Link>
-          {!isLoggedIn && <div className="navbar-item"><Link to="#">Search Books</Link></div>}
+          {!isLoggedIn && <div className="navbar-item"><Link to="/books/nonuserbooksearch">Search Books</Link></div>}
 
           {isLoggedIn && <div
             className="navbar-item has-dropdown is-hoverable">
-            <Link to="/books/new" className="navbar-link">
+            <a className="navbar-link">
               My Library
-            </Link>
+            </a>
             <div className="navbar-dropdown">
-              <Link to="#" className="navbar-item">
+              <Link to="/profile/:user_id" className="navbar-item">
                 Wish List
               </Link>
+
+              <Link to="/profile/:user_id" className="navbar-item">
+                Books Read
+              </Link>
+
+              <Link to="/profile/:user_id" className="navbar-item">
+                Liked Categories
+              </Link>
+
+              <Link to="/profile/:user_id" className="navbar-item">
+                Rated Books
+              </Link>
             </div>
           </div>}
 
           {isLoggedIn && <div
             className="navbar-item has-dropdown is-hoverable">
-            <Link to="/bookclubs/myBookClubs" className="navbar-link">
-              My Book Clubs
-            </Link>
+            <a className="navbar-link">
+              Book Clubs
+            </a>
             <div className="navbar-dropdown">
+              <Link to="/bookclubs/myBookClubs" className="navbar-item">
+                My Book Clubs
+              </Link>
+
+              <Link to="/bookclub/create" className="navbar-item">
+                Create Book Clubs
+              </Link>
+
               <Link to="/bookclubs" className="navbar-item">
-                Search Book Clubs
+                Join Book Clubs
               </Link>
             </div>
           </div>}
 
           {isLoggedIn && <div
             className="navbar-item has-dropdown is-hoverable">
-            <Link to="#" className="navbar-link">
+            <a className="navbar-link">
               Search Books
-            </Link>
+            </a>
 
             <div className="navbar-dropdown">
-              <Link to="#" className="navbar-item">
-                All Books
+              <Link to="/books/new" className="navbar-item">
+                Add Books
               </Link>
 
-              <Link to="#" className="navbar-item">
+              <Link to="/books/bestsellers" className="navbar-item">
                 Best Sellers
               </Link>
             </div>
