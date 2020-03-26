@@ -5,7 +5,7 @@ import Slider from 'react-slick'
 import Spinner from './Common/Spinner'
 
 
-class SlickCarousel extends React.Component {
+class SlickCarousel3 extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -17,7 +17,7 @@ class SlickCarousel extends React.Component {
     setTimeout(() => {
       axios
         .get(
-          'https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=xnqPkpbQTWj1Fg96GhJlFbplC0GMseLd',
+          'https://api.nytimes.com/svc/books/v3/lists/current/young-adult-hardcover.json?api-key=xnqPkpbQTWj1Fg96GhJlFbplC0GMseLd',
         )
         .then(res => {
           this.setState({ bookList: res.data.results.books })
@@ -29,7 +29,6 @@ class SlickCarousel extends React.Component {
         .catch(err => console.error(err))
 
     }, 1000)
-
   }
   render() {
     if (!this.state.bookList) return <Spinner /> 
@@ -62,20 +61,4 @@ class SlickCarousel extends React.Component {
     )
   }
 }
-export default SlickCarousel
-
-
-// .then(res => {
-//   this.state.bookList.map(book => {
-//     const isbn = book.primary_isbn10
-//     const myBook = book
-//     axios
-//       .get(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`)
-//       .then(res => {
-//         console.log(book)
-//         const bookList = { ...this.state.bookList, [myBook]: { book_image: res.data.volumeInfo.imageLinks.thumbnail } }
-//         this.setState({ bookList })
-//       })
-//   })
-//   console.log(this.state.bookList)
-// })
+export default SlickCarousel3

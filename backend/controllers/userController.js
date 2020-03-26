@@ -9,7 +9,7 @@ function register(req, res) {
     .then(user => {
       res.status(201).send(user)
     })
-    .catch(error => res.send(error))
+    .catch(error => res.status(401).send(error))
 }
 
 function login(req, res) {
@@ -25,6 +25,9 @@ function login(req, res) {
       // We now know the user is valid, and know that their email & password that they are trying to log in with matches what we have saved
 
       // jwt creates the token for us
+
+      //NOTE - PG => This is where we will implement an if and send a message as to weather to send them to the categories selector page, otherwise we will also return the list of user catergories
+
       const token = jwt.sign({ sub: user._id }, secret, { expiresIn: '8h' })
       res.status(202).send({ message: `Welcome back ${user.username}`, token })
     })

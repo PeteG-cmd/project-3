@@ -12,7 +12,7 @@ const schema = new mongoose.Schema({
   username: { type: String, required: true, unique: true },
   email: { type: String, required: true, minLength: 8, unique: true },
   password: { type: String, required: true, hide: true },
-  userBio: { type: String, required: true, minlength: 5 },
+  userBio: { type: String },
   booksRead: [{ type: mongoose.Schema.ObjectId, ref: 'Book' }],
   booksWishList: [{ type: mongoose.Schema.ObjectId, ref: 'Book' }],
   likedCategories: [{ type: mongoose.Schema.ObjectId, ref: 'Category' }],

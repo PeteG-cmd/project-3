@@ -26,8 +26,7 @@ class Register extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    axios.post('/api/register',
-      this.state.data)
+    axios.post('/api/register',this.state.data)
       .then(() => this.props.history.push('/login'))
       .catch(err => this.setState({ errors: err.response.data.errors }))
   }
@@ -52,68 +51,80 @@ class Register extends React.Component {
                         <label className="label">
                           Email
                         </label>
-                        <div className="control">
+                        <div className="control has-icons-left">
                           <input
                             onChange={(event) => this.handleChange(event)}
                             type="text"
                             name="email"
                             className="input"
                           />
+                          <span className="icon is-small is-left">
+                            <i className="fas fa-envelope"></i>
+                          </span>
                         </div>
                         {errors.email && <small className="help is-danger">
-                          {errors.email}
+                          {errors.email.message}
                         </small>}
                       </div>
                       <div className="field">
                         <label className="label">
                           Username
                         </label>
-                        <div className="control">
+                        <div className="control has-icons-left">
                           <input
                             onChange={(event) => this.handleChange(event)}
                             type="text"
                             name="username"
                             className="input"
                           />
+                          <span className="icon is-small is-left">
+                            <i className="fas fa-user"></i>
+                          </span>
                         </div>
                         {errors.username && <small className="help is-danger">
-                          {errors.username}
+                          {errors.username.message}
                         </small>}
                       </div>
                       <div className="field">
                         <label className="label">
                           Password
                         </label>
-                        <div className="control">
+                        <div className="control has-icons-left">
                           <input
                             onChange={(event) => this.handleChange(event)}
                             type="password"
                             name="password"
                             className="input"
                           />
+                          <span className="icon is-small is-left">
+                            <i className="fas fa-lock"></i>
+                          </span>
                         </div>
                         {errors.password && <small className="help is-danger">
-                          {errors.password}
+                          {errors.password.message}
                         </small>}
                       </div>
                       <div className="field">
                         <label className="label">
                           Confirm Password
                         </label>
-                        <div className="control">
+                        <div className="control has-icons-left">
                           <input
                             onChange={(event) => this.handleChange(event)}
                             type="password"
                             name="passwordConfirmation"
                             className="input"
                           />
+                          <span className="icon is-small is-left">
+                            <i className="fas fa-lock"></i>
+                          </span>
                         </div>
                         {errors.passwordConfirmation && <small className="help is-danger">
-                          {errors.passwordConfirmation}
+                          {errors.passwordConfirmation.message}
                         </small>}
                       </div>
                       <button className="button is-success">
-                        <Link to="/categories" className="linkregistertocategories">Register</Link>
+                        Register
                       </button>
                     </form>
                   </div>
