@@ -40,9 +40,19 @@ class NavBar extends React.Component {
       <div className={`navbar-menu ${this.state.navMobileOpen ? 'is-active' : ''}`}>
         <div className="navbar-start">
           <Link className="navbar-item" to="/">Home</Link>
-          <Link className="navbar-item" to="/">Browse</Link>
-          {isLoggedIn && <div className="navbar-item">
-            <Link to="/books/new">My Library</Link></div>}
+          {!isLoggedIn && <div className="navbar-item"><Link to="#">Search Books</Link></div>}
+
+          {isLoggedIn && <div
+            className="navbar-item has-dropdown is-hoverable">
+            <Link to="/books/new" className="navbar-link">
+              My Library
+            </Link>
+            <div className="navbar-dropdown">
+              <Link to="#" className="navbar-item">
+                Wish List
+              </Link>
+            </div>
+          </div>}
 
           {isLoggedIn && <div
             className="navbar-item has-dropdown is-hoverable">
@@ -55,6 +65,24 @@ class NavBar extends React.Component {
               </Link>
             </div>
           </div>}
+
+          {isLoggedIn && <div
+            className="navbar-item has-dropdown is-hoverable">
+            <Link to="#" className="navbar-link">
+              Search Books
+            </Link>
+
+            <div className="navbar-dropdown">
+              <Link to="#" className="navbar-item">
+                All Books
+              </Link>
+
+              <Link to="#" className="navbar-item">
+                Best Sellers
+              </Link>
+            </div>
+          </div>}
+
         </div>
 
         <div className="navbar-end">
