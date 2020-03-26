@@ -83,6 +83,47 @@
   }
 }
 
+// AddBooks page for Logged In User
+
+.searchBookMain {
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.SearchForm {
+  margin-top: 50px;
+  padding-top: 27px;
+  padding-left: 10px;
+  width: 750px;
+}
+
+#searchbutton {
+  margin-left: 10px;
+  border-radius: 10px;
+}
+
+.BooksIndex {
+  .card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .card-header {
+    background-color: lighten(#548891, 10%);
+  }
+  .card-image img {
+    width: auto;
+    height: 300px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+  .card-content {
+    border-top: 1px solid #404f52;
+  }
+}
+
 // Toastify SASS
 
 
