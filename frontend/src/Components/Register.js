@@ -26,8 +26,7 @@ class Register extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    axios.post('/api/register',
-      this.state.data)
+    axios.post('/api/register',this.state.data)
       .then(() => this.props.history.push('/login'))
       .catch(err => this.setState({ errors: err.response.data.errors }))
   }
@@ -61,7 +60,7 @@ class Register extends React.Component {
                           />
                         </div>
                         {errors.email && <small className="help is-danger">
-                          {errors.email}
+                          {errors.email.message}
                         </small>}
                       </div>
                       <div className="field">
@@ -77,7 +76,7 @@ class Register extends React.Component {
                           />
                         </div>
                         {errors.username && <small className="help is-danger">
-                          {errors.username}
+                          {errors.username.message}
                         </small>}
                       </div>
                       <div className="field">
@@ -93,7 +92,7 @@ class Register extends React.Component {
                           />
                         </div>
                         {errors.password && <small className="help is-danger">
-                          {errors.password}
+                          {errors.password.message}
                         </small>}
                       </div>
                       <div className="field">
@@ -109,11 +108,11 @@ class Register extends React.Component {
                           />
                         </div>
                         {errors.passwordConfirmation && <small className="help is-danger">
-                          {errors.passwordConfirmation}
+                          {errors.passwordConfirmation.message}
                         </small>}
                       </div>
                       <button className="button is-success">
-                        <Link to="/categories" className="linkregistertocategories">Register</Link>
+                        Register
                       </button>
                     </form>
                   </div>
