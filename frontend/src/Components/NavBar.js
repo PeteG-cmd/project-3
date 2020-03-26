@@ -21,6 +21,7 @@ class NavBar extends React.Component {
 
       <div className="navbar-brand">
         <a className="navbar-item" href="/">
+          {/* <img src="frontend/assets/bookedup-logo.png" width="112" height="28" /> */}
           <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" />
         </a>
 
@@ -29,7 +30,7 @@ class NavBar extends React.Component {
           aria-label="menu"
           aria-expanded="false"
           onClick={() => this.setState({ navMobileOpen: !this.state.navMobileOpen })}
-          data-target="navbarBasicExample" // Required?
+          data-target="navbar"
         >
           <span aria-hidden="true"></span>
           <span aria-hidden="true"></span>
