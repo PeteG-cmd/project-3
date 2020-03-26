@@ -14,25 +14,41 @@ class SlickCarousel extends React.Component {
     }
   }
   componentDidMount() {
-    setTimeout(() => {
+
+    const catergories = this.props.catergories
+    console.log(catergories)
+    if (Array.isArray(catergories)) {
+      catergories.map(catergory => {
+
+
+        axios
+          .get(
+            `https://api.nytimes.com/svc/books/v3/lists/current/${catergory}.json?api-key=xnqPkpbQTWj1Fg96GhJlFbplC0GMseLd`,
+          )
+          .then(res => {
+            this.setState({ bookList: res.data.results.books })
+            console.log(res.data)
+            console.log('Hello')
+          })
+          .catch(err => console.error(err))
+
+      })
+
+    } else {
       axios
         .get(
-          'https://api.nytimes.com/svc/books/v3/lists/current/hardcover-fiction.json?api-key=xnqPkpbQTWj1Fg96GhJlFbplC0GMseLd',
+          `https://api.nytimes.com/svc/books/v3/lists/current/${catergories}.json?api-key=xnqPkpbQTWj1Fg96GhJlFbplC0GMseLd`,
         )
         .then(res => {
           this.setState({ bookList: res.data.results.books })
           console.log(res.data)
           console.log('Hello')
-
         })
-
         .catch(err => console.error(err))
-
-    }, 1000)
-
+    }
   }
   render() {
-    if (!this.state.bookList) return <Spinner /> 
+    if (!this.state.bookList) return <Spinner />
 
     const settings = {
       dots: true,
@@ -42,7 +58,8 @@ class SlickCarousel extends React.Component {
       autoplay: true,
       speed: 2000,
       autoplaySpeed: 2000,
-      cssEase: 'linear'
+      cssEase: 'linear',
+      pauseOnHover: false
     }
     return (
       <section>

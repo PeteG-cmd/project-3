@@ -12,7 +12,7 @@ function secureRoute(req, res, next) {
 
   if (!authToken || !authToken.startsWith('Bearer')) {
     // if we get here we knoe token not valid
-    return res.status(401).send({ message: 'Unathorized' })
+    return res.status(401).send({ message: 'Unathorized first' })
   }
 
   // If we get here we know that we have a token that meets basic requirements, but need to check full validity with jwt
@@ -21,18 +21,18 @@ function secureRoute(req, res, next) {
   // Verify our token, the payload will contain our token data
   jwt.verify(token, secret, (err, payload) => {
     // If this fails then the, unauthorized
-    if (err) return res.status(401).send({ message: 'Unathorized' })
+    if (err) return res.status(401).send({ message: 'Unathorized second' })
     User
       .findById(payload.sub)
       .then(user => {
         // If there is no user then Unathorized
-        if (!user) return res.status(401).send({ message: 'Unathorized' })
+        if (!user) return res.status(401).send({ message: 'Unathorized third' })
         // We now have a valid user, which we can attach to our request
         req.currentUser = user
         // Let express know we are done
         next()
       })
-      .catch(() => res.status(401).send({ message: 'Unathorized' } ))
+      .catch(() => res.status(401).send({ message: 'Unathorized fourth' } ))
   })
 
 }
