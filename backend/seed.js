@@ -4,7 +4,7 @@ const User = require('./models/user')
 const Book = require('./models/book')
 const BookClub = require('./models/bookClub')
 const Invite = require('./models/invite')
-const Category = require('./models/category')
+const Category = require('./models/catergory')
 
 const dbURI = 'mongodb://localhost/book-club-db'
 

@@ -36,7 +36,7 @@ function login(req, res) {
 }
 
 function profile(req, res) {
-  User
+  res.send({ catergories: ['hardcover-fiction', 'hardcover-nonfiction'], username: 'PeteG' })
   // profile code goes here
 }
 
