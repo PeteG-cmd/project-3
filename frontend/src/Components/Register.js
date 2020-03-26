@@ -52,13 +52,16 @@ class Register extends React.Component {
                         <label className="label">
                           Email
                         </label>
-                        <div className="control">
+                        <div className="control has-icons-left">
                           <input
                             onChange={(event) => this.handleChange(event)}
                             type="text"
                             name="email"
                             className="input"
                           />
+                          <span className="icon is-small is-left">
+                            <i className="fas fa-envelope"></i>
+                          </span>
                         </div>
                         {errors.email && <small className="help is-danger">
                           {errors.email}
@@ -68,13 +71,16 @@ class Register extends React.Component {
                         <label className="label">
                           Username
                         </label>
-                        <div className="control">
+                        <div className="control has-icons-left">
                           <input
                             onChange={(event) => this.handleChange(event)}
                             type="text"
                             name="username"
                             className="input"
                           />
+                          <span className="icon is-small is-left">
+                            <i className="fas fa-user"></i>
+                          </span>
                         </div>
                         {errors.username && <small className="help is-danger">
                           {errors.username}
@@ -84,13 +90,16 @@ class Register extends React.Component {
                         <label className="label">
                           Password
                         </label>
-                        <div className="control">
+                        <div className="control has-icons-left">
                           <input
                             onChange={(event) => this.handleChange(event)}
                             type="password"
                             name="password"
                             className="input"
                           />
+                          <span className="icon is-small is-left">
+                            <i className="fas fa-lock"></i>
+                          </span>
                         </div>
                         {errors.password && <small className="help is-danger">
                           {errors.password}
@@ -100,13 +109,16 @@ class Register extends React.Component {
                         <label className="label">
                           Confirm Password
                         </label>
-                        <div className="control">
+                        <div className="control has-icons-left">
                           <input
                             onChange={(event) => this.handleChange(event)}
                             type="password"
                             name="passwordConfirmation"
                             className="input"
                           />
+                          <span className="icon is-small is-left">
+                            <i className="fas fa-lock"></i>
+                          </span>
                         </div>
                         {errors.passwordConfirmation && <small className="help is-danger">
                           {errors.passwordConfirmation}

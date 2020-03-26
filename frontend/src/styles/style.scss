@@ -4,7 +4,33 @@
   height: 100vh;
 }
 
+#maintitle {
+  padding: 24px;
+  margin-top: 60px;
+}
+#AboutSection {
+  background-color: rgba($color: #bdb8b8, $alpha: 0.3);
+}
 
+#BookClubSection {
+  background-color: rgba($color: #bdb8b8, $alpha: 0.3);
+}
+
+#mainfooter {
+  background-color: rgba($color: #bdb8b8, $alpha: 0.3);
+}
+
+// Carousel SASS
+
+
+// Navbar SASS
+
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background: -webkit-linear-gradient(rgb(180, 237, 247), rgb(113, 175, 190));
+}
 // Login and Register SASS
 
 .hero {
@@ -57,4 +83,12 @@
   }
 }
 
+// Toastify SASS
 
+
+// Spinner
+
+.Loading {
+  padding: 0;
+	text-align: center;
+}
