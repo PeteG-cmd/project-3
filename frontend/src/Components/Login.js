@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import auth from '../lib/auth'
+import Toastify from './Common/Toastify'
 
 class Login extends React.Component {
 
@@ -53,7 +54,7 @@ class Login extends React.Component {
                         <label className="label">
                           Email
                         </label>
-                        <div className="control">
+                        <div className="control has-icons-left">
                           <input
                             onChange={(event) => this.handleChange(event)}
                             type="text"
@@ -61,13 +62,16 @@ class Login extends React.Component {
                             placeholder="name@gmail.com"
                             className="input"
                           />
+                          <span className="icon is-small is-left">
+                            <i className="fas fa-envelope"></i>
+                          </span>
                         </div>
                       </div>
                       <div className="field">
                         <label className="label">
                           Password
                         </label>
-                        <div className="control">
+                        <div className="control has-icons-left">
                           <input
                             onChange={(event) => this.handleChange(event)}
                             type="password"
@@ -75,14 +79,17 @@ class Login extends React.Component {
                             className="input"
                             placeholder="*******"
                           />
+                          <span className="icon is-small is-left">
+                            <i className="fas fa-lock"></i>
+                          </span>
                         </div>
                         {error && <small className="help is-danger">
                           {error}
                         </small>}
                       </div>
-                      <button className="button is-success">
-                        Login
-                      </button>
+                      <div>
+                        <Toastify />
+                      </div>
                     </form>
                   </div>
                 </div>
