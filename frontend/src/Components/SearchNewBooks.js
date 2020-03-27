@@ -5,7 +5,7 @@ import SearchFormAddBook from './SearchFormAddBook'
 import NewBookCard from './NewBookCard'
 // import {Link} from 'react-router-dom'
 
-class AddBooks extends React.Component {
+class SearchNewBooks extends React.Component {
   constructor() {
     super()
     this.state = {
@@ -46,24 +46,22 @@ class AddBooks extends React.Component {
             // query={this.state.query}
             value={this.state.query}
             onChange={event => {
-              // this.setState({ query: event.target.value })
               this.handleSearch(event)
               this.fetchBooks(event)
             }
             }
-          // handleSearch={this.fetchBooks}
           />
           {this.state.books &&
-          <div className="section">
-            <div className="container">
-              <div className="columns is-multiline is-mobile">
-                {this.state.books.map((book, index) => {
-                  console.log(book)
-                  return <NewBookCard key={index} {...book} />
-                })}
+            <div className="section">
+              <div className="container">
+                <div className="columns is-multiline is-mobile">
+                  {this.state.books.map((book, index) => {
+                    console.log(book)
+                    return <NewBookCard key={index} book={book} />
+                  })}
+                </div>
               </div>
-            </div>
-          </div>}
+            </div>}
           {(!this.state.books && <p>No Books Found</p>)}
         </section>
       </>
@@ -71,4 +69,4 @@ class AddBooks extends React.Component {
   }
 }
 
-export default AddBooks
+export default SearchNewBooks

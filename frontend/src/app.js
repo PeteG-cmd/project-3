@@ -17,7 +17,7 @@ import UserProfile from './Components/UserProfile'
 import CategoriesShownToNewUser from './Components/CategoriesShownToNewUser'
 import NewUserAddsCategories from './Components/NewUserAddsCategories'
 
-import AddBooks from './Components/AddBooks'
+import SearchNewBooks from './Components/SearchNewBooks'
 import SingleBook from './Components/SingleBook'
 import BooksBestSellers from './Components/BooksBestSellers'
 import NonUserBookSearch from './Components/NonUserBookSearch'
@@ -43,7 +43,7 @@ const App = () => (
       <Route exact path="/categories" component={CategoriesShownToNewUser} />
       <Route path="/categories/:user_id" component={NewUserAddsCategories} />
       <Route exact path="/profile/:user_id" component={UserProfile} />
-      <Route exact path="/books/new" component={AddBooks} />
+      <Route exact path="/books/new" component={SearchNewBooks} />
       <Route exact path="/books/bestsellers" component={BooksBestSellers} />
       <Route exact path="/books/nonuserbooksearch" component={NonUserBookSearch} />
       <Route exact path="/book/:book_id" component={SingleBook} />
