@@ -1,50 +1,37 @@
-// import React from 'react'
-// import ShowModal from './MovieModal'
+import React from 'react'
+import DescriptionModal from './DescriptionModal'
 
-// const MovieCard = ({
-//   title,
-//   release_date,
-//   poster_path,
-//   overview,
-//   popularity,
-//   vote_count,
-//   vote_average,
-//   original_language,
-// }) => {
-//   return (
-//     <div className="column is-one-quarter-desktop is-one-third-tablet is-half-mobile">
-//       <div className="card">
-//         <div className="card-header">
-//           <h4 className="card-title">{title}</h4>
-//         </div>
-//         <div className="card-image">
-//           <figure className="image">
-//             <img
-//               src={`https://image.tmdb.org/t/p/w185/${poster_path}`}
-//               alt={title}
-//             />
-//           </figure>
-//           <div className="card-content">
-//             <h5 className="subtitle">
-//               {release_date}
-//               <div id="showModalButton">
-//                 <ShowModal
-//                   title={title}
-//                   release_date={release_date}
-//                   poster_path={poster_path}
-//                   overview={overview}
-//                   popularity={popularity}
-//                   vote_count={vote_count}
-//                   vote_average={vote_average}
-//                   original_language={original_language}
-//                 />
-//               </div>
-//             </h5>
-//           </div>
-//         </div>
-//       </div>
-//     </div>
-//   )
-// }
+const SingleBookBookCard = ({ book, title, description, onSubmit }) => {
+  return (
+    <div className="card">
+      <div className="card-image">
+        <div className="card-image">
+          <figure className="image">
+            {/* This line below is a one line ternary only rendering if the picture exists. */}
+            {book.volumeInfo.imageLinks && <img src={book.volumeInfo.imageLinks.smallThumbnail} className="BookCardImg"></img>}
+          </figure>
+        </div>
+        <div className="card-content">
+          <h5 className="subtitle">
+            {book.volumeInfo.title}
+            <div id="showModalButton">
+              <DescriptionModal
+                title={title}
+                description={description}
+              />
+            </div>
+          </h5>
+          <form className="form">
+            <button
+              className="button is-success"
+              onClick={onSubmit}
+            >Add Book</button>
+          </form>
+        </div>
+      </div>
+    </div>
 
-// export default MovieCard
+  )
+}
+
+export default SingleBookBookCard
