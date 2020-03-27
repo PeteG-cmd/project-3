@@ -1,29 +1,33 @@
 import React from 'react'
 import axios from 'axios'
 
+let choices = []
+
 class CategoriesShownToNewUser extends React.Component {
 
   constructor() {
     super()
     this.state = {
+      categories: [],
+      errors: {}
     }
   }
 
   handleSubmit(event) {
     event.preventDefault()
-    axios.post('/api/addCatergories', this.state.data)
+
+    axios.post('/api/categories', this.state.categories)
       .then(() => this.props.history.push('/'))
       .catch(err => this.setState({ errors: err.response.data.errors }))
   }
 
-  // handleChange(event) {
-  //   const { name, value } = event.target
-  //   const data = { ...this.state.data, [name]: value }
-  //   this.setState({ data })
-  // }
+  handleChange(event) {
+    choices.push(event.target.value)
+    this.setState({ categories: choices })
+    console.log(choices)
+  }
 
   render() {
-    const { errors } = this.state
     return <main className="hero is-fullheight">
       <div className="hero-body">
         <div className="container">
@@ -43,151 +47,145 @@ class CategoriesShownToNewUser extends React.Component {
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" />
+                          type="checkbox" value="Advice" />
                           Advice and How To
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" />
+                          type="checkbox" value="Animals" />
                           Animals
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" />
+                          type="checkbox" value="Business" />
                           Business
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" />
+                          type="checkbox" value="Celebrities" />
                           Celebrities
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" />
+                          type="checkbox" value="Children" />
                           Children’s Picture Books
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" />
+                          type="checkbox" value="Fiction" />
                           Fiction
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" />
+                          type="checkbox" value="Non-Fiction" />
                           Non-Fiction
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" />
+                          type="checkbox" value="Crime" />
                           Crime and Punishment
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" />
+                          type="checkbox" value="Culture" />
                           Culture
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" />
+                          type="checkbox" value="Education" />
                           Education
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" />
+                          type="checkbox" value="Food" />
                           Food and Diet
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" />
+                          type="checkbox" value="Fashion" />
                           Fashion
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" />
+                          type="checkbox" value="Family" />
                           Family
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" />
+                          type="checkbox" value="Games" />
                           Games and Activities
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" />
+                          type="checkbox" value="Manga" />
                           Graphic Books and Manga
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" />
+                          type="checkbox" value="Health" />
                           Health
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" />
+                          type="checkbox" value="Humor" />
                           Humor
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" />
-                          Health
-                      </label>
-                      <label className="checkbox">
-                        <input
-                          onChange={(event) => this.handleChange(event)}
-                          type="checkbox" />
+                          type="checkbox" value="Relationships" />
                           Relationships
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" />
+                          type="checkbox" value="Politics" />
                           Politics
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" />
+                          type="checkbox" value="Religion" />
                           Religion, Spirituality and Faith
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" />
+                          type="checkbox" value="Science" />
                           Science
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" />
-                          Sports and Fitness
+                          type="checkbox" value="Sport" />
+                          Sport and Fitness
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" />
+                          type="checkbox" value="Travel" />
                           Travel
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" />
+                          type="checkbox" value="Young-adult" />
                           Young Adult
                       </label>
 
