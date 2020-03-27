@@ -30,7 +30,7 @@ router.route('/profile')
 // .get(secureRoute, catergoriesController.catergories)
 
 // router.route('/catergories/:user_id')
-  .post(secureRoute, catergoriesController.addCatergories)  // Check Peter's function name
+  // .post(secureRoute, catergoriesController.addCatergories)  // Check Peter's function name
 //   .put(secureRoute, catergoriesController.editCatergories)   // Check Peter's function name
 
 // // Book Routes
