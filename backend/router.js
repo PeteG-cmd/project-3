@@ -20,7 +20,7 @@ router.route('/register')
 router.route('/login')
   .post(userController.login)
 router.route('/profile')
-  .post(secureRoute, userController.profile)
+  .post(secureRoute, userController.getProfile)
 
 
 

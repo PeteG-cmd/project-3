@@ -29,7 +29,7 @@ class Login extends React.Component {
         const token = res.data.token
         console.log(token)
         auth.setToken(token)
-        this.props.history.push('/')
+        this.props.history.push('/categories')
       })
       .catch(err => this.setState({ error: err.response.data.message }))
   }

@@ -35,13 +35,26 @@ function login(req, res) {
     .catch(error => res.send(error))
 }
 
-function profile(req, res) {
-  res.send({ catergories: ['hardcover-fiction', 'hardcover-nonfiction'], username: 'PeteG' })
-  // profile code goes here
+function getProfile(req, res) {
+  // res.send({ catergories: ['hardcover-fiction', 'hardcover-nonfiction'], username: 'PeteG' })
+  // // profile code goes here
+
+  const currentUser = req.currentUser
+  req.body.user = currentUser
+  console.log(req)
+  console.log(req.body.user._id)
+  User.findById(req.body.user._id)
+    .then(user => {
+      if (!user) return res.status(404).send({ message: 'This user does not exist' })
+      res.status(201).send(user)
+    })
+    .catch(err => res.send(err))
+
+
 }
 
 module.exports = {
   register,
   login,
-  profile
+  getProfile
 }

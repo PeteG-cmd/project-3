@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 
+import auth from '../lib/auth'
+
 let choices = []
 
 class CategoriesShownToNewUser extends React.Component {
@@ -8,22 +10,23 @@ class CategoriesShownToNewUser extends React.Component {
   constructor() {
     super()
     this.state = {
-      categories: [],
+      data: {},
       errors: {}
     }
   }
 
   handleSubmit(event) {
     event.preventDefault()
+    choices = []
 
-    axios.post('/api/categories', this.state.categories)
+    axios.post('/api/categories', this.state.data, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then(() => this.props.history.push('/'))
       .catch(err => this.setState({ errors: err.response.data.errors }))
   }
 
   handleChange(event) {
     choices.push(event.target.value)
-    this.setState({ categories: choices })
+    this.setState({ data: { categories: choices } })
     console.log(choices)
   }
 

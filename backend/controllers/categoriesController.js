@@ -10,8 +10,11 @@ function addCategories(req, res) {
   User.findById(req.body.user._id)
     .then(user => {
       if (!user) return res.status(404).send({ message: 'This user does not exist' })
-      user.categories.push(req.body)
+      req.body.categories.map(myCategory => {
+        user.categories.push({ category: myCategory })
+      })
       return user.save()
+      
     })
     .then(user => res.status(201).send(user))
     .catch(err => res.send(err))

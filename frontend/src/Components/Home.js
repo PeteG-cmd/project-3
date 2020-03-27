@@ -16,19 +16,18 @@ export default class Home extends React.Component {
     super()
     this.state = {
       user: null,
-      defaultCatergories: ['hardcover-fiction', 'hardcover-nonfiction', 'young-adult-hardcover']
+      defaultCategories: ['hardcover-fiction', 'hardcover-nonfiction', 'young-adult-hardcover']
     }
   }
 
   componentDidMount() {
 
     if (auth.isLoggedIn()) {
-      console.log(auth.getToken())
       axios
         .post('/api/profile', {}, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
         .then(res => {
           this.setState({ user: res.data })
-
+          console.log(res.data)
         })
     }
   
@@ -36,8 +35,8 @@ export default class Home extends React.Component {
   }
 
   render() {
-    const catergories = this.state.defaultCatergories
-    console.log(this.state.defaultCatergories)
+    const categories = this.state.defaultCategories
+    console.log(this.state.defaultCategories)
     
 
     if (!auth.isLoggedIn()) {
@@ -51,7 +50,7 @@ export default class Home extends React.Component {
           <section className="section">
             <div className="container">
               <h2 className="subtitle">Current Fiction Best Sellers</h2>
-              <SlickCarousel catergories={catergories[0]} />
+              <SlickCarousel categories={categories[0]} />
             </div>
           </section>
           <section className="section" id="AboutSection">
@@ -62,7 +61,7 @@ export default class Home extends React.Component {
           <section className="section">
             <div className="container">
               <h2 className="subtitle">Current Non-Fiction Best Sellers</h2>
-              <SlickCarousel catergories={catergories[1]} />
+              <SlickCarousel categories={categories[1]} />
             </div>
           </section>
           <section className="section" id="BookClubSection">
@@ -73,7 +72,7 @@ export default class Home extends React.Component {
           <section className="section">
             <div className="container">
               <h2 className="subtitle">Current Young-Adult Best Sellers</h2>
-              <SlickCarousel catergories={catergories[2]} />
+              <SlickCarousel categories={categories[2]} />
             </div>
           </section>
           <footer className="section" id="mainfooter">
@@ -99,7 +98,7 @@ export default class Home extends React.Component {
           <section className="section">
             <div className="container">
               <h2 className="subtitle">Selected for {this.state.user.username}...</h2>
-              <SlickCarousel catergories={this.state.user.catergories} />
+              <SlickCarousel categories={this.state.user.categories} />
             </div>
           </section>
 

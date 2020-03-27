@@ -56,8 +56,12 @@ class SearchNewBooks extends React.Component {
               <div className="container">
                 <div className="columns is-multiline is-mobile">
                   {this.state.books.map((book, index) => {
-                    console.log(book)
-                    return <NewBookCard key={index} book={book} />
+                    if ((book.volumeInfo.industryIdentifiers)) {
+                      if (!(book.volumeInfo.industryIdentifiers[0].type === 'OTHER')) {
+                        console.log(book)
+                        return <NewBookCard key={index} book={book} />
+                      }
+                    }
                   })}
                 </div>
               </div>

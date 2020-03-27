@@ -17,17 +17,17 @@ class SlickCarousel extends React.Component {
   }
   componentDidMount() {
 
-    const catergories = this.props.catergories
-    console.log(catergories)
-    if (Array.isArray(catergories)) {
+    const categories = this.props.categories
+    console.log(categories)
+    if (Array.isArray(categories)) {
 
       //This removes the dots from the carousel for a logged in user, as if they have selected a lot of Categories there are too many dots and does not look good.
       this.setState({ dots: false })
 
-      catergories.map(catergory => {
+      categories.map(category => {
         axios
           .get(
-            `https://api.nytimes.com/svc/books/v3/lists/current/${catergory}.json?api-key=xnqPkpbQTWj1Fg96GhJlFbplC0GMseLd`,
+            `https://api.nytimes.com/svc/books/v3/lists/current/${category.category}.json?api-key=xnqPkpbQTWj1Fg96GhJlFbplC0GMseLd`,
           )
           .then(res => {
             let bookList = this.state.bookList.concat(res.data.results.books)
@@ -46,7 +46,7 @@ class SlickCarousel extends React.Component {
       this.setState({ dots: true })
       axios
         .get(
-          `https://api.nytimes.com/svc/books/v3/lists/current/${catergories}.json?api-key=xnqPkpbQTWj1Fg96GhJlFbplC0GMseLd`,
+          `https://api.nytimes.com/svc/books/v3/lists/current/${categories}.json?api-key=xnqPkpbQTWj1Fg96GhJlFbplC0GMseLd`,
         )
         .then(res => {
           this.setState({ bookList: res.data.results.books })
