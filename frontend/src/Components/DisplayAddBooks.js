@@ -12,29 +12,29 @@ class AddBooks extends React.Component {
       books: [],
       query: ''
     }
-    this.fetchBooks = this.fetchBooks.bind(this)
+    // this.fetchBooks = this.fetchBooks.bind(this)
+  }
+
+  handleSearch(event) {
+    let query = event.target.value
+    query = query.split(' ').join('+')
+    console.log(query)
+    this.setState({ query })
   }
 
   fetchBooks(event) {
-    event.preventDefault()
-    axios
-      .get(
-        `https://www.googleapis.com/books/v1/volumes?q=${this.state.query}`,
-      )
-      // .then(({ data: { items } }) => {
-      //   const filteredBooks = items.filter(book => {
-      //     const regex = new RegExp(this.state.query, 'i')
-      //     return book.volumeInfo.title.match(regex)
-      //   })
-      //   this.setState({
-      //     books: filteredBooks
-      //   })
-      // })
-      .then(res => {
+    if (this.state.query.length > 4) {
+      event.preventDefault()
+      axios
+        .get(
+          `https://www.googleapis.com/books/v1/volumes?q=intitle:${this.state.query}`,
+        )
+        .then(res => {
 
-        console.log(res)
-        this.setState({ books: res.data.items })
-      })
+          console.log(res)
+          this.setState({ books: res.data.items })
+        })
+    }
   }
 
   render() {
@@ -43,11 +43,17 @@ class AddBooks extends React.Component {
         <section className="BooksIndex">
           {/* { to center later } */}
           <SearchFormAddBook
-            query={this.state.query}
-            onChange={event => this.setState({ query: event.target.value })}
-            handleSearch={this.fetchBooks}
+            // query={this.state.query}
+            value={this.state.query}
+            onChange={event => {
+              // this.setState({ query: event.target.value })
+              this.handleSearch(event)
+              this.fetchBooks(event)
+            }
+            }
+          // handleSearch={this.fetchBooks}
           />
-
+          {this.state.books &&
           <div className="section">
             <div className="container">
               <div className="columns is-multiline is-mobile">
@@ -57,7 +63,8 @@ class AddBooks extends React.Component {
                 })}
               </div>
             </div>
-          </div>
+          </div>}
+          {(!this.state.books && <p>No Books Found</p>)}
         </section>
       </>
     )

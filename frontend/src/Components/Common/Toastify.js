@@ -6,6 +6,7 @@ import 'react-toastify/dist/ReactToastify.min.css'
 
 toast.configure()
 
+
 class Toastify extends React.Component {
   notify = () => toast.success('Welcome back Jamie', {
     position: 'bottom-right',
@@ -15,6 +16,7 @@ class Toastify extends React.Component {
     pauseOnHover: true,
     draggable: true
   })
+
 
   render() {
     return <button className="button is-success" onClick={this.notify}>Login</button>
