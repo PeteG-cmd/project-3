@@ -27,7 +27,7 @@ class SearchNewBooks extends React.Component {
       event.preventDefault()
       axios
         .get(
-          `https://www.googleapis.com/books/v1/volumes?q=intitle:${this.state.query}`,
+          `https://www.googleapis.com/books/v1/volumes?q=intitle:${this.state.query}&key=AIzaSyCEn7nVijyWlVGp995NH9PBDmTdmECg3DY`,
         )
         .then(res => {
 
@@ -39,7 +39,7 @@ class SearchNewBooks extends React.Component {
 
   render() {
     return (
-      <>
+      <> <main className="searchBookMain">
         <section className="BooksIndex">
           {/* { to center later } */}
           <SearchFormAddBook
@@ -68,6 +68,7 @@ class SearchNewBooks extends React.Component {
             </div>}
           {(!this.state.books && <p>No Books Found</p>)}
         </section>
+      </main>
       </>
     )
   }

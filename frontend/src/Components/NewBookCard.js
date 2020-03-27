@@ -1,21 +1,21 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const NewBookCard = ({ book }) => {
-  
+
   return (
     <div className="column is-one-fifth-desktop is-one-third-tablet is-one-half-mobile">
       <div className="card">
-        <div className="card-header">
-          <h4 className="card-title">{book.volumeInfo.title}</h4>
-        </div>
         <div className="card-image">
           <figure className="image">
             {/* This line below is a one line ternary only rendering if the picture exists. */}
-            {book.volumeInfo.imageLinks && <img src={book.volumeInfo.imageLinks.smallThumbnail}></img>}
+            {book.volumeInfo.imageLinks && <Link to={`../book/${book.id}`}><img src={book.volumeInfo.imageLinks.smallThumbnail} className="BookCardImg"></img></Link>}
           </figure>
+
         </div>
         <div className="card-content">
-          {book.volumeInfo.authors && <h5 className='title'>{book.volumeInfo.authors[0]}</h5>}
+          <h4 className="card-title">{book.volumeInfo.title}</h4>
+          {book.volumeInfo.authors && <h5 className='subtitle'><strong>{book.volumeInfo.authors[0]}</strong></h5>}
         </div>
       </div>
     </div>
@@ -23,3 +23,5 @@ const NewBookCard = ({ book }) => {
 }
 
 export default NewBookCard
+
+

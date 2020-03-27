@@ -35,10 +35,10 @@ router.route('/categories')
 //   .put(secureRoute, catergoriesController.editCatergories)   // Check Peter's function name
 
 // // Book Routes
-// router.route('/books/new')
-//   .get(secureRoute, booksController.bookNew) // Check Peter's function name
+// router.route('/books/search')
+//   .get(secureRoute, booksController.bookSearch) // Check Peter's function name
 
-// router.route('book/:book_id')
+// router.route('/book/:book_id')
 //   .get(booksController.viewComments)   // Check Peter's function name
 
 // router.route('/book/book_id/comments')
