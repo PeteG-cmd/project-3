@@ -15,8 +15,7 @@ const schema = new mongoose.Schema({
   userBio: { type: String },
   booksRead: [{ type: mongoose.Schema.ObjectId, ref: 'Book' }],
   booksWishList: [{ type: mongoose.Schema.ObjectId, ref: 'Book' }],
-  // likedCategories: [{ type: mongoose.Schema.ObjectId, ref: 'Category' }],
-  likedCatergories: [Catergory],
+  categories: [Catergory],
   bookClubs: [{ type: mongoose.Schema.ObjectId, ref: 'BookClub' }],
   // invites: [{ type: mongoose.Schema.ObjectId, ref: 'Invite' }]
   invites: [Invite]
