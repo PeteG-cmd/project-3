@@ -46,7 +46,7 @@ const App = () => (
       <Route exact path="/books/new" component={SearchNewBooks} />
       <Route exact path="/books/bestsellers" component={BooksBestSellers} />
       <Route exact path="/books/nonuserbooksearch" component={NonUserBookSearch} />
-      <Route exact path="/book/:book_id" component={SingleBook} />
+      <Route path="/book/:googleId" component={SingleBook} />
       <Route path="/book/:book_id/comments" component={CommentsForSingleBook} />
       <Route path="/book/:book_id/comment/:comment_id" component={UpdateComments} />
       <Route path="/bookclub/create" component={CreateBookClub} />
