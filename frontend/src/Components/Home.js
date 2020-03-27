@@ -8,6 +8,7 @@ import SlickCarousel from './SlickCarousel'
 
 import AboutHomePageModal from './AboutHomePageModal'
 import BookClubHomePageModal from './BookClubHomePageModal'
+import Toastify from './Common/Toastify'
 
 export default class Home extends React.Component {
 
@@ -30,14 +31,14 @@ export default class Home extends React.Component {
 
         })
     }
-    // else {
-    //   this.setState({ defaultCatergories: ['hardcover-fiction', 'hardcover-nonfiction', 'young-adult-hardcover'] } )
-    // }
+  
+  
   }
 
   render() {
     const catergories = this.state.defaultCatergories
     console.log(this.state.defaultCatergories)
+    
 
     if (!auth.isLoggedIn()) {
       return <>
