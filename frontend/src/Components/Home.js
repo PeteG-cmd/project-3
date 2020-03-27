@@ -42,12 +42,12 @@ export default class Home extends React.Component {
     if (!auth.isLoggedIn()) {
       return <>
         <main className="home-main">
-          <section className="section" id="maintitle">
+          {/* <section className="section" id="maintitle">
             <div className="container">
               <h1 className="title has-text-centered">Booked Up</h1>
             </div>
-          </section>
-          <section className="section">
+          </section> */}
+          <section className="section" id="Carousel1">
             <div className="container">
               <h2 className="subtitle">Current Fiction Best Sellers</h2>
               <SlickCarousel categories={categories[0]} />
@@ -89,13 +89,13 @@ export default class Home extends React.Component {
 
       return <>
         <main className="home-main">
-          <section className="section" id="maintitle">
+          {/* <section className="section" id="maintitle">
             <div className="container">
               <h1 className="title has-text-centered">Booked Up</h1>
             </div>
-          </section>
+          </section> */}
 
-          <section className="section">
+          <section className="section" id="Carousel1">
             <div className="container">
               <h2 className="subtitle">Selected for {this.state.user.username}...</h2>
               <SlickCarousel categories={this.state.user.categories} />
