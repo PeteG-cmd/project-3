@@ -19,7 +19,7 @@ class AddBooks extends React.Component {
     event.preventDefault()
     axios
       .get(
-        `https://www.googleapis.com/books/v1/volumes?q=${this.state.query}`,
+        `https://www.googleapis.com/books/v1/volumes?q=${this.state.query}&key=AIzaSyCEn7nVijyWlVGp995NH9PBDmTdmECg3DY`,
       )
       // .then(({ data: { items } }) => {
       //   const filteredBooks = items.filter(book => {
@@ -53,7 +53,7 @@ class AddBooks extends React.Component {
               <div className="columns is-multiline is-mobile">
                 {this.state.books.map((book, index) => {
                   console.log(book)
-                  return <NewBookCard key={index} {...book} />
+                  return <NewBookCard key={index} book={book} />
                 })}
               </div>
             </div>
