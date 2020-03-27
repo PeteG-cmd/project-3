@@ -13,6 +13,7 @@ const schema = new mongoose.Schema({
   email: { type: String, required: true, minLength: 8, unique: true },
   password: { type: String, required: true, hide: true },
   userBio: { type: String },
+  books: [{ type: mongoose.Schema.ObjectId, ref: 'Book' }],
   booksRead: [{ type: mongoose.Schema.ObjectId, ref: 'Book' }],
   booksWishList: [{ type: mongoose.Schema.ObjectId, ref: 'Book' }],
   categories: [Catergory],

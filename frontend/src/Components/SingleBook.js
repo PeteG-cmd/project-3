@@ -35,6 +35,7 @@ class SingleBook extends React.Component {
   }
 
   render() {
+    console.log(this.state.book)
     if (!this.state.book) return <h1>Waiting for Book</h1>
     return <section className="section">
       <SearchBookCard book={this.state.book} />
