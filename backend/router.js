@@ -1,7 +1,7 @@
 // import, create a new instance of the router
 const router = require('express').Router()
 const booksController = require('./controllers/booksController')
-const catergoriesController = require('./controllers/catergoriesController')
+const categoriesController = require('./controllers/categoriesController')
 // const invitesController = require('./controllers/invitesController')
 const userController = require('./controllers/userController')
 const virtualBookClubsController = require('./controllers/virtualBookClubsController')
@@ -29,8 +29,9 @@ router.route('/profile')
 // router.route('/catergories')
 // .get(secureRoute, catergoriesController.catergories)
 
-// router.route('/catergories/:user_id')
-  .post(secureRoute, catergoriesController.addCatergories)  // Check Peter's function name
+router.route('/categories')
+  .post(secureRoute, categoriesController.addCategories)
+  .get(secureRoute, categoriesController.getCategories)
 //   .put(secureRoute, catergoriesController.editCatergories)   // Check Peter's function name
 
 // // Book Routes

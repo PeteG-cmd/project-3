@@ -3,13 +3,15 @@ import axios from 'axios'
 // import {Link} from 'react-router-dom'
 import Slider from 'react-slick'
 import Spinner from './Common/Spinner'
+import lodash from 'lodash'
 
 
 class SlickCarousel extends React.Component {
   constructor() {
     super()
     this.state = {
-      bookList: null
+      bookList: [],
+      dots: true
 
     }
   }
@@ -18,15 +20,19 @@ class SlickCarousel extends React.Component {
     const catergories = this.props.catergories
     console.log(catergories)
     if (Array.isArray(catergories)) {
+
+      //This removes the dots from the carousel for a logged in user, as if they have selected a lot of Categories there are too many dots and does not look good.
+      this.setState({ dots: false })
+
       catergories.map(catergory => {
-
-
         axios
           .get(
             `https://api.nytimes.com/svc/books/v3/lists/current/${catergory}.json?api-key=xnqPkpbQTWj1Fg96GhJlFbplC0GMseLd`,
           )
           .then(res => {
-            this.setState({ bookList: res.data.results.books })
+            let bookList = this.state.bookList.concat(res.data.results.books)
+            bookList = _.shuffle(bookList)
+            this.setState({ bookList })
             console.log(res.data)
             console.log('Hello')
           })
@@ -35,6 +41,9 @@ class SlickCarousel extends React.Component {
       })
 
     } else {
+
+      // This puts dots on the Carousel for the default categories if the user is not logged in.
+      this.setState({ dots: true })
       axios
         .get(
           `https://api.nytimes.com/svc/books/v3/lists/current/${catergories}.json?api-key=xnqPkpbQTWj1Fg96GhJlFbplC0GMseLd`,
@@ -48,10 +57,10 @@ class SlickCarousel extends React.Component {
     }
   }
   render() {
-    if (!this.state.bookList) return <Spinner />
+    if (this.state.bookList.length === 0) return <Spinner />
 
     const settings = {
-      dots: true,
+      dots: this.state.dots,
       infinite: true,
       slidesToShow: 7,
       slidesToScroll: 1,
