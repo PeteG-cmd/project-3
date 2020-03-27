@@ -15,7 +15,7 @@ const NewBookCard = ({ book }) => {
           </figure>
         </div>
         <div className="card-content">
-          <h5 className='title'>{book.volumeInfo.authors[0]}</h5>
+          {book.volumeInfo.authors && <h5 className='title'>{book.volumeInfo.authors[0]}</h5>}
         </div>
       </div>
     </div>
