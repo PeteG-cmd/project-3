@@ -4,7 +4,9 @@ const Comment = require('./comment').schema
 
 const schema = new mongoose.Schema({
   title: { type: String, required: true, unique: true },
-  ISBNNumber: { type: String, required: true, unique: true },
+  googleId: { type: String, required: true, unique: true },
+  isbn10Number: { type: String, unique: true },
+  isbn13Number: { type: String, unique: true },
   description: { type: String, required: true, unique: true },
   author: { type: String, required: true },
   imageUrl: { type: String, required: true, unique: true },

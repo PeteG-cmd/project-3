@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-const NewBookCard = ({ book }) => {
+const SearchBookCard = ({ book }) => {
 
   return (
     <div className="column is-one-fifth-desktop is-one-third-tablet is-one-half-mobile">
@@ -22,6 +22,6 @@ const NewBookCard = ({ book }) => {
   )
 }
 
-export default NewBookCard
+export default SearchBookCard
 
 

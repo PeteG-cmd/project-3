@@ -2,8 +2,8 @@ import React from 'react'
 import axios from 'axios'
 // import ShowModal from './MovieModal'
 import SearchFormAddBook from './SearchFormAddBook'
-import NewBookCard from './NewBookCard'
-// import {Link} from 'react-router-dom'
+import SearchBookCard from './SearchBookCard'
+import { Link} from 'react-router-dom'
 
 class SearchNewBooks extends React.Component {
   constructor() {
@@ -59,7 +59,7 @@ class SearchNewBooks extends React.Component {
                     if ((book.volumeInfo.industryIdentifiers)) {
                       if (!(book.volumeInfo.industryIdentifiers[0].type === 'OTHER')) {
                         console.log(book)
-                        return <NewBookCard key={index} book={book} />
+                        return <SearchBookCard key={index} book={book} />
                       }
                     }
                   })}
