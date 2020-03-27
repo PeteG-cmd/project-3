@@ -50,145 +50,163 @@ class CategoriesShownToNewUser extends React.Component {
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" value="Advice" />
+                          type="checkbox" value="advice-how-to-and-miscellaneous" />
                           Advice and How To
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" value="Animals" />
+                          type="checkbox" value="animals" />
                           Animals
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" value="Business" />
+                          type="checkbox" value="business-books" />
                           Business
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" value="Celebrities" />
+                          type="checkbox" value="celebrities" />
                           Celebrities
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" value="Children" />
+                          type="checkbox" value="paperback-books" />
+                          Children’s Paperback Books
+                      </label>
+                      <label className="checkbox">
+                        <input
+                          onChange={(event) => this.handleChange(event)}
+                          type="checkbox" value="picture-books" />
                           Children’s Picture Books
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" value="Fiction" />
+                          type="checkbox" value="mass-market-paperback" />
                           Fiction
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" value="Non-Fiction" />
+                          type="checkbox" value="paperback-nonfiction" />
                           Non-Fiction
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" value="Crime" />
+                          type="checkbox" value="crime-and-punishment" />
                           Crime and Punishment
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" value="Culture" />
+                          type="checkbox" value="culture" />
                           Culture
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" value="Education" />
+                          type="checkbox" value="education" />
                           Education
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" value="Food" />
+                          type="checkbox" value="espionage" />
+                          Espionage
+                      </label>
+                      <label className="checkbox">
+                        <input
+                          onChange={(event) => this.handleChange(event)}
+                          type="checkbox" value="food-and-fitness" />
                           Food and Diet
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" value="Fashion" />
+                          type="checkbox" value="fashion-manners-and-customs" />
                           Fashion
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" value="Family" />
-                          Family
+                          type="checkbox" value="family" />
+                          Parenthood and Family
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" value="Games" />
+                          type="checkbox" value="games-and-activities" />
                           Games and Activities
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" value="Manga" />
+                          type="checkbox" value="graphic-books-and-manga" />
                           Graphic Books and Manga
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" value="Health" />
+                          type="checkbox" value="health" />
                           Health
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" value="Humor" />
-                          Humor
+                          type="checkbox" value="humor" />
+                          Humour
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" value="Relationships" />
+                          type="checkbox" value="relationships" />
                           Relationships
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" value="Politics" />
+                          type="checkbox" value="hardcover-political-books" />
                           Politics
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" value="Religion" />
+                          type="checkbox" value="race-and-civil-rights" />
+                          Race and Civil Rights
+                      </label>
+                      <label className="checkbox">
+                        <input
+                          onChange={(event) => this.handleChange(event)}
+                          type="checkbox" value="religion-spirituality-and-faith" />
                           Religion, Spirituality and Faith
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" value="Science" />
+                          type="checkbox" value="science" />
                           Science
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" value="Sport" />
+                          type="checkbox" value="sports" />
                           Sport and Fitness
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" value="Travel" />
+                          type="checkbox" value="travel" />
                           Travel
                       </label>
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" value="Young-adult" />
+                          type="checkbox" value="young-adult" />
                           Young Adult
                       </label>
 
