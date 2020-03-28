@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import auth from '../lib/auth'
+import { Link } from 'react-router-dom'
 import LibraryBookCard from './LibraryBookCard'
 
 class UserLibrary extends React.Component {
@@ -21,6 +22,21 @@ class UserLibrary extends React.Component {
   render() {
     console.log(this.state.books)
     if (!this.state.books) return <h1>WAITING FOR BOOKS</h1>
+
+    // return <>
+    // <br></br>
+    // <br></br>
+    // <br></br>
+    // <br></br>
+    //   {this.state.books.map((book, index) => {
+    //     return <>
+    //     <h1 key={index}>{book.title}</h1>
+    //     <Link to={`/books/${book._id}/comments`}><button>Add Comment </button> 
+    //     </Link>
+
+    //     </>
+    //   })}
+    // </>
 
     return <main className="mainLibraryBookCard">
       <section className="BooksIndex">

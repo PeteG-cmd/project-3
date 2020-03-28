@@ -4,7 +4,8 @@ const booksController = require('./controllers/booksController')
 const categoriesController = require('./controllers/categoriesController')
 // const invitesController = require('./controllers/invitesController')
 const userController = require('./controllers/userController')
-const virtualBookClubsController = require('./controllers/virtualBookClubsController')
+const bookClubsController = require('./controllers/bookClubsController')
+const commentsController = require('./controllers/commentsController')
 
 // Used for members only routes
 const secureRoute = require('./lib/secureRoute')
@@ -23,19 +24,13 @@ router.route('/profile')
   .post(secureRoute, userController.getProfile)
 
 
-
-
-// // Catergory Routes
-// router.route('/catergories')
-// .get(secureRoute, catergoriesController.catergories)
-
 router.route('/categories')
   .post(secureRoute, categoriesController.addCategories)
   .get(secureRoute, categoriesController.getCategories)
 //   .put(secureRoute, catergoriesController.editCatergories)   // Check Peter's function name
 
 // // Book Routes
-  
+
 
 router.route('/books/get')
   .get(booksController.indexBooks)
@@ -45,8 +40,9 @@ router.route('/mylibrary')
   .get(secureRoute, booksController.getBooks)
   .post(secureRoute, booksController.addBook)
 
-// router.route('/book/:book_id')
-//   .get(booksController.viewComments)   // Check Peter's function name
+router.route('/books/:book_id/comments')
+  .post(secureRoute, commentsController.addComment)
+
 
 // router.route('/book/book_id/comments')
 //   .post(secureRoute, booksController.addBookComment) // Check Peter's function name
@@ -55,8 +51,8 @@ router.route('/mylibrary')
 //   .delete(secureRoute, booksController.deleteComment) // Check Peter's function name
 
 // // Virtual Book Club Routes
-// router.route('/bookclub/create')
-//   .post(secureRoute, virtualBookClubsController.createBookclub) // Check Peter's function name
+// router.route('/bookclub')
+//   .post(secureRoute, bookClubsController.create)
 
 // router.route('/bookclubs')
 //   .get(secureRoute, virtualBookClubsController.bookClubs) // Check Peter's function name
