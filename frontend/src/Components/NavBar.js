@@ -53,7 +53,7 @@ class NavBar extends React.Component {
                 Wish List
               </Link>
 
-              <Link to="/profile/:user_id" className="navbar-item">
+              <Link to="/mylibrary" className="navbar-item">
                 Books Read
               </Link>
 
@@ -111,7 +111,7 @@ class NavBar extends React.Component {
             <div className="buttons">
               {!isLoggedIn && <div className="button is-primary"><Link to="/register"><strong>Register</strong></Link></div>}
               {!isLoggedIn && <div className="button is-light"><Link to="/login">Log in</Link></div>}
-              {isLoggedIn && <div className="navbar-item"><Link to="/profile/:user_id">Profile</Link></div>}
+              {isLoggedIn && <div className="button is-warning"><Link to="/profile/:user_id">Profile</Link></div>}
               {isLoggedIn && <div
                 onClick={() => this.handleLogout()}
                 className="button is-light"

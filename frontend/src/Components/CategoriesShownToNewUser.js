@@ -31,8 +31,8 @@ class CategoriesShownToNewUser extends React.Component {
   }
 
   render() {
-    return <main className="hero is-fullheight">
-      <div className="hero-body">
+    return <main className="hero is-fullheight" id="categorieshero">
+      <div className="hero-body" id="categorieshero-body">
         <div className="container">
           <section className="section">
             <div className="container has-text-centered">
@@ -40,7 +40,6 @@ class CategoriesShownToNewUser extends React.Component {
                 <div className="column"></div>
                 <div className="column is-two-thirds">
                   <div className="box">
-                    <h1 className="title">Chapter 2:</h1>
                     <h2 className="subtitle"><strong>Select Your Favourite Book Categories</strong></h2>
                     <form
                       className="form"

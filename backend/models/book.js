@@ -4,17 +4,9 @@ const Comment = require('./comment').schema
 
 const schema = new mongoose.Schema({
   title: { type: String, required: true, unique: true },
-  googleId: { type: String, required: true, unique: true },
-  isbn10Number: { type: String },
-  isbn13Number: { type: String },
-  description: { type: String, required: true },
+  webId: { type: String, required: true, unique: true },
+  isbnNumber: { type: String },
   author: { type: String, required: true },
-  imageUrl: { type: String, required: true, unique: true },
-  publishedDate: { type: String, required: true },
-  publisher: { type: String, required: true },
-  pageCount: { type: String, required: true },
-  averageRating: { type: String, required: true },
-  genre: { type: String, required: true },
   // comments: [{ type: mongoose.Schema.ObjectId, ref: 'Comment' }]
   comments: [Comment]
 
