@@ -24,17 +24,17 @@ class UserLibrary extends React.Component {
 
     return <main className="mainLibraryBookCard">
       <section className="BooksIndex">
-      <div className="section">
-            <div className="container">
-              <div className="columns is-multiline is-mobile">
+        <div className="section">
+          <div className="container">
+            <div className="columns is-multiline is-mobile">
 
-        {this.state.books.map((book, index) => {
-          return <LibraryBookCard book={book} key={index} />
-              
-        })}
-        </div>
+              {this.state.books.map((book, index) => {
+                return <LibraryBookCard book={book} key={index} />
+
+              })}
             </div>
           </div>
+        </div>
       </section>
     </main>
   }
