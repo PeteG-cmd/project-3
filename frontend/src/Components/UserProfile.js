@@ -32,7 +32,8 @@ class UserProfile extends React.Component {
   render() {
     console.log(this.state.user)
     // const totalBooks = this.state.user.books.length
-    // console.log(totalBooks)
+    // console.log(this.state.user.books.length)
+    // console.log(typeof(this.state.user.books.length))
     return <main className="hero is-fullheight">
 
       <div className="hero-body">
@@ -85,7 +86,6 @@ class UserProfile extends React.Component {
             <div className="tile is-parent">
               <div className="tile is-child box">
                 <p className="title">Books</p>
-
 
                 <div className="tile is-child box">
                   <p className="title is-5">Number of Books Read: </p>
