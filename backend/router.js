@@ -38,6 +38,9 @@ router.route('/categories')
 router.route('/books/new')
   .post(secureRoute, booksController.addBook)
 
+router.route('/books/get')
+  .get(booksController.indexBooks)
+
 // router.route('/book/:book_id')
 //   .get(booksController.viewComments)   // Check Peter's function name
 

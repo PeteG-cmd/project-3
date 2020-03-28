@@ -8,24 +8,44 @@ function addBook(req, res) {
   console.log(req.body)
   Book.findOne({ googleId: req.body.googleId })
     .then(book => {
-      if (book) {
-        User.findById(req.body._id)
-          .then(user => user.books.push(book.book_id))
-          .then(res.status(201).send({ book, message: 'Book already in Library, adding to user profile' }))
-      } else {
+      if (!book) {
         Book
           .create(req.body)
-        User.findById(req.body._id)
-          .then(user => user.books.push(book))
-
-          .then(res.status(201).send({ book, message: 'New book added to library, adding to user profile' }))
+          .then(book => {
+            User.findById(req.body.user._id)
+              .then(user => {
+                user.books.push(book)
+                return user.save()
+              })
+              .then(user => res.status(201).send({ user, message: 'Book Created and added to User' }))
+              .catch(err => res.status(401).send(err))
+          })
+      } else {
+        Book.findOne({ googleId: req.body.googleId })
+          .then(book => {
+            User.findById(req.body.user._id)
+              .then(user => {
+                user.books.push(book)
+                return user.save()
+              })
+              .then(user => res.status(201).send({ user, message: 'Library already contains this book, however the book has now been added to User' }))
+              .catch(err => res.status(401).send(err))
+          })
+          .catch(err => res.status(401).send(err))
       }
     })
+}
 
-    .catch(err => res.send(err))
 
+function indexBooks(req, res) {
+  Book
+    .find()
+    .then(books => {
+      res.send(books)
+    })
 }
 
 module.exports = {
-  addBook
+  addBook,
+  indexBooks
 }

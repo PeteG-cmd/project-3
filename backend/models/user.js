@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
-// const Book = require('./book').schema
+const Book = require('./book').schema
 const Catergory = require('./catergory').schema
 // const BookClub = require('./bookClub').schema
 const Invite = require('./invite').schema
