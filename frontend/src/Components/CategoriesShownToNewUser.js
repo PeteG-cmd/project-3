@@ -217,6 +217,7 @@ class CategoriesShownToNewUser extends React.Component {
                       </div>
                     </form>
                   </div>
+                
                 </div>
                 <div className="column"></div>
               </div>
