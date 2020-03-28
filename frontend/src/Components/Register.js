@@ -33,15 +33,15 @@ class Register extends React.Component {
 
   render() {
     const { errors } = this.state
-    return <main className="hero is-fullheight">
-      <div className="hero-body">
+    return <main className="hero is-fullheight" id="registerhero">
+      <div className="hero-body" id="registerhero-body">
         <div className="container">
           <section className="section">
             <div className="container has-text-centered">
               <div className="columns">
                 <div className="column is-one-third"></div>
                 <div className="column is-block">
-                  <div className="box">
+                  <div className="box" id="registerbox">
                     <h1 className="title">Chapter 1: Register</h1>
                     <form
                       className="form"
