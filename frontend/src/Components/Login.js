@@ -36,15 +36,15 @@ class Login extends React.Component {
 
   render() {
     const { error } = this.state
-    return <main className="hero is-fullheight">
-      <div className="hero-body">
+    return <main className="hero is-fullheight" id="loginhero">
+      <div className="hero-body" id="loginhero-body">
         <div className="container">
           <section className="section">
             <div className="container has-text-centered">
               <div className="columns">
                 <div className="column is-one-third"></div>
                 <div className="column is-block">
-                  <div className="box">
+                  <div className="box" id="loginbox">
                     <h1 className="title" id="logintitle">Chapter 3: Login</h1>
                     <form
                       className="form"
