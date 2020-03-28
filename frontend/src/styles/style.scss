@@ -201,28 +201,107 @@
   padding: 20px;
 }
 
+// Profile
+#booksProfileButton {
+  margin-top: 20px;
+}
+
+#booksClubprofileButton {
+  margin-top: 30px;
+}
+
+.has-image-centered {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
 //Single Book Page SASS
 
-.mainSingleBook {
+
+
+.theSingleBookContainer {
+  height: 90vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  margin-top: 60px;
+
+  figure {
+    padding-right: 50px;
+    
+  .BookCardImg {
+    height: 400px;
+    width: 300px;
+  }
+  }
+  .theBookInfoContainer{
+    padding-left: 30px;
+    display: flex;
+    flex-direction: column;
+    height: 400px;
+    width: 300px;
+    justify-content: space-evenly;
+  }
+}
+
+
+
+//Detailed Book from Library Page SASS
+
+.mainDetailedBook {
   margin-top: 60px;
   height: 90vh;
 }
 
-.theSingleBookcontainer {
+.theDetailedBookcontainer {
   height: 90vh;
   border: 2px solid black;
   display: flex;
   flex-direction: column;
 }
 
-.theBookInfocontainer{
-  height: 50%;
+.theDetailedBookInfocontainer{
+  height: 100%;
   border: 2px solid red;
   display: flex;
   flex-direction: row;
   align-items: center;
   padding: 10px;
   margin: 5px;
+}
+
+// Library Bookcard SASS
+
+.mainLibraryBookCard {
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 60px;
+}
+
+
+.BooksIndex {
+  .card {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+  .card-header {
+    background-color: lighten(#548891, 10%);
+  }
+  .card-image img {
+    width: auto;
+    height: 300px;
+    margin: 0 auto;
+    padding: 40px 20px;
+  }
+  .card-content {
+    border-top: 1px solid #404f52;
+  }
 }
 
 // Toastify SASS
