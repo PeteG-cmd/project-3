@@ -53,7 +53,7 @@ class NavBar extends React.Component {
                 Wish List
               </Link>
 
-              <Link to="/profile/:user_id" className="navbar-item">
+              <Link to="/mylibrary" className="navbar-item">
                 Books Read
               </Link>
 

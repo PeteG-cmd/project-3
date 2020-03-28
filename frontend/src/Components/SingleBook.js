@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import SingleBookBookCard from './SingleBookBookCard'
-// import auth from '../lib/auth'
+import auth from '../lib/auth'
 // import { Link } from 'react-router-dom'
 
 class SingleBook extends React.Component {
@@ -9,42 +9,62 @@ class SingleBook extends React.Component {
   constructor() {
     super()
     this.state = {
-      book: null
-      // googleId: '',
-      // title: '',
-      // isbn10Number: '',
-      // isbn13Number: '',
-      // description: '',
-      // author: '',
-      // imageUrl: '',
-      // publishedDate: '',
-      // publisher: '',
-      // pageCount: '',
-      // averageRating: '',
-      // genre: ''
-
+      book: null,
+      submitDetails: {
+        webId: '',
+        title: '',
+        isbnNumber: '',
+        author: ''
+      }
     }
   }
 
   componentDidMount() {
-    const googleId = this.props.match.params.googleId
-    axios.get(`https://www.googleapis.com/books/v1/volumes?q=id:${googleId}&key=AIzaSyCEn7nVijyWlVGp995NH9PBDmTdmECg3DY`)
-      .then(res => this.setState({ book: res.data.items[0] }))
-      // .then(res => )
+    const webId = this.props.match.params.webId
+    axios.get(`https://www.googleapis.com/books/v1/volumes?q=id:${webId}&key=AIzaSyCEn7nVijyWlVGp995NH9PBDmTdmECg3DY`)
+      .then(res => {
+        this.setState({ book: res.data.items[0] })
+        this.updateDetails(res.data.items[0])
+      })
+
       .catch(error => console.error(error))
   }
 
   handleSubmit(event) {
     event.preventDefault()
-    axios.post('/api/books/new', this.state.data)
+    axios.post('/api/myLibrary', this.state.submitDetails, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then(res => {
-        this.props.history.push('/profile')
+        this.props.history.push('/mylibrary')
       })
       .catch(err => this.setState({ error: err.response.data.message }))
   }
 
+  updateDetails(data) {
+
+    const neededIsbn = []
+    data.volumeInfo.industryIdentifiers.map(isbn => {
+      neededIsbn.push(isbn.identifier)
+    })
+
+    neededIsbn.sort()
+    console.log(neededIsbn)
+    neededIsbn.shift()
+    console.log(neededIsbn)
+
+
+    const submitDetails = {
+      webId: data.id,
+      title: data.volumeInfo.title,
+      isbnNumber: neededIsbn[0],
+      author: data.volumeInfo.authors[0]
+    }
+    this.setState({ submitDetails })
+  }
+
+ 
+
   render() {
-    console.log(this.state.book)
+    console.log(this.state)
     if (!this.state.book) return <h1>Waiting for Book</h1>
     return <div className="container">
       <section className="section">

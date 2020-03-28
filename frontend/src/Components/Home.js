@@ -30,8 +30,6 @@ export default class Home extends React.Component {
           console.log(res.data)
         })
     }
-  
-  
   }
 
   render() {
