@@ -21,6 +21,7 @@ import SearchNewBooks from './Components/SearchNewBooks'
 import SingleBook from './Components/SingleBook'
 import BooksBestSellers from './Components/BooksBestSellers'
 import NonUserBookSearch from './Components/NonUserBookSearch'
+import DetailedBookPage from './Components/DetailedBookPage'
 
 import BookComment from './Components/BookComment'
 import UpdateComments from './Components/UpdateComments'
@@ -46,12 +47,13 @@ const App = () => (
       <Route path="/categories/:user_id" component={NewUserAddsCategories} />
       <Route exact path="/profile/:user_id" component={UserProfile} />
       <Route exact path="/books/new" component={SearchNewBooks} />
+      <Route exact path="/books/:book_id" component={DetailedBookPage}/>
       <Route exact path="/books/bestsellers" component={BooksBestSellers} />
       <Route exact path="/books/nonuserbooksearch" component={NonUserBookSearch} />
       <Route exact path="/book/:webId" component={SingleBook} />
-      <Route exact path="/book/:book_id/comments" component={BookComment} />
+      <Route exact path="/books/:book_id/comments" component={BookComment} />
       <Route path="/book/:book_id/comment/:comment_id" component={UpdateComments} />
-      <Route path="/bookclub/create" component={CreateBookClub} />
+      <Route exact path="/bookclubs/new" component={CreateBookClub} />
       <Route exact path="/bookclubs" component={AllBookClubs} />
       <Route exact path="/bookclub" component={SingleBookClub} />
       <Route path="/bookclubs/myBookClubs" component={MyBookClubs} />
