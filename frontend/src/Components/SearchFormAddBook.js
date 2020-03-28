@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SearchFormAddBook = ({ query, onChange, handleSearch }) => {
+const SearchFormAddBook = ({ query, onChange }) => {
   return (
     <div className="SearchForm ">
       <div className="container is-centered">
@@ -14,7 +14,7 @@ const SearchFormAddBook = ({ query, onChange, handleSearch }) => {
               onChange={onChange}
             />
           </div>
-          <div className="control">
+          {/* <div className="control">
             <button
               type="submit"
               className="button is-info is-normal"
@@ -23,7 +23,7 @@ const SearchFormAddBook = ({ query, onChange, handleSearch }) => {
             >
               Search
             </button>
-          </div>
+          </div> */}
         </form>
       </div>
     </div>

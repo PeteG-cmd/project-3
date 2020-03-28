@@ -45,7 +45,7 @@ class Login extends React.Component {
                 <div className="column is-one-third"></div>
                 <div className="column is-block">
                   <div className="box" id="loginbox">
-                    <h1 className="title" id="logintitle">Chapter 3: Login</h1>
+                    <h1 className="title" id="logintitle">Login</h1>
                     <form
                       className="form"
                       onSubmit={(event) => this.handleSubmit(event)}

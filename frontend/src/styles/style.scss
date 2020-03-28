@@ -137,7 +137,19 @@
   }
 }
 
-// AddBooks page for Logged In User
+// Categories SASS
+
+#categorieshero {
+  #categorieshero-body{
+    background-image: url('https://www.sciencenewsforstudents.org/wp-content/uploads/2019/11/860_main_library_bacteria.png');
+    background-position: center;
+    background-repeat:  no-repeat;
+    background-attachment: fixed;
+    background-size:  cover;
+  }
+}
+
+// SearchBooks page for Logged In User
 
 .searchBookMain {
   height: 100vh;
@@ -189,6 +201,29 @@
   padding: 20px;
 }
 
+//Single Book Page SASS
+
+.mainSingleBook {
+  margin-top: 60px;
+  height: 90vh;
+}
+
+.theSingleBookcontainer {
+  height: 90vh;
+  border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+}
+
+.theBookInfocontainer{
+  height: 50%;
+  border: 2px solid red;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  padding: 10px;
+  margin: 5px;
+}
 
 // Toastify SASS
 
