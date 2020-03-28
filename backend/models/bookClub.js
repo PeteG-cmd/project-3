@@ -5,7 +5,7 @@ const mongoose = require('mongoose')
 
 
 const schema = new mongoose.Schema({
-  name: { type: String, required: true },
+  bookClubName: { type: String, required: true },
   descriptionBio: { type: String, required: true },
   user: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
   // members: [User],

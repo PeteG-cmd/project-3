@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import auth from '../lib/auth'
+import { Link } from 'react-router-dom'
 
 class UserLibrary extends React.Component {
 
@@ -27,7 +28,12 @@ class UserLibrary extends React.Component {
     <br></br>
     <br></br>
       {this.state.books.map((book, index) => {
-        return <h1 key={index}>{book.title}</h1>
+        return <>
+        <h1 key={index}>{book.title}</h1>
+        <Link to={`/books/${book._id}/comments`}><button>Add Comment </button> 
+        </Link>
+
+        </>
       })}
     </>
   }
