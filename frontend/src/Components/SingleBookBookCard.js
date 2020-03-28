@@ -7,7 +7,7 @@ const SingleBookBookCard = ({ book, title, description, onSubmit }) => {
       <div className="card-image">
         <figure className="image">
           {/* This line below is a one line ternary only rendering if the picture exists. */}
-          {book.volumeInfo.imageLinks && <img src={book.volumeInfo.imageLinks.smallThumbnail} className="BookCardImg"></img>}
+          {book.volumeInfo.imageLinks && <img src={book.volumeInfo.imageLinks.thumbnail} className="BookCardImg"></img>}
         </figure>
       </div>
       <div className="card-content">
@@ -28,8 +28,8 @@ const SingleBookBookCard = ({ book, title, description, onSubmit }) => {
         </form>
       </div>
     </div>
-
   )
 }
 
 export default SingleBookBookCard
+

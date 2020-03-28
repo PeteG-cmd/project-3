@@ -42,7 +42,7 @@ class Register extends React.Component {
                 <div className="column is-one-third"></div>
                 <div className="column is-block">
                   <div className="box" id="registerbox">
-                    <h1 className="title">Chapter 1: Register</h1>
+                    <h1 className="title">Register</h1>
                     <form
                       className="form"
                       onSubmit={(event) => this.handleSubmit(event)}

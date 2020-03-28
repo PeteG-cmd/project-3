@@ -111,7 +111,7 @@ class NavBar extends React.Component {
             <div className="buttons">
               {!isLoggedIn && <div className="button is-primary"><Link to="/register"><strong>Register</strong></Link></div>}
               {!isLoggedIn && <div className="button is-light"><Link to="/login">Log in</Link></div>}
-              {isLoggedIn && <div className="navbar-item"><Link to="/profile/:user_id">Profile</Link></div>}
+              {isLoggedIn && <div className="button is-warning"><Link to="/profile/:user_id">Profile</Link></div>}
               {isLoggedIn && <div
                 onClick={() => this.handleLogout()}
                 className="button is-light"
