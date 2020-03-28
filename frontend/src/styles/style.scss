@@ -37,8 +37,8 @@
 }
 // Login and Register SASS
 
-.hero {
-  .hero-body{
+#loginhero {
+  #loginhero-body{
     background-image: url('https://www.sciencenewsforstudents.org/wp-content/uploads/2019/11/860_main_library_bacteria.png');
     background-position: center;
     background-repeat:  no-repeat;
@@ -47,7 +47,57 @@
   }
 }
 
-.box {
+#loginbox {
+  animation: fade ease-in 1.5s forwards;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  75% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+
+@-webkit-keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  75% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+
+#registerhero {
+  #registerhero-body{
+    background-image: url('https://www.sciencenewsforstudents.org/wp-content/uploads/2019/11/860_main_library_bacteria.png');
+    background-position: center;
+    background-repeat:  no-repeat;
+    background-attachment: fixed;
+    background-size:  cover;
+  }
+}
+
+#registerbox {
   animation: fade ease-in 1.5s forwards;
 }
 
