@@ -1,16 +1,15 @@
 import React from 'react'
 
-
 const DetailedBookPage = () => {
   return (
-    <main className="mainSingleBook">
-      <div className="theSingleBookcontainer">
-        <section className="theBookInfocontainer">
+    <main className="mainDetailedBook">
+      <div className="theDetailedBookcontainer">
+        <section className="theDetailedBookInfocontainer">
           <div>
             <h1>Hello</h1>
           </div>
         </section>
-        <section className="theBookInfocontainer">
+        <section className="theDetailedBookInfocontainer">
           <div>
             <h1>Hello</h1>
           </div>

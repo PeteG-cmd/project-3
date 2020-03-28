@@ -1,6 +1,6 @@
 import React from 'react'
 import axios from 'axios'
-import SingleBookBookCard from './SingleBookBookCard'
+import DescriptionModal from './DescriptionModal'
 import auth from '../lib/auth'
 // import { Link } from 'react-router-dom'
 
@@ -61,34 +61,44 @@ class SingleBook extends React.Component {
     this.setState({ submitDetails })
   }
 
- 
+
 
   render() {
     console.log(this.state)
     if (!this.state.book) return <h1>Waiting for Book</h1>
-    return <div className="container">
-      <section className="section">
-        <div className="container has-text-centered">
-          <div className="columns">
-            <div className="column is-one-third"></div>
-            <div className="column is-block">
-              <div className="box">
-                <SingleBookBookCard
-                  book={this.state.book}
-                  onSubmit={(event) => this.handleSubmit(event)}
-                  title={this.state.book.volumeInfo.title}
-                  description={this.state.book.volumeInfo.description}
-                />
-              </div>
-            </div>
-            <div className="column"></div>
-          </div>
+
+    const title = this.state.book.volumeInfo.title
+    const description = this.state.book.volumeInfo.description
+    const book = this.state.book
+
+    return <section className="theSingleBookContainer">
+      <div>
+        <figure>
+          {/* This line below is a one line ternary only rendering if the picture exists. */}
+          {book.volumeInfo.imageLinks && <img src={book.volumeInfo.imageLinks.thumbnail} className="BookCardImg"></img>}
+        </figure>
+      </div>
+      <div className="theBookInfoContainer">
+        <h5>{book.volumeInfo.title} </h5>
+        <div id="showModalButton">
+          <DescriptionModal
+            title={title}
+            description={description}
+          />
         </div>
-      </section>
-    </div>
+        <form>
+          <button
+            onClick={(event) => this.handleSubmit(event)}
+          >Add Book</button>
+        </form>
+      </div>
+    </section>
+
   }
 
 }
+
+
 
 export default SingleBook
 

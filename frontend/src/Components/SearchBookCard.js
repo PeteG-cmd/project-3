@@ -9,7 +9,7 @@ const SearchBookCard = ({ book }) => {
         <div className="card-image">
           <figure className="image">
             {/* This line below is a one line ternary only rendering if the picture exists. */}
-            {book.volumeInfo.imageLinks && <Link to={`../book/${book.id}`}><img src={book.volumeInfo.imageLinks.thumbnail} className="BookCardImg"></img></Link>}
+            {book.volumeInfo.imageLinks && <Link to={`../book/${book.id}`}><img src={book.volumeInfo.imageLinks.thumbnail}></img></Link>}
           </figure>
 
         </div>
