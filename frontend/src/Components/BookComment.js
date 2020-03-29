@@ -33,42 +33,42 @@ class BookComment extends React.Component {
 
   render() {
     return <>
-      <article className="media">
-        <figure className="media-left">
-          <p className="image is-64x64">
-            <img src="https://bulma.io/images/placeholders/128x128.png"></img>
-          </p>
-        </figure>
-        <div className="media-content">
-          <div className="content">
-            <p>
-              <strong>Barbara Middleton</strong>
-              <br></br>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in tempus turpis.
-              <br></br>
-              <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
+      <div className="allComments">
+        <article className="media">
+          <figure className="media-left">
+            <p className="image is-64x64">
+              <img src="https://bulma.io/images/placeholders/128x128.png"></img>
             </p>
+          </figure>
+          <div className="media-content">
+            <div className="content">
+              <h1>Hello</h1>
+            </div>
           </div>
-        </div>
-      </article>
-      <article className="media">
-        <figure className="media-left">
-          <p className="image is-64x64">
-            <img src="https://bulma.io/images/placeholders/128x128.png"></img>
-          </p>
-        </figure>
-        <div className="media-content">
-          <div className="field">
-            <p className="control">
-              <form onSubmit={() => this.handleSubmit(event)} >
-                <textarea className="textarea" placeholder="Add a comment..." onChange={(event) => this.handleChange(event)} type='text' name='comment' comment={this.state.comment}>
-                </textarea>
-                <button className="button">Submit</button>
-              </form>
+        </article>
+
+      </div>
+
+      <div className="addComment">
+        <article className="media">
+          <figure className="media-left">
+            <p className="image is-64x64">
+              <img src="https://bulma.io/images/placeholders/128x128.png"></img>
             </p>
+          </figure>
+          <div className="media-content">
+            <div className="field">
+              <p className="control">
+                <form onSubmit={() => this.handleSubmit(event)} >
+                  <textarea className="textarea" placeholder="Add a comment..." onChange={(event) => this.handleChange(event)} type='text' name='comment' comment={this.state.comment}>
+                  </textarea>
+                  <button className="button" id="commentSubmitButton">Submit</button>
+                </form>
+              </p>
+            </div>
           </div>
-        </div>
-      </article>
+        </article>
+      </div>
     </>
   }
 
