@@ -16,7 +16,7 @@ class BookComment extends React.Component {
     const bookId = this.props.match.params.book_id
     event.preventDefault()
     axios.post(`/api/books/${bookId}/comments`, this.state.comment, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
-      .then(res => this.props.history.push(`/books/${bookId}`))
+      // .then(res => this.props.history.push(`/books/${bookId}`))
       .catch(err => this.setState({ error: err.response.data.message }))
 
   }
@@ -32,19 +32,44 @@ class BookComment extends React.Component {
 
 
   render() {
-    return <form onSubmit={() => this.handleSubmit(event)} >
-      <br></br>
-      <br></br>
-      <br></br>
-      <label>Add a comment:</label>
-      <input onChange={(event) => this.handleChange(event)} type='text' name='comment' comment={this.state.comment}>
-      </input>
-      <button>Submit</button>
-
-
-
-
-    </form>
+    return <>
+      <article className="media">
+        <figure className="media-left">
+          <p className="image is-64x64">
+            <img src="https://bulma.io/images/placeholders/128x128.png"></img>
+          </p>
+        </figure>
+        <div className="media-content">
+          <div className="content">
+            <p>
+              <strong>Barbara Middleton</strong>
+              <br></br>
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis porta eros lacus, nec ultricies elit blandit non. Suspendisse pellentesque mauris sit amet dolor blandit rutrum. Nunc in tempus turpis.
+              <br></br>
+              <small><a>Like</a> · <a>Reply</a> · 3 hrs</small>
+            </p>
+          </div>
+        </div>
+      </article>
+      <article className="media">
+        <figure className="media-left">
+          <p className="image is-64x64">
+            <img src="https://bulma.io/images/placeholders/128x128.png"></img>
+          </p>
+        </figure>
+        <div className="media-content">
+          <div className="field">
+            <p className="control">
+              <form onSubmit={() => this.handleSubmit(event)} >
+                <textarea className="textarea" placeholder="Add a comment..." onChange={(event) => this.handleChange(event)} type='text' name='comment' comment={this.state.comment}>
+                </textarea>
+                <button className="button">Submit</button>
+              </form>
+            </p>
+          </div>
+        </div>
+      </article>
+    </>
   }
 
 }
