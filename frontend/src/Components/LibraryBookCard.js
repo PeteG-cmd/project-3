@@ -27,8 +27,9 @@ class LibraryBookCard extends React.Component {
   }
 
   render() {
-    const bookId = this.props.book._id
-    if (!this.state.book) return <Spinner />
+    const webId = this.props.book.webId
+    console.log(this.props)
+    if (!this.state.book) return <h1>WAITING FOR BOOKS</h1>
 
     const book = this.state.book
 
@@ -37,7 +38,7 @@ class LibraryBookCard extends React.Component {
         <div className="card-image">
           <figure className="image">
             {/* This line below is a one line ternary only rendering if the picture exists. */}
-            {book[0].volumeInfo.imageLinks && <Link to={`../book/${bookId}`}><img src={book[0].volumeInfo.imageLinks.thumbnail}></img></Link>}
+            {book[0].volumeInfo.imageLinks && <Link to={`../books/${webId}`} book={book}><img src={book[0].volumeInfo.imageLinks.thumbnail}></img></Link>}
           </figure>
         </div>
         <div className="card-content">

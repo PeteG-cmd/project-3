@@ -71,28 +71,49 @@ class SingleBook extends React.Component {
     const description = this.state.book.volumeInfo.description
     const book = this.state.book
 
-    return <section className="theSingleBookContainer">
-      <div>
-        <figure>
-          {/* This line below is a one line ternary only rendering if the picture exists. */}
-          {book.volumeInfo.imageLinks && <img src={book.volumeInfo.imageLinks.thumbnail} className="BookCardImg"></img>}
-        </figure>
+    return <main className="mainDetailedBook">
+      <div className="theDetailedBookcontainer">
+        <section className="theDetailedBookInfocontainer">
+          <figure id="DBPFigImg">
+            {/* This line below is a one line ternary only rendering if the picture exists. */}
+            {book.volumeInfo.imageLinks && <img src={book.volumeInfo.imageLinks.thumbnail} id="DetailedBookPageImg"></img>}
+          </figure>
+          <div className="theDetailedBookInfo">
+            <h1 id="DetailedBookTitle">{book.volumeInfo.title}</h1>
+            <div className="theDetailedBookStats">
+              <div className="stats" id="generalStats">
+                <ul className="generalStatsList">
+                  {book.volumeInfo.authors && <li className="generalStatsListItem"><span className="statsListTitle">Author:</span> {book.volumeInfo.authors[0]}</li>}
+                  {book.volumeInfo.publisher && <li className="generalStatsListItem"><span className="statsListTitle">Publisher:</span>  {book.volumeInfo.publisher}</li>}
+                  {book.volumeInfo.publishedDate && <li className="generalStatsListItem"><span className="statsListTitle">Published Date:</span>  {book.volumeInfo.publishedDate}</li>}
+                </ul>
+              </div>
+              <div className="stats" >
+                <div id="descriptionModal">
+                  <DescriptionModal
+                    title={title}
+                    description={description}
+                  />
+                </div>
+                <p className="to-top">Description Above</p>
+              </div>
+              <div className="stats" id="ratings">
+                <ul className="generalRatingsList">
+                  {book.volumeInfo.averageRating && <li className="generalRatingsListItem"><span className="ratingsListTitle">Average Rating:</span> {book.volumeInfo.averageRating}</li>}
+                  {book.volumeInfo.ratingsCount && <li className="generalRatingsListItem"><span className="ratingsListTitle">Ratings Count:</span>  {book.volumeInfo.ratingsCount}</li>}
+                  {book.volumeInfo.language && <li className="generalRatingsListItem"><span className="ratingsListTitle">Book Language:</span>  {book.volumeInfo.language}</li>}
+                </ul>
+              </div>
+            </div>
+          </div>
+          <form>
+            <button
+              onClick={(event) => this.handleSubmit(event)}
+            >Add Book</button>
+          </form>
+        </section>
       </div>
-      <div className="theBookInfoContainer">
-        <h5>{book.volumeInfo.title} </h5>
-        <div id="showModalButton">
-          <DescriptionModal
-            title={title}
-            description={description}
-          />
-        </div>
-        <form>
-          <button
-            onClick={(event) => this.handleSubmit(event)}
-          >Add Book</button>
-        </form>
-      </div>
-    </section>
+    </main>
 
   }
 

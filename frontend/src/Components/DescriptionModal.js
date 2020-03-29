@@ -51,6 +51,7 @@ class DescriptionModal extends React.Component {
         <a data-name="Aarhus" data-slug="aarhus" onClick={this.toggleModal}>
           <i
             className="fas fa-info-circle"
+            
             data-name="Aarhus"
             data-slug="aarhus"
             aria-hidden="true"
