@@ -1,5 +1,5 @@
 import React from 'react'
-import axios from 'axios'
+// import axios from 'axios'
 import DescriptionModal from './DescriptionModal'
 
 
@@ -12,21 +12,22 @@ class DetailedBookPage extends React.Component {
     }
   }
 
-  componentDidMount() {
-    const webId = this.props.match.params.webId
-    console.log(this.props)
-    axios.get(`https://www.googleapis.com/books/v1/volumes?q=id:${webId}&key=AIzaSyCEn7nVijyWlVGp995NH9PBDmTdmECg3DY`)
-      .then(res => {
-        console.log(res.data.items)
-        this.setState({ book: res.data.items })
-      })
+  // componentDidMount() {
+  //   const webId = this.props.match.params.webId
+  //   console.log(this.props)
+  //   axios.get(`https://www.googleapis.com/books/v1/volumes?q=id:${webId}&key=AIzaSyCEn7nVijyWlVGp995NH9PBDmTdmECg3DY`)
+  //     .then(res => {
+  //       console.log(res.data.items)
+  //       this.setState({ book: res.data.items })
+  //     })
 
-      .catch(error => console.error(error))
-  }
+  //     .catch(error => console.error(error))
+  // }
   render() {
-    if (!this.state.book) return <h1>WAITING FOR BOOKS</h1>
+    // if (!this.props.book) return <h1>WAITING FOR BOOKS</h1>
 
-    const book = this.state.book
+    const book = this.props.book
+
     return <main className="mainDetailedBook">
       <div className="theDetailedBookcontainer">
         <section className="theDetailedBookInfocontainer">

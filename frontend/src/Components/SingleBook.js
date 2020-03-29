@@ -71,24 +71,24 @@ class SingleBook extends React.Component {
     const description = this.state.book.volumeInfo.description
     const book = this.state.book
 
-    return <main className="mainDetailedBook">
-      <div className="theDetailedBookcontainer">
-        <section className="theDetailedBookInfocontainer">
-          <figure id="DBPFigImg">
+    return <main className="mainSingleBook">
+      <div className="theSingleBookcontainer">
+        <section className="theSingleBookInfocontainer">
+          <figure id="SingleFigImg">
             {/* This line below is a one line ternary only rendering if the picture exists. */}
-            {book.volumeInfo.imageLinks && <img src={book.volumeInfo.imageLinks.thumbnail} id="DetailedBookPageImg"></img>}
+            {book.volumeInfo.imageLinks && <img src={book.volumeInfo.imageLinks.thumbnail} id="SingleBookPageImg"></img>}
           </figure>
-          <div className="theDetailedBookInfo">
-            <h1 id="DetailedBookTitle">{book.volumeInfo.title}</h1>
-            <div className="theDetailedBookStats">
-              <div className="stats" id="generalStats">
-                <ul className="generalStatsList">
-                  {book.volumeInfo.authors && <li className="generalStatsListItem"><span className="statsListTitle">Author:</span> {book.volumeInfo.authors[0]}</li>}
-                  {book.volumeInfo.publisher && <li className="generalStatsListItem"><span className="statsListTitle">Publisher:</span>  {book.volumeInfo.publisher}</li>}
-                  {book.volumeInfo.publishedDate && <li className="generalStatsListItem"><span className="statsListTitle">Published Date:</span>  {book.volumeInfo.publishedDate}</li>}
+          <div className="theSingleBookInfo">
+            <h1 id="SingleBookTitle">{book.volumeInfo.title}</h1>
+            <div className="theSingleBookStats">
+              <div className="SingleStats" id="generalSingleStats">
+                <ul className="generalSingleStatsList">
+                  {book.volumeInfo.authors && <li className="generalSingleStatsListItem"><span className="SingleStatsListTitle">Author:</span> {book.volumeInfo.authors[0]}</li>}
+                  {book.volumeInfo.publisher && <li className="generalSingleStatsListItem"><span className="SingleStatsListTitle">Publisher:</span>  {book.volumeInfo.publisher}</li>}
+                  {book.volumeInfo.publishedDate && <li className="generalSingleStatsListItem"><span className="SingleStatsListTitle">Published Date:</span>  {book.volumeInfo.publishedDate}</li>}
                 </ul>
               </div>
-              <div className="stats" >
+              <div className="SingleStats" >
                 <div id="descriptionModal">
                   <DescriptionModal
                     title={title}
@@ -97,11 +97,11 @@ class SingleBook extends React.Component {
                 </div>
                 <p className="to-top">Description Above</p>
               </div>
-              <div className="stats" id="ratings">
-                <ul className="generalRatingsList">
-                  {book.volumeInfo.averageRating && <li className="generalRatingsListItem"><span className="ratingsListTitle">Average Rating:</span> {book.volumeInfo.averageRating}</li>}
-                  {book.volumeInfo.ratingsCount && <li className="generalRatingsListItem"><span className="ratingsListTitle">Ratings Count:</span>  {book.volumeInfo.ratingsCount}</li>}
-                  {book.volumeInfo.language && <li className="generalRatingsListItem"><span className="ratingsListTitle">Book Language:</span>  {book.volumeInfo.language}</li>}
+              <div className="SingleStats" id="singleRatings">
+                <ul className="generalSingleRatingsList">
+                  {book.volumeInfo.averageRating && <li className="generalSingleRatingsListItem"><span className="SingleRatingsListTitle">Average Rating:</span> {book.volumeInfo.averageRating}</li>}
+                  {book.volumeInfo.ratingsCount && <li className="generalSingleRatingsListItem"><span className="SingleRatingsListTitle">Ratings Count:</span>  {book.volumeInfo.ratingsCount}</li>}
+                  {book.volumeInfo.language && <li className="generalSingleRatingsListItem"><span className="SingleRatingsListTitle">Book Language:</span>  {book.volumeInfo.language}</li>}
                 </ul>
               </div>
             </div>
