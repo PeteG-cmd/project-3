@@ -51,8 +51,15 @@ router.route('/books/:book_id/comments')
 //   .delete(secureRoute, booksController.deleteComment) // Check Peter's function name
 
 // // Virtual Book Club Routes
-// router.route('/bookclub')
-//   .post(secureRoute, bookClubsController.create)
+router.route('/bookclubs')
+  .post(secureRoute, bookClubsController.create)
+  .get(secureRoute, bookClubsController.index)
+
+router.route('/bookclub/:bookclub_id')
+  .get(secureRoute,bookClubsController.get)
+
+router.route('/bookclubs/mybookclubs')
+  .get(secureRoute, bookClubsController.myBookClubs)
 
 // router.route('/bookclubs')
 //   .get(secureRoute, virtualBookClubsController.bookClubs) // Check Peter's function name

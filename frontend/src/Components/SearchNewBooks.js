@@ -57,10 +57,12 @@ class SearchNewBooks extends React.Component {
                   {this.state.books.map((book, index) => {
                     if ((book.volumeInfo.industryIdentifiers)) {
                       if (!(book.volumeInfo.industryIdentifiers[0].type === 'OTHER')) {
+                        // if (!(book.id.split('').includes(['_']))) {
                         console.log(book)
                         return <SearchBookCard key={index} book={book} />
                       }
                     }
+                    // }
                   })}
                 </div>
               </div>

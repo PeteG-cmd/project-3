@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import { Link } from 'react-router-dom'
+import Spinner from './Common/Spinner'
 
 
 class LibraryBookCard extends React.Component {
@@ -27,7 +28,7 @@ class LibraryBookCard extends React.Component {
 
   render() {
     const bookId = this.props.book._id
-    if (!this.state.book) return <h1>WAITING FOR BOOKS</h1>
+    if (!this.state.book) return <Spinner />
 
     const book = this.state.book
 

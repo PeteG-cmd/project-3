@@ -40,7 +40,9 @@ class UserLibrary extends React.Component {
 
     return <main className="mainLibraryBookCard">
       <section className="BooksIndex">
+        <h1 className='title'>My Library</h1>
         <div className="section">
+
           <div className="container">
             <div className="columns is-multiline is-mobile">
 

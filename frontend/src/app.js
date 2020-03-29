@@ -53,9 +53,9 @@ const App = () => (
       <Route exact path="/book/:webId" component={SingleBook} />
       <Route exact path="/books/:book_id/comments" component={BookComment} />
       <Route path="/book/:book_id/comment/:comment_id" component={UpdateComments} />
-      <Route exact path="/bookclubs/new" component={CreateBookClub} />
       <Route exact path="/bookclubs" component={AllBookClubs} />
-      <Route exact path="/bookclub" component={SingleBookClub} />
+      <Route exact path="/bookclubs/new" component={CreateBookClub} />
+      <Route exact path="/bookclub/:bookclub_id" component={SingleBookClub} />
       <Route path="/bookclubs/myBookClubs" component={MyBookClubs} />
       <Route path="/bookclubs/myBookClubs/:bookclub_id" component={JoinMyBookClub} />
       <Route path="/bookclubs/myBookClubs/:bookclub_id/comments" component={CommentsOnTheBookClub} />

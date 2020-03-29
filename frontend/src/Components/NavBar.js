@@ -77,12 +77,12 @@ class NavBar extends React.Component {
                 My Book Clubs
               </Link>
 
-              <Link to="/bookclub/create" className="navbar-item">
-                Create Book Clubs
+              <Link to="/bookclubs/new" className="navbar-item">
+                Create Book Club
               </Link>
 
               <Link to="/bookclubs" className="navbar-item">
-                Join Book Clubs
+                Search Book Clubs
               </Link>
             </div>
           </div>}
