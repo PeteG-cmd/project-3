@@ -68,15 +68,10 @@ function getBooks(req, res) {
       console.log(books)
       res.status(201).send(books)
     })
-
-
-
-
   // .then(res.status(201).send(userBookIsbns))
   // .catch(err => res.send(err))
-
-
 }
+
 
 module.exports = {
   addBook,
