@@ -35,10 +35,15 @@ router.route('/categories')
 router.route('/books/get')
   .get(booksController.indexBooks)
 
+router.route('/book/:book_id')
+  .get(secureRoute, booksController.getBook)
+
 
 router.route('/mylibrary')
   .get(secureRoute, booksController.getBooks)
   .post(secureRoute, booksController.addBook)
+
+
 
 router.route('/books/:book_id/comments')
   .post(secureRoute, commentsController.addComment)

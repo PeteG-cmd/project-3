@@ -72,9 +72,19 @@ function getBooks(req, res) {
   // .catch(err => res.send(err))
 }
 
+function getBook(req, res) {
+
+  Book
+    .findById(req.params.book_id)
+    .then(book => res.status(200).send(book))
+    .catch(err => res.send(err))
+
+}
+
 
 module.exports = {
   addBook,
   indexBooks,
-  getBooks
+  getBooks,
+  getBook
 }

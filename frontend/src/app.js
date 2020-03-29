@@ -47,7 +47,7 @@ const App = () => (
       <Route path="/categories/:user_id" component={NewUserAddsCategories} />
       <Route exact path="/profile/:user_id" component={UserProfile} />
       <Route exact path="/books/new" component={SearchNewBooks} />
-      <Route exact path="/books/:webId" component={DetailedBookPage}/>
+      <Route exact path="/books/:book_id" component={DetailedBookPage}/>
       <Route exact path="/books/bestsellers" component={BooksBestSellers} />
       <Route exact path="/books/nonuserbooksearch" component={NonUserBookSearch} />
       <Route exact path="/book/:webId" component={SingleBook} />
