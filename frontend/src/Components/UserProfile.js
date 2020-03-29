@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 
 import auth from '../lib/auth'
+import { Link } from 'react-router-dom'
 
 class UserProfile extends React.Component {
 
@@ -19,6 +20,7 @@ class UserProfile extends React.Component {
   }
 
 
+  // Get Profile details from our server
   componentDidMount() {
     if (auth.isLoggedIn()) {
       axios.post('/api/profile', {}, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
@@ -28,6 +30,8 @@ class UserProfile extends React.Component {
         })
     }
   }
+
+
 
   render() {
     console.log(this.state.user)
@@ -43,33 +47,52 @@ class UserProfile extends React.Component {
           <div className="tile is-ancestor">
             <div className="tile is-4 has-text-centered is-vertical is-parent">
               <div className="tile is-child box">
-                <p className="title">Profile Picture</p>
-
+                {/* <p className="title">Profile Picture</p> */}
                 <figure className="image is-128x128 has-image-centered">
                   <img className="is-rounded" src="https://bulma.io/images/placeholders/128x128.png" />
-                </figure>
+                  {/* Upload picture link */}
+                  <div className="file is-light is-danger">
+                    <label className="file-label">
+                      <input className="file-input" type="file" name="resume" />
+                      <span className="file-cta">
+                        <span className="file-icon">
+                          <i className="fas fa-upload"></i>
+                        </span>
+                        <span className="file-label">
+                          Edit…
+                        </span>
+                      </span>
+                    </label>
+                  </div>
 
+                </figure>
               </div>
+
+
+
               <div className="tile is-child box">
                 <p className="title is-4">Username: {this.state.user.username}</p>
                 <p className="title is-4">Email: {this.state.user.email}</p>
                 <p className="title is-4">Password: {this.state.user.password}</p>
-
-                <button className="button is-light is-danger">
-                  Edit
-                </button>
+                <Link to="#">
+                  <button className="button is-light is-danger">
+                    Edit
+                  </button>
+                </Link>
               </div>
             </div>
+
             <div className="tile is-4 is-vertical is-parent">
               <div className="tile is-child box">
                 <p className="title">Bio</p>
                 <div className="box">
                   <p>{this.state.user.userBio}</p>
-
                 </div>
-                <button className="button is-light is-danger">
-                  Edit
-                </button>
+                <Link to="#">
+                  <button className="button is-light is-danger">
+                    Edit
+                  </button>
+                </Link>
               </div>
 
               <div className="tile is-child box">
@@ -77,9 +100,11 @@ class UserProfile extends React.Component {
                 <div className="tile is-child box">
                   <p className="title is-5">Member of Book {} Clubs </p>
                 </div>
-                <button id="booksClubprofileButton" className="button is-light is-info">
-                  Book Clubs
-                </button>
+                <Link to="/bookclubs/myBookClubs">
+                  <button id="booksClubprofileButton" className="button is-light is-info">
+                    Book Clubs
+                  </button>
+                </Link>
               </div>
             </div>
 
@@ -102,20 +127,16 @@ class UserProfile extends React.Component {
                   <p className="title is-5">Number of Books on Wishlist:</p>
                   <p>Latest Book Added:</p>
                   {/* <p>{this.state.user.booksWishlist}</p>  */}
-                  <div>
-
-                  </div>
-
                 </div>
 
                 <div id="booksProfileButton" className="has-text-centered">
-                  <button className="button is-light is-info">
-                    My Library
-                  </button>
+                  <Link to="/mylibrary">
+                    <button className="button is-light is-info">
+                      My Library
+                    </button>
+                  </Link>
                 </div>
-
               </div>
-
             </div>
 
           </div>
@@ -298,16 +319,11 @@ class UserProfile extends React.Component {
                   </button>
                 </div>
               </form>
-
             </div>
 
           </div>
-
         </section>
-
       </div>
-
-
     </main>
   }
 
