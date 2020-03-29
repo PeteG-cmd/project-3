@@ -597,6 +597,34 @@
   border-right: 2px solid black;
 }
 
+.allComments {
+  height: 80%;
+  width: 100%;
+  border: 0.5px solid rgb(236, 236, 238);
+  background-color: rgb(243, 237, 237);
+  box-shadow: 0 0 0 0.1rem rgb(113, 175, 190);
+  border-radius: 12px;
+  overflow: scroll;
+  scroll-behavior: smooth;
+  scrollbar-color:  rgb(146, 94, 73);
+}
+
+.addComment {
+  width: 100%;
+  margin-top: 20px;
+
+  #commentSubmitButton {
+    margin-top: 5px;
+    background-color:  rgb(113, 175, 190);
+  }
+
+  #commentSubmitButton:hover {
+   background-color:  rgb(112, 211, 186);
+  }
+}
+
+
+
 
 
   
