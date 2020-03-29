@@ -45,7 +45,6 @@ class CategoriesShownToNewUser extends React.Component {
                       className="form"
                       onSubmit={(event) => this.handleSubmit(event)}
                     >
-
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
