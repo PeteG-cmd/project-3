@@ -51,17 +51,10 @@ function getBooks(req, res) {
   const currentUser = req.currentUser
   req.body.user = currentUser
 
-  const userBookIsbns = currentUser.books.map(book => {
-    return book
-  })
-
-  console.log(userBookIsbns)
-
-  // currentUser.books.map(book => {
   Book
     .find({
       _id: {
-        $in: userBookIsbns
+        $in: currentUser.books
       }
     })
     .then(books => {

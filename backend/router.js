@@ -66,6 +66,9 @@ router.route('/bookclub/:bookclub_id')
 router.route('/bookclubs/mybookclubs')
   .get(secureRoute, bookClubsController.myBookClubs)
 
+router.route('/bookclub/requestjoin')
+  .post(secureRoute, bookClubsController.addJoinRequest)
+
 // router.route('/bookclubs')
 //   .get(secureRoute, virtualBookClubsController.bookClubs) // Check Peter's function name
 

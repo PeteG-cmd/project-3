@@ -20,11 +20,15 @@ class MyBookClubs extends React.Component {
 
 
   render() {
+    if (!this.state.bookClubs) return <Spinner />
     return <>
     <br></br>
     <br></br>
     <br></br>
-    <h1>A list of all your book clubs</h1>
+    <p>Heloo book club</p>
+    {this.state.bookClubs.map((bookClub, index) => {
+      return <p key={index}>{bookClub.bookClubName}</p>
+    })}
 
     </>
   }
