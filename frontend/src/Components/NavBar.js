@@ -41,7 +41,7 @@ class NavBar extends React.Component {
       <div className={`navbar-menu ${this.state.navMobileOpen ? 'is-active' : ''}`}>
         <div className="navbar-start">
           <Link className="navbar-item" to="/">Home</Link>
-          {!isLoggedIn && <div className="navbar-item"><Link to="/books/nonuserbooksearch">Search Books</Link></div>}
+          {!isLoggedIn && <div className="navbar-item"><Link to="/books/non_user_book_search">Search Books</Link></div>}
 
           {isLoggedIn && <div
             className="navbar-item has-dropdown is-hoverable">
@@ -49,19 +49,19 @@ class NavBar extends React.Component {
               My Library
             </a>
             <div className="navbar-dropdown">
-              <Link to="/profile/:user_id" className="navbar-item">
+              <Link to="/mylibrary" className="navbar-item" id="MyLibraryAllBooks">
+                All books
+              </Link>
+              <Link to="/mylibrary/wishList" className="navbar-item">
                 Wish List
               </Link>
-
-              <Link to="/mylibrary" className="navbar-item">
-                Books Read
+              <Link to="/mylibrary/readBooks" className="navbar-item">
+                Read Books
               </Link>
-
-              <Link to="/profile/:user_id" className="navbar-item">
+              <Link to="/mylibrary/likedCategories" className="navbar-item">
                 Liked Categories
               </Link>
-
-              <Link to="/profile/:user_id" className="navbar-item">
+              <Link to="/mylibrary/ratedBooks" className="navbar-item">
                 Rated Books
               </Link>
             </div>
@@ -96,10 +96,6 @@ class NavBar extends React.Component {
             <div className="navbar-dropdown">
               <Link to="/books/new" className="navbar-item">
                 Add Books
-              </Link>
-
-              <Link to="/books/bestsellers" className="navbar-item">
-                Best Sellers
               </Link>
             </div>
           </div>}

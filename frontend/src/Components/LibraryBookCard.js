@@ -29,7 +29,7 @@ class LibraryBookCard extends React.Component {
   render() {
     const id = this.props.book._id
     console.log(this.props)
-    if (!this.state.book) return <h1>WAITING FOR BOOKS</h1>
+    if (!this.state.book) return null
 
     const book = this.state.book
 
@@ -45,6 +45,7 @@ class LibraryBookCard extends React.Component {
           <h4 className="card-title">{book[0].volumeInfo.title}</h4>
           {book[0].volumeInfo.authors && <h5 className='subtitle'><strong>{book[0].volumeInfo.authors[0]}</strong></h5>}
         </div>
+        <button className="button is-error">Delete Book</button>
       </div>
     </div>
 

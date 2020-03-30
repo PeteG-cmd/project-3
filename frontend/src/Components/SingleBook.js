@@ -1,6 +1,5 @@
 import React from 'react'
 import axios from 'axios'
-import DescriptionModal from './DescriptionModal'
 import auth from '../lib/auth'
 // import { Link } from 'react-router-dom'
 
@@ -67,52 +66,41 @@ class SingleBook extends React.Component {
     console.log(this.state)
     if (!this.state.book) return <h1>Waiting for Book</h1>
 
-    const title = this.state.book.volumeInfo.title
-    const description = this.state.book.volumeInfo.description
     const book = this.state.book
 
-    return <main className="mainSingleBook">
-      <div className="theSingleBookcontainer">
-        <section className="theSingleBookInfocontainer">
-          <figure id="SingleFigImg">
-            {/* This line below is a one line ternary only rendering if the picture exists. */}
-            {book.volumeInfo.imageLinks && <img src={book.volumeInfo.imageLinks.thumbnail} id="SingleBookPageImg"></img>}
-          </figure>
-          <div className="theSingleBookInfo">
-            <h1 id="SingleBookTitle">{book.volumeInfo.title}</h1>
-            <div className="theSingleBookStats">
-              <div className="SingleStats" id="generalSingleStats">
-                <ul className="generalSingleStatsList">
-                  {book.volumeInfo.authors && <li className="generalSingleStatsListItem"><span className="SingleStatsListTitle">Author:</span> {book.volumeInfo.authors[0]}</li>}
-                  {book.volumeInfo.publisher && <li className="generalSingleStatsListItem"><span className="SingleStatsListTitle">Publisher:</span>  {book.volumeInfo.publisher}</li>}
-                  {book.volumeInfo.publishedDate && <li className="generalSingleStatsListItem"><span className="SingleStatsListTitle">Published Date:</span>  {book.volumeInfo.publishedDate}</li>}
-                </ul>
-              </div>
-              <div className="SingleStats" >
-                <div id="descriptionModal">
-                  <DescriptionModal
-                    title={title}
-                    description={description}
-                  />
-                </div>
-                <p className="to-top">Description Above</p>
-              </div>
-              <div className="SingleStats" id="singleRatings">
-                <ul className="generalSingleRatingsList">
-                  {book.volumeInfo.averageRating && <li className="generalSingleRatingsListItem"><span className="SingleRatingsListTitle">Average Rating:</span> {book.volumeInfo.averageRating}</li>}
-                  {book.volumeInfo.ratingsCount && <li className="generalSingleRatingsListItem"><span className="SingleRatingsListTitle">Ratings Count:</span>  {book.volumeInfo.ratingsCount}</li>}
-                  {book.volumeInfo.language && <li className="generalSingleRatingsListItem"><span className="SingleRatingsListTitle">Book Language:</span>  {book.volumeInfo.language}</li>}
-                </ul>
-              </div>
+    return <main className="SingleBookMain">
+      <section className="SingleBookContainer">
+        <figure id="SingleBookImg">
+          {book.volumeInfo.imageLinks && <img src={book.volumeInfo.imageLinks.thumbnail} id="TheSingleBookImg"></img>}
+        </figure>
+        <div className="SingleBookInfo">
+          <h1 className="SingleBookTitle"><span id="SingleBookTitleEdit">Book Title:</span> {book.volumeInfo.title}</h1>
+          <div className="SingleBookJuicyInfo">
+            {book.volumeInfo.authors && <h3><strong>Author:</strong> {book.volumeInfo.authors[0]}</h3>}
+            {book.volumeInfo.publisher && <h3><strong>Publisher:</strong> {book.volumeInfo.publisher}</h3>}
+            {book.volumeInfo.publishedDate && <h3><strong>Published Date:</strong> {book.volumeInfo.publishedDate}</h3>}
+            {book.volumeInfo.pageCount && <h3><strong>Page Count:</strong> {book.volumeInfo.pageCount}</h3>}
+            {book.volumeInfo.categories && <h3><strong>Category:</strong> {book.volumeInfo.categories[0]}</h3>}
+          </div>
+          <div className="BookDescription">
+            <h3 id="SingleBookDescriptionTitle">Description</h3>
+            <div id="DescriptionContent">
+              <p>{book.volumeInfo.description}</p>
             </div>
           </div>
-          <form>
-            <button
-              onClick={(event) => this.handleSubmit(event)}
-            >Add Book</button>
-          </form>
-        </section>
-      </div>
+          <div className="AddBookButton">
+            <form>
+              <button 
+                onClick={(event) => this.handleSubmit(event)}
+                className="button"
+                id="TheBookBomb"
+              >
+                Add Book To Library
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
     </main>
 
   }
@@ -125,6 +113,10 @@ export default SingleBook
 
 
 
-
+{/* <form>
+            <button
+              onClick={(event) => this.handleSubmit(event)}
+            >Add Book</button>
+          </form> */}
 
 
