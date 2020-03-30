@@ -71,20 +71,22 @@ class SlickCarousel extends React.Component {
       pauseOnHover: false
     }
     return (
-      <section>
-        <div>
-          <Slider {...settings}>
-            {this.state.bookList.map((book, index) => {
-              return <div key={index}>
-                <img
-                  src={book.book_image}
-                  alt={`${book.title} by ${book.author}`}
-                />
-              </div>
-            })}
-          </Slider>
-        </div>
-      </section>
+
+
+      <Slider {...settings}>
+        {this.state.bookList.map((book, index) => {
+          return <div key={index} className="CarouselImgDiv">
+            {/* <h3>{book.title}</h3> */}
+            <img
+              src={book.book_image}
+              alt={`${book.title} by ${book.author}`}
+              className="CarouselImg"
+            />
+          </div>
+        })}
+      </Slider>
+
+
     )
   }
 }

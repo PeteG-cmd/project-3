@@ -40,12 +40,7 @@ export default class Home extends React.Component {
     if (!auth.isLoggedIn()) {
       return <>
         <main className="home-main">
-          {/* <section className="section" id="maintitle">
-            <div className="container">
-              <h1 className="title has-text-centered">Booked Up</h1>
-            </div>
-          </section> */}
-          <section className="section" id="Carousel1">
+          <section className="section" id="CarouselNonUser1">
             <div className="container">
               <h2 className="subtitle">Current Fiction Best Sellers</h2>
               <SlickCarousel categories={categories[0]} />
@@ -73,7 +68,7 @@ export default class Home extends React.Component {
               <SlickCarousel categories={categories[2]} />
             </div>
           </section>
-          <footer className="section" id="mainfooter">
+          <footer className="section" id="NonUserHomeMainfooter">
             <div className="container">
               <p>CopyRight By Jimbo Jambo, Peter Pan, Gordon Ramsay</p>
             </div>
@@ -93,14 +88,18 @@ export default class Home extends React.Component {
             </div>
           </section> */}
 
-          <section className="section" id="Carousel1">
-            <div className="container">
-              <h2 className="subtitle">Selected for {this.state.user.username}...</h2>
-              <SlickCarousel categories={this.state.user.categories} />
+          <section className="mainHomeCarousel">
+            <div className="mainHomeCarouselContainer">
+              <div className="CarouselTitle">
+                <h2 className="CarouselTitleContent">Selected for {this.state.user.username} from Favourite Categories...</h2>
+              </div>
+              <div className="CarouselSubContainer">
+                <SlickCarousel categories={this.state.user.categories} />
+              </div>
             </div>
           </section>
 
-          <footer className="section" id="mainfooter">
+          <footer className="section" id="UserHomeMainfooter">
             <div className="container">
               <p>CopyRight By Jimbo Jambo, Peter Pan, Gordon Ramsay</p>
             </div>

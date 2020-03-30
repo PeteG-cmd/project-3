@@ -45,10 +45,8 @@ class UserLibrary extends React.Component {
 
           <div className="container">
             <div className="columns is-multiline is-mobile">
-
               {this.state.books.map((book, index) => {
                 return <LibraryBookCard book={book} key={index} />
-
               })}
             </div>
           </div>
