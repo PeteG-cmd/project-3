@@ -2,6 +2,8 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
 
+import RegisterForm from './RegisterForm'
+
 class Register extends React.Component {
 
   constructor() {
@@ -26,7 +28,7 @@ class Register extends React.Component {
 
   handleSubmit(event) {
     event.preventDefault()
-    axios.post('/api/register',this.state.data)
+    axios.post('/api/register', this.state.data)
       .then(() => this.props.history.push('/categories'))
       .catch(err => this.setState({ errors: err.response.data.errors }))
   }
@@ -43,7 +45,13 @@ class Register extends React.Component {
                 <div className="column is-block">
                   <div className="box" id="registerbox">
                     <h1 className="title">Register</h1>
-                    <form
+                    <RegisterForm
+                      handleSubmit={(event) => this.handleSubmit(event)}
+                      handleChange={(event) => this.handleChange(event)}
+                      errors={errors}
+                      data={this.state.data}
+                    />
+                    {/* <form
                       className="form"
                       onSubmit={(event) => this.handleSubmit(event)}
                     >
@@ -126,7 +134,7 @@ class Register extends React.Component {
                       <button className="button is-success">
                         Register
                       </button>
-                    </form>
+                    </form> */}
                   </div>
                 </div>
                 <div className="column"></div>

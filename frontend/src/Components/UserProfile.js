@@ -4,6 +4,9 @@ import axios from 'axios'
 import auth from '../lib/auth'
 import { Link } from 'react-router-dom'
 
+import UpdateLoginDetailsModal from './UpdateLoginDetailsModal'
+import UpdateBioModal from './UpdateBioModal'
+
 class UserProfile extends React.Component {
 
   constructor() {
@@ -28,7 +31,7 @@ class UserProfile extends React.Component {
   render() {
     //Stops the issue of trying to render a null object.  Will only try and render once something has been returned
     if (!this.state.books) return <h1>Wait for books</h1>
-    console.log(this.state.books)
+    // console.log(this.state.books)
     console.log(this.state.user)
 
     return <main className="hero is-fullheight">
@@ -65,11 +68,12 @@ class UserProfile extends React.Component {
                 <p className="title is-4">Username: {this.state.user.username}</p>
                 <p className="title is-4">Email: {this.state.user.email}</p>
                 <p className="title is-4">Password: {this.state.user.password}</p>
-                <Link to="#">
+                <h2 className="subtitle has-text-centered is-light is-danger"><UpdateLoginDetailsModal /></h2>
+                {/* <Link to="#">
                   <button className="button is-light is-danger">
                     Edit
                   </button>
-                </Link>
+                </Link> */}
               </div>
             </div>
 
@@ -79,11 +83,12 @@ class UserProfile extends React.Component {
                 <div className="box">
                   <p>{this.state.user.userBio}</p>
                 </div>
-                <Link to="#">
+                <h2 className="subtitle has-text-centered is-light is-danger"><UpdateBioModal /></h2>
+                {/* <Link to="#">
                   <button className="button is-light is-danger">
                     Edit
                   </button>
-                </Link>
+                </Link> */}
               </div>
 
               <div className="tile is-child box">
