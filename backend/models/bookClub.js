@@ -9,6 +9,7 @@ const schema = new mongoose.Schema({
   descriptionBio: { type: String, required: true },
   adminUser: { type: mongoose.Schema.ObjectId, ref: 'User', required: true },
   members: [{ type: mongoose.Schema.ObjectId, ref: 'User', required: true }],
+  joinRequests: [{ type: mongoose.Schema.ObjectId, ref: 'User', required: true }],
   comments: [Comment]
   
 })

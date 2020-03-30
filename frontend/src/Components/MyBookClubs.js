@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import auth from '../lib/auth'
 import Spinner from './Common/Spinner'
+import { Link } from 'react-router-dom'
 
 class MyBookClubs extends React.Component {
 
@@ -21,14 +22,20 @@ class MyBookClubs extends React.Component {
 
   render() {
     if (!this.state.bookClubs) return <Spinner />
+    
     return <>
-    <br></br>
-    <br></br>
-    <br></br>
-    <p>Heloo book club</p>
-    {this.state.bookClubs.map((bookClub, index) => {
-      return <p key={index}>{bookClub.bookClubName}</p>
-    })}
+      <br></br>
+      <br></br>
+      <br></br>
+      <p>My Book Clubs</p>
+      <br></br>
+      {this.state.bookClubs.map((bookClub, index) => {
+        return <div key={index}>
+          <Link to={`/bookclub/${bookClub._id}`}><p>{bookClub.bookClubName}</p></Link>
+          <br></br>
+        </div>
+
+      })}
 
     </>
   }

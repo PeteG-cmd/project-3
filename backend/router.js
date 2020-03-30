@@ -61,7 +61,8 @@ router.route('/bookclubs')
   .get(secureRoute, bookClubsController.index)
 
 router.route('/bookclub/:bookclub_id')
-  .get(secureRoute,bookClubsController.get)
+  .get(secureRoute, bookClubsController.get)
+  .post(secureRoute, bookClubsController.handleNewMembers)
 
 router.route('/bookclubs/mybookclubs')
   .get(secureRoute, bookClubsController.myBookClubs)

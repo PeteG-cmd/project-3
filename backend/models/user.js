@@ -19,7 +19,7 @@ const schema = new mongoose.Schema({
   categories: [Catergory],
   bookClubs: [{ type: mongoose.Schema.ObjectId, ref: 'BookClub' }],
   // invites: [{ type: mongoose.Schema.ObjectId, ref: 'Invite' }]
-  invites: [Invite]
+  invitesSent: [{ type: mongoose.Schema.ObjectId, ref: 'BookClub' }]
 })
 
 

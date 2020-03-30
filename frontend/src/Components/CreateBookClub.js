@@ -19,6 +19,7 @@ class CreateBookClub extends React.Component {
     event.preventDefault()
     axios.post('/api/bookclubs', this.state.bookClub, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then(res => this.props.history.push(`/bookclub/${res.data._id}`))
+      // .then(res => this.props.history.push('/bookclub/mybookclubs'))
       .catch(err => this.setState({ error: err.response.data.message }))
 
   }
