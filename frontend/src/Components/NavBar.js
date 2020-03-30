@@ -21,8 +21,8 @@ class NavBar extends React.Component {
 
       <div className="navbar-brand">
         <a className="navbar-item" href="/">
-          {/* <img src="frontend/assets/bookedup-logo.png" width="112" height="28" /> */}
-          <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" />
+          {/* <img src="frontend/src/Components/Assets/download.jpeg" width="112" height="28" /> */}
+          {/* <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" /> */}
         </a>
 
         <a role="button"
@@ -49,10 +49,10 @@ class NavBar extends React.Component {
               My Library
             </a>
             <div className="navbar-dropdown">
-              <Link to="/mylibrary" className="navbar-item" id="MyLibraryAllBooks">
+              <Link to="/mylibrary" className="navbar-item">
                 All books
               </Link>
-              <Link to="/mylibrary/wishList" className="navbar-item">
+              {/* <Link to="/mylibrary/wishList" className="navbar-item">
                 Wish List
               </Link>
               <Link to="/mylibrary/readBooks" className="navbar-item">
@@ -63,7 +63,7 @@ class NavBar extends React.Component {
               </Link>
               <Link to="/mylibrary/ratedBooks" className="navbar-item">
                 Rated Books
-              </Link>
+              </Link> */}
             </div>
           </div>}
 

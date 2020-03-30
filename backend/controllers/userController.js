@@ -49,12 +49,30 @@ function getProfile(req, res) {
       res.status(201).send(user)
     })
     .catch(err => res.send(err))
+}
 
-
+// Update userBio in User Profile
+function updateBio(req, res) {
+  const currentUser = req.currentUser
+  req.body.user = currentUser
+  // console.log(req)
+  // console.log(currentUser)
+  User
+    .findById(currentUser._id)
+    .then(user => {
+      // user.userBio.push(user)
+      return user.userBio.set(user)
+    })
+    .then(user => {
+      return user.save()
+    })
+    .then(user => res.status(200).send(user))
+    .catch(err => res.status(400).send(err))
 }
 
 module.exports = {
   register,
   login,
-  getProfile
+  getProfile,
+  updateBio
 }

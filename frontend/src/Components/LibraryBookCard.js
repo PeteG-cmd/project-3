@@ -33,22 +33,28 @@ class LibraryBookCard extends React.Component {
 
     const book = this.state.book
 
-    return <div className="column is-one-fifth-desktop is-one-third-tablet is-one-half-mobile">
-      <div className="card">
-        <div className="card-image">
-          <figure className="image">
-            {/* This line below is a one line ternary only rendering if the picture exists. */}
-            {book[0].volumeInfo.imageLinks && <Link to={`../books/${id}`} book={book}><img src={book[0].volumeInfo.imageLinks.thumbnail}></img></Link>}
-          </figure>
+    return <div className="BooksContentContainer">
+      <div className="BookImageContainer">
+        <figure className="MyLibraryBooksFigure">
+          {/* This line below is a one line ternary only rendering if the picture exists. */}
+          {book[0].volumeInfo.imageLinks && <Link to={`../books/${id}`} book={book}><img src={book[0].volumeInfo.imageLinks.thumbnail} className="MyLibraryBooksContent"></img></Link>}
+        </figure>
+        <div className="BookImageContainerInfo">
+          {book[0].volumeInfo.pageCount && <h5 className="BookImageContainerInfoContent"><strong>Page Count:</strong> {book[0].volumeInfo.pageCount}</h5>}
+          {book[0].volumeInfo.language && <h5 className="BookImageContainerInfoContent"><strong>Language:</strong> {book[0].volumeInfo.language}</h5>}
+          {book[0].volumeInfo.categories && <h5 className="BookImageContainerInfoContent"><strong>Category:</strong> {book[0].volumeInfo.categories[0]}</h5>}
         </div>
-        <div className="card-content">
-          <h4 className="card-title">{book[0].volumeInfo.title}</h4>
-          {book[0].volumeInfo.authors && <h5 className='subtitle'><strong>{book[0].volumeInfo.authors[0]}</strong></h5>}
+      </div>
+      <div className="TitleandAuthorInfo">
+        <h4 className="TheTitle">{book[0].volumeInfo.title}</h4>
+        <div className="TheAuthor">
+          {book[0].volumeInfo.authors && <h5 className="Author"><strong>{book[0].volumeInfo.authors[0]}</strong></h5>}
         </div>
-        <button className="button is-error">Delete Book</button>
+      </div>
+      <div className="DeleteButton">
+        <button className="button DeleteMyLibraryBook">Delete Book</button>
       </div>
     </div>
-
 
   }
 

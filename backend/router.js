@@ -23,6 +23,9 @@ router.route('/login')
 router.route('/profile')
   .post(secureRoute, userController.getProfile)
 
+  // New Route to update userBio in User Profile 
+  .put(secureRoute, userController.updateBio)
+
 
 router.route('/categories')
   .post(secureRoute, categoriesController.addCategories)

@@ -96,9 +96,6 @@
   width: 100%;
   background: -webkit-linear-gradient(rgb(180, 237, 247), rgb(113, 175, 190));
 }
-#MyLibraryAllBooks {
-  border-bottom: 2px solid red;
-}
 
 // Login and Register SASS
 
@@ -216,44 +213,118 @@
 
 // SearchBooks page for Logged In User
 
-.searchBookMain {
+.SearchBookMain {
   height: 100vh;
+  width: 100vw;
   display: flex;
   flex-direction: row;
   justify-content: center;
-}
+  margin-top: 57px;
+  // border: 2px solid red;
 
-.SearchForm {
-  margin-top: 50px;
-  padding-top: 27px;
-  padding-left: 10px;
-  width: 750px;
-}
-
-#searchbutton {
-  margin-left: 10px;
-  border-radius: 10px;
-}
-
-.BooksIndex {
-  .card {
+  .SearchBookMainContainer {
+    height: 90%;
+    width: 90%;
+    // border: 2px solid blue;
     display: flex;
     flex-direction: column;
-    height: 100%;
-  }
-  .card-header {
-    background-color: lighten(#548891, 10%);
-  }
-  .card-image img {
-    width: auto;
-    height: 300px;
-    margin: 0 auto;
-    padding: 40px 20px;
-  }
-  .card-content {
-    border-top: 1px solid #404f52;
+
+
+    .SearchBookMainContainerHeader {
+      height: 10%;
+      width: 95%;
+      margin: 5px auto 0px;
+      // border: 2px solid gold;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+
+      .SearchBookSearchForm {
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex: row;
+        align-items: center;
+        // border: 2px solid green;
+
+        #SearchBookSearchFormBar {
+          width: 80%;
+          margin: 0 auto;
+        }
+      }
+    }
+    .SearchBooksContainer {
+      width: 95%;
+      height: 90%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      // border: 2px solid turquoise;
+      margin: 20px auto 0;
+      padding-left: 30px;
+
+      .SearchBooksContentContainer {
+        width: 23%;
+        height: 60%;
+        // border: 2px solid green;
+        background-color: rgb(249, 250, 250);
+        padding: 5px;
+        margin: 10px 20px 10px 0px;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0px 3px 15px rgba(0,0,0,0.3);
+
+        .SearchBookImageContainer {
+          width: 100%;
+          height: 65%;
+          // border: 2px solid brown;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+
+          .SearchBookImageContainerInfo {
+            width: 51%;
+            height: 100%;
+            // border: 2px solid blue;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            padding-left: 5px;
+
+            .BookImageContainerInfoContent {
+              font-size: 15px;
+            }
+          }
+      }
+      .SearchBooksContent {
+        height: 190px;
+        width: 125px;
+        // padding: 5px 5px 0px;
+        // border-radius: 12px;
+      }
+    }
+    .SearchTitleandAuthorInfo {
+      height: 35%;
+      width: 100%;
+      // border: 2px solid blue;
+      display: flex;
+      flex-direction: column;
+
+      .SearchTheAuthor {
+        width: 100%;
+        height: 90%;
+        // border: 2px solid orange;
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        padding-bottom: 10px;
+      }
+    }
+   }
   }
 }
+
 
 // New Book Card SASS
 
@@ -665,36 +736,158 @@
 
 
 
-// Library Bookcard SASS
+// User Library + Library Bookcard + Search Form My Library SASS
 
-.mainLibraryBookCard {
+.mainMyLibrary {
   height: 100vh;
+  width: 100vw;
+  // border: 2px solid red;
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 60px;
-}
+  align-items: center;
+  margin-top: 56px;
 
-
-.BooksIndex {
-  .card {
+  .mainMyLibraryContainer {
+    height: 90%;
+    width: 90%;
+    // border: 2px solid blue;
     display: flex;
     flex-direction: column;
-    height: 100%;
-  }
-  .card-header {
-    background-color: lighten(#548891, 10%);
-  }
-  .card-image img {
-    width: auto;
-    height: 300px;
-    margin: 0 auto;
-    padding: 40px 20px;
-  }
-  .card-content {
-    border-top: 1px solid #404f52;
+
+    .mainMyLibraryContainerHeader {
+      height: 10%;
+      width: 95%;
+      margin: 5px auto 0px;
+      // border: 2px solid gold;
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: flex-start;
+
+      .MyLibraryTitle {
+        font-size: 30px;
+        font-weight: bold;
+      }
+
+      .MyLibrarySearchForm {
+        width: 40%;
+        height: 100%;
+        display: flex;
+        flex: row;
+        align-items: center;
+        // border: 2px solid green;
+
+        #MyLibrarySearchFormBar {
+          width: 80%;
+          margin: 0 auto;
+        }
+
+        
+      }
+      .MyLibraryFilterButtons {
+        width: 45%;
+        height: 100%;
+        // border: 2px solid blue;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+
+        .FilterButtonEdit {
+          background-color:rgb(113, 175, 190);
+        }
+        .FilterButtonEdit:hover {
+          background-color:rgb(101, 165, 204);
+        }
+      }
+    }
+    
+    .BooksContainer {
+      width: 95%;
+      height: 90%;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      // border: 2px solid turquoise;
+      margin: 20px auto 0;
+      padding-left: 25px;
+
+      .BooksContentContainer {
+        width: 23%;
+        height: 60%;
+        // border: 2px solid green;
+        background-color: rgb(249, 250, 250);
+        padding: 5px;
+        margin: 10px 20px 10px 0px;
+        display: flex;
+        flex-direction: column;
+        box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+
+        .BookImageContainer {
+          width: 100%;
+          height: 65%;
+          // border: 2px solid brown;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+
+          .BookImageContainerInfo {
+            width: 51%;
+            height: 100%;
+            // border: 2px solid blue;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            padding-left: 5px;
+
+            .BookImageContainerInfoContent {
+              font-size: 15px;
+            }
+          }
+        }
+        // .MyLibraryBooksFigure {
+        //   margin-left: 20px;
+        //   box-shadow: 0 0 0 0.1rem rgb(113, 175, 190);
+        //   border-radius: 12px;
+        //   border: 1px solid rgb(233, 224, 224);
+    
+          .MyLibraryBooksContent {
+            height: 190px;
+            width: 125px;
+            // padding: 5px 5px 0px;
+            // border-radius: 12px;
+          }
+      }
+      .TitleandAuthorInfo {
+        height: 25%;
+        width: 100%;
+        // border: 2px solid blue;
+        display: flex;
+        flex-direction: column;
+
+        .TheAuthor {
+          width: 100%;
+          height: 90%;
+          // border: 2px solid orange;
+          display: flex;
+          flex-direction: row;
+          align-items: flex-end;
+          padding-bottom: 10px;
+        }
+      }
+    }
+    .DeleteMyLibraryBook {
+      background-color: rgba(185, 39, 39, 0.719);
+    }
+    .DeleteMyLibraryBook:hover {
+      background-color: rgba(216, 29, 29, 0.884);
+      color: rgb(237, 241, 241);
+    }
   }
 }
+
 
 // Toastify SASS
 
