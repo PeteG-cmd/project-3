@@ -19,29 +19,18 @@ class UserProfile extends React.Component {
       .then(res => this.setState({ books: res.data }))
       .catch(err => this.setState({ error: err.response.data.message }))
 
-    if (auth.isLoggedIn()) {
-      axios.post('/api/profile', {}, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
-        .then(res => {
-          this.setState({ user: res.data })
-        })
-      // console.log(res.data)
-    }
+    axios.post('/api/profile', {}, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+      .then(res => {
+        this.setState({ user: res.data })
+      })
   }
-  // Get Profile details from our server
-  // componentDidMount() {
-
-  //       })
-  //   }
-  // }
-
-
 
   render() {
+    //Stops the issue of trying to render a null object.  Will only try and render once something has been returned
+    if (!this.state.books) return <h1>Wait for books</h1>
     console.log(this.state.books)
     console.log(this.state.user)
-    // const totalBooks = this.state.user.books.length
-    // console.log(this.state.user.books.length)
-    // console.log(typeof(this.state.user.books.length))
+
     return <main className="hero is-fullheight">
 
       <div className="hero-body">
@@ -72,8 +61,6 @@ class UserProfile extends React.Component {
                 </figure>
               </div>
 
-
-
               <div className="tile is-child box">
                 <p className="title is-4">Username: {this.state.user.username}</p>
                 <p className="title is-4">Email: {this.state.user.email}</p>
@@ -102,7 +89,8 @@ class UserProfile extends React.Component {
               <div className="tile is-child box">
                 <p className="title">Book Clubs</p>
                 <div className="tile is-child box">
-                  <p className="title is-5">Member of Book {} Clubs </p>
+                  <p> <strong> Member of Book {} Clubs </strong></p>
+                  {/* {this.state.user.bookClubs.length} */}
                 </div>
                 <Link to="/bookclubs/myBookClubs">
                   <button id="booksClubprofileButton" className="button is-light is-info">
@@ -117,20 +105,29 @@ class UserProfile extends React.Component {
                 <p className="title">Books</p>
 
                 <div className="tile is-child box">
-                  <p className="title is-5">Number of Books Read: </p>
-                  <p>Latest Book Read:</p>
+                  <p> <strong> Number of Books Read:</strong> {this.state.books.length}</p>
+                  <p> <strong> Last Book Read:</strong></p>
+                  <p>{this.state.books[this.state.books.length - 1].title}</p>
+                  
+
+                  {/* {this.state.books.map((book, index) => {
+                    // console.log(this.state.book)
+                    return <p key={index}>{book.title}</p>
+                  })} */}
+
+                  {/* <p>{this.state.user.userBio}</p> */}
                   {/* <p>Latest Book Read: {this.state.user.booksRead.length}</p> */}
                 </div>
 
                 <div className="tile is-child box">
-                  <p className="title is-5">Number of Books Rated:</p>
+                  <p> <strong> Number of Books Rated:</strong> </p>
                   <p>Latest Book Rated:</p>
                 </div>
 
                 <div className="tile is-child box">
-                  <p className="title is-5">Number of Books on Wishlist:</p>
+                  <p> <strong> Number of Books on Wishlist:</strong> </p>
                   <p>Latest Book Added:</p>
-                  {/* <p>{this.state.user.booksWishlist}</p>  */}
+                  {/* <p>{this.state.user.booksWishList.length}</p>  */}
                 </div>
 
                 <div id="booksProfileButton" className="has-text-centered">

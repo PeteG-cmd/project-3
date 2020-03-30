@@ -3,6 +3,7 @@ import axios from 'axios'
 import DescriptionModal from './DescriptionModal'
 import auth from '../lib/auth'
 import BookComment from './BookComment'
+import StarRating from './Common/StarRating'
 
 
 class DetailedBookPage extends React.Component {
@@ -55,7 +56,7 @@ class DetailedBookPage extends React.Component {
                 <h3><strong>User Average Rating:</strong> ⭐️⭐️⭐️⭐️</h3>
               </div>
               <div className="yourRating">
-                <h3><strong>Rate this Book:</strong> ⭐️⭐️⭐️⭐️</h3>
+                <StarRating></StarRating>
               </div>
             </div>
           </div>
@@ -87,8 +88,11 @@ class DetailedBookPage extends React.Component {
               <p className="to-top">Description Above</p>
             </div>
             <div className="Addons">
-              <div><h3>Add Book To WishList: <a>
+              <div><h3>Add Book To Wish List: <a>
                 <span className="icon is-small"><i className="fas fa-heart"></i></span>
+              </a></h3></div>
+              <div><h3>Add to Read Books: <a>
+                <span className="icon is-small"><i className="fas fa-book-open"></i></span>
               </a></h3></div>
               <div><h3>Add <strong>{book[0].volumeInfo.categories}</strong> to Liked Categories: <a>
                 <span className="icon is-small"><i className="fas fa-book"></i></span>
