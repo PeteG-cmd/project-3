@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import axios from 'axios'
 import auth from '../lib/auth'
 
-const Modal = ({ children, closeModal, modalState, user }) => {
+const Modal = ({ children, closeModal, modalState }) => {
   if (!modalState) {
     return null
   }
@@ -20,6 +20,7 @@ const Modal = ({ children, closeModal, modalState, user }) => {
           <div className="content">{children}
             <textarea className="textarea"
               placeholder="Existing profile should appear here from user.userBio"
+              // placeholder={this.state.user.userBio}
               rows="5">
             </textarea>
           </div>
@@ -45,7 +46,7 @@ class UpdateBioModal extends React.Component {
 
     this.state = {
       modalState: false,
-      user: {}
+      user: ''
     }
     this.toggleModal = this.toggleModal.bind(this)
   }
@@ -73,9 +74,16 @@ class UpdateBioModal extends React.Component {
   //     .catch(err => this.setState({ errors: err.response.data.errors }))
   // }
 
+  componentDidMount() {
+    axios.post('/api/profile', {}, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+      .then(res => {
+        this.setState({ user: res.data })
+      })
+  }
+
   // This is the render of the modal button will appear on the profile page
   render() {
-    console.log(this.user)
+    console.log(this.state.user)
     return (
       <div className="has-text-centered content">
         <a className="button is-light is-danger" onClick={this.toggleModal}>
@@ -85,7 +93,7 @@ class UpdateBioModal extends React.Component {
         <Modal
           closeModal={this.toggleModal}
           modalState={this.state.modalState}
-          user={this.state.user}
+          // user={this.state.user}
 
         ></Modal>
       </div>

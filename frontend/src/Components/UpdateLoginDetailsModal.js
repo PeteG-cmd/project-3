@@ -23,7 +23,7 @@ const Modal = ({ children, closeModal, modalState, loginDetails }) => {
             {/* <RegisterForm
               handleSubmit={(event) => this.handleSubmit(event)}
               handleChange={(event) => this.handleChange(event)}
-              // errors={errors}
+              errors={errors}
               data={this.state.data}
             /> */}
           </div>
