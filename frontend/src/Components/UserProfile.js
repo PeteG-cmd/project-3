@@ -9,31 +9,35 @@ class UserProfile extends React.Component {
   constructor() {
     super()
     this.state = {
-      user: {
-        // username: '',
-        // email: '',
-        // password: '',
-        // userBio: '',
-        // categories: []
-      }
+      user: {},
+      books: null
     }
   }
 
-
-  // Get Profile details from our server
   componentDidMount() {
+    axios.get('/api/mylibrary', { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+      .then(res => this.setState({ books: res.data }))
+      .catch(err => this.setState({ error: err.response.data.message }))
+
     if (auth.isLoggedIn()) {
       axios.post('/api/profile', {}, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
         .then(res => {
           this.setState({ user: res.data })
-          // console.log(res.data)
         })
+      // console.log(res.data)
     }
   }
+  // Get Profile details from our server
+  // componentDidMount() {
+
+  //       })
+  //   }
+  // }
 
 
 
   render() {
+    console.log(this.state.books)
     console.log(this.state.user)
     // const totalBooks = this.state.user.books.length
     // console.log(this.state.user.books.length)
