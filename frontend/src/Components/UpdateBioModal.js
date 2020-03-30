@@ -78,8 +78,7 @@ class UpdateBioModal extends React.Component {
     console.log(this.user)
     return (
       <div className="has-text-centered content">
-        <a className="button is-primary" onClick={this.toggleModal}>
-          {/* <a className="button is-light is-danger" onClick={this.toggleModal}> */}
+        <a className="button is-light is-danger" onClick={this.toggleModal}>
           Edit
         </a>
 

@@ -86,7 +86,7 @@ class UpdateLoginDetailsModal extends React.Component {
     console.log(this.props)
     return (
       <div className="has-text-centered content">
-        <a className="button is-light is-danger" onClick={this.toggleModal}>
+        <a id="booksClubprofileButton" className="button is-light is-danger" onClick={this.toggleModal}>
           Edit
         </a>
 
