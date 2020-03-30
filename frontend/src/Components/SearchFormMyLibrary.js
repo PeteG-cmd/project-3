@@ -1,9 +1,9 @@
 import React from 'react'
 
-const SearchFormAddBook = ({ query, onChange }) => {
+const SearchFormMyLibrary = ({ query, onChange }) => {
   return (
-    <div className="SearchBookSearchForm">
-      <form className="field has-addons" id="SearchBookSearchFormBar">
+    <div className="MyLibrarySearchForm">
+      <form className="field has-addons" id="MyLibrarySearchFormBar">
         <div className="control is-expanded">
           <input
             className="input is-normal"
@@ -15,7 +15,6 @@ const SearchFormAddBook = ({ query, onChange }) => {
         </div>
       </form>
     </div>
-
   )
 }
-export default SearchFormAddBook
+export default SearchFormMyLibrary

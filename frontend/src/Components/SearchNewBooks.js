@@ -38,39 +38,36 @@ class SearchNewBooks extends React.Component {
 
   render() {
     return (
-      <> <main className="searchBookMain">
-        <section className="BooksIndex">
-          {/* { to center later } */}
-          <SearchFormAddBook
-            // query={this.state.query}
-            value={this.state.query}
-            onChange={event => {
-              this.handleSearch(event)
-              this.fetchBooks(event)
-            }
-            }
-          />
+      <main className="SearchBookMain">
+        <section className="SearchBookMainContainer">
+          <div className="SearchBookMainContainerHeader">
+            {/* { to center later } */}
+            <SearchFormAddBook
+              // query={this.state.query}
+              value={this.state.query}
+              onChange={event => {
+                this.handleSearch(event)
+                this.fetchBooks(event)
+              }
+              }
+            />
+          </div>
           {this.state.books &&
-            <div className="section">
-              <div className="container">
-                <div className="columns is-multiline is-mobile">
-                  {this.state.books.map((book, index) => {
-                    if ((book.volumeInfo.industryIdentifiers)) {
-                      if (!(book.volumeInfo.industryIdentifiers[0].type === 'OTHER')) {
-                        // if (!(book.id.split('').includes(['_']))) {
-                        console.log(book)
-                        return <SearchBookCard key={index} book={book} />
-                      }
-                    }
-                    // }
-                  })}
-                </div>
-              </div>
+            <div className="SearchBooksContainer">
+              {this.state.books.map((book, index) => {
+                if ((book.volumeInfo.industryIdentifiers)) {
+                  if (!(book.volumeInfo.industryIdentifiers[0].type === 'OTHER')) {
+                    // if (!(book.id.split('').includes(['_']))) {
+                    console.log(book)
+                    return <SearchBookCard key={index} book={book} />
+                  }
+                }
+                // }
+              })}
             </div>}
           {(!this.state.books && <p>No Books Found</p>)}
         </section>
       </main>
-      </>
     )
   }
 }
