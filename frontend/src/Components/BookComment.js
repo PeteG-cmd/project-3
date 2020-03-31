@@ -43,22 +43,32 @@ class BookComment extends React.Component {
     if (!this.state.book) return <Spinner />
     return <>
       <div className="allComments">
-        <article className="media">
-          <figure className="media-left">
+        <article className="CommentContainer">
+          <figure className="CommentProfileImage">
             <p className="image is-64x64">
-              {/* <img src="https://bulma.io/images/placeholders/128x128.png"></img> */}
+              <img src="https://bulma.io/images/placeholders/128x128.png"></img>
             </p>
           </figure>
-          <div className="media-content">
-            <div className="content">
-              {this.state.book.comments && this.state.book.comments.map((comment, index) => {
-                return <div key={index}>
-                  <p>{comment.comment}</p>
+          {this.state.book.comments && this.state.book.comments.map((comment, index) => {
+            return <div key={index} className="AComment">
+              <div className="CommentsContent">
 
-                </div>
-              })}
+
+                <p>{comment.comment}</p>
+
+
+
+              </div>
+              <div className="LikeandReply">
+                <a className="Commenticons">
+                  <span className="icon is-small"><i className="fas fa-reply"></i></span>
+                </a>
+                <a className="Commenticons">
+                  <span className="icon is-small"><i className="fas fa-heart"></i></span>
+                </a>
+              </div>
             </div>
-          </div>
+          })}
         </article>
 
       </div>
@@ -67,7 +77,7 @@ class BookComment extends React.Component {
         <article className="media">
           <figure className="media-left">
             <p className="image is-64x64">
-              {/* <img src="https://bulma.io/images/placeholders/128x128.png"></img> */}
+              <img src="https://bulma.io/images/placeholders/128x128.png"></img>
             </p>
           </figure>
           <div className="media-content">

@@ -29,7 +29,6 @@ import CreateBookClub from './Components/CreateBookClub'
 import AllBookClubs from './Components/AllBookClubs'
 import SingleBookClub from './Components/SingleBookClub'
 import MyBookClubs from './Components/MyBookClubs'
-import JoinMyBookClub from './Components/JoinMyBookClub'
 import CommentsOnTheBookClub from './Components/CommentsOnTheBookClub'
 
 import UserLibrary from './Components/UserLibrary'
@@ -55,7 +54,6 @@ const App = () => (
       <Route exact path="/bookclubs/new" component={CreateBookClub} />
       <Route exact path="/bookclub/:bookclub_id" component={SingleBookClub} />
       <Route path="/bookclubs/myBookClubs" component={MyBookClubs} />
-      <Route path="/bookclubs/myBookClubs/:bookclub_id" component={JoinMyBookClub} />
       <Route path="/bookclubs/myBookClubs/:bookclub_id/comments" component={CommentsOnTheBookClub} />
 
       <Route exact path="/mylibrary" component={UserLibrary} />
