@@ -118,10 +118,26 @@ function handleNewMembers(req, res) {
     .then(bookclub => {
       return bookclub.save()
     })
-    .then(bookclub => res.status(200).send(bookclub))
+    .then(bookclub => {
+      User.findById(req.body.memberId)
+        .then(user => {
+          if (req.body.event === 'accept') {
+            user.bookClubs.push(req.body.bookClubId)
+          }
+          const filterInvitesSent = user.invitesSent.filter(invite => {
+            return invite.toString() !== req.body.bookClubId.toString()
+          })
+          user.invitesSent = filterInvitesSent
+          return user.set(user)
+        })
+        .then(user => {
+          return user.save()
+        })
+        .then(user => res.status(200).send({ bookclub }))
+        
+    })
     .catch(err => res.send(err))
-
-    
+   
 }
 
 module.exports = {

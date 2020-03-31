@@ -21,33 +21,35 @@ class SingleBookClub extends React.Component {
   }
 
   handleRequest(memberId, event) {
-  
+    
     const bookClubId = this.props.match.params.bookclub_id
 
     axios.post(`/api/bookclub/${bookClubId}`, { memberId: memberId, event: event.target.value, bookClubId: this.state.bookClub._id }, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
-      .then(res => this.setState({ bookClub: res.data }))
+      .then(res => {
+        console.log(res.data)
+        this.setState({ bookClub: res.data })
+      })
 
   }
 
-
-
   render() {
     if (!this.state.bookClub) return <Spinner />
-    const bookClub = this.state.bookClub
+    // const bookClub = this.state.bookClub
     return <div>
       <br></br>
       <br></br>
       <br></br>
 
-      <p>{bookClub.bookClubName}</p>
+      <p>{this.state.bookClub.bookClubName}</p>
       <br></br>
 
       <div>
+       
         <h2>Current Members:</h2>
 
-        {bookClub.members.map((member, index) => {
+        {this.state.bookClub.members.map((member, index) => {
           return <div key={index}>
-            <p>{member} {member === bookClub.adminUser && <>(admin)</>}</p>
+            <p>{member} {member === this.state.bookClub.adminUser && <>(admin)</>}</p>
 
           </div>
         })}
@@ -55,9 +57,10 @@ class SingleBookClub extends React.Component {
       <br></br>
 
 
+     
       <div>
         <h2>Users awaiting approval:</h2>
-        {bookClub.joinRequests.map((request, index) => {
+        {this.state.bookClub.joinRequests.map((request, index) => {
           return <div key={index}>
             <p>{request}</p>
             <button value='accept' onClick={(event) => this.handleRequest(request, event)}>Accept</button>
