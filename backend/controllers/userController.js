@@ -52,16 +52,14 @@ function getProfile(req, res) {
 }
 
 // Update userBio in User Profile
-function updateBio(req, res) {
+function updateProfile(req, res) {
   const currentUser = req.currentUser
   req.body.user = currentUser
-  // console.log(req)
-  // console.log(currentUser)
+
   User
     .findById(currentUser._id)
     .then(user => {
-      // user.userBio.push(user)
-      return user.userBio.set(user)
+      return user.set(req.body)
     })
     .then(user => {
       return user.save()
@@ -74,5 +72,5 @@ module.exports = {
   register,
   login,
   getProfile,
-  updateBio
+  updateProfile
 }
