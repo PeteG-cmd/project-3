@@ -16,6 +16,7 @@ const Modal = ({ handleChange, handleSubmit, closeModal, modalState, user }) => 
           <p className="modal-card-title">Update Bio Details</p>
           <button className="delete" onClick={closeModal} />
         </header>
+
         <section className="modal-card-body">
           <div className="content">
             <textarea className="textarea" name="userBio"
@@ -25,8 +26,9 @@ const Modal = ({ handleChange, handleSubmit, closeModal, modalState, user }) => 
             </textarea>
           </div>
         </section>
+        
         <footer className="modal-card-foot">
-          <button className="button is-success" onClick={handleSubmit} >Save changes</button>
+          <button className="button is-success" onClick={handleSubmit}>Save changes</button>
           <button className="button" onClick={closeModal}>Cancel</button>
         </footer>
       </div>
@@ -62,13 +64,14 @@ class UpdateBioModal extends React.Component {
     const { name, value } = event.target
     const data = { ...this.state.data, [name]: value }
     this.setState({ data })
-    // console.log(this.state.data)
+    console.log(this.state.data)
   }
 
   handleSubmit(event) {
     // console.log('Hello')
     event.preventDefault()
-    axios.put('/api/profile', this.state.data, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+    axios.put('/api/profile', 
+      this.state.data, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then(res => {
         // console.log(res.data)
         this.setState({ user: res.data })
