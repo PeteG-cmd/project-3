@@ -39,7 +39,8 @@ export default class Home extends React.Component {
 
     if (!auth.isLoggedIn()) {
       return <>
-        <main className="home-main">
+        <main className="non-user-home-main">
+          <section></section>
           <section className="section" id="CarouselNonUser1">
             <div className="container">
               <h2 className="subtitle">Current Fiction Best Sellers</h2>
@@ -81,7 +82,7 @@ export default class Home extends React.Component {
       console.log(this.state.user)
 
       return <>
-        <main className="home-main">
+        <main className="user-home-main">
           {/* <section className="section" id="maintitle">
             <div className="container">
               <h1 className="title has-text-centered">Booked Up</h1>

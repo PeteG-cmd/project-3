@@ -26,7 +26,7 @@ class SearchNewBooks extends React.Component {
       event.preventDefault()
       axios
         .get(
-          `https://www.googleapis.com/books/v1/volumes?q=intitle:${this.state.query}&key=AIzaSyCEn7nVijyWlVGp995NH9PBDmTdmECg3DY`,
+          `https://www.googleapis.com/books/v1/volumes?q=intitle:${this.state.query}`,
         )
         .then(res => {
 

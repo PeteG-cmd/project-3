@@ -40,6 +40,7 @@ router.route('/books/get')
 
 router.route('/book/:book_id')
   .get(secureRoute, booksController.getBook)
+  .delete(secureRoute, booksController.deleteUserBook)
 
 
 router.route('/mylibrary')
