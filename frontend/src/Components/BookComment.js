@@ -34,15 +34,23 @@ class BookComment extends React.Component {
   render() {
     return <>
       <div className="allComments">
-        <article className="media">
-          <figure className="media-left">
+        <article className="CommentContainer">
+          <figure className="CommentProfileImage">
             <p className="image is-64x64">
               <img src="https://bulma.io/images/placeholders/128x128.png"></img>
             </p>
           </figure>
-          <div className="media-content">
-            <div className="content">
-              <h1>Hello</h1>
+          <div className="AComment">
+            <div className="CommentsContent">
+              {/* ADD USER COMMENT HERE */}
+            </div>
+            <div className="LikeandReply">
+              <a className="Commenticons">
+                <span className="icon is-small"><i className="fas fa-reply"></i></span>
+              </a>
+              <a className="Commenticons">
+                <span className="icon is-small"><i className="fas fa-heart"></i></span>
+              </a>
             </div>
           </div>
         </article>

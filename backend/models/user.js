@@ -16,6 +16,8 @@ const schema = new mongoose.Schema({
   books: [{ type: mongoose.Schema.ObjectId, ref: 'Book' }],
   booksRead: [{ type: mongoose.Schema.ObjectId, ref: 'Book' }],
   booksWishList: [{ type: mongoose.Schema.ObjectId, ref: 'Book' }],
+  myLibraryLikedCategories: [{ type: mongoose.Schema.ObjectId, ref: 'Book' }],
+  booksRated: [{ type: mongoose.Schema.ObjectId, ref: 'Book' }],
   categories: [Catergory],
   bookClubs: [{ type: mongoose.Schema.ObjectId, ref: 'BookClub' }],
   // invites: [{ type: mongoose.Schema.ObjectId, ref: 'Invite' }]
