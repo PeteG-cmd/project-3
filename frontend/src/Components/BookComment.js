@@ -1,22 +1,30 @@
 import React from 'react'
 import axios from 'axios'
 import auth from '../lib/auth'
+import Spinner from './Common/Spinner'
 
 class BookComment extends React.Component {
 
   constructor() {
     super()
     this.state = {
+      book: null,
       comment: '',
       errors: {}
     }
   }
 
-  handleSubmit() {
-    const bookId = this.props.match.params.book_id
+  componentDidMount() {
+    console.log(this.props.databaseBook)
+    this.setState({ book: this.props.databaseBook })
+
+  }
+
+  handleSubmit(event) {
     event.preventDefault()
+    const bookId = this.state.book._id
     axios.post(`/api/books/${bookId}/comments`, this.state.comment, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
-      // .then(res => this.props.history.push(`/books/${bookId}`))
+      .then(res => this.setState({ book: res.data }))
       .catch(err => this.setState({ error: err.response.data.message }))
 
   }
@@ -32,17 +40,23 @@ class BookComment extends React.Component {
 
 
   render() {
+    if (!this.state.book) return <Spinner />
     return <>
       <div className="allComments">
         <article className="media">
           <figure className="media-left">
             <p className="image is-64x64">
-              <img src="https://bulma.io/images/placeholders/128x128.png"></img>
+              {/* <img src="https://bulma.io/images/placeholders/128x128.png"></img> */}
             </p>
           </figure>
           <div className="media-content">
             <div className="content">
-              <h1>Hello</h1>
+              {this.state.book.comments && this.state.book.comments.map((comment, index) => {
+                return <div key={index}>
+                  <p>{comment.comment}</p>
+
+                </div>
+              })}
             </div>
           </div>
         </article>
@@ -53,7 +67,7 @@ class BookComment extends React.Component {
         <article className="media">
           <figure className="media-left">
             <p className="image is-64x64">
-              <img src="https://bulma.io/images/placeholders/128x128.png"></img>
+              {/* <img src="https://bulma.io/images/placeholders/128x128.png"></img> */}
             </p>
           </figure>
           <div className="media-content">

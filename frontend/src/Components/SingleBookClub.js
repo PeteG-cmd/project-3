@@ -17,7 +17,10 @@ class SingleBookClub extends React.Component {
   componentDidMount() {
     const bookClubId = this.props.match.params.bookclub_id
     axios.get(`/api/bookclub/${bookClubId}`, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
-      .then(res => this.setState({ bookClub: res.data }))
+      .then(res => {
+        console.log(res.data)
+        this.setState({ bookClub: res.data })
+      })
   }
 
   handleRequest(memberId, event) {
@@ -27,13 +30,14 @@ class SingleBookClub extends React.Component {
     axios.post(`/api/bookclub/${bookClubId}`, { memberId: memberId, event: event.target.value, bookClubId: this.state.bookClub._id }, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then(res => {
         console.log(res.data)
-        this.setState({ bookClub: res.data })
+        this.setState({ bookClub: res.data.bookclub })
       })
 
   }
 
   render() {
     if (!this.state.bookClub) return <Spinner />
+    if (!this.state.bookClub.joinRequests) return <Spinner />
     // const bookClub = this.state.bookClub
     return <div>
       <br></br>
