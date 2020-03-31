@@ -69,6 +69,7 @@ function getBook(req, res) {
 
   Book
     .findById(req.params.book_id)
+    .populate('comments.user')
     .then(book => res.status(200).send(book))
     .catch(err => res.send(err))
 

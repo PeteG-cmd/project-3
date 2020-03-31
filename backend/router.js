@@ -78,6 +78,9 @@ router.route('/bookclub/:bookclub_id')
   .get(secureRoute, bookClubsController.get)
   .post(secureRoute, bookClubsController.handleNewMembers)
 
+router.route('/bookclub/:bookclub_id/comments')
+  .post(secureRoute, commentsController.addBookClubComment)
+
 router.route('/bookclubs/mybookclubs')
   .get(secureRoute, bookClubsController.myBookClubs)
 
