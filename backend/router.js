@@ -51,7 +51,15 @@ router.route('/mylibrary')
 //   .post(secureRoute, booksController.addBookToWishList)
 
 // router.route('/books/booksRead')
-//   .post(secureRoute, booksController.addBookToWishList)
+//   .post(secureRoute, booksController.addBookToBooksRead)
+
+// router.route('/books/booksRated')
+//   .post(secureRoute, booksController, addBookToBooksRated)
+
+
+// router.route('/books/booksByLikedCategories')
+//   .post(secureRoute, booksController, addBookBooksByLikedCategories)
+
 
 
 
