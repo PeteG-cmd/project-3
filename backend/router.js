@@ -47,10 +47,17 @@ router.route('/mylibrary')
   .get(secureRoute, booksController.getBooks)
   .post(secureRoute, booksController.addBook)
 
+// router.route('/books/wishlist')
+//   .post(secureRoute, booksController.addBookToWishList)
+
+// router.route('/books/booksRead')
+//   .post(secureRoute, booksController.addBookToWishList)
+
 
 
 router.route('/books/:book_id/comments')
   .post(secureRoute, commentsController.addComment)
+
 
 
 // router.route('/book/book_id/comments')
@@ -70,6 +77,9 @@ router.route('/bookclub/requestjoin')
 router.route('/bookclub/:bookclub_id')
   .get(secureRoute, bookClubsController.get)
   .post(secureRoute, bookClubsController.handleNewMembers)
+
+router.route('/bookclub/:bookclub_id/comments')
+  .post(secureRoute, commentsController.addBookClubComment)
 
 router.route('/bookclubs/mybookclubs')
   .get(secureRoute, bookClubsController.myBookClubs)

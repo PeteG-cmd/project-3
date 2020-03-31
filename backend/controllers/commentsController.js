@@ -1,12 +1,13 @@
 const Comment = require('../models/comment')
 const Book = require('../models/book')
+const BookClub = require('../models/bookClub')
 
 function addComment(req, res) {
 
   const currentUser = req.currentUser
   req.body.user = currentUser
-  console.log(req.body)
   Book.findById(req.params.book_id)
+    .populate('user')
     .then(book => {
       if (!book) return res.status(404).send({ message: 'Book Not found' })
       book.comments.push(req.body)
@@ -16,8 +17,26 @@ function addComment(req, res) {
     .catch(err => res.send(err))
 }
 
+function addBookClubComment(req, res) {
+  const currentUser = req.currentUser
+  req.body.user = currentUser
+  console.log(req.body)
+
+  BookClub.findById(req.params.bookclub_id)
+    .populate('user')
+    .then(bookclub => {
+      if (!bookclub) return res.status(404).send({ message: 'Book Not found' })
+      bookclub.comments.push(req.body)
+      return bookclub.save()
+    })
+    .then(bookclub => res.status(201).send(bookclub))
+    .catch(err => res.status(400).send({ message: 'Comments must be at least 20 characters long' }))
+
+}
+
 
 module.exports = {
-  addComment
+  addComment,
+  addBookClubComment
 }
- 
+

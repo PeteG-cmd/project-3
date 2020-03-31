@@ -3,28 +3,28 @@ import axios from 'axios'
 import auth from '../lib/auth'
 import Spinner from './Common/Spinner'
 
-class BookComment extends React.Component {
+class BookClubComment extends React.Component {
 
   constructor() {
     super()
     this.state = {
-      book: null,
+      bookClub: null,
       comment: '',
-      errors: {}
+      error: ''
     }
   }
 
   componentDidMount() {
-    console.log(this.props.databaseBook)
-    this.setState({ book: this.props.databaseBook })
+    console.log(this.props.bookClub)
+    this.setState({ bookClub: this.props.bookClub })
 
   }
 
   handleSubmit(event) {
     event.preventDefault()
-    const bookId = this.state.book._id
-    axios.post(`/api/books/${bookId}/comments`, this.state.comment, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
-      .then(res => this.setState({ book: res.data }))
+    const bookClubId = this.state.bookClub._id
+    axios.post(`/api/bookclub/${bookClubId}/comments`, this.state.comment, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+      .then(res => this.setState({ bookClub: res.data }))
       .catch(err => this.setState({ error: err.response.data.message }))
 
   }
@@ -40,7 +40,7 @@ class BookComment extends React.Component {
 
 
   render() {
-    if (!this.state.book) return <Spinner />
+    if (!this.state.bookClub) return <Spinner />
     return <>
       <div className="allComments">
         <article className="CommentContainer">
@@ -49,11 +49,12 @@ class BookComment extends React.Component {
               <img src="https://bulma.io/images/placeholders/128x128.png"></img>
             </p>
           </figure>
-          {this.state.book.comments && this.state.book.comments.map((comment, index) => {
+          {this.state.bookClub.comments && this.state.bookClub.comments.map((comment, index) => {
             return <div key={index} className="AComment">
               <div className="CommentsContent">
 
                 <p>{comment.comment}</p>
+                <p>Posted By: {comment.user.username}</p>
 
               </div>
               <div className="LikeandReply">
@@ -83,7 +84,10 @@ class BookComment extends React.Component {
                 <form onSubmit={() => this.handleSubmit(event)} >
                   <textarea className="textarea" placeholder="Add a comment..." onChange={(event) => this.handleChange(event)} type='text' name='comment' comment={this.state.comment}>
                   </textarea>
+                  {this.state.error && <small className="help is-danger">
+                    {this.state.error} </small>}
                   <button className="button" id="commentSubmitButton">Submit</button>
+                 
                 </form>
               </div>
             </div>
@@ -95,4 +99,4 @@ class BookComment extends React.Component {
 
 }
 
-export default BookComment
+export default BookClubComment

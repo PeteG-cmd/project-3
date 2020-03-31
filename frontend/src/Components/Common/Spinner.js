@@ -12,7 +12,7 @@ const Spinner = () => {
       className='Loading'
       height={100}
       width={100}
-      timeout={1000}
+      timeout={10000}
     />
 
 

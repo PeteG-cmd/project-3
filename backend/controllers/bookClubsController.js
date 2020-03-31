@@ -3,6 +3,7 @@ const User = require('../models/user')
 const BookClub = require('../models/bookClub')
 
 
+
 function create(req, res) {
   const currentUser = req.currentUser
   req.body.adminUser = req.currentUser
@@ -29,7 +30,10 @@ function index(req, res) {
   const currentUser = req.currentUser
   BookClub
     .find()
-    .then(bookclubs => res.status(201).send({ bookclubs, currentUser }))
+    .populate('adminUser')
+    .then(bookclubs => {
+      res.status(201).send({ bookclubs, currentUser })
+    })
     .catch(err => res.status(400).send(err))
 }
 
@@ -38,6 +42,11 @@ function get(req, res) {
 
   BookClub
     .findById(id)
+    .populate('members')
+    .populate('adminUser')
+    .populate('joinRequests')
+    .populate('comments.user')
+
     .then(bookclub => res.status(200).send(bookclub))
     .catch(err => res.send(err))
 }
@@ -54,6 +63,10 @@ function myBookClubs(req, res) {
       }
     })
     .then(bookclub => {
+      // User.findById(bookclub.adminUser)
+      //   .then(user => {
+      //     console.log(user)
+      //   })
       console.log(bookclub)
       res.status(201).send(bookclub)
     })
@@ -79,7 +92,7 @@ function addJoinRequest(req, res) {
     .then(bookclub => {
       User.findById(currentUser._id)
         .then(user => {
-          user.invitesSent.push(bookclub)
+          user.invitesSent.push(bookclub._id)
           return user.set(user)
         })
         .then(user => {
@@ -118,6 +131,7 @@ function handleNewMembers(req, res) {
     .then(bookclub => {
       return bookclub.save()
     })
+
     .then(bookclub => {
       User.findById(req.body.memberId)
         .then(user => {
@@ -133,11 +147,18 @@ function handleNewMembers(req, res) {
         .then(user => {
           return user.save()
         })
-        .then(user => res.status(200).send({ bookclub }))
-        
+        // .then(user => res.status(200).send({ bookclub }))
+        .then(user => {
+          BookClub
+            .findById(req.body.bookClubId)
+            .populate('members')
+            .then(updatedbookclub => res.status(200).send({ updatedbookclub }))
+        })
+
     })
+
     .catch(err => res.send(err))
-   
+
 }
 
 module.exports = {

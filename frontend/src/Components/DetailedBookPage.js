@@ -106,10 +106,11 @@ class DetailedBookPage extends React.Component {
           </div>
         </section>
         <section className="theDetailedBookInfocontainer" id="theDetailedBookInfocontainer2">
-          <BookComment />
+          <BookComment databaseBook={this.state.databaseBook}/>
         </section>
       </div>
     </main>
+
 
   }
 }

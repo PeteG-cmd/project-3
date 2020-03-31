@@ -5,7 +5,8 @@ const Catergory = require('./catergory').schema
 const Invite = require('./invite').schema
 
 
-const mongooseHidden = require('mongoose-hidden')()
+const mongooseHidden = require('mongoose-hidden')({ defaultHidden: { password: true } })
+
 const bcrypt = require('bcrypt')
 
 const schema = new mongoose.Schema({
@@ -16,6 +17,8 @@ const schema = new mongoose.Schema({
   books: [{ type: mongoose.Schema.ObjectId, ref: 'Book' }],
   booksRead: [{ type: mongoose.Schema.ObjectId, ref: 'Book' }],
   booksWishList: [{ type: mongoose.Schema.ObjectId, ref: 'Book' }],
+  myLibraryLikedCategories: [{ type: mongoose.Schema.ObjectId, ref: 'Book' }],
+  booksRated: [{ type: mongoose.Schema.ObjectId, ref: 'Book' }],
   categories: [Catergory],
   bookClubs: [{ type: mongoose.Schema.ObjectId, ref: 'BookClub' }],
   // invites: [{ type: mongoose.Schema.ObjectId, ref: 'Invite' }]
@@ -25,6 +28,8 @@ const schema = new mongoose.Schema({
 
 schema.plugin(require('mongoose-unique-validator'))
 schema.plugin(mongooseHidden)
+
+
 
 // Save passwordConfirmation from our request as a temporary field
 // called _passwordConfirmation
