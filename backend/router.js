@@ -23,8 +23,8 @@ router.route('/login')
 router.route('/profile')
   .post(secureRoute, userController.getProfile)
 
-  // New Route to update userBio in User Profile 
-  .put(secureRoute, userController.updateBio)
+  // New Route to update User Profile 
+  .put(secureRoute, userController.updateProfile)
 
 
 router.route('/categories')
@@ -40,6 +40,7 @@ router.route('/books/get')
 
 router.route('/book/:book_id')
   .get(secureRoute, booksController.getBook)
+  .delete(secureRoute, booksController.deleteUserBook)
 
 
 router.route('/mylibrary')

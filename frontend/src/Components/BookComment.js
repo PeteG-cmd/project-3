@@ -58,13 +58,13 @@ class BookComment extends React.Component {
           </figure>
           <div className="media-content">
             <div className="field">
-              <p className="control">
+              <div className="control">
                 <form onSubmit={() => this.handleSubmit(event)} >
                   <textarea className="textarea" placeholder="Add a comment..." onChange={(event) => this.handleChange(event)} type='text' name='comment' comment={this.state.comment}>
                   </textarea>
                   <button className="button" id="commentSubmitButton">Submit</button>
                 </form>
-              </p>
+              </div>
             </div>
           </div>
         </article>

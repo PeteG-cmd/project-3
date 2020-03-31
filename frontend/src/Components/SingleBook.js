@@ -13,14 +13,18 @@ class SingleBook extends React.Component {
         webId: '',
         title: '',
         isbnNumber: '',
-        author: ''
+        author: '',
+        thumbnail: '',
+        pageCount: Number,
+        language: '',
+        categories: ''
       }
     }
   }
 
   componentDidMount() {
     const webId = this.props.match.params.webId
-    axios.get(`https://www.googleapis.com/books/v1/volumes?q=id:${webId}&key=AIzaSyCEn7nVijyWlVGp995NH9PBDmTdmECg3DY`)
+    axios.get(`https://www.googleapis.com/books/v1/volumes?q=id:${webId}`)
       .then(res => {
         this.setState({ book: res.data.items[0] })
         this.updateDetails(res.data.items[0])
@@ -55,7 +59,11 @@ class SingleBook extends React.Component {
       webId: data.id,
       title: data.volumeInfo.title,
       isbnNumber: neededIsbn[0],
-      author: data.volumeInfo.authors[0]
+      author: data.volumeInfo.authors[0],
+      thumbnail: data.volumeInfo.imageLinks.thumbnail,
+      pageCount: data.volumeInfo.pageCount,
+      language: data.volumeInfo.language,
+      categories: data.volumeInfo.categories[0]
     }
     this.setState({ submitDetails })
   }

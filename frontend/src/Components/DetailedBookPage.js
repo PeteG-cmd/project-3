@@ -4,6 +4,7 @@ import DescriptionModal from './DescriptionModal'
 import auth from '../lib/auth'
 import BookComment from './BookComment'
 import StarRating from './Common/StarRating'
+import AllUsersStarRating from './Common/AllUsersStarRating'
 
 
 class DetailedBookPage extends React.Component {
@@ -26,7 +27,7 @@ class DetailedBookPage extends React.Component {
       })
       .then(res => {
         console.log(res)
-        axios.get(`https://www.googleapis.com/books/v1/volumes?q=isbn:${res}&key=AIzaSyCEn7nVijyWlVGp995NH9PBDmTdmECg3DY`)
+        axios.get(`https://www.googleapis.com/books/v1/volumes?q=isbn:${res}`)
           .then(res => {
             console.log(res)
             this.setState({ book: res.data.items })
@@ -34,6 +35,7 @@ class DetailedBookPage extends React.Component {
       })
       .catch(error => console.error(error))
   }
+  
 
   render() {
     if (!this.state.book) return <h1>WAITING FOR BOOKS</h1>
@@ -52,11 +54,14 @@ class DetailedBookPage extends React.Component {
 
             <div id="titlediv">
               <h1 id="DetailedBookTitle">{book[0].volumeInfo.title}</h1>
-              <div className="userRating">
-                <h3><strong>User Average Rating:</strong> ⭐️⭐️⭐️⭐️</h3>
-              </div>
-              <div className="yourRating">
-                <StarRating></StarRating>
+              <div className="Ratings">
+                <div className="userRating">
+                  <AllUsersStarRating />
+                </div>
+                <div className="yourRating">
+                  <StarRating></StarRating>
+                  <button className="button">Submit Rating</button>
+                </div>
               </div>
             </div>
           </div>
@@ -72,7 +77,7 @@ class DetailedBookPage extends React.Component {
 
               <div className="stats" id="ratings">
                 <ul className="generalRatingsList">
-                  {book[0].volumeInfo.averageRating && <li className="generalRatingsListItem"><span className="ratingsListTitle">Average Rating:</span> {book[0].volumeInfo.averageRating}</li>}
+                  {book[0].volumeInfo.averageRating && <li className="generalRatingsListItem"><span className="ratingsListTitle">Average Public Rating:</span> {book[0].volumeInfo.averageRating}</li>}
                   {book[0].volumeInfo.ratingsCount && <li className="generalRatingsListItem"><span className="ratingsListTitle">Ratings Count:</span>  {book[0].volumeInfo.ratingsCount}</li>}
                   {book[0].volumeInfo.language && <li className="generalRatingsListItem"><span className="ratingsListTitle">Book Language:</span>  {book[0].volumeInfo.language}</li>}
                 </ul>

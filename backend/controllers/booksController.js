@@ -74,10 +74,28 @@ function getBook(req, res) {
 
 }
 
+function deleteUserBook(req, res) {
+  const currentUser = req.currentUser
+  req.body.user = currentUser
+  Book
+    .findById(req.params.book_id)
+    .then(book => {
+      User.findById(req.body.user._id)
+        .then(() => {
+          return book.remove()
+        })
+    })
+    .then(() => {
+      res.status(204).send({ message: 'book deleted' })
+    })
+}
+
+
 
 module.exports = {
   addBook,
   indexBooks,
   getBooks,
-  getBook
+  getBook,
+  deleteUserBook
 }
