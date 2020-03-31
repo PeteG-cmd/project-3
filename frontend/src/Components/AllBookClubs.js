@@ -75,7 +75,7 @@ class CreateBookClub extends React.Component {
         return <div key={index} >
           <p>Bookclub Name: {bookClub.bookClubName}</p>
           <p>Description: {bookClub.descriptionBio}</p>
-          <p>Admin: {bookClub.adminUser}</p>
+          <p>Admin: {bookClub.adminUser.username}</p>
 
           {userCurrentInvitesSent.includes(bookClub._id) ? <button>Invite Pending</button> : userBookClubs.includes(bookClub._id) ? <button>Already a member of this book club</button> : <button onClick={() => this.handleSubmit(bookClub._id)}>Join</button>}
 

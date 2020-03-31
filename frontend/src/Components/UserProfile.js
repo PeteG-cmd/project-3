@@ -6,13 +6,15 @@ import { Link } from 'react-router-dom'
 
 import UpdateLoginDetailsModal from './UpdateLoginDetailsModal'
 import UpdateBioModal from './UpdateBioModal'
+import RegisterForm from './RegisterForm'
 
 class UserProfile extends React.Component {
 
   constructor() {
     super()
     this.state = {
-      user: {},
+      user: {
+        profile: {} },
       books: null
     }
   }
@@ -68,12 +70,11 @@ class UserProfile extends React.Component {
                 <p className="title is-4">Username: {this.state.user.username}</p>
                 <p className="title is-4">Email: {this.state.user.email}</p>
                 <p className="title is-4">Password: {this.state.user.password}</p>
-                <h2 className="subtitle has-text-centered is-light is-danger"><UpdateLoginDetailsModal /></h2>
-                {/* <Link to="#">
-                  <button className="button is-light is-danger">
-                    Edit
-                  </button>
-                </Link> */}
+                <h2 className="subtitle has-text-centered is-light is-danger"><UpdateLoginDetailsModal
+                  profile={this.state.user}
+                
+                /></h2>
+
               </div>
             </div>
 
@@ -83,12 +84,8 @@ class UserProfile extends React.Component {
                 <div className="box">
                   <p>{this.state.user.userBio}</p>
                 </div>
-                <h2 className="subtitle has-text-centered is-light is-danger"><UpdateBioModal /></h2>
-                {/* <Link to="#">
-                  <button className="button is-light is-danger">
-                    Edit
-                  </button>
-                </Link> */}
+                <h2 className="subtitle has-text-centered is-light is-danger"><UpdateBioModal
+                  user={this.state.user.userBio} /></h2>
               </div>
 
               <div className="tile is-child box">
@@ -113,7 +110,7 @@ class UserProfile extends React.Component {
                   <p> <strong> Number of Books Read:</strong> {this.state.books.length}</p>
                   <p> <strong> Last Book Read:</strong></p>
                   <p>{this.state.books[this.state.books.length - 1].title}</p>
-                  
+
 
                   {/* {this.state.books.map((book, index) => {
                     // console.log(this.state.book)
@@ -225,7 +222,7 @@ class UserProfile extends React.Component {
                 <label className="checkbox">
                   <input
                     onChange={(event) => this.handleChange(event)}
-                    type="checkbox" value="espionage" />
+                    type="checkbox" value="espionage" checked={true} />
                           Espionage
                 </label>
                 <label className="checkbox">

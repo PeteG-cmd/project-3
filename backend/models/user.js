@@ -5,7 +5,8 @@ const Catergory = require('./catergory').schema
 const Invite = require('./invite').schema
 
 
-const mongooseHidden = require('mongoose-hidden')()
+const mongooseHidden = require('mongoose-hidden')({ defaultHidden: { password: true } })
+
 const bcrypt = require('bcrypt')
 
 const schema = new mongoose.Schema({
@@ -27,6 +28,8 @@ const schema = new mongoose.Schema({
 
 schema.plugin(require('mongoose-unique-validator'))
 schema.plugin(mongooseHidden)
+
+
 
 // Save passwordConfirmation from our request as a temporary field
 // called _passwordConfirmation
