@@ -2,11 +2,10 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import axios from 'axios'
 import auth from '../lib/auth'
-import RegisterForm from './RegisterForm'
 
-const Modal = ({ closeModal, modalState, profile }) => {
-  const { username } = profile
-  // console.log(username)
+
+const Modal = ({ handleChange, handleSubmit, closeModal, modalState, profile }) => {
+  // const { username } = profile
   if (!modalState) {
     return null
   }
@@ -21,16 +20,72 @@ const Modal = ({ closeModal, modalState, profile }) => {
 
         <section className="modal-card-body">
           <div className="content">
-            {console.log(profile.profile.username)}
-            <p>{profile.profile.username}</p>
-            <p>{profile.profile.email}</p>
-          
+
+            <form
+              className="form"
+              onSubmit={handleSubmit}
+            >
+              <div className="field">
+                <label className="label">
+                  Username
+                </label>
+                <div className="control has-icons-left">
+                  <input
+                    type="text"
+                    name="username"
+                    className="input"
+                    onChange={handleChange}
+                    value={profile.profile.username}
+                  />
+                  <span className="icon is-small is-left">
+                    <i className="fas fa-user"></i>
+                  </span>
+                </div>
+              </div>
+
+              <div className="field">
+                <label className="label">
+                  Email
+                </label>
+                <div className="control has-icons-left">
+                  <input
+                    onChange={handleChange}
+                    type="text"
+                    name="email"
+                    className="input"
+                    value={profile.profile.email}
+                  />
+                  <span className="icon is-small is-left">
+                    <i className="fas fa-envelope"></i>
+                  </span>
+                </div>
+              </div>
+
+              <div className="field">
+                <label className="label">
+                  Password
+                </label>
+                <div className="control has-icons-left">
+                  <input
+                    onChange={handleChange}
+                    type="password"
+                    name="password"
+                    className="input"
+                    value={profile.profile.password}
+                  />
+                  <span className="icon is-small is-left">
+                    <i className="fas fa-lock"></i>
+                  </span>
+                </div>
+              </div>
+
+            </form>
+
           </div>
         </section>
 
         <footer className="modal-card-foot">
-          {/* Need to handleSubmit on save changes below */}
-          <button className="button is-success" onClick={closeModal}>Save changes</button>
+          <button className="button is-success" onClick={handleSubmit}>Save changes</button>
           <button className="button" onClick={closeModal}>Cancel</button>
         </footer>
       </div>
@@ -62,32 +117,26 @@ class UpdateLoginDetailsModal extends React.Component {
     this.setState({ profile: this.props })
   }
 
-  // New
+  handleChange(event) {
+    const { name, value } = event.target
+    const data = { ...this.state.profile, [name]: value }
+    this.setState({ profile: data })
+    console.log(this.state.profile)
+  }
 
-  // handleChange(event) {
-  //   const { name, value } = event.target
-  //   const data = { ...this.state.data, [name]: value }
-  //   this.setState({ data })
-  //   console.log(this.state.data)
-  // }
-
-  // handleSubmit(event) {
-  //   // console.log('Hello')
-  //   event.preventDefault()
-  //   axios.put('/api/profile', this.state.data, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
-  //     .then(res => {
-  //       // console.log(res.data)
-  //       this.setState({ user: res.data })
-  //     })
-  //   // .then(() => this.props.history.push('/profile/:user_id'))
-  //   // .catch(err => this.setState({ errors: err.response.data.errors }))
-  // }
-
-  /////
+  handleSubmit(event) {
+    // console.log('Hello')
+    event.preventDefault()
+    axios.put('/api/profile', 
+      this.state.data, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+      .then(res => {
+        console.log(res.data)
+        this.setState({ user: res.data })
+      })
+  }
 
   // This is the render of the modal button will appear on the profile page
   render() {
-    // console.log(this.state.profile)
     return (
       <div className="has-text-centered content">
         <a id="booksClubprofileButton"
@@ -100,9 +149,8 @@ class UpdateLoginDetailsModal extends React.Component {
           closeModal={this.toggleModal}
           modalState={this.state.modalState}
           profile={this.state.profile}
-          // handleChange={(event) => this.handleChange(event)}
-          // handleSubmit={(event) => this.handleSubmit(event)}
-
+          handleChange={(event) => this.handleChange(event)}
+          handleSubmit={(event) => this.handleSubmit(event)}
         ></Modal>
       </div>
     )

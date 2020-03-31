@@ -14,7 +14,8 @@ class UserProfile extends React.Component {
     super()
     this.state = {
       user: {
-        profile: {} },
+        profile: {}
+      },
       books: null
     }
   }
@@ -30,12 +31,21 @@ class UserProfile extends React.Component {
       })
   }
 
+
+  // checkCat(value) {
+  //   const check = this.state.profile.categories.some(category => {
+  //     console.log(this.state.user)
+  //     return category.category === value
+  //   })
+  //   return check
+  // }
+
   render() {
     //Stops the issue of trying to render a null object.  Will only try and render once something has been returned
     if (!this.state.books) return <h1>Wait for books</h1>
     // console.log(this.state.books)
     // console.log(this.state.user)
-
+    // console.log(this.state.user.bookClubs.length) // works sometimes and stops working for no apparent reason
     return <main className="hero is-fullheight">
 
       <div className="hero-body">
@@ -72,7 +82,7 @@ class UserProfile extends React.Component {
                 <p className="title is-4">Password: {this.state.user.password}</p>
                 <h2 className="subtitle has-text-centered is-light is-danger"><UpdateLoginDetailsModal
                   profile={this.state.user}
-                
+
                 /></h2>
 
               </div>
@@ -91,8 +101,9 @@ class UserProfile extends React.Component {
               <div className="tile is-child box">
                 <p className="title">Book Clubs</p>
                 <div className="tile is-child box">
-                  <p> <strong> Member of Book {} Clubs </strong></p>
+                  <p> <strong> Member of {} Book Clubs </strong></p>
                   {/* {this.state.user.bookClubs.length} */}
+
                 </div>
                 <Link to="/bookclubs/myBookClubs">
                   <button id="booksClubprofileButton" className="button is-light is-info">
@@ -110,24 +121,16 @@ class UserProfile extends React.Component {
                   <p> <strong> Number of Books Read:</strong> {this.state.books.length}</p>
                   <p> <strong> Last Book Read:</strong></p>
                   <p>{this.state.books[this.state.books.length - 1].title}</p>
-
-
-                  {/* {this.state.books.map((book, index) => {
-                    // console.log(this.state.book)
-                    return <p key={index}>{book.title}</p>
-                  })} */}
-
-                  {/* <p>{this.state.user.userBio}</p> */}
-                  {/* <p>Latest Book Read: {this.state.user.booksRead.length}</p> */}
                 </div>
 
                 <div className="tile is-child box">
-                  <p> <strong> Number of Books Rated:</strong> </p>
+                  <p> <strong> Number of Books Rated:</strong> {} </p>
+                  {/* <p>{this.state.user.booksRated.length}</p> */}
                   <p>Latest Book Rated:</p>
                 </div>
 
                 <div className="tile is-child box">
-                  <p> <strong> Number of Books on Wishlist:</strong> </p>
+                  <p> <strong> Number of Books on Wishlist:</strong> {} </p>
                   <p>Latest Book Added:</p>
                   {/* <p>{this.state.user.booksWishList.length}</p>  */}
                 </div>
@@ -156,7 +159,10 @@ class UserProfile extends React.Component {
                 <label className="checkbox">
                   <input
                     onChange={(event) => this.handleChange(event)}
-                    type="checkbox" value="advice-how-to-and-miscellaneous" />
+                    type="checkbox"
+                    value="advice-how-to-and-miscellaneous"
+                  // check={this.checkCat(event.target.value)}
+                  />
                           Advice and How To
                 </label>
                 <label className="checkbox">
@@ -222,7 +228,9 @@ class UserProfile extends React.Component {
                 <label className="checkbox">
                   <input
                     onChange={(event) => this.handleChange(event)}
-                    type="checkbox" value="espionage" checked={true} />
+                    type="checkbox"
+                    value="espionage"
+                    checked={this.state.user.catergories === 'espionage' ? true : false} />
                           Espionage
                 </label>
                 <label className="checkbox">

@@ -114,7 +114,7 @@ class CategoriesShownToNewUser extends React.Component {
                       <label className="checkbox">
                         <input
                           onChange={(event) => this.handleChange(event)}
-                          type="checkbox" value="espionage" checked={true}/>
+                          type="checkbox" value="espionage" />
                           Espionage
                       </label>
                       <label className="checkbox">
