@@ -21,7 +21,7 @@ class DetailedBookPage extends React.Component {
     const id = this.props.match.params.book_id
     axios.get(`/api/book/${id}`, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then(res => {
-        console.log(res.data.isbnNumber)
+        console.log(res.data)
         this.setState({ databaseBook: res.data })
         return res.data.isbnNumber
       })
@@ -38,16 +38,16 @@ class DetailedBookPage extends React.Component {
 
   handleAddToWishList(event) {
     event.preventDefault()
-    axios.post('api/books/wishlist', this.state.databaseBook._id, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+    axios.post('/api/books/wishlist', this.state.databaseBook, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then(res => {
-        this.props.history.push('/mylibrary')
+        alert(res.data)
       })
       .catch(err => this.setState({ error: err.response.data.message }))
   }
 
   handleAddToBooksRead(event) {
     event.preventDefault()
-    axios.post('api/books/booksRead', this.state.databaseBook._id, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+    axios.post('/api/books/booksRead', this.state.databaseBook, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then(res => {
         alert(res.data)
       })
@@ -120,7 +120,7 @@ class DetailedBookPage extends React.Component {
               <p className="to-top">Description Above</p>
             </div>
             <div className="Addons">
-              <div><h3>Add Book To Wish List: <a>
+              <div><h3>Add Book To Wish List: <a onClick={(event) => this.handleAddToWishList(event)}>
                 <span className="icon is-small"><i className="fas fa-heart"></i></span>
               </a></h3></div>
               <div><h3>Add to Read Books: <a onClick={(event) => this.handleAddToBooksRead(event)}>

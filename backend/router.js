@@ -47,8 +47,8 @@ router.route('/mylibrary')
   .get(secureRoute, booksController.getBooks)
   .post(secureRoute, booksController.addBook)
 
-// router.route('/books/wishlist')
-//   .post(secureRoute, booksController.addBookToWishList)
+router.route('/books/wishlist')
+  .post(secureRoute, booksController.addBookToWishList)
 
 router.route('/books/booksRead')
   .post(secureRoute, booksController.addBookToBooksRead)

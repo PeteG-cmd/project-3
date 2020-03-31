@@ -95,25 +95,57 @@ function deleteUserBook(req, res) {
     .catch(err => res.send(err))
 }
 
-function addBooksToBooksRead(req, res) {
+function addBookToBooksRead(req, res) {
 
   const currentUser = req.currentUser
+  console.log(req.body._id)
 
   User.findById(currentUser._id)
     .then(user => {
-      currentUser.booksRead.push(req.body)
+      if (user.booksRead.includes(req.body._id)) return res.status(400).send({ message: 'This book is already in your Library ' })
+      user.booksRead.push(req.body._id)
+      console.log(user.booksRead)
       const filterBooks = user.books.filter(book => {
-        return book.toString() !== req.body.toString()
+        console.log(book)
+        return book.toString() !== req.body._id.toString()
       })
       const filterBooksWishList = user.booksWishList.filter(book => {
-        return book.toString() !== req.body.toString()
+        console.log(book)
+        return book.toString() !== req.body._id.toString()
       })
       user.booksWishList = filterBooksWishList
       user.books = filterBooks
       return user.set(user)
     })
     .then(user => {
-      user.save()
+      return user.save()
+    })
+    .then(user => res.status(200).send(user))
+    .catch(err => res.send(err))
+
+}
+
+function addBookToWishList(req, res) {
+
+  const currentUser = req.currentUser
+  console.log(req.body._id)
+
+  User.findById(currentUser._id)
+    .then(user => {
+      if (user.booksWishList.includes(req.body._id)) return res.status(400).send({ message: 'This book is already in your Library ' })
+      user.booksWishList.push(req.body._id)
+      const filterBooks = user.books.filter(book => {
+        return book.toString() !== req.body._id.toString()
+      })
+      const filterBooksRead = user.booksRead.filter(book => {
+        return book.toString() !== req.body._id.toString()
+      })
+      user.booksRead = filterBooksRead
+      user.books = filterBooks
+      return user.set(user)
+    })
+    .then(user => {
+      return user.save()
     })
     .then(user => res.status(200).send(user))
     .catch(err => res.send(err))
@@ -128,5 +160,6 @@ module.exports = {
   getBooks,
   getBook,
   deleteUserBook,
-  addBooksToBooksRead
+  addBookToBooksRead,
+  addBookToWishList
 }
