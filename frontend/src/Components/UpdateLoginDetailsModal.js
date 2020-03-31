@@ -4,7 +4,9 @@ import axios from 'axios'
 import auth from '../lib/auth'
 import RegisterForm from './RegisterForm'
 
-const Modal = ({ children, closeModal, modalState, loginDetails }) => {
+const Modal = ({ closeModal, modalState, profile }) => {
+  const { username } = profile
+  // console.log(username)
   if (!modalState) {
     return null
   }
@@ -18,14 +20,11 @@ const Modal = ({ children, closeModal, modalState, loginDetails }) => {
         </header>
 
         <section className="modal-card-body">
-          <div className="content">{children}
-            <p>Form Here</p>
-            {/* <RegisterForm
-              handleSubmit={(event) => this.handleSubmit(event)}
-              handleChange={(event) => this.handleChange(event)}
-              errors={errors}
-              data={this.state.data}
-            /> */}
+          <div className="content">
+            {console.log(profile.profile.username)}
+            <p>{profile.profile.username}</p>
+            <p>{profile.profile.email}</p>
+          
           </div>
         </section>
 
@@ -50,7 +49,7 @@ class UpdateLoginDetailsModal extends React.Component {
 
     this.state = {
       modalState: false,
-      loginDetails: {}
+      profile: {}
     }
     this.toggleModal = this.toggleModal.bind(this)
   }
@@ -60,7 +59,7 @@ class UpdateLoginDetailsModal extends React.Component {
       const newState = !prev.modalState
       return { modalState: newState }
     })
-    this.setState({ loginDetails: this.props })
+    this.setState({ profile: this.props })
   }
 
   // New
@@ -73,27 +72,36 @@ class UpdateLoginDetailsModal extends React.Component {
   // }
 
   // handleSubmit(event) {
+  //   // console.log('Hello')
   //   event.preventDefault()
-  //   axios.put('/api/register', this.state.data)
-  //     .then(() => this.props.history.push('/profile/:user_id'))
-  //     .catch(err => this.setState({ errors: err.response.data.errors }))
+  //   axios.put('/api/profile', this.state.data, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+  //     .then(res => {
+  //       // console.log(res.data)
+  //       this.setState({ user: res.data })
+  //     })
+  //   // .then(() => this.props.history.push('/profile/:user_id'))
+  //   // .catch(err => this.setState({ errors: err.response.data.errors }))
   // }
 
   /////
 
   // This is the render of the modal button will appear on the profile page
   render() {
-    console.log(this.props)
+    // console.log(this.state.profile)
     return (
       <div className="has-text-centered content">
-        <a id="booksClubprofileButton" className="button is-light is-danger" onClick={this.toggleModal}>
+        <a id="booksClubprofileButton"
+          className="button is-light is-danger"
+          onClick={this.toggleModal}>
           Edit
         </a>
 
         <Modal
           closeModal={this.toggleModal}
           modalState={this.state.modalState}
-          // loginDetails={this.state.loginDetails}
+          profile={this.state.profile}
+          // handleChange={(event) => this.handleChange(event)}
+          // handleSubmit={(event) => this.handleSubmit(event)}
 
         ></Modal>
       </div>

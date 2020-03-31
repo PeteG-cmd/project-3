@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import axios from 'axios'
 import auth from '../lib/auth'
 
-const Modal = ({ children, closeModal, modalState }) => {
+const Modal = ({ handleChange, handleSubmit, closeModal, modalState, user }) => {
   if (!modalState) {
     return null
   }
@@ -17,17 +17,16 @@ const Modal = ({ children, closeModal, modalState }) => {
           <button className="delete" onClick={closeModal} />
         </header>
         <section className="modal-card-body">
-          <div className="content">{children}
-            <textarea className="textarea"
-              placeholder="Existing profile should appear here from user.userBio"
-              // placeholder={this.state.user.userBio}
+          <div className="content">
+            <textarea className="textarea" name="userBio"
+              onChange={handleChange}
+              placeholder={user.user}
               rows="5">
             </textarea>
           </div>
         </section>
         <footer className="modal-card-foot">
-          {/* Need to handleSubmit on save changes below */}
-          <button className="button is-success" onClick={closeModal}>Save changes</button>
+          <button className="button is-success" onClick={handleSubmit} >Save changes</button>
           <button className="button" onClick={closeModal}>Cancel</button>
         </footer>
       </div>
@@ -46,7 +45,7 @@ class UpdateBioModal extends React.Component {
 
     this.state = {
       modalState: false,
-      user: ''
+      user: {}
     }
     this.toggleModal = this.toggleModal.bind(this)
   }
@@ -56,45 +55,45 @@ class UpdateBioModal extends React.Component {
       const newState = !prev.modalState
       return { modalState: newState }
     })
-    // this.setState({ user: this.props })
     this.setState({ user: this.props })
   }
 
-  // handleChange(event) {
-  //   const { name, value } = event.target
-  //   const data = { ...this.state.data, [name]: value }
-  //   this.setState({ data })
-  //   console.log(this.state.data)
-  // }
+  handleChange(event) {
+    const { name, value } = event.target
+    const data = { ...this.state.data, [name]: value }
+    this.setState({ data })
+    // console.log(this.state.data)
+  }
 
-  // handleSubmit(event) {
-  //   event.preventDefault()
-  //   axios.put('/api/register', this.state.data)
-  //     .then(() => this.props.history.push('/profile/:user_id'))
-  //     .catch(err => this.setState({ errors: err.response.data.errors }))
-  // }
-
-  componentDidMount() {
-    axios.post('/api/profile', {}, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+  handleSubmit(event) {
+    // console.log('Hello')
+    event.preventDefault()
+    axios.put('/api/profile', this.state.data, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then(res => {
+        // console.log(res.data)
         this.setState({ user: res.data })
       })
+      // .then(() => this.props.history.push('/profile/:user_id'))
+    // .catch(err => this.setState({ errors: err.response.data.errors }))
   }
+
 
   // This is the render of the modal button will appear on the profile page
   render() {
-    console.log(this.state.user)
+    // console.log(this.state.user)
     return (
       <div className="has-text-centered content">
-        <a className="button is-light is-danger" onClick={this.toggleModal}>
+        <a className="button is-light is-danger"
+          onClick={this.toggleModal}>
           Edit
         </a>
 
         <Modal
           closeModal={this.toggleModal}
           modalState={this.state.modalState}
-          // user={this.state.user}
-
+          user={this.state.user}
+          handleChange={(event) => this.handleChange(event)}
+          handleSubmit={(event) => this.handleSubmit(event)}
         ></Modal>
       </div>
     )
