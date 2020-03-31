@@ -487,6 +487,43 @@
   }
 }
 
+//Single Book club page
+.mainDetailedBookClub {
+  margin-top: 65px;
+  height: 90vh;
+}
+
+.theDetailedBookClubContainer {
+  height: 90vh;
+  margin: 0px 15px;
+  border: 2px solid black;
+  background-color: rgba(236, 240, 243, 0.911);
+  display: flex;
+  flex-direction: row;
+}
+
+.theDetailedBookClubInfoContainer{
+  height: 97%;
+  width: 20%;
+  // border: 2px solid red;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+  margin: 10px;
+}
+
+.theDetailedBookClubInfoContainer2{
+  height: 97%;
+  width: 80%;
+  // border: 2px solid red;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 10px;
+  margin: 10px;
+}
+
 //Detailed Book from Library Page SASS
 
 .mainDetailedBook {

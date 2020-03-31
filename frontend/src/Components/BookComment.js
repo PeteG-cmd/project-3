@@ -28,7 +28,10 @@ class BookComment extends React.Component {
     event.preventDefault()
     const bookId = this.state.book._id
     axios.post(`/api/books/${bookId}/comments`, this.state.comment, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
-      .then(res => this.setState({ book: res.data }))
+      .then(res => {
+        console.log(res.data)
+        this.setState({ book: res.data })
+      })
       .catch(err => this.setState({ error: err.response.data.message }))
   }
 
