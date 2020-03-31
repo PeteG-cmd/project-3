@@ -93,7 +93,30 @@ function deleteUserBook(req, res) {
     })
     .then(user => res.status(200).send(user))
     .catch(err => res.send(err))
+}
 
+function addBooksToBooksRead(req, res) {
+
+  const currentUser = req.currentUser
+
+  User.findById(currentUser._id)
+    .then(user => {
+      currentUser.booksRead.push(req.body)
+      const filterBooks = user.books.filter(book => {
+        return book.toString() !== req.body.toString()
+      })
+      const filterBooksWishList = user.booksWishList.filter(book => {
+        return book.toString() !== req.body.toString()
+      })
+      user.booksWishList = filterBooksWishList
+      user.books = filterBooks
+      return user.set(user)
+    })
+    .then(user => {
+      user.save()
+    })
+    .then(user => res.status(200).send(user))
+    .catch(err => res.send(err))
 
 }
 
@@ -104,5 +127,6 @@ module.exports = {
   indexBooks,
   getBooks,
   getBook,
-  deleteUserBook
+  deleteUserBook,
+  addBooksToBooksRead
 }

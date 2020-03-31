@@ -7,10 +7,10 @@ function addComment(req, res) {
   const currentUser = req.currentUser
   req.body.user = currentUser
   Book.findById(req.params.book_id)
-    .populate('user')
+    .populate('comments.user')
     .then(book => {
       if (!book) return res.status(404).send({ message: 'Book Not found' })
-      book.comments.push(req.body)
+      book.comments.unshift(req.body)
       return book.save()
     })
     .then(book => res.status(201).send(book))
@@ -23,10 +23,10 @@ function addBookClubComment(req, res) {
   console.log(req.body)
 
   BookClub.findById(req.params.bookclub_id)
-    .populate('user')
+    .populate('comments.user')
     .then(bookclub => {
       if (!bookclub) return res.status(404).send({ message: 'Book Not found' })
-      bookclub.comments.push(req.body)
+      bookclub.comments.unshift(req.body)
       return bookclub.save()
     })
     .then(bookclub => res.status(201).send(bookclub))

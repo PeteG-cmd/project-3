@@ -43,7 +43,7 @@ class SlickCarousel extends React.Component {
     } else {
 
       // This puts dots on the Carousel for the default categories if the user is not logged in.
-      this.setState({ dots: true })
+      this.setState({ dots: false })
       axios
         .get(
           `https://api.nytimes.com/svc/books/v3/lists/current/${categories}.json?api-key=xnqPkpbQTWj1Fg96GhJlFbplC0GMseLd`,
@@ -62,7 +62,7 @@ class SlickCarousel extends React.Component {
     const settings = {
       dots: this.state.dots,
       infinite: true,
-      slidesToShow: 5,
+      slidesToShow: 3,
       slidesToScroll: 1,
       autoplay: true,
       speed: 2000,

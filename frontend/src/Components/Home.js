@@ -35,42 +35,49 @@ export default class Home extends React.Component {
   render() {
     const categories = this.state.defaultCategories
     console.log(this.state.defaultCategories)
-    
+
 
     if (!auth.isLoggedIn()) {
       return <>
         <main className="non-user-home-main">
-          <section></section>
-          <section className="section" id="CarouselNonUser1">
-            <div className="container">
-              <h2 className="subtitle">Current Fiction Best Sellers</h2>
-              <SlickCarousel categories={categories[0]} />
-            </div>
-          </section>
-          <section className="section" id="AboutSection">
-            <div className="container">
-              <h2 className="subtitle has-text-centered"><AboutHomePageModal /></h2>
-            </div>
-          </section>
-          <section className="section">
-            <div className="container">
-              <h2 className="subtitle">Current Non-Fiction Best Sellers</h2>
-              <SlickCarousel categories={categories[1]} />
-            </div>
-          </section>
-          <section className="section" id="BookClubSection">
-            <div className="container">
-              <h2 className="subtitle has-text-centered"><BookClubHomePageModal /></h2>
-            </div>
-          </section>
-          <section className="section">
-            <div className="container">
-              <h2 className="subtitle">Current Young-Adult Best Sellers</h2>
-              <SlickCarousel categories={categories[2]} />
-            </div>
-          </section>
-          <footer className="section" id="NonUserHomeMainfooter">
-            <div className="container">
+          <div className="HomePageContainer">
+            <section className="HomePageInfoContainer">
+              <div className="AboutHomePageInfoContainer">
+
+              </div>
+              <div className="BookClubHomePageInfoContainer">
+
+              </div>
+            </section>
+            <section className="NonUserHomePageCarouselContainer">
+              <div className="NonUserHomePageCarouselContent">
+                <div className="CarouselTitle">
+                  <h2>Current Fiction Best Sellers</h2>
+                </div>
+                <div className="CarouselImages">
+                  <SlickCarousel categories={categories[0]} />
+                </div>
+              </div>
+              <div className="NonUserHomePageCarouselContent">
+                <div className="CarouselTitle">
+                  <h2>Current Non-Fiction Best Sellers</h2>
+                </div>
+                <div>
+                  <SlickCarousel categories={categories[1]} />
+                </div>
+              </div>
+              <div className="NonUserHomePageCarouselContent">
+                <div className="CarouselTitle">
+                  <h2>Current Young-Adult Best Sellers</h2>
+                </div>
+                <div>
+                  <SlickCarousel categories={categories[2]} />
+                </div>
+              </div>
+            </section>
+          </div>
+          <footer id="NonUserHomeMainfooter">
+            <div>
               <p>CopyRight By Jimbo Jambo, Peter Pan, Gordon Ramsay</p>
             </div>
           </footer>

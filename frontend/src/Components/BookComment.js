@@ -28,15 +28,21 @@ class BookComment extends React.Component {
     event.preventDefault()
     const bookId = this.state.book._id
     axios.post(`/api/books/${bookId}/comments`, this.state.comment, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
-      .then(res => this.setState({ book: res.data }))
+      .then(res => {
+        console.log(res.data)
+        this.setState({ book: res.data })
+      })
       .catch(err => this.setState({ error: err.response.data.message }))
   }
+
+  // clearContents(element) {
+  //   element.value = ''
+  // }
 
   handleChange(event) {
     const { name, value } = event.target
     const comment = { ...this.state.comment, [name]: value }
     this.setState({ comment })
-
   }
 
 
@@ -78,7 +84,7 @@ class BookComment extends React.Component {
                     </a>
                     <a className="IconSymbol">
                       {/* MAKE THIS A MODAL */}
-                      <span id="editSymbol" className="icon is-small"><i className="fas fa-edit"></i></span> 
+                      <span id="editSymbol" className="icon is-small"><i className="fas fa-edit"></i></span>
                     </a>
                   </div>
                   <div className="CommentUserName">
@@ -105,7 +111,12 @@ class BookComment extends React.Component {
             <div className="field">
               <div className="control">
                 <form onSubmit={() => this.handleSubmit(event)} >
-                  <textarea className="textarea" placeholder="Add a comment..." onChange={(event) => this.handleChange(event)} type='text' name='comment' comment={this.state.comment}>
+                  <textarea
+                    // onFocus={() => this.clearContents()}
+                    className="textarea"
+                    placeholder="Add a comment..."
+                    onChange={(event) => this.handleChange(event)} type='text' name='comment' comment={this.state.comment}>
+                    
                   </textarea>
                   <button className="button" id="commentSubmitButton">Submit</button>
                 </form>
