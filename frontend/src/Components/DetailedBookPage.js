@@ -35,7 +35,34 @@ class DetailedBookPage extends React.Component {
       })
       .catch(error => console.error(error))
   }
-  
+
+  handleAddToWishList(event) {
+    event.preventDefault()
+    axios.post('api/books/wishlist', this.state.databaseBook._id, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+      .then(res => {
+        this.props.history.push('/mylibrary')
+      })
+      .catch(err => this.setState({ error: err.response.data.message }))
+  }
+
+  handleAddToBooksRead(event) {
+    event.preventDefault()
+    axios.post('api/books/booksRead', this.state.databaseBook._id, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+      .then(res => {
+        alert(res.data)
+      })
+      .catch(err => this.setState({ error: err.response.data.message }))
+  }
+
+  handleAddToBooksToLikeCategories(event) {
+    event.preventDefault()
+    axios.post('api/books/booksByLikedCategories', this.state.databaseBook._id, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+      .then(res => {
+        this.props.history.push('/mylibrary')
+      })
+      .catch(err => this.setState({ error: err.response.data.message }))
+  }
+
 
   render() {
     if (!this.state.book) return <h1>WAITING FOR BOOKS</h1>
@@ -96,7 +123,7 @@ class DetailedBookPage extends React.Component {
               <div><h3>Add Book To Wish List: <a>
                 <span className="icon is-small"><i className="fas fa-heart"></i></span>
               </a></h3></div>
-              <div><h3>Add to Read Books: <a>
+              <div><h3>Add to Read Books: <a onClick={(event) => this.handleAddToBooksRead(event)}>
                 <span className="icon is-small"><i className="fas fa-book-open"></i></span>
               </a></h3></div>
               <div><h3>Add <strong>{book[0].volumeInfo.categories}</strong> to Liked Categories: <a>
@@ -106,7 +133,7 @@ class DetailedBookPage extends React.Component {
           </div>
         </section>
         <section className="theDetailedBookInfocontainer" id="theDetailedBookInfocontainer2">
-          <BookComment databaseBook={this.state.databaseBook}/>
+          <BookComment databaseBook={this.state.databaseBook} />
         </section>
       </div>
     </main>
