@@ -62,7 +62,7 @@ class SlickCarousel extends React.Component {
     const settings = {
       dots: this.state.dots,
       infinite: true,
-      slidesToShow: 5,
+      slidesToShow: 3,
       slidesToScroll: 1,
       autoplay: true,
       speed: 2000,
