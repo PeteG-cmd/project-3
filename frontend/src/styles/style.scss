@@ -765,17 +765,19 @@
   justify-content: flex-start;
   
   .CommentContainer {
-    height: 20%;
+    height: 30%;
     width: 95%;
     margin: 5px auto 0px;
     display: flex;
     flex-direction: row;
-  
+    background-color: rgb(252, 249, 249);
+    box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
+    // border: 2px solid blue;
 
     .AComment {
-      width: 80%;
+      width: 87%;
       height: 100%;
-      border: 2px solid orange;
+      // border: 2px solid orange;
       margin: 0 auto;
       display: flex;
       flex-direction: column;
@@ -783,18 +785,79 @@
       .CommentsContent {
         width: 100%;
         height: 80%;
-        border: 2px solid red;
+        border-bottom: 2px solid rgba(235, 234, 234, 0.712);
         overflow: scroll;
+        background-color: rgb(253, 253, 253);
+        box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
       }
-      .LikeandReply {
-        width: 20%;
-        border: 2px solid yellow;
+      .CommentUserInfo {
+        width: 100%;
+        height: 25%;
+        // border: 2px solid yellow;
         display: flex;
         flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
 
-        .Commenticons {
-          padding: 0px 5px;
-          visibility: hidden;
+        .IconsandName {
+          width: 70%;
+          height: 100%;
+          // border: 2px solid green;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+
+          .Icons {
+            width: 30%;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: flex-start;
+            align-items: center;
+            // border: 2px solid brown;
+
+            .IconSymbol {
+              padding: 0px 5px;
+
+              #deleteSymbol {
+                color: rgb(131, 55, 55)
+              }
+              #deleteSymbol:hover {
+                color: rgb(252, 4, 4)
+              }
+
+              #editSymbol {
+                color: rgb(56, 148, 63);
+              }
+
+              #editSymbol:hover {
+                color: rgb(26, 212, 42);
+              }
+            }
+          }
+
+          .CommentUserName {
+            padding-left: 20px;
+          .PostedBy {
+            font-size: 15px;
+          }
+        }
+        }
+
+        .timeStamp {
+          width: 30%;
+          height: 100%;
+          // border: 2px solid blue;
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-end;
+          align-items: center;
+
+          .timeStampInfo {
+            text-transform: capitalize;
+            color: rgb(42, 139, 219);
+            font-size: 15px;
+          }
         }
       }
     }
