@@ -77,17 +77,23 @@ function getBook(req, res) {
 function deleteUserBook(req, res) {
   const currentUser = req.currentUser
   req.body.user = currentUser
-  Book
-    .findById(req.params.book_id)
-    .then(book => {
-      User.findById(req.body.user._id)
-        .then(() => {
-          return book.remove()
-        })
+
+  User
+    .findById(currentUser._id)
+    .then(user => {
+      const filterBooks = user.books.filter(book => {
+        return book.toString() !== req.params.book_id.toString()
+      })
+      user.books = filterBooks
+      return user.set(user)
     })
-    .then(() => {
-      res.status(204).send({ message: 'book deleted' })
+    .then(user => {
+      return user.save()
     })
+    .then(user => res.status(200).send(user))
+    .catch(err => res.send(err))
+
+
 }
 
 

@@ -32,12 +32,13 @@ class UserLibrary extends React.Component {
     this.setState({ query: searchQuery, filteredBooks: filteredBooks })
   }
 
-  handleDelete() {
-    const id = this.props.book_id
+  handleDelete(bookId) {
+
     console.log(this.props)
-    axios.delete(`/api/book/${id}`,
+    axios.delete(`/api/book/${bookId}`,
       { headers: { Authorization: `Bearer ${auth.getToken()}` } })
-      .then(() => this.props.history.push('/mylibrary'))
+      // .then(() => this.props.history.push('/mylibrary'))
+      .then(window.location.reload())
       .catch(err => console.error(err))
   }
 
@@ -91,7 +92,7 @@ class UserLibrary extends React.Component {
               </div>
               <div className="Buttons">
                 <button
-                  onClick={() => this.handleDelete()}
+                  onClick={() => this.handleDelete(book._id)}
                   className="button DeleteMyLibraryBook">Delete Book
                 </button>
                 <Link to={`../books/${book._id}`} book={book}>
