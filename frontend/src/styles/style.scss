@@ -348,28 +348,8 @@
           border: 2px solid brown;
           display: flex;
           flex-direction: row;
-          justify-content: flex-start;
+          justify-content: center;
           align-items: center;
-
-          .LatestBookCardFigure {
-            width: 50%;
-            height: 100%;
-            border: 2px solid rgb(233, 22, 198);
-            display: flex;
-            flex-direction: row;
-            align-items: center;
-            justify-content: center;
-          }
-
-          .SearchBookImageContainerInfo {
-            width: 50%;
-            height: 100%;
-            border: 2px solid rgb(0, 255, 85);
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            justify-content: space-evenly;
-          }
         }
 
         .SearchTitleandAuthorInfo {
@@ -384,10 +364,18 @@
       }
     }  
   }
+    .UserCarouselandBookCommentsContainer {
+      width: 55%;
+      height: 95%;
+      border: 2px solid black;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
 
     .mainHomeCarousel {
-      width: 55%;
-      height: 70%;
+      width: 97%;
+      height: 40%;
       border: 2px solid green;
       display: flex;
       flex-direction: column;
@@ -397,7 +385,7 @@
 
       .mainHomeCarouselContainer {
         width: 97%;
-        height: 57%;
+        height: 85%;
         border: 2px solid gold;
         display: flex;
         flex-direction: column;
@@ -434,6 +422,13 @@
             border: 2px solid red;
           }
         }
+      }
+     
+      }
+      .UserHomeBookCommentsContainer {
+        width: 97%;
+        height: 57%;
+        border: 2px solid rgb(155, 75, 10);
       }
     }
   }
@@ -473,6 +468,13 @@
   top: 0;
   width: 100%;
   background: -webkit-linear-gradient(rgb(180, 237, 247), rgb(113, 175, 190));
+
+}
+
+
+#AllBooksNav {
+  border-bottom: rgb(173, 63, 36);
+  color: red;
 }
 
 // Login and Register SASS
@@ -796,8 +798,8 @@
       border: 1px solid rgb(233, 224, 224);
 
       #TheSingleBookImg {
-        height: 400px;
-        width: 250px;
+        height: 300px;
+        width: 200px;
         padding: 5px 5px 0px;
         border-radius: 12px;
       }
@@ -1605,8 +1607,6 @@ justify-content: center;
         width: 80%;
         margin: 0 auto;
       }
-
-      
     }
   }
 
@@ -1636,6 +1636,9 @@ justify-content: center;
   flex-direction: row;
 }
 }}
+
+}
+}
 
 .userInfoTab {
   width: 100%;
@@ -1677,5 +1680,7 @@ justify-content: center;
     }
 
 
- }
+ 
+} 
+
 

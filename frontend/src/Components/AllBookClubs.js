@@ -49,14 +49,14 @@ class CreateBookClub extends React.Component {
     // .then(res => this.bookClubStatus())
   }
 
-  handleSortBooks(event) {
-    event.preventDefault()
-    console.log(sortBookClubs)
-    const sortBookClubs = this.state.bookClubs.sort((a, b) => {
-      return a.bookClubName - b.bookClubName
-    })
-    this.setState({ bookClubs: sortBookClubs })
-  }
+  // handleSortBooks(event) {
+  //   event.preventDefault()
+  //   console.log(sortBookClubs)
+  //   const sortBookClubs = this.state.bookClubs.sort(function(a, b) {
+  //     return a.bookClubName - b.bookClubName
+  //   })
+  //   this.setState({ bookClubs: sortBookClubs })
+  // }
 
   handleSearch(event) {
 
@@ -85,7 +85,7 @@ class CreateBookClub extends React.Component {
             query={this.state.query}
             onChange={() => this.handleSearch(event)}
           />
-          <button className="button is-success" onClick={() => this.handleSortBooks(event)}>Sort Book Clubs</button>
+          {/* <button className="button is-success" onClick={() => this.handleSortBooks(event)}>Sort Book Clubs</button> */}
         </div>
         {this.state.filteredBookClubs.map((bookClub, index) => {
           return <div key={index} className='bookClubJoinTab'>

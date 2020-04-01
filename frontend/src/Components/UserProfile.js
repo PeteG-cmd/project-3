@@ -21,6 +21,10 @@ class UserProfile extends React.Component {
     }
   }
 
+  // function updateCategories() {
+
+  // }
+
   componentDidMount() {
     axios.get('/api/mylibrary', { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then(res => this.setState({ books: res.data }))
@@ -40,17 +44,27 @@ class UserProfile extends React.Component {
   }
 
   handleChange(event) {
-    choices.push(event.target.value)
-    this.setState({ data: { categories: choices } })
+    console.log(event.target.checked)
+    choices = this.state.categories
+    if (event.target.checked === true) {
+      choices.push(event.target.value)
+    } else {
+      const newchoices = choices.filter(choice => {
+        return choice !== event.target.value
+      })
+      choices = newchoices
+    }
+
+    this.setState({ categories: choices })
+
+
+    // window.reload()
     console.log(choices)
   }
 
   handleSubmit(event) {
     event.preventDefault()
-    choices = []
-
-    axios.post('/api/categories', this.state.data, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
-      .then(() => this.props.history.push('/'))
+    axios.post('/api/categories', { categories: this.state.categories }, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .catch(err => this.setState({ errors: err.response.data.errors }))
   }
 

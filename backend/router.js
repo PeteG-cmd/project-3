@@ -23,6 +23,7 @@ router.route('/profile')
 router.route('/categories')
   .post(secureRoute, categoriesController.addCategories)
   .get(secureRoute, categoriesController.getCategories)
+  // .delete(secureRoute, categoriesController.deleteCategories)
 //   .put(secureRoute, catergoriesController.editCatergories)   // Check Peter's function name
 
 
