@@ -27,7 +27,7 @@ class UserProfile extends React.Component {
 
   componentDidMount() {
     axios.get('/api/mylibrary', { headers: { Authorization: `Bearer ${auth.getToken()}` } })
-      .then(res => this.setState({ books: res.data }))
+      .then(res => this.setState({ books: res.data.books }))
       .catch(err => this.setState({ error: err.response.data.message }))
 
 
