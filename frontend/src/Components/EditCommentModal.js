@@ -4,7 +4,8 @@ import PropTypes from 'prop-types'
 import axios from 'axios'
 import auth from '../lib/auth'
 
-const Modal = ({ handleChange, handleSubmit, closeModal, modalState, comment }) => {
+
+const Modal = ({ handleChange, handleSubmit, closeModal, modalState, comment, book }) => {
   if (!modalState) {
     return null
   }
@@ -19,9 +20,12 @@ const Modal = ({ handleChange, handleSubmit, closeModal, modalState, comment }) 
 
         <section className="modal-card-body">
           <div className="content">
-            <textarea className="textarea" name="comments"
+            <textarea className="textarea"
+              name="comment"
               onChange={handleChange}
               placeholder={comment.comment}
+              value={comment.comment}
+
               rows="5">
             </textarea>
           </div>
@@ -47,7 +51,7 @@ class EditCommentModal extends React.Component {
 
     this.state = {
       modalState: false,
-      comment: {}
+      comment: null
     }
     this.toggleModal = this.toggleModal.bind(this)
   }
@@ -57,47 +61,46 @@ class EditCommentModal extends React.Component {
       const newState = !prev.modalState
       return { modalState: newState }
     })
-    this.setState({ comment: this.props })
+    this.setState({ comment: this.props.comment })
   }
 
   handleChange(event) {
     const { name, value } = event.target
-    const data = { ...this.state.data, [name]: value }
-    this.setState({ data })
-    console.log(this.state.data)
+    const comment = { ...this.state.comment, [name]: value }
+    this.setState({ comment })
+    // console.log(this.state.comment)
   }
 
-  handleSubmit(event, comment) {
+  handleSubmit(event) {
     // console.log('Hello')
     event.preventDefault()
-    axios.put('/book/book_id/comment/:comment_id', 
-      comment, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+    const bookId = this.props.book._id
+    const commentId = this.props.comment._id
+    axios.put(`/api/book/${bookId}/comment/${commentId}`,
+      this.state.comment, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then(res => {
-        // console.log(res.data)
-        this.setState({ comment: res.data })
+        location.reload()
+
       })
-    // .then(() => this.props.history.push('/profile/:user_id'))
-    // .catch(err => this.setState({ errors: err.response.data.errors }))
   }
 
 
   // This is the render of the modal button will appear on the profile page
   render() {
-    console.log(this.props)
-    console.log(this.state.comment)
+    console.log(this.state)
     return (
       <span id="editSymbol" className="icon is-small">
         <p onClick={this.toggleModal}>
           <i className="fas fa-edit"></i>
         </p>
-      
+
 
         <Modal
           closeModal={this.toggleModal}
           modalState={this.state.modalState}
           comment={this.state.comment}
           handleChange={(event) => this.handleChange(event)}
-          handleSubmit={(event) => this.handleSubmit(event, event.target.comment )}
+          handleSubmit={(event) => this.handleSubmit(event)}
         ></Modal>
       </span>
     )

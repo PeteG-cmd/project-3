@@ -17,6 +17,8 @@ class BookComment extends React.Component {
     }
   }
 
+  
+
   componentDidMount() {
     this.setState({ book: this.props.databaseBook })
   }
@@ -46,6 +48,7 @@ class BookComment extends React.Component {
   // setInterval(() => {
   //   tubeStatus.innerHTML = `Tube Status: ${moment().format('LTS')}`
   // }, 1000)
+
 
 
   render() {
@@ -81,7 +84,8 @@ class BookComment extends React.Component {
                     </a>
                     <a className="IconSymbol">
                       <EditCommentModal
-                        comment={comment.comment}
+                        comment={comment}
+                        book={this.state.book}
                       />
                     </a>
                   </div>
