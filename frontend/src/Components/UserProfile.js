@@ -12,9 +12,8 @@ class UserProfile extends React.Component {
   constructor() {
     super()
     this.state = {
-      user: {
-        profile: {}
-      },
+      user: null,
+      profile: {},
       books: null
     }
   }
@@ -41,10 +40,12 @@ class UserProfile extends React.Component {
 
   render() {
     //Stops the issue of trying to render a null object.  Will only try and render once something has been returned
-    if (!this.state.books) return <h1>Wait for books</h1>
-    // console.log(this.state.books)
-    // console.log(this.state.user)
-    // console.log(this.state.user.bookClubs.length) // works sometimes and stops working for no apparent reason
+    if (!this.state.books || !this.state.user) return <h1>Wait for info</h1>
+    console.log(this.state.books)
+    console.log(this.state.user)
+    console.log(this.state.user.booksWishList.length)
+    // console.log(this.state.user.booksRead)
+    console.log(this.state.user.bookClubs.length)
     return <main className="hero is-fullheight">
 
       <div className="hero-body">
@@ -100,8 +101,7 @@ class UserProfile extends React.Component {
               <div className="tile is-child box">
                 <p className="title">Book Clubs</p>
                 <div className="tile is-child box">
-                  <p> <strong> Member of {} Book Clubs </strong></p>
-                  {/* {this.state.user.bookClubs.length} */}
+                  <p> <strong> Member of {this.state.user.bookClubs.length} Book Clubs </strong></p>
 
                 </div>
                 <Link to="/bookclubs/myBookClubs">
@@ -117,21 +117,27 @@ class UserProfile extends React.Component {
                 <p className="title">Books</p>
 
                 <div className="tile is-child box">
-                  <p> <strong> Number of Books Read:</strong> {this.state.books.length}</p>
-                  <p> <strong> Last Book Read:</strong></p>
+                  <p> <strong> Number of Books In Library:</strong> {this.state.books.length}</p>
+                  <p> <strong> Last Book Added:</strong></p>
                   <p>{this.state.books[this.state.books.length - 1].title}</p>
                 </div>
 
                 <div className="tile is-child box">
-                  <p> <strong> Number of Books Rated:</strong> {} </p>
-                  {/* <p>{this.state.user.booksRated.length}</p> */}
-                  <p>Latest Book Rated:</p>
+                  <p> <strong> Number of Books Read:</strong> {this.state.user.booksRead}</p>
+                  {/* <p> <strong> Last Book Read:</strong></p> */}
+                  {/* Need to be able to add books otherwise will break */}
+                  {/* <p>{this.state.books[this.state.booksRead.length - 1].title}</p> */}
                 </div>
 
                 <div className="tile is-child box">
-                  <p> <strong> Number of Books on Wishlist:</strong> {} </p>
-                  <p>Latest Book Added:</p>
-                  {/* <p>{this.state.user.booksWishList.length}</p>  */}
+                  <p> <strong> Number of Books Rated:</strong> {this.state.user.booksRated.length} </p>
+                  {/* <p>Latest Book Rated:</p> */}
+                </div>
+
+                <div className="tile is-child box">
+                  <p> <strong> Number of Books on Wishlist:</strong> {this.state.user.booksWishList.length} </p>
+                  {/* <p>Latest Book Added:</p>
+                  <p>{this.state.user.booksWishList.length}</p> */}
                 </div>
 
                 <div id="booksProfileButton" className="has-text-centered">
