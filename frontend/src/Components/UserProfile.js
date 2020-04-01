@@ -7,6 +7,8 @@ import { Link } from 'react-router-dom'
 import UpdateLoginDetailsModal from './UpdateLoginDetailsModal'
 import UpdateBioModal from './UpdateBioModal'
 
+let choices = []
+
 class UserProfile extends React.Component {
 
   constructor() {
@@ -14,7 +16,8 @@ class UserProfile extends React.Component {
     this.state = {
       user: null,
       profile: {},
-      books: null
+      books: null,
+      categories: []
     }
   }
 
@@ -23,29 +26,40 @@ class UserProfile extends React.Component {
       .then(res => this.setState({ books: res.data }))
       .catch(err => this.setState({ error: err.response.data.message }))
 
+
     axios.post('/api/profile', {}, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then(res => {
+        console.log(res)
+        //Maps thru exisiting categories data to populate categories on user profile
         this.setState({ user: res.data })
+        const categories = res.data.categories.map((category, index) => {
+          return category.category
+        })
+        this.setState({ categories: categories })
       })
   }
 
+  handleChange(event) {
+    choices.push(event.target.value)
+    this.setState({ data: { categories: choices } })
+    console.log(choices)
+  }
 
-  // checkCat(value) {
-  //   const check = this.state.profile.categories.some(category => {
-  //     console.log(this.state.user)
-  //     return category.category === value
-  //   })
-  //   return check
-  // }
+  handleSubmit(event) {
+    event.preventDefault()
+    choices = []
+
+    axios.post('/api/categories', this.state.data, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+      .then(() => this.props.history.push('/'))
+      .catch(err => this.setState({ errors: err.response.data.errors }))
+  }
 
   render() {
     //Stops the issue of trying to render a null object.  Will only try and render once something has been returned
     if (!this.state.books || !this.state.user) return <h1>Wait for info</h1>
-    console.log(this.state.books)
-    console.log(this.state.user)
-    console.log(this.state.user.booksWishList.length)
-    // console.log(this.state.user.booksRead)
-    console.log(this.state.user.bookClubs.length)
+    console.log(this.state.categories)
+    // console.log(this.state.books)
+    // console.log(this.state.user)
     return <main className="hero is-fullheight">
 
       <div className="hero-body">
@@ -59,7 +73,8 @@ class UserProfile extends React.Component {
                 <figure className="image is-128x128 has-image-centered">
                   <img className="is-rounded" src="https://bulma.io/images/placeholders/128x128.png" />
                   {/* Upload picture link */}
-                  <div className="file is-light is-danger">
+
+                  <div id="file-button-center" className="file is-light is-danger">
                     <label className="file-label">
                       <input className="file-input" type="file" name="resume" />
                       <span className="file-cta">
@@ -74,6 +89,9 @@ class UserProfile extends React.Component {
                   </div>
 
                 </figure>
+
+                {/* Would Like to put button here but styling needs to be adjusted */}
+
               </div>
 
               <div className="tile is-child box">
@@ -123,10 +141,7 @@ class UserProfile extends React.Component {
                 </div>
 
                 <div className="tile is-child box">
-                  <p> <strong> Number of Books Read:</strong> {this.state.user.booksRead}</p>
-                  {/* <p> <strong> Last Book Read:</strong></p> */}
-                  {/* Need to be able to add books otherwise will break */}
-                  {/* <p>{this.state.books[this.state.booksRead.length - 1].title}</p> */}
+                  <p> <strong> Number of Books Read:</strong> {this.state.user.booksRead.length}</p>
                 </div>
 
                 <div className="tile is-child box">
@@ -152,6 +167,8 @@ class UserProfile extends React.Component {
 
           </div>
 
+
+
           <div className="tile is-parent has-text-centered">
 
             <div className="box">
@@ -166,68 +183,98 @@ class UserProfile extends React.Component {
                     onChange={(event) => this.handleChange(event)}
                     type="checkbox"
                     value="advice-how-to-and-miscellaneous"
-                  // check={this.checkCat(event.target.value)}
+                    checked={this.state.categories.includes('advice-how-to-and-miscellaneous') ? true : false}
                   />
                           Advice and How To
                 </label>
                 <label className="checkbox">
                   <input
                     onChange={(event) => this.handleChange(event)}
-                    type="checkbox" value="animals" />
+                    type="checkbox"
+                    value="animals"
+                    checked={this.state.categories.includes('animals') ? true : false}
+                  />
                           Animals
                 </label>
                 <label className="checkbox">
                   <input
                     onChange={(event) => this.handleChange(event)}
-                    type="checkbox" value="business-books" />
+                    type="checkbox"
+                    value="business-books"
+                    checked={this.state.categories.includes('business-books') ? true : false}
+                  />
                           Business
                 </label>
                 <label className="checkbox">
                   <input
                     onChange={(event) => this.handleChange(event)}
-                    type="checkbox" value="celebrities" />
+                    type="checkbox"
+                    value="celebrities"
+                    checked={this.state.categories.includes('celebrities') ? true : false}
+                  />
                           Celebrities
                 </label>
                 <label className="checkbox">
                   <input
                     onChange={(event) => this.handleChange(event)}
-                    type="checkbox" value="paperback-books" />
+                    type="checkbox"
+                    value="paperback-books"
+                    checked={this.state.categories.includes('paperback-books') ? true : false}
+                  />
                           Children’s Paperback Books
                 </label>
                 <label className="checkbox">
                   <input
                     onChange={(event) => this.handleChange(event)}
-                    type="checkbox" value="picture-books" />
+                    type="checkbox"
+                    value="picture-books"
+                    checked={this.state.categories.includes('picture-books') ? true : false}
+                  />
                           Children’s Picture Books
                 </label>
                 <label className="checkbox">
                   <input
                     onChange={(event) => this.handleChange(event)}
-                    type="checkbox" value="mass-market-paperback" />
+                    type="checkbox"
+                    value="mass-market-paperback"
+                    checked={this.state.categories.includes('mass-market-paperback') ? true : false}
+                  />
                           Fiction
                 </label>
                 <label className="checkbox">
                   <input
                     onChange={(event) => this.handleChange(event)}
-                    type="checkbox" value="paperback-nonfiction" />
+                    type="checkbox"
+                    value="paperback-nonfiction"
+                    checked={this.state.categories.includes('paperback-nonfiction') ? true : false}
+                  />
                           Non-Fiction
                 </label>
                 <label className="checkbox">
                   <input
                     onChange={(event) => this.handleChange(event)}
-                    type="checkbox" value="crime-and-punishment" />
+                    type="checkbox"
+                    value="crime-and-punishment"
+                    checked={this.state.categories.includes('crime-and-punishment') ? true : false}
+                  />
                           Crime and Punishment
                 </label>
                 <label className="checkbox">
                   <input
                     onChange={(event) => this.handleChange(event)}
-                    type="checkbox" value="culture" />
+                    type="checkbox"
+                    value="culture"
+                    checked={this.state.categories.includes('culture') ? true : false}
+                  />
                           Culture
                 </label>
                 <label className="checkbox">
                   <input
                     onChange={(event) => this.handleChange(event)}
-                    type="checkbox" value="education" />
+                    type="checkbox"
+                    value="education"
+                    checked={this.state.categories.includes('education') ? true : false}
+                  />
                           Education
                 </label>
                 <label className="checkbox">
@@ -235,103 +282,149 @@ class UserProfile extends React.Component {
                     onChange={(event) => this.handleChange(event)}
                     type="checkbox"
                     value="espionage"
-                    checked={this.state.user.catergories === 'espionage' ? true : false} />
+                    checked={this.state.categories.includes('espionage') ? true : false}
+                  />
                           Espionage
                 </label>
                 <label className="checkbox">
                   <input
                     onChange={(event) => this.handleChange(event)}
-                    type="checkbox" value="food-and-fitness" />
+                    type="checkbox"
+                    value="food-and-fitness"
+                    checked={this.state.categories.includes('food-and-fitness') ? true : false}
+                  />
                           Food and Diet
                 </label>
                 <label className="checkbox">
                   <input
                     onChange={(event) => this.handleChange(event)}
-                    type="checkbox" value="fashion-manners-and-customs" />
+                    type="checkbox"
+                    value="fashion-manners-and-customs"
+                    checked={this.state.categories.includes('fashion-manners-and-customs') ? true : false}
+                  />
                           Fashion
                 </label>
                 <label className="checkbox">
                   <input
                     onChange={(event) => this.handleChange(event)}
-                    type="checkbox" value="family" />
+                    type="checkbox"
+                    value="family"
+                    checked={this.state.categories.includes('family') ? true : false}
+                  />
                           Parenthood and Family
                 </label>
                 <label className="checkbox">
                   <input
                     onChange={(event) => this.handleChange(event)}
-                    type="checkbox" value="games-and-activities" />
+                    type="checkbox"
+                    value="games-and-activities"
+                    checked={this.state.categories.includes('games-and-activities') ? true : false}
+                  />
                           Games and Activities
                 </label>
                 <label className="checkbox">
                   <input
                     onChange={(event) => this.handleChange(event)}
-                    type="checkbox" value="graphic-books-and-manga" />
+                    type="checkbox"
+                    value="graphic-books-and-manga"
+                    checked={this.state.categories.includes('graphic-books-and-manga') ? true : false}
+                  />
                           Graphic Books and Manga
                 </label>
                 <label className="checkbox">
                   <input
                     onChange={(event) => this.handleChange(event)}
-                    type="checkbox" value="health" />
+                    type="checkbox"
+                    value="health"
+                    checked={this.state.categories.includes('health') ? true : false}
+                  />
                           Health
                 </label>
                 <label className="checkbox">
                   <input
                     onChange={(event) => this.handleChange(event)}
-                    type="checkbox" value="humor" />
+                    type="checkbox"
+                    value="humor"
+                    checked={this.state.categories.includes('humor') ? true : false}
+                  />
                           Humour
                 </label>
                 <label className="checkbox">
                   <input
                     onChange={(event) => this.handleChange(event)}
-                    type="checkbox" value="relationships" />
+                    type="checkbox"
+                    value="relationships"
+                    checked={this.state.categories.includes('relationships') ? true : false}
+                  />
                           Relationships
                 </label>
                 <label className="checkbox">
                   <input
                     onChange={(event) => this.handleChange(event)}
-                    type="checkbox" value="hardcover-political-books" />
+                    type="checkbox"
+                    value="hardcover-political-books"
+                    checked={this.state.categories.includes('hardcover-political-books') ? true : false}
+                  />
                           Politics
                 </label>
                 <label className="checkbox">
                   <input
                     onChange={(event) => this.handleChange(event)}
-                    type="checkbox" value="race-and-civil-rights" />
+                    type="checkbox"
+                    value="race-and-civil-rights"
+                    checked={this.state.categories.includes('race-and-civil-rights') ? true : false}
+                  />
                           Race and Civil Rights
                 </label>
                 <label className="checkbox">
                   <input
                     onChange={(event) => this.handleChange(event)}
-                    type="checkbox" value="religion-spirituality-and-faith" />
+                    type="checkbox"
+                    value="religion-spirituality-and-faith"
+                    checked={this.state.categories.includes('religion-spirituality-and-faith') ? true : false}
+                  />
                           Religion, Spirituality and Faith
                 </label>
                 <label className="checkbox">
                   <input
                     onChange={(event) => this.handleChange(event)}
-                    type="checkbox" value="science" />
+                    type="checkbox"
+                    value="science"
+                    checked={this.state.categories.includes('science') ? true : false}
+                  />
                           Science
                 </label>
                 <label className="checkbox">
                   <input
                     onChange={(event) => this.handleChange(event)}
-                    type="checkbox" value="sports" />
+                    type="checkbox"
+                    value="sports"
+                    checked={this.state.categories.includes('sports') ? true : false}
+                  />
                           Sport and Fitness
                 </label>
                 <label className="checkbox">
                   <input
                     onChange={(event) => this.handleChange(event)}
-                    type="checkbox" value="travel" />
+                    type="checkbox"
+                    value="travel"
+                    checked={this.state.categories.includes('travel') ? true : false}
+                  />
                           Travel
                 </label>
                 <label className="checkbox">
                   <input
                     onChange={(event) => this.handleChange(event)}
-                    type="checkbox" value="young-adult" />
+                    type="checkbox"
+                    value="young-adult"
+                    checked={this.state.categories.includes('young-adult') ? true : false}
+                  />
                           Young Adult
                 </label>
 
                 <div>
                   <button className="button is-light is-danger">
-                    Edit
+                    Submit
                   </button>
                 </div>
               </form>

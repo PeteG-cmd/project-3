@@ -64,7 +64,7 @@ class UpdateBioModal extends React.Component {
     const { name, value } = event.target
     const data = { ...this.state.data, [name]: value }
     this.setState({ data })
-    console.log(this.state.data)
+    // console.log(this.state.data)
   }
 
   handleSubmit(event) {
@@ -73,8 +73,9 @@ class UpdateBioModal extends React.Component {
     axios.put('/api/profile', 
       this.state.data, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then(res => {
+        location.reload()
         // console.log(res.data)
-        this.setState({ user: res.data })
+        // this.setState({ user: res.data })
       })
       // .then(() => this.props.history.push('/profile/:user_id'))
     // .catch(err => this.setState({ errors: err.response.data.errors }))
