@@ -18,9 +18,7 @@ class BookComment extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props.databaseBook)
     this.setState({ book: this.props.databaseBook })
-
   }
 
   handleSubmit(event) {
@@ -53,7 +51,7 @@ class BookComment extends React.Component {
   render() {
     if (!this.state.book) return <Spinner />
 
-
+    console.log(this.state.book.comments)
     return <>
       <div className="allComments">
         {this.state.book.comments && this.state.book.comments.map((comment, index) => {
@@ -83,9 +81,8 @@ class BookComment extends React.Component {
                     </a>
                     <a className="IconSymbol">
                       <EditCommentModal
-                      // Comment clicked on should be fed into Modal
+                        comment={comment.comment}
                       />
-                      {/* <span id="editSymbol" className="icon is-small"><i className="fas fa-edit"></i></span> */}
                     </a>
                   </div>
                   <div className="CommentUserName">
