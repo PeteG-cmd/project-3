@@ -130,8 +130,9 @@ class UpdateLoginDetailsModal extends React.Component {
     axios.put('/api/profile', 
       this.state.data, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then(res => {
-        console.log(res.data)
-        this.setState({ user: res.data })
+        location.reload()
+        // console.log(res.data)
+        // this.setState({ user: res.data })
       })
   }
 
