@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom'
 
 import UpdateLoginDetailsModal from './UpdateLoginDetailsModal'
 import UpdateBioModal from './UpdateBioModal'
-import RegisterForm from './RegisterForm'
 
 class UserProfile extends React.Component {
 

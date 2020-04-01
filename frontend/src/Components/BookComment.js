@@ -4,8 +4,7 @@ import auth from '../lib/auth'
 import Spinner from './Common/Spinner'
 import Moment from 'react-moment'
 
-
-
+import EditCommentModal from './EditCommentModal'
 
 class BookComment extends React.Component {
 
@@ -19,9 +18,7 @@ class BookComment extends React.Component {
   }
 
   componentDidMount() {
-    console.log(this.props.databaseBook)
     this.setState({ book: this.props.databaseBook })
-
   }
 
   handleSubmit(event) {
@@ -54,7 +51,7 @@ class BookComment extends React.Component {
   render() {
     if (!this.state.book) return <Spinner />
 
-
+    console.log(this.state.book.comments)
     return <>
       <div className="allComments">
         {this.state.book.comments && this.state.book.comments.map((comment, index) => {
@@ -83,8 +80,9 @@ class BookComment extends React.Component {
                       <span id="deleteSymbol" className="icon is-small"><i className="fas fa-times"></i></span>
                     </a>
                     <a className="IconSymbol">
-                      {/* MAKE THIS A MODAL */}
-                      <span id="editSymbol" className="icon is-small"><i className="fas fa-edit"></i></span>
+                      <EditCommentModal
+                        comment={comment.comment}
+                      />
                     </a>
                   </div>
                   <div className="CommentUserName">
@@ -116,7 +114,7 @@ class BookComment extends React.Component {
                     className="textarea"
                     placeholder="Add a comment..."
                     onChange={(event) => this.handleChange(event)} type='text' name='comment' comment={this.state.comment}>
-                    
+
                   </textarea>
                   <button className="button" id="commentSubmitButton">Submit</button>
                 </form>
