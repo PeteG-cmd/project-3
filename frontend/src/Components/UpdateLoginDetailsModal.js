@@ -35,7 +35,7 @@ const Modal = ({ handleChange, handleSubmit, closeModal, modalState, profile }) 
                     name="username"
                     className="input"
                     onChange={handleChange}
-                    value={profile.profile.username}
+                    value={profile.username}
                   />
                   <span className="icon is-small is-left">
                     <i className="fas fa-user"></i>
@@ -53,7 +53,7 @@ const Modal = ({ handleChange, handleSubmit, closeModal, modalState, profile }) 
                     type="text"
                     name="email"
                     className="input"
-                    value={profile.profile.email}
+                    value={profile.email}
                   />
                   <span className="icon is-small is-left">
                     <i className="fas fa-envelope"></i>
@@ -71,7 +71,7 @@ const Modal = ({ handleChange, handleSubmit, closeModal, modalState, profile }) 
                     type="password"
                     name="password"
                     className="input"
-                    value={profile.profile.password}
+                    value={profile.password}
                   />
                   <span className="icon is-small is-left">
                     <i className="fas fa-lock"></i>
@@ -114,13 +114,13 @@ class UpdateLoginDetailsModal extends React.Component {
       const newState = !prev.modalState
       return { modalState: newState }
     })
-    this.setState({ profile: this.props })
+    this.setState({ profile: this.props.profile })
   }
 
   handleChange(event) {
     const { name, value } = event.target
-    const data = { ...this.state.profile, [name]: value }
-    this.setState({ profile: data })
+    const profile = { ...this.state.profile, [name]: value }
+    this.setState({ profile })
     console.log(this.state.profile)
   }
 
@@ -131,8 +131,6 @@ class UpdateLoginDetailsModal extends React.Component {
       this.state.data, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then(res => {
         location.reload()
-        // console.log(res.data)
-        // this.setState({ user: res.data })
       })
   }
 
