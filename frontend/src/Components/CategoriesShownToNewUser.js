@@ -209,7 +209,7 @@ class CategoriesShownToNewUser extends React.Component {
                       </label>
 
                       <div>
-                        <button className="button is-success">
+                        <button className="">
                           Submit
                         </button>
                       </div>

@@ -55,14 +55,14 @@ class DetailedBookPage extends React.Component {
       .catch(err => this.setState({ error: err.response.data.message }))
   }
 
-  handleAddToBooksToLikeCategories(event) {
-    event.preventDefault()
-    axios.post('api/books/booksByLikedCategories', this.state.databaseBook._id, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
-      .then(res => {
-        this.props.history.push('/mylibrary')
-      })
-      .catch(err => this.setState({ error: err.response.data.message }))
-  }
+  // handleAddToBooksToLikeCategories(event) {
+  //   event.preventDefault()
+  //   axios.post('api/books/booksByLikedCategories', this.state.databaseBook._id, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+  //     .then(res => {
+  //       this.props.history.push('/mylibrary')
+  //     })
+  //     .catch(err => this.setState({ error: err.response.data.message }))
+  // }
 
 
   render() {
@@ -88,7 +88,7 @@ class DetailedBookPage extends React.Component {
                 </div>
                 <div className="yourRating">
                   <StarRating></StarRating>
-                  <button className="button">Submit Rating</button>
+                  <button className="">Submit Rating</button>
                 </div>
               </div>
             </div>
@@ -127,9 +127,9 @@ class DetailedBookPage extends React.Component {
               <div><h3>Add to Read Books: <a onClick={(event) => this.handleAddToBooksRead(event)}>
                 <span className="icon is-small"><i className="fas fa-book-open"></i></span>
               </a></h3></div>
-              <div><h3>Add <strong>{book[0].volumeInfo.categories}</strong> to Liked Categories: <a>
+              {/* <div><h3>Add <strong>{book[0].volumeInfo.categories}</strong> to Liked Categories: <a>
                 <span className="icon is-small"><i className="fas fa-book"></i></span>
-              </a> </h3></div>
+              </a> </h3></div> */}
             </div>
           </div>
         </section>
