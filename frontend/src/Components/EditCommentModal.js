@@ -62,8 +62,8 @@ class EditCommentModal extends React.Component {
 
   handleChange(event) {
     const { name, value } = event.target
-    const data = { ...this.state.comment, [name]: value }
-    this.setState({ comment: data })
+    const comment = { ...this.state.comment, [name]: value }
+    this.setState({ comment })
     // console.log(this.state.comment)
   }
 

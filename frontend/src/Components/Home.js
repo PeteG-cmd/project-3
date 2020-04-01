@@ -139,27 +139,28 @@ export default class Home extends React.Component {
 
       return <>
         <main className="user-home-main">
-          {/* <section className="section" id="maintitle">
-            <div className="container">
-              <h1 className="title has-text-centered">Booked Up</h1>
-            </div>
-          </section> */}
+          <div className="UserMainHomeContainer">
+            <section className="LatestBooksContainer">
 
-          <section className="mainHomeCarousel">
-            <div className="mainHomeCarouselContainer">
-              <div className="CarouselTitle2">
-                <h2 className="CarouselTitleContent">Selected for {this.state.user.username} from Favourite Categories...</h2>
-              </div>
-              <div className="CarouselSubContainer">
-                <div className="UserCarouselAllImages">
-                  <SlickCarousel categories={this.state.user.categories} />
+            </section>
+            <section className="mainHomeCarousel">
+              <div className="mainHomeCarouselContainer">
+                <div className="CarouselTitle2">
+                  <h2 className="CarouselTitleContent">Selected for {this.state.user.username} from Favourite Categories...</h2>
+                </div>
+                <div className="CarouselSubContainer">
+                  <div className="UserCarouselAllImages">
+                    <SlickCarousel categories={this.state.user.categories} />
+                  </div>
                 </div>
               </div>
-            </div>
-          </section>
+            </section>
+            <section className="LatestBooksContainer">
 
-          <footer className="section" id="UserHomeMainfooter">
-            <div className="container">
+            </section>
+          </div>
+          <footer id="UserHomeMainfooter">
+            <div>
               <p>CopyRight By Maxwell Jam, Peter Pan, Gordon Ramsay</p>
             </div>
           </footer>
