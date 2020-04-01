@@ -23,6 +23,7 @@ router.route('/profile')
 router.route('/categories')
   .post(secureRoute, categoriesController.addCategories)
   .get(secureRoute, categoriesController.getCategories)
+  // .delete(secureRoute, categoriesController.deleteCategories)
 //   .put(secureRoute, catergoriesController.editCatergories)   // Check Peter's function name
 
 
@@ -80,6 +81,7 @@ router.route('/bookclub/:bookclub_id/remove')
 
 router.route('/bookclub/:bookclub_id/comments')
   .post(secureRoute, commentsController.addBookClubComment)
+  .get(secureRoute, commentsController.getBookClubComment)
 
 router.route('/bookclubs/mybookclubs')
   .get(secureRoute, bookClubsController.myBookClubs)

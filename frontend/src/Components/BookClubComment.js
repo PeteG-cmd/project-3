@@ -5,6 +5,7 @@ import Spinner from './Common/Spinner'
 import Moment from 'react-moment'
 import EditCommentModal from './EditBookClubCommentModal'
 
+
 class BookClubComment extends React.Component {
 
   constructor() {
@@ -17,10 +18,16 @@ class BookClubComment extends React.Component {
     }
   }
 
+  myInterval
+
   componentDidMount() {
     console.log(this.props.bookClub)
     this.setState({ bookClub: this.props.bookClub, user: this.props.user })
+    this.getComments()
+  }
 
+  componentWillUnmount() {
+    clearInterval(this.myInterval)
   }
 
   handleSubmit(event) {
@@ -31,6 +38,18 @@ class BookClubComment extends React.Component {
       .catch(err => this.setState({ error: err.response.data.message }))
 
   }
+  getComments() {
+    this.myInterval = setInterval(() => {
+      const bookClubId = this.state.bookClub._id
+      axios.get(`/api/bookclub/${bookClubId}/comments`, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+        .then(res => this.setState({ bookClub: res.data }))
+        .catch(err => this.setState({ error: err.response.data.message }))
+
+    }, 3000)
+
+  }
+
+ 
 
   handleChange(event) {
     const { name, value } = event.target
