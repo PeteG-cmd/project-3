@@ -19,9 +19,9 @@ const Modal = ({ handleChange, handleSubmit, closeModal, modalState, comment }) 
 
         <section className="modal-card-body">
           <div className="content">
-            <textarea className="textarea" name="userBio"
+            <textarea className="textarea" name="comments"
               onChange={handleChange}
-              placeholder={comment.user}
+              placeholder={comment.comment}
               rows="5">
             </textarea>
           </div>
@@ -37,8 +37,8 @@ const Modal = ({ handleChange, handleSubmit, closeModal, modalState, comment }) 
 }
 Modal.propTypes = {
   closeModal: PropTypes.func.isRequired,
-  modalState: PropTypes.bool.isRequired,
-  title: PropTypes.string
+  modalState: PropTypes.bool.isRequired
+  // comment: PropTypes.string
 }
 
 class EditCommentModal extends React.Component {
@@ -47,8 +47,7 @@ class EditCommentModal extends React.Component {
 
     this.state = {
       modalState: false,
-      book: null,
-      comment: ''
+      comment: {}
     }
     this.toggleModal = this.toggleModal.bind(this)
   }
@@ -58,7 +57,7 @@ class EditCommentModal extends React.Component {
       const newState = !prev.modalState
       return { modalState: newState }
     })
-    this.setState({ user: this.props })
+    this.setState({ comment: this.props })
   }
 
   handleChange(event) {
@@ -68,11 +67,11 @@ class EditCommentModal extends React.Component {
     console.log(this.state.data)
   }
 
-  handleSubmit(event) {
+  handleSubmit(event, comment) {
     // console.log('Hello')
     event.preventDefault()
-    axios.put('/api/profile',
-      this.state.data, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+    axios.put('/book/book_id/comment/:comment_id', 
+      comment, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then(res => {
         // console.log(res.data)
         this.setState({ comment: res.data })
@@ -84,17 +83,21 @@ class EditCommentModal extends React.Component {
 
   // This is the render of the modal button will appear on the profile page
   render() {
-    // console.log(this.state.user)
+    console.log(this.props)
+    console.log(this.state.comment)
     return (
       <span id="editSymbol" className="icon is-small">
-        <a onClick={this.toggleModal}>
+        <p onClick={this.toggleModal}>
           <i className="fas fa-edit"></i>
-        </a>
+        </p>
+      
 
         <Modal
           closeModal={this.toggleModal}
           modalState={this.state.modalState}
           comment={this.state.comment}
+          handleChange={(event) => this.handleChange(event)}
+          handleSubmit={(event) => this.handleSubmit(event, event.target.comment )}
         ></Modal>
       </span>
     )
