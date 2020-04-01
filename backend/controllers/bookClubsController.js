@@ -39,6 +39,7 @@ function index(req, res) {
 
 function get(req, res) {
   const id = req.params.bookclub_id
+  const user = req.currentUser
 
   BookClub
     .findById(id)
@@ -47,9 +48,15 @@ function get(req, res) {
     .populate('joinRequests')
     .populate('comments.user')
 
-    .then(bookclub => res.status(200).send(bookclub))
+    .then(bookclub => {
+      console.log(bookclub.members)
+      console.log(user)
+      if (!(user.bookClubs.includes(bookclub._id))) return res.status(400).send({ message: 'Unauthorized' })
+      res.status(200).send({ bookclub, user })
+    })
     .catch(err => res.send(err))
 }
+
 
 function myBookClubs(req, res) {
 
@@ -57,7 +64,7 @@ function myBookClubs(req, res) {
   req.body.user = req.currentUser
 
   BookClub
-    
+
     .find({
       _id: {
         $in: currentUser.bookClubs
@@ -159,11 +166,51 @@ function handleNewMembers(req, res) {
 
 }
 
+function removeMember(req, res) {
+  const currentUser = req.currentUser
+  console.log(req.body)
+
+  BookClub
+    .findById(req.params.bookclub_id)
+    .then(bookclub => {
+      console.log(bookclub.adminUser)
+      console.log(currentUser._id)
+      if (currentUser._id.toString() !== bookclub.adminUser.toString()) return res.status(401).send({ message: 'Unauthorized' })
+      const newMembers = bookclub.members.filter(member => {
+        return member._id.toString() !== req.body._id.toString()
+      })
+      bookclub.members = newMembers
+      return bookclub.set(bookclub)
+    })
+    .then(bookclub => {
+      return bookclub.save()
+    })
+    .then(bookclub => {
+      User.findById(req.body._id)
+        .then(user => {
+          console.log(user)
+          const newBookClubs = user.bookClubs.filter(bc => {
+            console.log(bc)
+            return bc.toString() !== req.params.bookclub_id.toString()
+          })
+          user.bookClubs = newBookClubs
+          return user.set(user)
+        })
+        .then(user => {
+          return user.save()
+        })
+        .then(user => res.status(200).send(bookclub))
+    })
+    .catch(err => res.send(err))
+
+}
+
 module.exports = {
   create,
   index,
   get,
   myBookClubs,
   addJoinRequest,
-  handleNewMembers
+  handleNewMembers,
+  removeMember
 }

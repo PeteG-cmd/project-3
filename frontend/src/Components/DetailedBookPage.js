@@ -13,7 +13,8 @@ class DetailedBookPage extends React.Component {
     super()
     this.state = {
       databaseBook: null,
-      book: null
+      book: null,
+      user: null
     }
   }
 
@@ -22,8 +23,8 @@ class DetailedBookPage extends React.Component {
     axios.get(`/api/book/${id}`, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then(res => {
         console.log(res.data)
-        this.setState({ databaseBook: res.data })
-        return res.data.isbnNumber
+        this.setState({ databaseBook: res.data.book, user: res.data.user })
+        return res.data.book.isbnNumber
       })
       .then(res => {
         console.log(res)
@@ -133,7 +134,7 @@ class DetailedBookPage extends React.Component {
           </div>
         </section>
         <section className="theDetailedBookInfocontainer" id="theDetailedBookInfocontainer2">
-          <BookComment databaseBook={this.state.databaseBook} />
+          <BookComment databaseBook={this.state.databaseBook} user={this.state.user} />
         </section>
       </div>
     </main>

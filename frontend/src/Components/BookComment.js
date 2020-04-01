@@ -13,6 +13,7 @@ class BookComment extends React.Component {
     this.state = {
       book: null,
       comment: '',
+      user: null,
       errors: {}
     }
   }
@@ -20,7 +21,7 @@ class BookComment extends React.Component {
   
 
   componentDidMount() {
-    this.setState({ book: this.props.databaseBook })
+    this.setState({ book: this.props.databaseBook, user: this.props.user })
   }
 
   handleSubmit(event) {
@@ -34,9 +35,6 @@ class BookComment extends React.Component {
       .catch(err => this.setState({ error: err.response.data.message }))
   }
 
-  // clearContents(element) {
-  //   element.value = ''
-  // }
 
   handleChange(event) {
     const { name, value } = event.target
@@ -44,17 +42,20 @@ class BookComment extends React.Component {
     this.setState({ comment })
   }
 
-
-  // setInterval(() => {
-  //   tubeStatus.innerHTML = `Tube Status: ${moment().format('LTS')}`
-  // }, 1000)
-
+  handleDeleteComment(event, comment) {
+    const bookId = this.state.book._id
+    const commentId = comment._id
+    axios.delete(`/api/book/${bookId}/comment/${commentId}`, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+      .then(res => {
+        console.log(res.data)
+        this.setState({ book: res.data })
+      })
+  }
 
 
   render() {
-    if (!this.state.book) return <Spinner />
-
-    console.log(this.state.book)
+    if (!this.state.book || !this.state.user) return <Spinner />
+    const userId = this.state.user._id
     return <>
       <div className="allComments">
         {this.state.book.comments && this.state.book.comments.map((comment, index) => {
@@ -79,15 +80,15 @@ class BookComment extends React.Component {
                     <a className="IconSymbol">
                       <span id="replySymbol" className="icon is-small"><i className="fas fa-reply"></i></span>
                     </a>
-                    <a className="IconSymbol">
+                    {comment.user._id === userId && <a className="IconSymbol" onClick={() => this.handleDeleteComment(event, comment)}>
                       <span id="deleteSymbol" className="icon is-small"><i className="fas fa-times"></i></span>
-                    </a>
-                    <a className="IconSymbol">
+                    </a>}
+                    {comment.user._id === userId && <a className="IconSymbol">
                       <EditCommentModal
                         comment={comment}
                         book={this.state.book}
                       />
-                    </a>
+                    </a>}
                   </div>
                   <div className="CommentUserName">
                     <p className="PostedBy"><strong>Posted By:</strong> {comment.user.username} </p>

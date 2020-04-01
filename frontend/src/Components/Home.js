@@ -15,12 +15,12 @@ export default class Home extends React.Component {
     super()
     this.state = {
       user: null,
-      defaultCategories: ['hardcover-fiction', 'hardcover-nonfiction', 'young-adult-hardcover']
+      defaultCategories: ['hardcover-fiction', 'hardcover-nonfiction', 'young-adult-hardcover'],
+      books: []
     }
   }
 
   componentDidMount() {
-
     if (auth.isLoggedIn()) {
       axios
         .post('/api/profile', {}, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
@@ -28,6 +28,10 @@ export default class Home extends React.Component {
           this.setState({ user: res.data })
           console.log(res.data)
         })
+
+      axios.get('/api/mylibrary', { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+        .then(res => this.setState({ books: res.data }))
+        .catch(err => this.setState({ error: err.response.data.message }))
     }
   }
 
@@ -141,23 +145,82 @@ export default class Home extends React.Component {
         <main className="user-home-main">
           <div className="UserMainHomeContainer">
             <section className="LatestBooksContainer">
-
-            </section>
-            <section className="mainHomeCarousel">
-              <div className="mainHomeCarouselContainer">
-                <div className="CarouselTitle2">
-                  <h2 className="CarouselTitleContent">Selected for {this.state.user.username} from Favourite Categories...</h2>
+              <div className="LatestBookCards">
+                <h2 className="LatestBookCardsTitle">Latest Book Added to My Library</h2>
+                <div className="LatestBookCard">
+                  <div className="LatestBookCardImageContainer">
+                    <figure>
+                      <img src="" alt="" className="LatestBookCardContent"></img>
+                    </figure> 
+                  </div>
+                  <div className="SearchTitleandAuthorInfo">
+                    <h4 className="SearchTheTitle">Hi</h4>
+                    <h5 className="SearchAuthor">Bye</h5>
+                  </div>
                 </div>
-                <div className="CarouselSubContainer">
-                  <div className="UserCarouselAllImages">
-                    <SlickCarousel categories={this.state.user.categories} />
+              </div>
+              <div className="LatestBookCards">
+                <h2 className="LatestBookCardsTitle">Latest Book Added to Books Read</h2>
+                <div className="LatestBookCard">
+                  <div className="LatestBookCardImageContainer">
+                    <figure>
+                      <img src="" alt="" className="LatestBookCardContent"></img>
+                    </figure> 
+                  </div>
+                  <div className="SearchTitleandAuthorInfo">
+                    <h4 className="SearchTheTitle">Hi</h4>
+                    <h5 className="SearchAuthor">Bye</h5>
                   </div>
                 </div>
               </div>
             </section>
             <section className="LatestBooksContainer">
-
+              <div className="LatestBookCards">
+                <h2 className="LatestBookCardsTitle">Latest Book Added to Wish List</h2>
+                <div className="LatestBookCard">
+                  <div className="LatestBookCardImageContainer">
+                    <figure>
+                      <img src="" alt="" className="LatestBookCardContent"></img>
+                    </figure> 
+                  </div>
+                  <div className="SearchTitleandAuthorInfo">
+                    <h4 className="SearchTheTitle">Hi</h4>
+                    <h5 className="SearchAuthor">Bye</h5>
+                  </div>
+                </div>
+              </div>
+              <div className="LatestBookCards">
+                <h2 className="LatestBookCardsTitle">Latest Book Added to Books Rated</h2>
+                <div className="LatestBookCard">
+                  <div className="LatestBookCardImageContainer">
+                    <figure>
+                      <img src="" alt="" className="LatestBookCardContent"></img>
+                    </figure> 
+                  </div>
+                  <div className="SearchTitleandAuthorInfo">
+                    <h4 className="SearchTheTitle">Hi</h4>
+                    <h5 className="SearchAuthor">Bye</h5>
+                  </div>
+                </div>
+              </div>
             </section>
+            <div className="UserCarouselandBookCommentsContainer">
+              <section className="mainHomeCarousel">
+                <div className="mainHomeCarouselContainer">
+                  <div className="CarouselTitle2">
+                    <h2 className="CarouselTitleContent">Selected for {this.state.user.username} from Favourite Categories...</h2>
+                  </div>
+                  <div className="CarouselSubContainer">
+                    <div className="UserCarouselAllImages">
+                      <SlickCarousel categories={this.state.user.categories} />
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <div className="UserHomeBookCommentsContainer">
+                COMMENTS
+              </div>
+            </div>
           </div>
           <footer id="UserHomeMainfooter">
             <div>

@@ -40,29 +40,20 @@ class NavBar extends React.Component {
       <div className={`navbar-menu ${this.state.navMobileOpen ? 'is-active' : ''}`}>
         <div className="navbar-start">
           <Link className="navbar-item" to="/">Home</Link>
-          {!isLoggedIn && <div className="navbar-item"><Link to="/books/non_user_book_search">Search Books</Link></div>}
 
           {isLoggedIn && <div
             className="navbar-item has-dropdown is-hoverable">
             <a className="navbar-link">
               My Library
             </a>
-            <div className="navbar-dropdown">
+            <div className="navbar-dropdown" >
+              <div id="AllBooksNav"></div>
               <Link to="/mylibrary" className="navbar-item">
-                All books
+                <p id="AllBooksNav">All books</p>
               </Link>
-              {/* <Link to="/mylibrary/wishList" className="navbar-item">
-                Wish List
+              <Link to="/books/new" className="navbar-item">
+                Add Books
               </Link>
-              <Link to="/mylibrary/readBooks" className="navbar-item">
-                Read Books
-              </Link>
-              <Link to="/mylibrary/likedCategories" className="navbar-item">
-                Liked Categories
-              </Link>
-              <Link to="/mylibrary/ratedBooks" className="navbar-item">
-                Rated Books
-              </Link> */}
             </div>
           </div>}
 
@@ -85,20 +76,6 @@ class NavBar extends React.Component {
               </Link>
             </div>
           </div>}
-
-          {isLoggedIn && <div
-            className="navbar-item has-dropdown is-hoverable">
-            <a className="navbar-link">
-              Search Books
-            </a>
-
-            <div className="navbar-dropdown">
-              <Link to="/books/new" className="navbar-item">
-                Add Books
-              </Link>
-            </div>
-          </div>}
-
         </div>
 
         <div className="navbar-end">

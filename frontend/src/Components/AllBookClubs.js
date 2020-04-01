@@ -3,6 +3,7 @@ import axios from 'axios'
 import auth from '../lib/auth'
 import Spinner from './Common/Spinner'
 import { Link } from 'react-router-dom'
+import SearchFormBookClubs from './SearchFormBookClubs'
 
 
 class CreateBookClub extends React.Component {
@@ -12,7 +13,8 @@ class CreateBookClub extends React.Component {
     this.state = {
       bookClubs: null,
       userBookClubs: null,
-      userCurrentInvitesSent: null
+      userCurrentInvitesSent: null,
+      filteredBookClubs: null
     }
   }
 
@@ -20,7 +22,7 @@ class CreateBookClub extends React.Component {
     axios.get('/api/bookclubs', { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then(res => {
         console.log(res)
-        this.setState({ bookClubs: res.data.bookclubs, userBookClubs: res.data.currentUser.bookClubs, userCurrentInvitesSent: res.data.currentUser.invitesSent })
+        this.setState({ bookClubs: res.data.bookclubs, userBookClubs: res.data.currentUser.bookClubs, userCurrentInvitesSent: res.data.currentUser.invitesSent, filteredBookClubs: res.data.bookclubs })
       })
     // .then(res => this.bookClubStatus())
   }
@@ -31,8 +33,27 @@ class CreateBookClub extends React.Component {
       .then(res => {
         this.setState({ userBookClubs: res.data.user.bookClubs, userCurrentInvitesSent: res.data.user.invitesSent })
       })
-      
+
     // .then(res => this.bookClubStatus())
+  }
+
+  // handleSortBooks(event) {
+  //   event.preventDefault()
+  //   console.log(sortBookClubs)
+  //   const sortBookClubs = this.state.bookClubs.sort(function(a, b) {
+  //     return a.bookClubName - b.bookClubName
+  //   })
+  //   this.setState({ bookClubs: sortBookClubs })
+  // }
+
+  handleSearch(event) {
+
+    const searchQuery = event.target.value
+    const filteredBookClubs = this.state.bookClubs.filter(bookClub => {
+      const regex = new RegExp(searchQuery, 'i')
+      return bookClub.bookClubName.match(regex) || bookClub.descriptionBio.match(regex)
+    })
+    this.setState({ query: searchQuery, filteredBookClubs: filteredBookClubs })
   }
 
   // bookClubStatus() {
@@ -66,27 +87,27 @@ class CreateBookClub extends React.Component {
     const userBookClubs = this.state.userBookClubs
     // const bookClubs = this.state.bookClubs
 
-    return <>
-      <br></br>
-      <br></br>
-      <br></br>
-  
-
-      <h1>All Book Clubs</h1>
-
-      {this.state.bookClubs.map((bookClub, index) => {
-        return <div key={index} className='bookClubJoinTab'>
-          <p>Bookclub Name: {bookClub.bookClubName}</p>
-          <p>Description: {bookClub.descriptionBio}</p>
-          <p>Admin: {bookClub.adminUser.username}</p>
-
-          {userCurrentInvitesSent.includes(bookClub._id) ? <div className="buttons has-addons joinButton"><button className='button is-info is-loading'>Invite Pending</button><button className='button is-info'>Invite Pending</button></div> : userBookClubs.includes(bookClub._id) ? <Link to={`/bookclub/${bookClub._id}`}><button className='button is-success is-focused is-rounded'>Go to Book Club</button></Link> : <button className='button is-link is-rounded' onClick={() => this.handleSubmit(bookClub._id)}>Join</button>}
-
-          <br></br>
-          <br></br>
+    return <main className="SearchBookClubMain">
+      <div className="SearchBookClubMainContainer">
+        <div className="SearchBookClubMainHeader">
+          <h2 className="AllBookClubsTitle">All Book Clubs</h2>
+          <SearchFormBookClubs
+            query={this.state.query}
+            onChange={() => this.handleSearch(event)}
+          />
+          {/* <button className="button is-success" onClick={() => this.handleSortBooks(event)}>Sort Book Clubs</button> */}
         </div>
-      })}
-    </>
+        {this.state.filteredBookClubs.map((bookClub, index) => {
+          return <div key={index} className='bookClubJoinTab'>
+            <p>Bookclub Name: {bookClub.bookClubName}</p>
+            <p>Description: {bookClub.descriptionBio}</p>
+            <p>Admin: {bookClub.adminUser.username}</p>
+
+            {userCurrentInvitesSent.includes(bookClub._id) ? <div className="buttons has-addons joinButton"><button className='button is-info is-loading'>Invite Pending</button><button className='button is-info'>Invite Pending</button></div> : userBookClubs.includes(bookClub._id) ? <Link to={`/bookclub/${bookClub._id}`}><button className='button is-success is-focused is-rounded'>Go to Book Club</button></Link> : <button className='button is-link is-rounded' onClick={() => this.handleSubmit(bookClub._id)}>Join</button>}
+          </div>
+        })}
+      </div>
+    </main>
   }
 }
 

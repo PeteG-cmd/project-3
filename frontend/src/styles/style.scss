@@ -288,7 +288,7 @@
 //User Home SASS
 
 .user-home-main {
-  height: 94vh;
+  height: 92vh;
   width: 100vw;
   margin-top: 57px;
   border: 2px solid red;
@@ -313,28 +313,86 @@
       border: 2px solid green;
       display: flex;
       flex-direction: column;
-    }
+      align-items: center;
+      justify-content: space-evenly;
+
+      .LatestBookCards {
+        height: 48%;
+        width: 97%;
+        border: 2px solid black;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        .LatestBookCardsTitle {
+        width: 98%;
+        height: 15%;
+        border: 2px solid gold;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        font-size: 15px;
+      }
+
+      .LatestBookCard {
+        width: 98%;
+        height: 98%;
+        border: 2px solid rgb(0, 255, 136);
+        display: flex;
+        flex-direction: column;
+
+        .LatestBookCardImageContainer {
+          width: 100%;
+          height: 70%;
+          border: 2px solid brown;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+        }
+
+        .SearchTitleandAuthorInfo {
+          width: 100%;
+          height: 30%;
+          border: 2px solid red;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          align-items: flex-start;
+        }
+      }
+    }  
+  }
+    .UserCarouselandBookCommentsContainer {
+      width: 55%;
+      height: 95%;
+      border: 2px solid black;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
 
     .mainHomeCarousel {
-      width: 55%;
+      width: 97%;
       height: 40%;
       border: 2px solid green;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      background: -webkit-linear-gradient(rgb(180, 237, 247), rgb(113, 175, 190));
 
       .mainHomeCarouselContainer {
         width: 97%;
-        height: 97%;
+        height: 85%;
         border: 2px solid gold;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
         align-items: center;
-        box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
 
-        .CarouselTitle2 {
+        .CarouselTitle2{
           width: 100%;
           height: 15%;
           border: 2px solid blue;
@@ -342,10 +400,10 @@
           flex-direction: row;
           justify-content: center;
           align-items: center;
-
+        
           .CarouselTitleContent {
             font-weight: 700;
-            color: rgb(55, 79, 158);
+            color: rgb(173, 63, 36);
           }
         }
 
@@ -365,6 +423,13 @@
           }
         }
       }
+     
+      }
+      .UserHomeBookCommentsContainer {
+        width: 97%;
+        height: 57%;
+        border: 2px solid rgb(155, 75, 10);
+      }
     }
   }
 }
@@ -372,8 +437,13 @@
 
 
 #UserHomeMainfooter {
-  width: 100%;
   background-color: rgba($color: #bdb8b8, $alpha: 0.3);
+  height: 100px;
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
 }
 
 
@@ -398,6 +468,13 @@
   top: 0;
   width: 100%;
   background: -webkit-linear-gradient(rgb(180, 237, 247), rgb(113, 175, 190));
+
+}
+
+
+#AllBooksNav {
+  border-bottom: rgb(173, 63, 36);
+  color: red;
 }
 
 // Login and Register SASS
@@ -721,8 +798,8 @@
       border: 1px solid rgb(233, 224, 224);
 
       #TheSingleBookImg {
-        height: 400px;
-        width: 250px;
+        height: 300px;
+        width: 200px;
         padding: 5px 5px 0px;
         border-radius: 12px;
       }
@@ -1484,7 +1561,56 @@
 	text-align: center;
 }
 
-.bookClubJoinTab {
+// Search Book Club
+
+.SearchBookClubMain {
+width: 100vw;
+height: 100vh;
+// border: 2px solid red;
+margin-top: 57px;
+display: flex;
+flex-direction: row;
+align-items: center;
+justify-content: center;
+
+ .SearchBookClubMainContainer {
+  width: 95%;
+  height: 98%;
+  // border: 2px solid black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .SearchBookClubMainHeader {
+    height: 10%;
+    width: 95%;
+    // border: 2px solid blue;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+
+    .AllBookClubsTitle {
+      font-size: 30px;
+      font-weight: bold;
+    }
+
+    .AllBookClubsSearchForm {
+      width: 70%;
+      height: 100%;
+      display: flex;
+      flex: row;
+      align-items: center;
+      // border: 2px solid green;
+
+      #AllBookClubsSearchFormBar {
+        width: 80%;
+        margin: 0 auto;
+      }
+    }
+  }
+
+ .bookClubJoinTab {
 
   width: 95%;
   height: 12%;
@@ -1508,6 +1634,9 @@
   display: flex;
   align-items: center;
   flex-direction: row;
+}
+
+}
 }
 
 .userInfoTab {
@@ -1548,6 +1677,7 @@
     }
 
 
-}
+ 
+} 
 
 

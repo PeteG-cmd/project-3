@@ -61,20 +61,16 @@ function getBooks(req, res) {
       res.status(201).send(books)
     })
 
-    //I AM WORKING HERE, THE .find MUST ALSO RETURN USER WISH LIST AND USER BOOKS
-
-
-
-  // .then(res.status(201).send(userBookIsbns))
-  // .catch(err => res.send(err))
 }
 
 function getBook(req, res) {
 
+  const user = req.currentUser
+
   Book
     .findById(req.params.book_id)
     .populate('comments.user')
-    .then(book => res.status(200).send(book))
+    .then(book => res.status(200).send({ book, user }))
     .catch(err => res.send(err))
 
 }
