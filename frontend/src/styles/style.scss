@@ -586,11 +586,15 @@
       }
     }
     .SearchTitleandAuthorInfo {
-      height: 35%;
+      height: 40%;
       width: 100%;
       // border: 2px solid blue;
       display: flex;
       flex-direction: column;
+
+      .SearchTheTitle {
+        font-size: 13px;
+      }
 
       .SearchTheAuthor {
         width: 100%;
@@ -601,6 +605,23 @@
         align-items: flex-end;
         padding-bottom: 10px;
       }
+
+      .SeeBookButton {
+        width: 100%;
+        height: 40%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        // border: 2px solid gold;
+  
+      .SeeTheBook {
+        background-color: rgba(39, 151, 185, 0.719);
+      }
+      .SeeTheBook:hover {
+        background-color: rgba(29, 188, 216, 0.884);
+        color: rgb(237, 241, 241);
+      }
+    }
     }
    }
   }
@@ -1386,6 +1407,10 @@
         display: flex;
         flex-direction: column;
 
+        .LBCTheTitle {
+          font-size: 15px;
+        }
+
         .TheAuthor {
           width: 100%;
           height: 90%;
@@ -1393,16 +1418,18 @@
           display: flex;
           flex-direction: row;
           align-items: flex-end;
-          padding-bottom: 10px;
         }
       }
     }
 
-    .Buttons {
+    .LibraryBookCardButtons {
       width: 100%;
+      height: 25%;
       display: flex;
       flex-direction: row;
+      align-items: flex-end;
       justify-content: space-evenly;
+      // border: 2px solid gold;
 
     .DeleteMyLibraryBook {
       background-color: rgba(185, 39, 39, 0.719);
