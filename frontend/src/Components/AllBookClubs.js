@@ -18,13 +18,25 @@ class CreateBookClub extends React.Component {
     }
   }
 
+  myInterval
+
   componentDidMount() {
-    axios.get('/api/bookclubs', { headers: { Authorization: `Bearer ${auth.getToken()}` } })
-      .then(res => {
-        console.log(res)
-        this.setState({ bookClubs: res.data.bookclubs, userBookClubs: res.data.currentUser.bookClubs, userCurrentInvitesSent: res.data.currentUser.invitesSent, filteredBookClubs: res.data.bookclubs })
-      })
-    // .then(res => this.bookClubStatus())
+    this.updateState()
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.myInterval)
+  }
+
+  updateState() {
+    this.myInterval = setInterval(() => {
+
+      axios.get('/api/bookclubs', { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+        .then(res => {
+          console.log(res)
+          this.setState({ bookClubs: res.data.bookclubs, userBookClubs: res.data.currentUser.bookClubs, userCurrentInvitesSent: res.data.currentUser.invitesSent, filteredBookClubs: res.data.bookclubs })
+        })
+    }, 3000)
   }
 
   handleSubmit(bookClubId) {
@@ -56,28 +68,6 @@ class CreateBookClub extends React.Component {
     this.setState({ query: searchQuery, filteredBookClubs: filteredBookClubs })
   }
 
-  // bookClubStatus() {
-  //   console.log(this.state)
-  //   let status = null
-  //   const bookClubs = this.state.bookClubs.map(bookclub => {
-  //     if (bookclub.members.includes(this.state.userId)) {
-  //       status = 'member'
-  //     } else if (bookclub.joinRequests.includes(this.state.userId)) {
-  //       status = 'pending'
-  //     } else {
-  //       status = 'available'
-  //     }
-  //     bookclub.status = status
-  //     console.log(bookclub)
-  //     return bookclub
-
-  //   })
-
-  //   this.setState({ bookClubs })
-
-  // }
-
-
 
   render() {
 
@@ -103,7 +93,7 @@ class CreateBookClub extends React.Component {
             <p>Description: {bookClub.descriptionBio}</p>
             <p>Admin: {bookClub.adminUser.username}</p>
 
-            {userCurrentInvitesSent.includes(bookClub._id) ? <div className="buttons has-addons joinButton"><button className='button is-info is-loading'>Invite Pending</button><button className='button is-info'>Invite Pending</button></div> : userBookClubs.includes(bookClub._id) ? <Link to={`/bookclub/${bookClub._id}`}><button className='button is-success is-focused is-rounded'>Go to Book Club</button></Link> : <button className='button is-link is-rounded' onClick={() => this.handleSubmit(bookClub._id)}>Join</button>}
+            {userCurrentInvitesSent.includes(bookClub._id) ? <button className='button is-warning is-rounded'>Invite Pending</button> : userBookClubs.includes(bookClub._id) ? <Link to={`/bookclub/${bookClub._id}`}><button className='button is-success is-focused is-rounded'>Go to Book Club</button></Link> : <button className='button is-link is-rounded' onClick={() => this.handleSubmit(bookClub._id)}>Join</button>}
           </div>
         })}
       </div>

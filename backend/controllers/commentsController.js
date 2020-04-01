@@ -58,6 +58,20 @@ function deleteBookComment(req, res) {
     .catch(error => res.send(error))
 }
 
+function getBookClubComment(req, res) {
+  const currentUser = req.currentUser
+  req.body.user = currentUser
+
+  BookClub.findById(req.params.bookclub_id)
+    .populate('comments.user')
+    .then(bookclub => {
+      if (!(currentUser.bookClubs.includes(bookclub._id))) return res.status(400).send({ message: 'Unauthorized' })
+      if (!bookclub) return res.status(404).send({ message: 'Book Not found' })
+      return bookclub
+    })
+    .then(bookclub => res.status(201).send(bookclub))
+    .catch(err => res.status(400).send({ message: 'An error has occured' }))
+}
 
 function addBookClubComment(req, res) {
   const currentUser = req.currentUser
@@ -67,6 +81,7 @@ function addBookClubComment(req, res) {
   BookClub.findById(req.params.bookclub_id)
     .populate('comments.user')
     .then(bookclub => {
+      if (!(currentUser.bookClubs.includes(bookclub._id))) return res.status(400).send({ message: 'Unauthorized' })
       if (!bookclub) return res.status(404).send({ message: 'Book Not found' })
       bookclub.comments.unshift(req.body)
       return bookclub.save()
@@ -122,6 +137,7 @@ module.exports = {
   deleteBookComment,
   editBookComment,
   editBookClubComment,
-  deleteBookClubComment
+  deleteBookClubComment,
+  getBookClubComment
 }
 

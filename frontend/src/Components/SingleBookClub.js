@@ -27,6 +27,10 @@ class SingleBookClub extends React.Component {
         console.log(res.data)
         this.setState({ bookClub: res.data.bookclub, user: res.data.user })
       })
+      .catch(err => {
+        console.log(err)
+        this.props.history.push('/bookclubs/mybookclubs')
+      })
   }
 
   handleRequest(memberId, event) {
@@ -64,7 +68,9 @@ class SingleBookClub extends React.Component {
         <section className="theDetailedBookClubInfoContainer" >
           <div>
             <p className='title'>{this.state.bookClub.bookClubName}</p>
-            <br></br>
+         
+            <p className='subtitle'>{this.state.bookClub.descriptionBio}</p>
+            
 
             <div>
 
@@ -85,7 +91,7 @@ class SingleBookClub extends React.Component {
                 return <div className='userInfoTab' key={index}>
                   <p>{request.username}</p>
                   <button className='button is-small is-rounded is-success' value='accept' onClick={(event) => this.handleRequest(request._id, event)}>Accept</button>
-                  <button className='button is-small is-rounded is-danger' value='decline' onClick={(event) => this.handleRequest(request, event)}>Decline</button>
+                  <button className='button is-small is-rounded is-danger' value='decline' onClick={(event) => this.handleRequest(request._id, event)}>Decline</button>
                 </div>
               })}
             </div>
