@@ -19,7 +19,6 @@ import NewUserAddsCategories from './Components/NewUserAddsCategories'
 
 import SearchNewBooks from './Components/SearchNewBooks'
 import SingleBook from './Components/SingleBook'
-import NonUserBookSearch from './Components/NonUserBookSearch'
 import DetailedBookPage from './Components/DetailedBookPage'
 
 import BookComment from './Components/BookComment'
@@ -46,7 +45,6 @@ const App = () => (
       <Route exact path="/profile/:user_id" component={UserProfile} />
       <Route exact path="/books/new" component={SearchNewBooks} />
       <Route exact path="/books/:book_id" component={DetailedBookPage}/>
-      <Route exact path="/books/non_user_book_search" component={NonUserBookSearch} />
       <Route exact path="/book/:webId" component={SingleBook} />
       <Route exact path="/books/:book_id/comments" component={BookComment} />
       <Route path="/book/:book_id/comment/:comment_id" component={UpdateComments} />

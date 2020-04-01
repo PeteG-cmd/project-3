@@ -62,11 +62,11 @@ class SlickCarousel extends React.Component {
     const settings = {
       dots: this.state.dots,
       infinite: true,
-      slidesToShow: 3,
+      slidesToShow: 9,
       slidesToScroll: 1,
       autoplay: true,
-      speed: 2000,
-      autoplaySpeed: 2000,
+      speed: 3000,
+      autoplaySpeed: 3000,
       cssEase: 'linear',
       pauseOnHover: false
     }
@@ -75,14 +75,14 @@ class SlickCarousel extends React.Component {
 
       <Slider {...settings}>
         {this.state.bookList.map((book, index) => {
-          return <div key={index} className="CarouselImgDiv">
+          return <figure key={index} className="CarouselImgDiv">
             {/* <h3>{book.title}</h3> */}
             <img
               src={book.book_image}
               alt={`${book.title} by ${book.author}`}
               className="CarouselImg"
             />
-          </div>
+          </figure>
         })}
       </Slider>
 

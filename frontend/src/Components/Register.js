@@ -44,7 +44,7 @@ class Register extends React.Component {
                 <div className="column is-one-third"></div>
                 <div className="column is-block">
                   <div className="box" id="registerbox">
-                    <h1 className="title">Register</h1>
+                    <h1 className="title">Chapter 3: Register</h1>
                     <RegisterForm
                       handleSubmit={(event) => this.handleSubmit(event)}
                       handleChange={(event) => this.handleChange(event)}
