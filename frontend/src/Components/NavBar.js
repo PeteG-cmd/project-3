@@ -21,7 +21,6 @@ class NavBar extends React.Component {
 
       <div className="navbar-brand">
         <a className="navbar-item" href="/">
-          {/* <img src="frontend/src/Components/Assets/download.jpeg" width="112" height="28" /> */}
           {/* <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" /> */}
         </a>
 

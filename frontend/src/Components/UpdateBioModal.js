@@ -77,12 +77,10 @@ class UpdateBioModal extends React.Component {
         // console.log(res.data)
         // this.setState({ user: res.data })
       })
-      // .then(() => this.props.history.push('/profile/:user_id'))
-    // .catch(err => this.setState({ errors: err.response.data.errors }))
   }
 
 
-  // This is the render of the modal button will appear on the profile page
+  // This is the render of the modal button which will appear on the profile page
   render() {
     // console.log(this.state.user)
     return (
