@@ -38,7 +38,6 @@ function addBook(req, res) {
     })
 }
 
-
 function indexBooks(req, res) {
   Book
     .find()

@@ -26,11 +26,14 @@ function editBookComment(req, res) {
     .findById(req.params.book_id)
     .then(book => {
       if (!book) return res.status(404).send({ message: 'Book Not found' })
-      const comment = book.comments.id(req.params.comment_id)
+      const comment = book.comment.id(req.params.comment_id)
+      console.log(comment)
+      console.log(req.body)
       if (!comment.user.equals(currentUser._id)) {
         return res.status(401).send({ message: 'Unauthorized' })
       }
-      comment.set(req.body)
+      comment.comment = req.body.comments
+      comment.set(comment)
       return book.save()
     })
     .then(book => res.status(202).send(book))

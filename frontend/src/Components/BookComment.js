@@ -51,7 +51,7 @@ class BookComment extends React.Component {
   render() {
     if (!this.state.book) return <Spinner />
 
-    console.log(this.state.book.comments)
+    console.log(this.state.book)
     return <>
       <div className="allComments">
         {this.state.book.comments && this.state.book.comments.map((comment, index) => {
@@ -81,7 +81,9 @@ class BookComment extends React.Component {
                     </a>
                     <a className="IconSymbol">
                       <EditCommentModal
-                        comment={comment.comment}
+                        editedComment={comment.comment}
+                        book={this.state.book._id}
+                        commentId={comment._id}
                       />
                     </a>
                   </div>

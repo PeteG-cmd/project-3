@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import axios from 'axios'
 import auth from '../lib/auth'
 
-const Modal = ({ handleChange, handleSubmit, closeModal, modalState, comment }) => {
+const Modal = ({ handleChange, handleSubmit, closeModal, modalState, comment, book, commentId }) => {
   if (!modalState) {
     return null
   }
@@ -19,9 +19,9 @@ const Modal = ({ handleChange, handleSubmit, closeModal, modalState, comment }) 
 
         <section className="modal-card-body">
           <div className="content">
-            <textarea className="textarea" name="comments"
+            <textarea className="textarea" name="EditedComment"
               onChange={handleChange}
-              placeholder={comment.comment}
+              placeholder={comment.editedComment}
               rows="5">
             </textarea>
           </div>
@@ -62,16 +62,21 @@ class EditCommentModal extends React.Component {
 
   handleChange(event) {
     const { name, value } = event.target
-    const data = { ...this.state.data, [name]: value }
-    this.setState({ data })
-    console.log(this.state.data)
+    const data = { ...this.state.comment, [name]: value }
+    this.setState({ comment: data })
+    // console.log(this.state.comment)
   }
 
   handleSubmit(event, comment) {
     // console.log('Hello')
     event.preventDefault()
-    axios.put('/book/book_id/comment/:comment_id', 
-      comment, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+    // console.log(event)
+    console.log(this.state.comment)
+    const bookId = this.props.book
+    console.log(this.props)
+    const commentId = this.props.commentId
+    axios.put(`/api/books/${bookId}/comment/${commentId}`, 
+      this.state.comment, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then(res => {
         // console.log(res.data)
         this.setState({ comment: res.data })
@@ -83,8 +88,8 @@ class EditCommentModal extends React.Component {
 
   // This is the render of the modal button will appear on the profile page
   render() {
-    console.log(this.props)
-    console.log(this.state.comment)
+    // console.log(this.props)
+    // console.log(this.state.comment)
     return (
       <span id="editSymbol" className="icon is-small">
         <p onClick={this.toggleModal}>
