@@ -67,8 +67,9 @@ router.route('/books/:book_id/comments')
   .post(secureRoute, commentsController.addComment)
 
 router.route('/book/:book_id/comment/:comment_id')
-  .delete(secureRoute, commentsController.deleteBookComment)
   .put(secureRoute, commentsController.editBookComment)
+  .delete(secureRoute, commentsController.deleteBookComment)
+
 
 
 
