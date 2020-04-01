@@ -4,8 +4,7 @@ import auth from '../lib/auth'
 import Spinner from './Common/Spinner'
 import Moment from 'react-moment'
 
-
-
+import EditCommentModal from './EditCommentModal'
 
 class BookComment extends React.Component {
 
@@ -83,8 +82,10 @@ class BookComment extends React.Component {
                       <span id="deleteSymbol" className="icon is-small"><i className="fas fa-times"></i></span>
                     </a>
                     <a className="IconSymbol">
-                      {/* MAKE THIS A MODAL */}
-                      <span id="editSymbol" className="icon is-small"><i className="fas fa-edit"></i></span>
+                      <EditCommentModal
+                      // Comment clicked on should be fed into Modal
+                      />
+                      {/* <span id="editSymbol" className="icon is-small"><i className="fas fa-edit"></i></span> */}
                     </a>
                   </div>
                   <div className="CommentUserName">
@@ -116,7 +117,7 @@ class BookComment extends React.Component {
                     className="textarea"
                     placeholder="Add a comment..."
                     onChange={(event) => this.handleChange(event)} type='text' name='comment' comment={this.state.comment}>
-                    
+
                   </textarea>
                   <button className="button" id="commentSubmitButton">Submit</button>
                 </form>
