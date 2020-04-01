@@ -18,9 +18,8 @@ function addComment(req, res) {
 }
 
 
-// New
+
 function editBookComment(req, res) {
-  // Steps: Get the book, get the comment, edit the comment, save!
   const currentUser = req.currentUser
   console.log(req.body)
   Book
@@ -28,8 +27,6 @@ function editBookComment(req, res) {
     .then(book => {
       if (!book) return res.status(404).send({ message: 'Book Not found' })
       const comment = book.comments.id(req.params.comment_id)
-      console.log(comment)
-      console.log(req.body)
       if (!comment.user.equals(currentUser._id)) {
         return res.status(401).send({ message: 'Unauthorized' })
       }
@@ -41,27 +38,25 @@ function editBookComment(req, res) {
     .catch(error => res.send(error))
 }
 
-
-
-// New///
 function deleteBookComment(req, res) {
   const currentUser = req.currentUser
+
   Book
     .findById(req.params.book_id)
     .then(book => {
+      console.log(book)
       if (!book) return res.status(404).send({ message: 'Book Not found' })
       const comment = book.comments.id(req.params.comment_id)
+      console.log(comment)
       if (!comment.user.equals(currentUser._id)) {
         return res.status(401).send({ message: 'Unauthorized' })
       }
-      req.body.comment = 'This comment has been deleted'
-      comment.set(req.body)
+      comment.remove()
       return book.save()
     })
     .then(book => res.status(202).send(book))
     .catch(error => res.send(error))
 }
-
 
 
 function addBookClubComment(req, res) {
@@ -78,14 +73,55 @@ function addBookClubComment(req, res) {
     })
     .then(bookclub => res.status(201).send(bookclub))
     .catch(err => res.status(400).send({ message: 'Comments must be at least 20 characters long' }))
-
 }
+
+function editBookClubComment(req, res) {
+  const currentUser = req.currentUser
+
+  BookClub
+    .findById(req.params.bookclub_id)
+    .then(bookclub => {
+      if (!bookclub) return res.status(404).send({ message: 'BookClub Not found' })
+      const comment = bookclub.comments.id(req.params.comment_id)
+      if (!comment.user.equals(currentUser._id)) {
+        return res.status(401).send({ message: 'Unauthorized' })
+      }
+      req.body.comment += ' - (edited)'
+      comment.set(req.body)
+      return bookclub.save()
+    })
+    .then(bookclub => res.status(202).send(bookclub))
+    .catch(error => res.send(error))
+}
+
+function deleteBookClubComment(req, res) {
+  const currentUser = req.currentUser
+
+  BookClub
+    .findById(req.params.bookclub_id)
+    .then(bookclub => {
+      console.log(bookclub)
+      if (!bookclub) return res.status(404).send({ message: 'BookClub Not found' })
+      const comment = bookclub.comments.id(req.params.comment_id)
+      console.log(comment)
+      if (!comment.user.equals(currentUser._id)) {
+        return res.status(401).send({ message: 'Unauthorized' })
+      }
+      comment.remove()
+      return bookclub.save()
+    })
+    .then(bookclub => res.status(202).send(bookclub))
+    .catch(error => res.send(error))
+}
+
 
 
 module.exports = {
   addComment,
   addBookClubComment,
   deleteBookComment,
-  editBookComment
+  editBookComment,
+  editBookClubComment,
+  deleteBookClubComment
 }
 

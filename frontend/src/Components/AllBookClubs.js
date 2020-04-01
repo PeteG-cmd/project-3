@@ -80,7 +80,7 @@ class CreateBookClub extends React.Component {
           <p>Description: {bookClub.descriptionBio}</p>
           <p>Admin: {bookClub.adminUser.username}</p>
 
-          {userCurrentInvitesSent.includes(bookClub._id) ? <div className="buttons has-addons joinButton"><button className='button is-info is-loading'>Invite Pending</button><button className='button is-info'>Invite Pending</button></div> : userBookClubs.includes(bookClub._id) ? <Link to={`/bookclub/${bookClub._id}`}><button className='button is-success is-focused is-rounded'>Go to Book Club</button></Link> : <button className='button is-link is-rounded' onClick={() => this.handleSubmit(bookClub._id)}>Join</button>}
+          {userCurrentInvitesSent.includes(bookClub._id) ? <button className='button is-warning is-rounded'>Invite Pending</button> : userBookClubs.includes(bookClub._id) ? <Link to={`/bookclub/${bookClub._id}`}><button className='button is-success is-focused is-rounded'>Go to Book Club</button></Link> : <button className='button is-link is-rounded' onClick={() => this.handleSubmit(bookClub._id)}>Join</button>}
 
           <br></br>
           <br></br>
