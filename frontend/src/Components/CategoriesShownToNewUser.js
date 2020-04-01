@@ -40,7 +40,7 @@ class CategoriesShownToNewUser extends React.Component {
                 <div className="column"></div>
                 <div className="column is-two-thirds">
                   <div className="box">
-                    <h2 className="subtitle"><strong>Select Your Favourite Book Categories</strong></h2>
+                    <h2 className="subtitle"><strong>Chapter 5: Select Your Favourite Book Categories</strong></h2>
                     <form
                       className="form"
                       onSubmit={(event) => this.handleSubmit(event)}

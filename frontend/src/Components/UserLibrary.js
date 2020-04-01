@@ -85,12 +85,12 @@ class UserLibrary extends React.Component {
                 </div>
               </div>
               <div className="TitleandAuthorInfo">
-                <h4 className="TheTitle">{book.title}</h4>
+                <h4 className="LBCTheTitle">{book.title}</h4>
                 <div className="TheAuthor">
                   {book.author && <h5 className="Author"><strong>{book.author}</strong></h5>}
                 </div>
               </div>
-              <div className="Buttons">
+              <div className="LibraryBookCardButtons">
                 <button
                   onClick={() => this.handleDelete(book._id)}
                   className="button DeleteMyLibraryBook">Delete Book

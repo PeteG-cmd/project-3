@@ -1,10 +1,10 @@
 // Non User Home SASS
 
 .non-user-home-main {
-  height: 100vh;
+  height: 94vh;
   width: 100vw;
   margin-top: 57px;
-  border: 2px solid red;
+  // border: 2px solid red;
 
   .HomePageContainer {
     height: 97%;
@@ -14,14 +14,209 @@
     flex-direction: row;
     align-items: center;
     justify-content: flex-start;
-    border: 2px solid blue;
+    // border: 2px solid blue;
 
     .HomePageInfoContainer {
       height: 97%;
       width: 30%;
       display: flex;
       flex-direction: column;
-      border: 2px solid green;
+      align-items: center;
+      justify-content: space-evenly;
+      // border: 2px solid green;
+
+      .AboutHomePageInfoContainer {
+        height: 45%;
+        width: 98%;
+        // border: 2px solid red;
+        box-shadow: 0px 3px 15px rgba(0,0,0,0.1);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-image: url('https://img.freepik.com/free-vector/open-book-brown-cover_135176-247.jpg?size=626&ext=jpg');
+        background-position: center;
+        background-repeat:  no-repeat;
+        background-size: 100% 100%;
+
+        .AboutHomePageInfoContent {
+          height: 90%;
+          width: 97%;
+          // border: 2px solid red;
+          margin-bottom: 10px;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+
+          .Contents1 {
+            width: 41%;
+            height: 84%;
+            // border: 2px solid blue;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .Contents1Heading {
+              font-weight: bold;
+              padding-top: 5px;
+            }
+
+            .ContentsList1 {
+              width: 90%;
+              height: 80%;
+              // border: 2px solid rgb(247, 0, 255);
+              display: flex;
+              flex-direction: row;
+              justify-content: center;
+              align-items: center;
+
+              .Book1List {
+                font-size: 15px;
+              }
+            }
+          }
+
+          .AboutTitleandInfo {
+            width: 43%;
+            height: 84%;
+            // border: 2px solid blue;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .Chapter1Title {
+              width: 100;
+              padding-top: 5px;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+
+              .Chapter1TitleHeading {
+                font-weight: bold;
+              }
+
+              .Chapter1TitleInfo {
+                font-style: italic;
+                font-size: 15px;
+                text-decoration: underline;
+              }
+            }
+
+            .Chapter1Contents {
+              width: 90%;
+              height: 80%;
+              // border: 2px solid pink;
+              padding: 0px 2px;
+              display: flex;
+              flex-direction: row;
+              align-items: center;
+              text-align: center;
+
+              .Chapter1Info {
+                font-size: 13px;
+                color: rgb(41, 39, 39);
+              }
+            }
+          }
+        }
+      }
+
+      .BookClubHomePageInfoContainer {
+        height: 45%;
+        width: 98%;
+        // border: 2px solid red;
+        box-shadow: 0px 3px 15px rgba(0,0,0,0.1);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 5px;
+        background-image: url('https://img.freepik.com/free-vector/open-book-brown-cover_135176-247.jpg?size=626&ext=jpg');
+        background-position: center;
+        background-repeat:  no-repeat;
+        background-size: 100% 100%;
+
+        .BookClubHomePageInfoContent {
+          height: 90%;
+          width: 97%;
+          // border: 2px solid red;
+          margin-bottom: 10px;
+          margin-top: 4px;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+
+          .Contents2 {
+            width: 41%;
+            height: 84%;
+            // border: 2px solid blue;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .Contents2Heading {
+              font-weight: bold;
+              padding-top: 5px;
+            }
+
+            .ContentsList2 {
+              width: 90%;
+              height: 80%;
+              // border: 2px solid rgb(247, 0, 255);
+              display: flex;
+              flex-direction: row;
+              justify-content: center;
+              align-items: center;
+
+              .Book2List {
+                font-size: 15px;
+              }
+            }
+          }
+
+          .BookClubTitleandInfo {
+            width: 43%;
+            height: 84%;
+            // border: 2px solid blue;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            .Chapter2Title {
+              width: 100;
+              padding-top: 5px;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+
+              .Chapter2TitleHeading {
+                font-weight: bold;
+              }
+
+              .Chapter2TitleInfo {
+                font-style: italic;
+                font-size: 15px;
+                text-decoration: underline;
+              }
+            }
+
+            .Chapter2Contents {
+              width: 90%;
+              height: 80%;
+              // border: 2px solid pink;
+              padding: 0px 2px;
+              display: flex;
+              flex-direction: row;
+              text-align: center;
+              align-items: center;
+
+              .Chapter2Info {
+                font-size: 13px;
+                color: rgb(41, 39, 39);
+              }
+            }
+          }
+        }
+      }
     }
 
     .NonUserHomePageCarouselContainer {
@@ -31,12 +226,61 @@
       flex-direction: column;
       justify-content: center;
       align-items: flex-start;
-      border: 2px solid green;
+      margin-left: 10px;
+      // border: 2px solid green;
+      box-shadow: 0px 3px 15px rgba(0,0,0,0.2);
 
       .NonUserHomePageCarouselContent {
+        height: 32%;
+        width: 97%;
+        display: flex;
+        margin: 10px auto 5px;
+        flex-direction: column;
+        // align-items: center;
+        // border: 2px solid yellow;
         
+        .CarouselTitle1 {
+          height: 10%;
+          width: 97%;
+          display: flex;
+          flex-direction: row;
+          justify-content: center;
+          align-items: center;
+          margin: 0 auto;
+          // border: 2px solid brown;
+
+          .CarouselTitleContent{
+            color: rgb(55, 79, 158);
+          }
+        }
+        .NonUserCarouselImagesContainer {
+          height: 80%;
+          width: 100%;
+          border-bottom: 2px solid rgb(199, 194, 194);
+          margin-top: 10px;
+          display: flex;
+          flex-direction: row;
+          align-items: center;
+        .CarouselImages {
+          height: 77%;
+          width: 100%;
+          // border: 2px solid red;
+        }
+       }
+       #SlickCarousel3 {
+         border: none;
+       }
       }
     }
+  }
+  #NonUserHomeMainfooter {
+    background-color: rgba($color: #bdb8b8, $alpha: 0.3);
+    height: 100px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
   }
 }
 
@@ -69,7 +313,7 @@
    border-radius: 12px;
 
    
-   .CarouselTitle {
+   .CarouselTitle2 {
      width: 90%;
      height: 10%;
     //  border: 2px solid rgb(21, 255, 0);
@@ -84,11 +328,21 @@
    .CarouselSubContainer {
      height: 80%;
      width: 90%;
-    //  border: 2px solid brown;
+     border: 2px solid brown;
      border-radius: 12px;
-     padding-top: 30px;
+    //  padding-top: 30px;
      margin: auto auto;
+     display: flex;
+     flex-direction: row;
+     align-items: center;
      background: -webkit-linear-gradient(rgb(180, 237, 247), rgb(113, 175, 190));
+    
+     .UserCarouselAllImages {
+       height: 33%;
+       width: 100%;
+      //  border: 2px solid red;
+     }
+    
     }
   }
 }
@@ -100,15 +354,14 @@
   background-color: rgba($color: #bdb8b8, $alpha: 0.3);
 }
 
-#NonUserHomeMainfooter {
-  background-color: rgba($color: #bdb8b8, $alpha: 0.3);
-}
+
 
 // Carousel SASS
 
 .CarouselImgDiv {
-  padding: 0px 15px;
+  // padding: 0px 15px;
   // margin-top: 30px;
+  outline: none;
 
   .CarouselImg {
     height: 120px;
@@ -333,11 +586,15 @@
       }
     }
     .SearchTitleandAuthorInfo {
-      height: 35%;
+      height: 40%;
       width: 100%;
       // border: 2px solid blue;
       display: flex;
       flex-direction: column;
+
+      .SearchTheTitle {
+        font-size: 13px;
+      }
 
       .SearchTheAuthor {
         width: 100%;
@@ -348,6 +605,23 @@
         align-items: flex-end;
         padding-bottom: 10px;
       }
+
+      .SeeBookButton {
+        width: 100%;
+        height: 40%;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        // border: 2px solid gold;
+  
+      .SeeTheBook {
+        background-color: rgba(39, 151, 185, 0.719);
+      }
+      .SeeTheBook:hover {
+        background-color: rgba(29, 188, 216, 0.884);
+        color: rgb(237, 241, 241);
+      }
+    }
     }
    }
   }
@@ -508,6 +782,58 @@
         }
       }
     }
+  }
+}
+
+// Create Book Club 
+
+#CreateBookClubhero {
+  #CreateBookClubhero-body{
+    background-image: url('https://www.sciencenewsforstudents.org/wp-content/uploads/2019/11/860_main_library_bacteria.png');
+    background-position: center;
+    background-repeat:  no-repeat;
+    background-attachment: fixed;
+    background-size:  cover;
+  }
+}
+
+#CreateBookClubbox {
+  animation: fade ease-in 1.5s forwards;
+}
+
+@keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  75% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 0.8;
+  }
+}
+
+@-webkit-keyframes fade {
+  0% {
+    opacity: 0;
+  }
+  25% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  75% {
+    opacity: 0.75;
+  }
+  100% {
+    opacity: 0.8;
   }
 }
 
@@ -1081,6 +1407,10 @@
         display: flex;
         flex-direction: column;
 
+        .LBCTheTitle {
+          font-size: 15px;
+        }
+
         .TheAuthor {
           width: 100%;
           height: 90%;
@@ -1088,16 +1418,18 @@
           display: flex;
           flex-direction: row;
           align-items: flex-end;
-          padding-bottom: 10px;
         }
       }
     }
 
-    .Buttons {
+    .LibraryBookCardButtons {
       width: 100%;
+      height: 25%;
       display: flex;
       flex-direction: row;
+      align-items: flex-end;
       justify-content: space-evenly;
+      // border: 2px solid gold;
 
     .DeleteMyLibraryBook {
       background-color: rgba(185, 39, 39, 0.719);

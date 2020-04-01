@@ -61,6 +61,11 @@ function getBooks(req, res) {
       console.log(books)
       res.status(201).send(books)
     })
+
+    //I AM WORKING HERE, THE .find MUST ALSO RETURN USER WISH LIST AND USER BOOKS
+
+
+
   // .then(res.status(201).send(userBookIsbns))
   // .catch(err => res.send(err))
 }
@@ -85,7 +90,15 @@ function deleteUserBook(req, res) {
       const filterBooks = user.books.filter(book => {
         return book.toString() !== req.params.book_id.toString()
       })
+      const filterBooksRead = user.booksRead.filter(book => {
+        return book.toString() !== req.params.book_id.toString()
+      })
+      const filterBooksWishList = user.booksWishList.filter(book => {
+        return book.toString() !== req.params.book_id.toString()
+      })
       user.books = filterBooks
+      user.booksRead = filterBooksRead
+      user.booksWishList = filterBooksWishList
       return user.set(user)
     })
     .then(user => {

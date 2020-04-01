@@ -8,7 +8,7 @@ const SearchBookCard = ({ book }) => {
       <div className="SearchBookImageContainer">
         <figure className="SearchBooksFigure">
           {/* This line below is a one line ternary only rendering if the picture exists. */}
-          {book.volumeInfo.imageLinks && <Link to={`../book/${book.id}`} book={book}><img src={book.volumeInfo.imageLinks.thumbnail} className="SearchBooksContent"></img></Link>}
+          {book.volumeInfo.imageLinks && <img src={book.volumeInfo.imageLinks.thumbnail} className="SearchBooksContent"></img>}
         </figure>
         <div className="SearchBookImageContainerInfo">
           {book.volumeInfo.pageCount && <h5 className="SearchBookImageContainerInfoContent"><strong>Page Count:</strong> {book.volumeInfo.pageCount}</h5>}
@@ -20,6 +20,13 @@ const SearchBookCard = ({ book }) => {
         <h4 className="SearchTheTitle">{book.volumeInfo.title}</h4>
         <div className="SearchTheAuthor">
           {book.volumeInfo.authors && <h5 className="SearchAuthor"><strong>{book.volumeInfo.authors[0]}</strong></h5>}
+        </div>
+        <div className="SeeBookButton">
+          <Link to={`../book/${book.id}`} book={book}>
+            <button
+              className="button SeeTheBook">See Book
+            </button>
+          </Link>
         </div>
       </div>
     </div>

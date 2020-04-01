@@ -6,8 +6,7 @@ import SlickCarousel from './SlickCarousel'
 // import SlickCarousel2 from './SlickCarousel2'
 // import SlickCarousel3 from './SlickCarousel3'
 
-import AboutHomePageModal from './AboutHomePageModal'
-import BookClubHomePageModal from './BookClubHomePageModal'
+
 import Toastify from './Common/Toastify'
 
 export default class Home extends React.Component {
@@ -43,42 +42,92 @@ export default class Home extends React.Component {
           <div className="HomePageContainer">
             <section className="HomePageInfoContainer">
               <div className="AboutHomePageInfoContainer">
-
+                <div className="AboutHomePageInfoContent">
+                  <div className="Contents1">
+                    <h2 className="Contents1Heading">Contents:</h2>
+                    <div className="ContentsList1">
+                      <ul className="Book1List">
+                        <li><strong>1:</strong> About Booked Up</li>
+                        <li><strong>2:</strong> The Book Club</li>
+                        <li><strong>3:</strong> Register</li>
+                        <li><strong>4:</strong> Login</li>
+                        <li><strong>5:</strong> Categories</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="AboutTitleandInfo">
+                    <div className="Chapter1Title">
+                      <h2 className="Chapter1TitleHeading">Chapter 1</h2>
+                      <h4 className="Chapter1TitleInfo">About Booked Up</h4>
+                    </div>
+                    <div className="Chapter1Contents">
+                      <p className="Chapter1Info">Search through 1000s of books and create a Library with your Favourite Books. Give them a rating and comment, and talk about them in your Book Clubs. <strong>Get Booked Up!</strong></p>
+                    </div>
+                  </div>
+                </div>
               </div>
               <div className="BookClubHomePageInfoContainer">
-
+                <div className="BookClubHomePageInfoContent">
+                  <div className="Contents2">
+                    <h2 className="Contents2Heading">Contents:</h2>
+                    <div className="ContentsList2">
+                      <ul className="Book2List">
+                        <li><strong>1:</strong> About Booked Up</li>
+                        <li><strong>2:</strong> The Book Club</li>
+                        <li><strong>3:</strong> Register</li>
+                        <li><strong>4:</strong> Login</li>
+                        <li><strong>5:</strong> Categories</li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div className="BookClubTitleandInfo">
+                    <div className="Chapter2Title">
+                      <h2 className="Chapter2TitleHeading">Chapter 2</h2>
+                      <h4 className="Chapter2TitleInfo">The Book Club</h4>
+                    </div>
+                    <div className="Chapter2Contents">
+                      <p className="Chapter2Info">Create or Join a Book Club and invite fellow readers to talk about the latest book you are reading.</p>
+                    </div>
+                  </div>
+                </div>
               </div>
             </section>
             <section className="NonUserHomePageCarouselContainer">
               <div className="NonUserHomePageCarouselContent">
-                <div className="CarouselTitle">
-                  <h2>Current Fiction Best Sellers</h2>
+                <div className="CarouselTitle1">
+                  <h2 className="CarouselTitleContent">Current Fiction Best Sellers</h2>
                 </div>
-                <div className="CarouselImages">
-                  <SlickCarousel categories={categories[0]} />
-                </div>
-              </div>
-              <div className="NonUserHomePageCarouselContent">
-                <div className="CarouselTitle">
-                  <h2>Current Non-Fiction Best Sellers</h2>
-                </div>
-                <div>
-                  <SlickCarousel categories={categories[1]} />
+                <div className="NonUserCarouselImagesContainer">
+                  <div className="CarouselImages">
+                    <SlickCarousel categories={categories[0]} />
+                  </div>
                 </div>
               </div>
               <div className="NonUserHomePageCarouselContent">
-                <div className="CarouselTitle">
-                  <h2>Current Young-Adult Best Sellers</h2>
+                <div className="CarouselTitle1">
+                  <h2 className="CarouselTitleContent">Current Non-Fiction Best Sellers</h2>
                 </div>
-                <div>
-                  <SlickCarousel categories={categories[2]} />
+                <div className="NonUserCarouselImagesContainer">
+                  <div className="CarouselImages">
+                    <SlickCarousel categories={categories[1]} />
+                  </div>
+                </div>
+              </div>
+              <div className="NonUserHomePageCarouselContent">
+                <div className="CarouselTitle1">
+                  <h2 className="CarouselTitleContent">Current Young-Adult Best Sellers</h2>
+                </div>
+                <div className="NonUserCarouselImagesContainer" id="SlickCarousel3">
+                  <div className="CarouselImages">
+                    <SlickCarousel categories={categories[2]} />
+                  </div>
                 </div>
               </div>
             </section>
           </div>
           <footer id="NonUserHomeMainfooter">
             <div>
-              <p>CopyRight By Jimbo Jambo, Peter Pan, Gordon Ramsay</p>
+              <p>CopyRight By Maxwell Jam, Peter Pan, Gordon Ramsay</p>
             </div>
           </footer>
         </main>
@@ -98,18 +147,20 @@ export default class Home extends React.Component {
 
           <section className="mainHomeCarousel">
             <div className="mainHomeCarouselContainer">
-              <div className="CarouselTitle">
+              <div className="CarouselTitle2">
                 <h2 className="CarouselTitleContent">Selected for {this.state.user.username} from Favourite Categories...</h2>
               </div>
               <div className="CarouselSubContainer">
-                <SlickCarousel categories={this.state.user.categories} />
+                <div className="UserCarouselAllImages">
+                  <SlickCarousel categories={this.state.user.categories} />
+                </div>
               </div>
             </div>
           </section>
 
           <footer className="section" id="UserHomeMainfooter">
             <div className="container">
-              <p>CopyRight By Jimbo Jambo, Peter Pan, Gordon Ramsay</p>
+              <p>CopyRight By Maxwell Jam, Peter Pan, Gordon Ramsay</p>
             </div>
           </footer>
         </main>
