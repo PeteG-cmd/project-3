@@ -22,6 +22,7 @@ function addComment(req, res) {
 function editBookComment(req, res) {
   // Steps: Get the book, get the comment, edit the comment, save!
   const currentUser = req.currentUser
+  console.log(req.body)
   Book
     .findById(req.params.book_id)
     .then(book => {
@@ -32,13 +33,14 @@ function editBookComment(req, res) {
       if (!comment.user.equals(currentUser._id)) {
         return res.status(401).send({ message: 'Unauthorized' })
       }
-      comment.comment = req.body.comments
-      comment.set(comment)
+      req.body.comment += ' - (edited)'
+      comment.set(req.body)
       return book.save()
     })
     .then(book => res.status(202).send(book))
     .catch(error => res.send(error))
 }
+
 
 
 // New///
@@ -52,7 +54,8 @@ function deleteBookComment(req, res) {
       if (!comment.user.equals(currentUser._id)) {
         return res.status(401).send({ message: 'Unauthorized' })
       }
-      comment.remove()
+      req.body.comment = 'This comment has been deleted'
+      comment.set(req.body)
       return book.save()
     })
     .then(book => res.status(202).send(book))
