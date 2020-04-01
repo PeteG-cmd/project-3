@@ -58,7 +58,7 @@ function getBooks(req, res) {
     })
     .then(books => {
       console.log(books)
-      res.status(201).send(books)
+      res.status(201).send({ books, currentUser })
     })
 
 }

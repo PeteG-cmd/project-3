@@ -11,6 +11,7 @@ class UserLibrary extends React.Component {
     super()
     this.state = {
       books: null,
+      user: null,
       filteredBooks: null,
       query: ''
     }
@@ -18,7 +19,10 @@ class UserLibrary extends React.Component {
 
   componentDidMount() {
     axios.get('/api/mylibrary', { headers: { Authorization: `Bearer ${auth.getToken()}` } })
-      .then(res => this.setState({ books: res.data, filteredBooks: res.data }))
+      .then(res => {
+        console.log(res.data)
+        this.setState({ books: res.data.books, filteredBooks: res.data.books, user: res.data.currentUser })
+      })
       .catch(err => this.setState({ error: err.response.data.message }))
   }
 
