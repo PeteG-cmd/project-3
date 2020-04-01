@@ -54,7 +54,7 @@ function getBooks(req, res) {
     .find({
       _id: {
         $in: currentUser.books
-      }
+      } 
     })
     .then(books => {
       console.log(books)
@@ -114,19 +114,19 @@ function addBookToBooksRead(req, res) {
 
   User.findById(currentUser._id)
     .then(user => {
-      if (user.booksRead.includes(req.body._id)) return res.status(400).send({ message: 'This book is already in your Library ' })
+      if (user.booksRead.includes(req.body._id)) return res.status(400).send({ message: 'This book is already in your Read Books Library ' })
       user.booksRead.push(req.body._id)
       console.log(user.booksRead)
-      const filterBooks = user.books.filter(book => {
-        console.log(book)
-        return book.toString() !== req.body._id.toString()
-      })
+      // const filterBooks = user.books.filter(book => {
+      //   console.log(book)
+      //   return book.toString() !== req.body._id.toString()
+      // })
       const filterBooksWishList = user.booksWishList.filter(book => {
         console.log(book)
         return book.toString() !== req.body._id.toString()
       })
       user.booksWishList = filterBooksWishList
-      user.books = filterBooks
+      // user.books = filterBooks
       return user.set(user)
     })
     .then(user => {
@@ -146,14 +146,14 @@ function addBookToWishList(req, res) {
     .then(user => {
       if (user.booksWishList.includes(req.body._id)) return res.status(400).send({ message: 'This book is already in your Library ' })
       user.booksWishList.push(req.body._id)
-      const filterBooks = user.books.filter(book => {
-        return book.toString() !== req.body._id.toString()
-      })
+      // const filterBooks = user.books.filter(book => {
+      //   return book.toString() !== req.body._id.toString()
+      // })
       const filterBooksRead = user.booksRead.filter(book => {
         return book.toString() !== req.body._id.toString()
       })
       user.booksRead = filterBooksRead
-      user.books = filterBooks
+      // user.books = filterBooks
       return user.set(user)
     })
     .then(user => {

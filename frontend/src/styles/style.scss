@@ -1453,3 +1453,70 @@
 	text-align: center;
 }
 
+.bookClubJoinTab {
+
+  width: 95%;
+  height: 12%;
+  border: 2px solid black;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 3px auto;
+  padding: 3px;
+  background-color: lightblue;
+
+    > * {
+      width: 20%
+    }
+
+}
+
+.joinButton {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.userInfoTab {
+  width: 100%;
+  height: 12%;
+  border: 2px solid black;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 3px auto;
+  padding: 3px;
+  background-color: lightblue;
+
+    > * {
+      width: 30%;
+    }
+
+}
+
+.userInfoMemberTab {
+
+  width: 100%;
+  height: 12%;
+  border: 2px solid black;
+  border-radius: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 3px auto;
+  padding: 3px;
+  background-color: lightblue;
+
+    > * {
+      width: 50%;
+    }
+
+
+}
+
+
