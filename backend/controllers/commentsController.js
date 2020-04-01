@@ -17,6 +17,47 @@ function addComment(req, res) {
     .catch(err => res.send(err))
 }
 
+
+// New
+function editBookComment(req, res) {
+  // Steps: Get the book, get the comment, edit the comment, save!
+  const currentUser = req.currentUser
+  Book
+    .findById(req.params.book_id)
+    .then(book => {
+      if (!book) return res.status(404).send({ message: 'Book Not found' })
+      const comment = book.comments.id(req.params.comment_id)
+      if (!comment.user.equals(currentUser._id)) {
+        return res.status(401).send({ message: 'Unauthorized' })
+      }
+      comment.set(req.body)
+      return book.save()
+    })
+    .then(book => res.status(202).send(book))
+    .catch(error => res.send(error))
+}
+
+
+// New///
+function deleteBookComment(req, res) {
+  const currentUser = req.currentUser
+  Book
+    .findById(req.params.book_id)
+    .then(book => {
+      if (!book) return res.status(404).send({ message: 'Book Not found' })
+      const comment = book.comments.id(req.params.comment_id)
+      if (!comment.user.equals(currentUser._id)) {
+        return res.status(401).send({ message: 'Unauthorized' })
+      }
+      comment.remove()
+      return book.save()
+    })
+    .then(book => res.status(202).send(book))
+    .catch(error => res.send(error))
+}
+
+
+
 function addBookClubComment(req, res) {
   const currentUser = req.currentUser
   req.body.user = currentUser
@@ -37,6 +78,8 @@ function addBookClubComment(req, res) {
 
 module.exports = {
   addComment,
-  addBookClubComment
+  addBookClubComment,
+  deleteBookComment,
+  editBookComment
 }
 

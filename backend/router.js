@@ -32,9 +32,9 @@ router.route('/categories')
   .get(secureRoute, categoriesController.getCategories)
 //   .put(secureRoute, catergoriesController.editCatergories)   // Check Peter's function name
 
+
+
 // // Book Routes
-
-
 router.route('/books/get')
   .get(booksController.indexBooks)
 
@@ -62,17 +62,15 @@ router.route('/books/wishlist')
 
 
 
-
+// Book Comment Routes
 router.route('/books/:book_id/comments')
   .post(secureRoute, commentsController.addComment)
 
+router.route('/book/:book_id/comment/:comment_id')
+  .delete(secureRoute, commentsController.deleteBookComment)
+  .put(secureRoute, commentsController.editBookComment)
 
 
-// router.route('/book/book_id/comments')
-//   .post(secureRoute, booksController.addBookComment) // Check Peter's function name
-// router.route('/book/book_id/comment/:comment_id')
-//   .put(secureRoute, booksController.editComment) // Check Peter's function name
-//   .delete(secureRoute, booksController.deleteComment) // Check Peter's function name
 
 // // Virtual Book Club Routes
 router.route('/bookclubs')
