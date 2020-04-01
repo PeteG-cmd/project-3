@@ -100,7 +100,7 @@ class SingleBook extends React.Component {
             <form>
               <button 
                 onClick={(event) => this.handleSubmit(event)}
-                className="button"
+                className=""
                 id="TheBookBomb"
               >
                 Add Book To Library

@@ -114,7 +114,7 @@ class BookClubComment extends React.Component {
                 <form onSubmit={() => this.handleSubmit(event)} >
                   <textarea className="textarea" placeholder="Add a comment..." onChange={(event) => this.handleChange(event)} type='text' name='comment' comment={this.state.comment}>
                   </textarea>
-                  <button className="button" id="commentSubmitButton">Submit</button>
+                  <button className="" id="commentSubmitButton">Submit</button>
                 </form>
               </div>
             </div>

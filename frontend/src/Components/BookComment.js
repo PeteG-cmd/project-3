@@ -121,7 +121,7 @@ class BookComment extends React.Component {
                     onChange={(event) => this.handleChange(event)} type='text' name='comment' comment={this.state.comment}>
 
                   </textarea>
-                  <button className="button" id="commentSubmitButton">Submit</button>
+                  <button className="" id="commentSubmitButton">Submit</button>
                 </form>
               </div>
             </div>

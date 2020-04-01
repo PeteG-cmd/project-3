@@ -15,7 +15,6 @@ import Login from './Components/Login'
 import UserProfile from './Components/UserProfile'
 
 import CategoriesShownToNewUser from './Components/CategoriesShownToNewUser'
-import NewUserAddsCategories from './Components/NewUserAddsCategories'
 
 import SearchNewBooks from './Components/SearchNewBooks'
 import SingleBook from './Components/SingleBook'
@@ -28,7 +27,7 @@ import CreateBookClub from './Components/CreateBookClub'
 import AllBookClubs from './Components/AllBookClubs'
 import SingleBookClub from './Components/SingleBookClub'
 import MyBookClubs from './Components/MyBookClubs'
-import CommentsOnTheBookClub from './Components/CommentsOnTheBookClub'
+
 
 import UserLibrary from './Components/UserLibrary'
 
@@ -41,7 +40,6 @@ const App = () => (
       <Route path="/register" component={Register} />
       <Route path="/login" component={Login} />
       <Route exact path="/categories" component={CategoriesShownToNewUser} />
-      <Route path="/categories/:user_id" component={NewUserAddsCategories} />
       <Route exact path="/profile/:user_id" component={UserProfile} />
       <Route exact path="/books/new" component={SearchNewBooks} />
       <Route exact path="/books/:book_id" component={DetailedBookPage}/>
@@ -52,8 +50,6 @@ const App = () => (
       <Route exact path="/bookclubs/new" component={CreateBookClub} />
       <Route exact path="/bookclub/:bookclub_id" component={SingleBookClub} />
       <Route path="/bookclubs/myBookClubs" component={MyBookClubs} />
-      <Route path="/bookclubs/myBookClubs/:bookclub_id/comments" component={CommentsOnTheBookClub} />
-
       <Route exact path="/mylibrary" component={UserLibrary} />
 
     </Switch>

@@ -376,7 +376,7 @@
     .mainHomeCarousel {
       width: 97%;
       height: 40%;
-      border: 2px solid green;
+      // border: 2px solid green;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -386,7 +386,7 @@
       .mainHomeCarouselContainer {
         width: 97%;
         height: 85%;
-        border: 2px solid gold;
+        // border: 2px solid gold;
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -395,7 +395,7 @@
         .CarouselTitle2{
           width: 100%;
           height: 15%;
-          border: 2px solid blue;
+          // border: 2px solid blue;
           display: flex;
           flex-direction: row;
           justify-content: center;
@@ -410,7 +410,7 @@
         .CarouselSubContainer {
           height: 85%;
           width: 100%;
-          border: 2px solid red;
+          // border: 2px solid red;
           display: flex;
           flex-direction: row;
           justify-content: center;
@@ -419,7 +419,7 @@
           .UserCarouselAllImages {
             height: 77%;
             width: 100%;
-            border: 2px solid red;
+            // border: 2px solid red;
           }
         }
       }
@@ -1057,13 +1057,13 @@
         margin-top: 20px;
 
         .DetailedBookAverageUserRating {
-          width: 70%;
+          width: 100%;
           height: 100%;
           display: flex;
           flex-direction: row;
           align-items: center;
           // border: 2px solid orange;
-          margin-right: 10px;
+          // margin-right: 10px;
            
           #AverageUserStarRatingComponent {
             margin-left: 5px;
@@ -1072,7 +1072,7 @@
         }
       }
       .yourRating {
-        width: 90%;
+        width: 100%;
         height: 50%;
         // border: 2px solid blue;
         display: flex;
@@ -1108,7 +1108,7 @@
     flex-direction: column;
 
     .theDetailedBookStats{
-      height: 40%;
+      height: 60%;
       width: 100%;
       // border: 2px solid pink;
       display: flex;
@@ -1436,12 +1436,12 @@
       .MyLibraryFilterButtons {
         width: 45%;
         height: 100%;
-        // border: 2px solid blue;
+        border: 2px solid blue;
         margin: 0 auto;
         display: flex;
         flex-direction: row;
         align-items: center;
-        justify-content: space-between;
+        justify-content: space-evenly;
 
         .FilterButtonEdit {
           background-color:rgb(113, 175, 190);
