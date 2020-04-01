@@ -15,12 +15,12 @@ export default class Home extends React.Component {
     super()
     this.state = {
       user: null,
-      defaultCategories: ['hardcover-fiction', 'hardcover-nonfiction', 'young-adult-hardcover']
+      defaultCategories: ['hardcover-fiction', 'hardcover-nonfiction', 'young-adult-hardcover'],
+      books: []
     }
   }
 
   componentDidMount() {
-
     if (auth.isLoggedIn()) {
       axios
         .post('/api/profile', {}, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
@@ -28,6 +28,10 @@ export default class Home extends React.Component {
           this.setState({ user: res.data })
           console.log(res.data)
         })
+
+      axios.get('/api/mylibrary', { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+        .then(res => this.setState({ books: res.data }))
+        .catch(err => this.setState({ error: err.response.data.message }))
     }
   }
 
@@ -141,7 +145,31 @@ export default class Home extends React.Component {
         <main className="user-home-main">
           <div className="UserMainHomeContainer">
             <section className="LatestBooksContainer">
+              <div className="LatestBookCards">
+                <h2 className="LatestBookCardsTitle">Latest Book Added to My Library</h2>
+                <div className="LatestBookCard">
+                  <div className="LatestBookCardImageContainer">
+                    <figure className="LatestBookCardFigure">
+                      <img src="" alt="" className="LatestBookCardContent"></img>
+                    </figure>
+                    <div className="SearchBookImageContainerInfo">
+                      <h5 className="SearchBookImageContainerInfoContent"><strong>Page Count:</strong></h5>
+                      <h5 className="SearchBookImageContainerInfoContent"><strong>Language:</strong></h5>
+                      <h5 className="SearchBookImageContainerInfoContent"><strong>Category:</strong></h5>
+                    </div>
+                  </div>
+                  <div className="SearchTitleandAuthorInfo">
+                    <h4 className="SearchTheTitle">Hi</h4>
+                    <h5 className="SearchAuthor">Bye</h5>
+                  </div>
+                </div>
+              </div>
+              <div className="LatestBookCards">
+                <h2 className="LatestBookCardsTitle">Latest Book Added to Books Read</h2>
+                <div className="LatestBookCard">
 
+                </div>
+              </div>
             </section>
             <section className="mainHomeCarousel">
               <div className="mainHomeCarouselContainer">
@@ -156,7 +184,18 @@ export default class Home extends React.Component {
               </div>
             </section>
             <section className="LatestBooksContainer">
+              <div className="LatestBookCards">
+                <h2 className="LatestBookCardsTitle">Latest Book Added to Wish List</h2>
+                <div className="LatestBookCard">
 
+                </div>
+              </div>
+              <div className="LatestBookCards">
+                <h2 className="LatestBookCardsTitle">Latest Book Added to Books Rated</h2>
+                <div className="LatestBookCard">
+
+                </div>
+              </div>
             </section>
           </div>
           <footer id="UserHomeMainfooter">
