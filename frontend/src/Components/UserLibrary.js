@@ -65,10 +65,10 @@ class UserLibrary extends React.Component {
             onChange={() => this.handleSearch(event)}
           />
           <div className="MyLibraryFilterButtons">
-            <button className="FilterButtonEdit">Read Books</button>
-            <button className="FilterButtonEdit">Books Wish List</button>
+            <button className="button FilterButtonEdit">Read Books</button>
+            <button className="button FilterButtonEdit">Books Wish List</button>
             {/* <button className="button FilterButtonEdit">Liked Categories</button> */}
-            <button className="FilterButtonEdit">Rated Books</button>
+            <button className="button FilterButtonEdit">Rated Books</button>
           </div>
         </div>
         <div className="BooksContainer">
@@ -94,11 +94,11 @@ class UserLibrary extends React.Component {
               <div className="LibraryBookCardButtons">
                 <button
                   onClick={() => this.handleDelete(book._id)}
-                  className="DeleteMyLibraryBook">Delete Book
+                  className="button DeleteMyLibraryBook">Delete Book
                 </button>
                 <Link to={`../books/${book._id}`} book={book}>
                   <button
-                    className="AddCommentMyLibraryBook">Add Comment
+                    className="button AddCommentMyLibraryBook">Add Comment
                   </button>
                 </Link>
               </div>

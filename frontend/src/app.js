@@ -21,7 +21,6 @@ import SingleBook from './Components/SingleBook'
 import DetailedBookPage from './Components/DetailedBookPage'
 
 import BookComment from './Components/BookComment'
-import UpdateComments from './Components/UpdateComments'
 
 import CreateBookClub from './Components/CreateBookClub'
 import AllBookClubs from './Components/AllBookClubs'
@@ -45,7 +44,6 @@ const App = () => (
       <Route exact path="/books/:book_id" component={DetailedBookPage}/>
       <Route exact path="/book/:webId" component={SingleBook} />
       <Route exact path="/books/:book_id/comments" component={BookComment} />
-      <Route path="/book/:book_id/comment/:comment_id" component={UpdateComments} />
       <Route exact path="/bookclubs" component={AllBookClubs} />
       <Route exact path="/bookclubs/new" component={CreateBookClub} />
       <Route exact path="/bookclub/:bookclub_id" component={SingleBookClub} />

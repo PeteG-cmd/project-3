@@ -88,7 +88,7 @@ class DetailedBookPage extends React.Component {
                 </div>
                 <div className="yourRating">
                   <StarRating></StarRating>
-                  <button className="">Submit Rating</button>
+                  <button className="button">Submit Rating</button>
                 </div>
               </div>
             </div>
