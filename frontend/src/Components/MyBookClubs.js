@@ -30,8 +30,11 @@ class MyBookClubs extends React.Component {
       <p>My Book Clubs</p>
       <br></br>
       {this.state.bookClubs.map((bookClub, index) => {
-        return <div key={index}>
-          <Link to={`/bookclub/${bookClub._id}`}><p>{bookClub.bookClubName}</p></Link>
+        return <div key={index} className='bookClubJoinTab'>
+          <p>Bookclub Name: {bookClub.bookClubName}</p>
+          <p>Description: {bookClub.descriptionBio}</p>
+          <p>Admin: {bookClub.adminUser.username}</p>
+          <Link to={`/bookclub/${bookClub._id}`}><button className='button is-link is-outlined is-rounded'>Go To BookClub</button></Link>
           <br></br>
         </div>
 

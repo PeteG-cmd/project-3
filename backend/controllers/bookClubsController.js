@@ -57,16 +57,14 @@ function myBookClubs(req, res) {
   req.body.user = req.currentUser
 
   BookClub
+    
     .find({
       _id: {
         $in: currentUser.bookClubs
       }
     })
+    .populate('adminUser')
     .then(bookclub => {
-      // User.findById(bookclub.adminUser)
-      //   .then(user => {
-      //     console.log(user)
-      //   })
       console.log(bookclub)
       res.status(201).send(bookclub)
     })
