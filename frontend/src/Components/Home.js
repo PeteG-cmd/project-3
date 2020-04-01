@@ -149,14 +149,9 @@ export default class Home extends React.Component {
                 <h2 className="LatestBookCardsTitle">Latest Book Added to My Library</h2>
                 <div className="LatestBookCard">
                   <div className="LatestBookCardImageContainer">
-                    <figure className="LatestBookCardFigure">
+                    <figure>
                       <img src="" alt="" className="LatestBookCardContent"></img>
-                    </figure>
-                    <div className="SearchBookImageContainerInfo">
-                      <h5 className="SearchBookImageContainerInfoContent"><strong>Page Count:</strong></h5>
-                      <h5 className="SearchBookImageContainerInfoContent"><strong>Language:</strong></h5>
-                      <h5 className="SearchBookImageContainerInfoContent"><strong>Category:</strong></h5>
-                    </div>
+                    </figure> 
                   </div>
                   <div className="SearchTitleandAuthorInfo">
                     <h4 className="SearchTheTitle">Hi</h4>
@@ -167,18 +162,14 @@ export default class Home extends React.Component {
               <div className="LatestBookCards">
                 <h2 className="LatestBookCardsTitle">Latest Book Added to Books Read</h2>
                 <div className="LatestBookCard">
-
-                </div>
-              </div>
-            </section>
-            <section className="mainHomeCarousel">
-              <div className="mainHomeCarouselContainer">
-                <div className="CarouselTitle2">
-                  <h2 className="CarouselTitleContent">Selected for {this.state.user.username} from Favourite Categories...</h2>
-                </div>
-                <div className="CarouselSubContainer">
-                  <div className="UserCarouselAllImages">
-                    <SlickCarousel categories={this.state.user.categories} />
+                  <div className="LatestBookCardImageContainer">
+                    <figure>
+                      <img src="" alt="" className="LatestBookCardContent"></img>
+                    </figure> 
+                  </div>
+                  <div className="SearchTitleandAuthorInfo">
+                    <h4 className="SearchTheTitle">Hi</h4>
+                    <h5 className="SearchAuthor">Bye</h5>
                   </div>
                 </div>
               </div>
@@ -187,16 +178,49 @@ export default class Home extends React.Component {
               <div className="LatestBookCards">
                 <h2 className="LatestBookCardsTitle">Latest Book Added to Wish List</h2>
                 <div className="LatestBookCard">
-
+                  <div className="LatestBookCardImageContainer">
+                    <figure>
+                      <img src="" alt="" className="LatestBookCardContent"></img>
+                    </figure> 
+                  </div>
+                  <div className="SearchTitleandAuthorInfo">
+                    <h4 className="SearchTheTitle">Hi</h4>
+                    <h5 className="SearchAuthor">Bye</h5>
+                  </div>
                 </div>
               </div>
               <div className="LatestBookCards">
                 <h2 className="LatestBookCardsTitle">Latest Book Added to Books Rated</h2>
                 <div className="LatestBookCard">
-
+                  <div className="LatestBookCardImageContainer">
+                    <figure>
+                      <img src="" alt="" className="LatestBookCardContent"></img>
+                    </figure> 
+                  </div>
+                  <div className="SearchTitleandAuthorInfo">
+                    <h4 className="SearchTheTitle">Hi</h4>
+                    <h5 className="SearchAuthor">Bye</h5>
+                  </div>
                 </div>
               </div>
             </section>
+            <div className="UserCarouselandBookCommentsContainer">
+              <section className="mainHomeCarousel">
+                <div className="mainHomeCarouselContainer">
+                  <div className="CarouselTitle2">
+                    <h2 className="CarouselTitleContent">Selected for {this.state.user.username} from Favourite Categories...</h2>
+                  </div>
+                  <div className="CarouselSubContainer">
+                    <div className="UserCarouselAllImages">
+                      <SlickCarousel categories={this.state.user.categories} />
+                    </div>
+                  </div>
+                </div>
+              </section>
+              <div className="UserHomeBookCommentsContainer">
+                COMMENTS
+              </div>
+            </div>
           </div>
           <footer id="UserHomeMainfooter">
             <div>
