@@ -40,7 +40,7 @@ class DetailedBookPage extends React.Component {
     event.preventDefault()
     axios.post('/api/books/wishlist', this.state.databaseBook, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then(res => {
-        alert(res.data)
+        console.log(res.data)
       })
       .catch(err => this.setState({ error: err.response.data.message }))
   }
@@ -49,7 +49,7 @@ class DetailedBookPage extends React.Component {
     event.preventDefault()
     axios.post('/api/books/booksRead', this.state.databaseBook, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then(res => {
-        alert(res.data)
+        console.log(res.data)
       })
       .catch(err => this.setState({ error: err.response.data.message }))
   }

@@ -47,15 +47,15 @@ class SingleBookClub extends React.Component {
       <div className="theDetailedBookClubContainer">
         <section className="theDetailedBookClubInfoContainer" >
           <div>
-            <p>{this.state.bookClub.bookClubName}</p>
+            <p className='title'>{this.state.bookClub.bookClubName}</p>
             <br></br>
 
             <div>
 
-              <h2>Current Members:</h2>
+              <h2 className='subtitle'>Current Members:</h2>
 
               {this.state.bookClub.members.map((member, index) => {
-                return <div key={index}>
+                return <div className='userInfoMemberTab' key={index}>
                   <p>{member.username} {member._id === this.state.bookClub.adminUser._id && <>(admin)</>}</p>
 
                 </div>
@@ -66,12 +66,12 @@ class SingleBookClub extends React.Component {
 
 
             <div>
-              <h2>Users awaiting approval:</h2>
+              <h2 className="subtitle">Users awaiting approval:</h2>
               {this.state.bookClub.joinRequests.map((request, index) => {
-                return <div key={index}>
+                return <div className='userInfoTab' key={index}>
                   <p>{request.username}</p>
-                  <button value='accept' onClick={(event) => this.handleRequest(request._id, event)}>Accept</button>
-                  <button value='decline' onClick={(event) => this.handleRequest(request, event)}>Decline</button>
+                  <button className='button is-small is-rounded is-success' value='accept' onClick={(event) => this.handleRequest(request._id, event)}>Accept</button>
+                  <button className='button is-small is-rounded is-danger' value='decline' onClick={(event) => this.handleRequest(request, event)}>Decline</button>
                 </div>
               })}
             </div>
