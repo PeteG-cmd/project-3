@@ -226,6 +226,10 @@ export default class Home extends React.Component {
                   <Link to={`/book/${this.state.hotBooks[0].webId}`} book={this.state.hotBooks[0]}><img src={this.state.hotBooks[0].thumbnail} alt=""></img></Link>
                   <Link to={`/book/${this.state.hotBooks[1].webId}`} book={this.state.hotBooks[1]}><img src={this.state.hotBooks[1].thumbnail} alt=""></img></Link>
                   <Link to={`/book/${this.state.hotBooks[2].webId}`} book={this.state.hotBooks[2]}><img src={this.state.hotBooks[2].thumbnail} alt=""></img></Link>
+                 
+                </div>
+                <div className="HomeCommentsTitle">
+                  <h2 id="HomeCommentsTitleContent">...Join the converstation now!</h2>
                 </div>
               </div>
             </div>
