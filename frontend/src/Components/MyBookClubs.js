@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import auth from '../lib/auth'
-import Spinner from './Common/Spinner'
+import { Spinner } from './Common/Spinner'
 import { Link } from 'react-router-dom'
 import SearchFormBookClubs from './SearchFormBookClubs'
 
@@ -16,8 +16,10 @@ class MyBookClubs extends React.Component {
   }
 
   componentDidMount() {
-    axios.get('/api/bookClubs/mybookclubs', { headers: { Authorization: `Bearer ${auth.getToken()}` } })
-      .then(res => this.setState({ bookClubs: res.data, filteredMyBookClubs: res.data }))
+    setTimeout(() => {
+      axios.get('/api/bookClubs/mybookclubs', { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+        .then(res => this.setState({ bookClubs: res.data, filteredMyBookClubs: res.data }))
+    }, 3000)
   }
 
   handleSearch(event) {
@@ -31,7 +33,7 @@ class MyBookClubs extends React.Component {
   }
 
   render() {
-    if (!this.state.bookClubs) return <Spinner />
+    if (!this.state.bookClubs) return <div className="AllBookClubsSpinner"><Spinner /></div>
 
     return <main className="SearchBookClubMain">
       <div className="SearchBookClubMainContainer">
@@ -44,10 +46,10 @@ class MyBookClubs extends React.Component {
         </div>
         {this.state.filteredMyBookClubs.map((bookClub, index) => {
           return <div key={index} className='bookClubJoinTab'>
-            <p>Bookclub Name: {bookClub.bookClubName}</p>
-            <p>Description: {bookClub.descriptionBio}</p>
-            <p>Admin: {bookClub.adminUser.username}</p>
-            <Link to={`/bookclub/${bookClub._id}`}><button className='button is-link is-outlined is-rounded'>Go To BookClub</button></Link>
+            <p><span className="Allbookclubstitle">Bookclub Name:</span> {bookClub.bookClubName}</p>
+            <p><span className="Allbookclubstitle">Description:</span> {bookClub.descriptionBio}</p>
+            <p><span className="Allbookclubstitle">Admin:</span> {bookClub.adminUser.username}</p>
+            <Link to={`/bookclub/${bookClub._id}`}><button className='button is-link is-rounded is-success'>Go To BookClub</button></Link>
             <br></br>
           </div>
         })}

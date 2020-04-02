@@ -47,16 +47,35 @@ class UserLibrary extends React.Component {
       .catch(err => console.error(err))
   }
 
-  // let query = event.target.value
-  // query = query.split(' ').join('+')
-  // console.log(query)
-  // this.setState({ query })
+  showBooksRead() {
+    document.querySelector('.ShowAllButtonEdit').style.visibility = 'visible'
+    document.querySelector('.ShowAllButtonEdit').style.display = 'block'
+    console.log(this.state.user)
+    // const booksRead = this.state.user.map(book => {
+      
+    // })
+    this.setState({ filteredBooks: this.state.user.booksRead })
+  }
+
+  showWishList() {
+    document.querySelector('.ShowAllButtonEdit').style.visibility = 'visible'
+    document.querySelector('.ShowAllButtonEdit').style.display = 'block'
+    this.setState({ filteredBooks: this.state.user.booksWishList })
+  }
+
+  showAllBooks() {
+    axios.get('/api/mylibrary', { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+      .then(res => {
+        console.log(res.data)
+        document.querySelector('.ShowAllButtonEdit').style.visibility = 'hidden'
+        document.querySelector('.ShowAllButtonEdit').style.display = 'none'
+        this.setState({ books: res.data.books, filteredBooks: res.data.books, user: res.data.currentUser })
+      })
+      .catch(err => this.setState({ error: err.response.data.message }))
+  }
 
 
   render() {
-    // console.log(this.state.filteredBooks)
-    // console.log(this.state.query)
-    // const id = this.props.book._id
 
     if (!this.state.books) return <h1>WAITING FOR BOOKS</h1>
 
@@ -69,10 +88,11 @@ class UserLibrary extends React.Component {
             onChange={() => this.handleSearch(event)}
           />
           <div className="MyLibraryFilterButtons">
-            <button className="button FilterButtonEdit">Read Books</button>
-            <button className="button FilterButtonEdit">Books Wish List</button>
+            <button className="button FilterButtonEdit" onClick={() => this.showBooksRead()}>Read Books</button>
+            <button className="button FilterButtonEdit" onClick={() => this.showWishList()}>Books Wish List</button>
             {/* <button className="button FilterButtonEdit">Liked Categories</button> */}
             <button className="button FilterButtonEdit">Rated Books</button>
+            <button className="button ShowAllButtonEdit" onClick={() => this.showAllBooks()}>Show All Books</button>
           </div>
         </div>
         <div className="BooksContainer">

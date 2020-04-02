@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import auth from '../lib/auth'
-import Spinner from './Common/Spinner'
+import  { Spinner } from './Common/Spinner'
 import Moment from 'react-moment'
 import EditCommentModal from './EditBookClubCommentModal'
 

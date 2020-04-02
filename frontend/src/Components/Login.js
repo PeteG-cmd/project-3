@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import auth from '../lib/auth'
-import Toastify from './Common/Toastify'
+
 
 class Login extends React.Component {
 
@@ -12,7 +12,7 @@ class Login extends React.Component {
         email: '',
         password: ''
       },
-      error: ''
+      error: true
     }
   }
 
@@ -34,8 +34,10 @@ class Login extends React.Component {
       .catch(err => this.setState({ error: err.response.data.message }))
   }
 
+
   render() {
     const { error } = this.state
+    console.log(this.state)
     return <main className="hero is-fullheight" id="loginhero">
       <div className="hero-body" id="loginhero-body">
         <div className="container">
@@ -88,7 +90,7 @@ class Login extends React.Component {
                         </small>}
                       </div>
                       <div>
-                        <Toastify />
+                        <button className="button is-success">Login</button>
                       </div>
                     </form>
                   </div>
