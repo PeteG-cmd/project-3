@@ -2,7 +2,6 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import auth from '../lib/auth'
 import { withRouter } from 'react-router-dom'
-// import logo from '../Images/'
 
 class NavBar extends React.Component {
 
@@ -16,23 +15,12 @@ class NavBar extends React.Component {
     this.props.history.push('/')
   }
 
-  componentDidUpdate(prevProps) {
-    if (this.props.location.pathname !== prevProps.location.pathname) {
-      this.setState({ navMobileOpen: false })
-    }
-  }
-
   render() {
     const isLoggedIn = auth.isLoggedIn()
     return <nav className="navbar" role="navigation" aria-label="main navigation">
       <div className="navbar-brand">
         <a className="navbar-item" href="/">
-          {/* <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" /> */}
-          {/* <img src="https://imgur.com/wTzlHx2" width="112" height="28" /> */}
-          {/* <img src="https://www.dropbox.com/s/chjf92bfbr03kzo/bookedup-logo.png?dl=0" width="112" height="28" /> */}
-          {/* <img src={require('../Images/logo.png')} /> */}
-          {/* <img src={require('https://imgur.com/wTzlHx2')} /> */}
-          {/* <img src={logo} width="112" height="28" /> */}
+          <img src="https://i.imgur.com/wTzlHx2.png" width="130" height="28" />
         </a>
 
         <a role="button"
