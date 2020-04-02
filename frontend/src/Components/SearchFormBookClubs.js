@@ -8,7 +8,7 @@ const SearchFormBookClubs = ({ query, onChange }) => {
           <input
             className="input is-normal"
             type="search"
-            placeholder="search book..."
+            placeholder="search book club..."
             value={query}
             onChange={onChange}
           />

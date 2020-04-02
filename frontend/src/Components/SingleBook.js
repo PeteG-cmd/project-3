@@ -110,7 +110,24 @@ class SingleBook extends React.Component {
               </button>
             </form>
           </div>}
-          {(!(auth.isLoggedIn())) && <>To join the discussion on this book <Link to={'/login'}><button>Login</button></Link> <p>or</p> <Link to={'/register'}><button>Register</button> </Link></>}
+          {(!(auth.isLoggedIn())) &&
+
+            <>
+              <div className="JoinTheDiscussion">
+                <h3>To join the discussion on this book</h3>
+                <div className="JoinTheDiscussionButtons">
+                  <Link to={'/login'}>
+                    <button className="button is-info">Login</button>
+                  </Link>
+
+                  <p className="JoinTheDiscussionOr">or</p>
+                  <Link to={'/register'}>
+                    <button className="button is-success">Register</button>
+                  </Link>
+                </div>
+              </div>
+            </>}
+
         </div>
       </section>
     </main>

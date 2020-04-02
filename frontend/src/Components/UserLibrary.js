@@ -50,6 +50,12 @@ class UserLibrary extends React.Component {
   showBooksRead() {
     document.querySelector('.ShowAllButtonEdit').style.visibility = 'visible'
     document.querySelector('.ShowAllButtonEdit').style.display = 'block'
+    document.querySelector('.MyLibraryTitle').style.visibility = 'hidden'
+    document.querySelector('.MyLibraryTitle').style.display = 'none'
+    document.querySelector('.BooksReadTitle').style.visibility = 'visible'
+    document.querySelector('.BooksReadTitle').style.display = 'block'
+    document.querySelector('.BooksWishListTile').style.visibility = 'hidden'
+    document.querySelector('.BooksWishListTile').style.display = 'none'
     console.log(this.state.user)
     // const booksRead = this.state.user.map(book => {
       
@@ -60,6 +66,12 @@ class UserLibrary extends React.Component {
   showWishList() {
     document.querySelector('.ShowAllButtonEdit').style.visibility = 'visible'
     document.querySelector('.ShowAllButtonEdit').style.display = 'block'
+    document.querySelector('.MyLibraryTitle').style.visibility = 'hidden'
+    document.querySelector('.MyLibraryTitle').style.display = 'none'
+    document.querySelector('.BooksWishListTile').style.visibility = 'visible'
+    document.querySelector('.BooksWishListTile').style.display = 'block'
+    document.querySelector('.BooksReadTitle').style.visibility = 'hidden'
+    document.querySelector('.BooksReadTitle').style.display = 'block'
     this.setState({ filteredBooks: this.state.user.booksWishList })
   }
 
@@ -69,6 +81,12 @@ class UserLibrary extends React.Component {
         console.log(res.data)
         document.querySelector('.ShowAllButtonEdit').style.visibility = 'hidden'
         document.querySelector('.ShowAllButtonEdit').style.display = 'none'
+        document.querySelector('.BooksReadTitle').style.visibility = 'visible'
+        document.querySelector('.BooksReadTitle').style.display = 'none'
+        document.querySelector('.MyLibraryTitle').style.visibility = 'visible'
+        document.querySelector('.MyLibraryTitle').style.display = 'block'
+        document.querySelector('.BooksWishListTile').style.visibility = 'hidden'
+        document.querySelector('.BooksWishListTile').style.display = 'none'
         this.setState({ books: res.data.books, filteredBooks: res.data.books, user: res.data.user })
       })
       .catch(err => this.setState({ error: err.response.data.message }))
@@ -83,6 +101,8 @@ class UserLibrary extends React.Component {
       <section className="mainMyLibraryContainer">
         <div className="mainMyLibraryContainerHeader">
           <h1 className='MyLibraryTitle'>My Library</h1>
+          <h1 className='BooksReadTitle'>Books Read</h1>
+          <h1 className='BooksWishListTile'>Books Wishlist</h1>
           <SearchFormMyLibrary
             query={this.state.query}
             onChange={() => this.handleSearch(event)}
