@@ -223,9 +223,12 @@ export default class Home extends React.Component {
                   <h2 id="HomeCommentsTitleContent">The Hottest Books being talked about right now...</h2>
                 </div>
                 <div className="HomeCommentsImages">
-                  <img src={this.state.hotBooks[0].thumbnail} alt=""></img>
-                  <img src={this.state.hotBooks[1].thumbnail} alt=""></img>
-                  <img src={this.state.hotBooks[2].thumbnail} alt=""></img>
+                  <img src={this.state.hotBooks[0].thumbnail} alt="" className="HomeCommentsImagesContent"></img>
+                  <img src={this.state.hotBooks[1].thumbnail} alt="" className="HomeCommentsImagesContent"></img>
+                  <img src={this.state.hotBooks[2].thumbnail} alt="" className="HomeCommentsImagesContent"></img>
+                </div>
+                <div className="HomeCommentsTitle">
+                  <h2 id="HomeCommentsTitleContent">...Join the converstation now!</h2>
                 </div>
               </div>
             </div>
