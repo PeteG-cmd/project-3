@@ -7,7 +7,9 @@ function register(req, res) {
   User
     .create(req.body)
     .then(user => {
-      res.status(201).send(user)
+      const token = jwt.sign({ sub: user._id }, secret, { expiresIn: '8h' })
+      res.status(202).send({ message: `Thanks for joining us ${user.username}`, token })
+      // res.status(201).send(user)
     })
     .catch(error => res.status(401).send(error))
 }

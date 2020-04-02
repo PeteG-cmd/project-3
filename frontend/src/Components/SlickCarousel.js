@@ -4,6 +4,7 @@ import axios from 'axios'
 import Slider from 'react-slick'
 import Spinner from './Common/Spinner'
 import lodash from 'lodash'
+import { Redirect } from 'react-router-dom'
 
 
 class SlickCarousel extends React.Component {
@@ -11,7 +12,10 @@ class SlickCarousel extends React.Component {
     super()
     this.state = {
       bookList: [],
-      dots: true
+      dots: true,
+      redirect: null,
+      searchRedirect: null,
+      book: null
 
     }
   }
@@ -40,6 +44,7 @@ class SlickCarousel extends React.Component {
 
       })
 
+
     } else {
 
       // This puts dots on the Carousel for the default categories if the user is not logged in.
@@ -56,7 +61,28 @@ class SlickCarousel extends React.Component {
         .catch(err => console.error(err))
     }
   }
+
+  handleClick(book) {
+    console.log(book)
+    axios.get(`https://www.googleapis.com/books/v1/volumes?q=isbn:${book.primary_isbn13}`)
+      .then(res => {
+        
+        if (!(res.data.items)) return this.setState({ searchRedirect: { title: book.title } })
+        if (res.data.items[0].volumeInfo.title.toLowerCase() !== book.title.toLowerCase()) return this.setState({ searchRedirect: { title: book.title } })
+        const linkTo = res.data.items[0].id
+        this.setState({ redirect: linkTo, book: res.data.items[0] })
+
+      })
+
+      .catch(error => console.error(error))
+  }
+
+
   render() {
+    console.log(this.state.searchRedirect)
+    const webId = this.state.redirect
+    if (this.state.redirect) return <Redirect to={`/book/${webId}`} book={this.state.book} />
+    if (this.state.searchRedirect) return <Redirect to={'/books/new'} searchQuery={this.state.searchRedirect} />
     if (this.state.bookList.length === 0) return <Spinner />
 
     const settings = {
@@ -81,6 +107,7 @@ class SlickCarousel extends React.Component {
               src={book.book_image}
               alt={`${book.title} by ${book.author}`}
               className="CarouselImg"
+              onClick={() => this.handleClick(book)}
             />
           </figure>
         })}

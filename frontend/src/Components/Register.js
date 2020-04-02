@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import axios from 'axios'
+import auth from '../lib/auth'
 
 import RegisterForm from './RegisterForm'
 
@@ -29,7 +30,12 @@ class Register extends React.Component {
   handleSubmit(event) {
     event.preventDefault()
     axios.post('/api/register', this.state.data)
-      .then(() => this.props.history.push('/categories'))
+      .then(res => {
+        const token = res.data.token
+        console.log(token)
+        auth.setToken(token)
+        this.props.history.push('/categories')
+      })
       .catch(err => this.setState({ errors: err.response.data.errors }))
   }
 

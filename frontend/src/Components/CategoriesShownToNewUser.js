@@ -39,7 +39,7 @@ class CategoriesShownToNewUser extends React.Component {
               <div className="columns">
                 <div className="column"></div>
                 <div className="column is-two-thirds">
-                  <div className="box">
+                  <div className="box catBox">
                     <h2 className="subtitle"><strong>Chapter 5: Select Your Favourite Book Categories</strong></h2>
                     <form
                       className="form"
@@ -51,7 +51,7 @@ class CategoriesShownToNewUser extends React.Component {
                           type="checkbox" value="advice-how-to-and-miscellaneous" />
                           Advice and How To
                       </label>
-                      <label className="checkbox">
+                      <label className="checkbox">     
                         <input
                           onChange={(event) => this.handleChange(event)}
                           type="checkbox" value="animals" />

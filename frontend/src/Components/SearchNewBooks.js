@@ -14,6 +14,19 @@ class SearchNewBooks extends React.Component {
     // this.fetchBooks = this.fetchBooks.bind(this)
   }
 
+  // componentDidMount() {
+  //   if (1===1) {
+  //     this.setState({ query: this.props.searchQuery })
+  //     console.log(this.props)
+  //     setTimeout(() => {
+  //       this.fetchBooks()
+  //     }, 1000)
+
+  //   }
+
+
+  // }
+
   handleSearch(event) {
     let query = event.target.value
     query = query.split(' ').join('+')

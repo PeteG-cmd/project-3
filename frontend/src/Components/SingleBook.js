@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import auth from '../lib/auth'
+import { Link } from 'react-router-dom'
 // import { Link } from 'react-router-dom'
 
 class SingleBook extends React.Component {
@@ -21,6 +22,8 @@ class SingleBook extends React.Component {
       }
     }
   }
+
+
 
   componentDidMount() {
     const webId = this.props.match.params.webId
@@ -96,9 +99,9 @@ class SingleBook extends React.Component {
               <p>{book.volumeInfo.description}</p>
             </div>
           </div>
-          <div className="AddBookButton">
+          {auth.isLoggedIn() && <div className="AddBookButton">
             <form>
-              <button 
+              <button
                 onClick={(event) => this.handleSubmit(event)}
                 className=""
                 id="TheBookBomb"
@@ -106,7 +109,8 @@ class SingleBook extends React.Component {
                 Add Book To Library
               </button>
             </form>
-          </div>
+          </div>}
+          {(!(auth.isLoggedIn())) && <>To join the discussion on this book <Link to={'/login'}><button>Login</button></Link> <p>or</p> <Link to={'/register'}><button>Register</button> </Link></>}
         </div>
       </section>
     </main>

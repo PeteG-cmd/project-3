@@ -36,7 +36,7 @@ class UserLibrary extends React.Component {
     this.setState({ query: searchQuery, filteredBooks: filteredBooks })
   }
 
-
+ 
   handleDelete(bookId) {
 
     console.log(this.props)

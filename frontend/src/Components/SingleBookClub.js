@@ -19,18 +19,26 @@ class SingleBookClub extends React.Component {
     }
   }
 
+  myInterval
 
   componentDidMount() {
-    const bookClubId = this.props.match.params.bookclub_id
-    axios.get(`/api/bookclub/${bookClubId}`, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
-      .then(res => {
-        console.log(res.data)
-        this.setState({ bookClub: res.data.bookclub, user: res.data.user })
-      })
-      .catch(err => {
-        console.log(err)
-        this.props.history.push('/bookclubs/mybookclubs')
-      })
+    this.updatePage()
+
+  }
+
+  componentWillUnmount() {
+    clearInterval(this.myInterval)
+  }
+
+  updatePage() {
+    this.myInterval = setInterval(() => {
+
+      const bookClubId = this.props.match.params.bookclub_id
+      axios.get(`/api/bookclub/${bookClubId}`, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+        .then(res => this.setState({ bookClub: res.data.bookclub, user: res.data.user }))
+        .catch(err => this.props.history.push('/bookclubs/mybookclubs'))
+
+    }, 4000)
   }
 
   handleRequest(memberId, event) {
@@ -68,9 +76,9 @@ class SingleBookClub extends React.Component {
         <section className="theDetailedBookClubInfoContainer" >
           <div>
             <p className='title'>{this.state.bookClub.bookClubName}</p>
-         
+
             <p className='subtitle'>{this.state.bookClub.descriptionBio}</p>
-            
+
 
             <div>
 
