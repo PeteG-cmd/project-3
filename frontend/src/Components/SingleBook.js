@@ -100,7 +100,7 @@ class SingleBook extends React.Component {
             <form>
               <button 
                 onClick={(event) => this.handleSubmit(event)}
-                className=""
+                className="button"
                 id="TheBookBomb"
               >
                 Add Book To Library
@@ -119,12 +119,5 @@ class SingleBook extends React.Component {
 
 export default SingleBook
 
-
-
-{/* <form>
-            <button
-              onClick={(event) => this.handleSubmit(event)}
-            >Add Book</button>
-          </form> */}
 
 

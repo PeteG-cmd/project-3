@@ -24,7 +24,7 @@ const SearchBookCard = ({ book }) => {
         <div className="SeeBookButton">
           <Link to={`../book/${book.id}`} book={book}>
             <button
-              className=" SeeTheBook">See Book
+              className="button SeeTheBook">See Book
             </button>
           </Link>
         </div>

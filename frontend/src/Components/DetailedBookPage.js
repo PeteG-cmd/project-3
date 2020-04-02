@@ -39,6 +39,14 @@ class DetailedBookPage extends React.Component {
 
   handleAddToWishList(event) {
     event.preventDefault()
+    document.querySelector('#checkWishListIcon').style.visibility = 'visible'
+    document.querySelector('#checkWishListIcon').style.padding = '0px 4px 0px 0px'
+    document.querySelector('#WishListIcon').style.visibility = 'hidden'
+    document.querySelector('#WishListIcon').style.display = 'none'
+    document.querySelector('#ReadBookIcon').style.visibility = 'visible'
+    document.querySelector('#ReadBookIcon').style.display = 'inline'
+    document.querySelector('#checkReadBooksIcon').style.visibility = 'hidden'
+    document.querySelector('#checkReadBooksIcon').style.padding = '0px 0px 0px 0px'
     axios.post('/api/books/wishlist', this.state.databaseBook, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then(res => {
         console.log(res.data)
@@ -48,6 +56,14 @@ class DetailedBookPage extends React.Component {
 
   handleAddToBooksRead(event) {
     event.preventDefault()
+    document.querySelector('#WishListIcon').style.visibility = 'visible'
+    document.querySelector('#WishListIcon').style.display = 'inline'
+    document.querySelector('#checkWishListIcon').style.visibility = 'hidden'
+    document.querySelector('#checkWishListIcon').style.padding = '0px 0px 0px 0px'
+    document.querySelector('#ReadBookIcon').style.visibility = 'hidden'
+    document.querySelector('#ReadBookIcon').style.display = 'none'
+    document.querySelector('#checkReadBooksIcon').style.visibility = 'visible'
+    document.querySelector('#checkReadBooksIcon').style.padding = '0px 4px 0px 0px'
     axios.post('/api/books/booksRead', this.state.databaseBook, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then(res => {
         console.log(res.data)
@@ -88,7 +104,7 @@ class DetailedBookPage extends React.Component {
                 </div>
                 <div className="yourRating">
                   <StarRating></StarRating>
-                  <button className="">Submit Rating</button>
+                  <button className="button">Submit Rating</button>
                 </div>
               </div>
             </div>
@@ -122,11 +138,11 @@ class DetailedBookPage extends React.Component {
             </div>
             <div className="Addons">
               <div><h3>Add Book To Wish List: <a onClick={(event) => this.handleAddToWishList(event)}>
-                <span className="icon is-small"><i className="fas fa-heart"></i></span>
-              </a></h3></div>
+                <span id="WishListIcon" className="icon is-small"><i className="fas fa-heart"></i></span>
+              </a><span id="checkWishListIcon" className="icon is-small"><i className="fas fa-check"></i></span></h3></div>
               <div><h3>Add to Read Books: <a onClick={(event) => this.handleAddToBooksRead(event)}>
-                <span className="icon is-small"><i className="fas fa-book-open"></i></span>
-              </a></h3></div>
+                <span id="ReadBookIcon"className="icon is-small"><i className="fas fa-book-open"></i></span>
+              </a><span id="checkReadBooksIcon" className="icon is-small"><i className="fas fa-check"></i></span></h3></div>
               {/* <div><h3>Add <strong>{book[0].volumeInfo.categories}</strong> to Liked Categories: <a>
                 <span className="icon is-small"><i className="fas fa-book"></i></span>
               </a> </h3></div> */}

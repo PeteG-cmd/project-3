@@ -3,7 +3,7 @@ import Loader from 'react-loader-spinner'
 
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 
-const Spinner = () => {
+export const Spinner = () => {
 
   return <div className='Loading'>
     <Loader
@@ -14,13 +14,23 @@ const Spinner = () => {
       width={100}
       timeout={10000}
     />
+  </div>
+}
+
+export const CarouselSpinner = () => {
+
+  return <div className='Loading'>
+    <Loader
+      type='ThreeDots'
+      color='#383534'
+      className='Loading'
+      height={30}
+      width={60}
+      timeout={2000}
+    />
 
 
   </div>
 
-
 }
 
-
-
-export default Spinner

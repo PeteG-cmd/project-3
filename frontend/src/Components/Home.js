@@ -3,11 +3,6 @@ import axios from 'axios'
 import auth from '../lib/auth'
 
 import SlickCarousel from './SlickCarousel'
-// import SlickCarousel2 from './SlickCarousel2'
-// import SlickCarousel3 from './SlickCarousel3'
-
-
-import Toastify from './Common/Toastify'
 
 export default class Home extends React.Component {
 
@@ -27,12 +22,23 @@ export default class Home extends React.Component {
         .then(res => {
           this.setState({ user: res.data })
           console.log(res.data)
-        })
-
+        }) 
       axios.get('/api/mylibrary', { headers: { Authorization: `Bearer ${auth.getToken()}` } })
         .then(res => this.setState({ books: res.data }))
         .catch(err => this.setState({ error: err.response.data.message }))
     }
+  }
+
+  latestBookReadHomePage() {
+
+  }
+
+  latestBookWishListHomePage() {
+    
+  }
+
+  latestBookMyLibraryHomePage() {
+    
   }
 
   render() {
@@ -194,7 +200,7 @@ export default class Home extends React.Component {
                 <div className="LatestBookCard">
                   <div className="LatestBookCardImageContainer">
                     <figure>
-                      <img src="" alt="" className="LatestBookCardContent"></img>
+                      <img src="https://www.gijoeelite.com/assets/images/no%20image.jpg" alt="" className="LatestBookCardContent" id="RatedBooksImg"></img>
                     </figure> 
                   </div>
                   <div className="SearchTitleandAuthorInfo">
