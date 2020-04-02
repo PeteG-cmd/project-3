@@ -2,6 +2,7 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import auth from '../lib/auth'
 import { withRouter } from 'react-router-dom'
+// import logo from '../Images/'
 
 class NavBar extends React.Component {
 
@@ -18,10 +19,14 @@ class NavBar extends React.Component {
   render() {
     const isLoggedIn = auth.isLoggedIn()
     return <nav className="navbar" role="navigation" aria-label="main navigation">
-
       <div className="navbar-brand">
         <a className="navbar-item" href="/">
           {/* <img src="https://bulma.io/images/bulma-logo.png" width="112" height="28" /> */}
+          {/* <img src="https://imgur.com/wTzlHx2" width="112" height="28" /> */}
+          {/* <img src="https://www.dropbox.com/s/chjf92bfbr03kzo/bookedup-logo.png?dl=0" width="112" height="28" /> */}
+          {/* <img src={require('../Images/logo.png')} /> */}
+          {/* <img src={require('https://imgur.com/wTzlHx2')} /> */}
+          {/* <img src={logo} width="112" height="28" /> */}
         </a>
 
         <a role="button"
@@ -37,6 +42,7 @@ class NavBar extends React.Component {
         </a>
       </div>
 
+
       <div className={`navbar-menu ${this.state.navMobileOpen ? 'is-active' : ''}`}>
         <div className="navbar-start">
           <Link className="navbar-item" to="/">Home</Link>
@@ -46,10 +52,10 @@ class NavBar extends React.Component {
             <a className="navbar-link">
               My Library
             </a>
-            <div className="navbar-dropdown" >
+            <div className="navbar-dropdown">
               <div id="AllBooksNav"></div>
               <Link to="/mylibrary" className="navbar-item">
-                <p id="AllBooksNav">All books</p>
+                <p id="AllBooksNav">All Books</p>
               </Link>
               <Link to="/books/new" className="navbar-item">
                 Add Books

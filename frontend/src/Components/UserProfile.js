@@ -56,9 +56,6 @@ class UserProfile extends React.Component {
     }
 
     this.setState({ categories: choices })
-
-
-    // window.reload()
     console.log(choices)
   }
 
