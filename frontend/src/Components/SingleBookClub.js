@@ -38,7 +38,7 @@ class SingleBookClub extends React.Component {
         .then(res => this.setState({ bookClub: res.data.bookclub, user: res.data.user }))
         .catch(err => this.props.history.push('/bookclubs/mybookclubs'))
 
-    }, 4000)
+    }, 3000)
   }
 
   handleRequest(memberId, event) {
@@ -66,8 +66,8 @@ class SingleBookClub extends React.Component {
   }
 
   render() {
-    if (!this.state.bookClub) return <Spinner />
-    if (!this.state.bookClub.joinRequests) return <Spinner />
+    if (!this.state.bookClub) return <div className="AllBookClubsSpinner"><Spinner /></div>
+    if (!this.state.bookClub.joinRequests) return <div className="AllBookClubsSpinner"><Spinner /></div>
     const userId = this.state.user._id
     const adminId = this.state.bookClub.adminUser._id
     // const bookClub = this.state.bookClub

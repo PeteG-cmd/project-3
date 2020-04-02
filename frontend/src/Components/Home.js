@@ -1,6 +1,8 @@
 import React from 'react'
 import axios from 'axios'
 import auth from '../lib/auth'
+import lodash from 'lodash'
+import { Link } from 'react-router-dom'
 
 import SlickCarousel from './SlickCarousel'
 
@@ -11,7 +13,8 @@ export default class Home extends React.Component {
     this.state = {
       user: null,
       defaultCategories: ['hardcover-fiction', 'hardcover-nonfiction', 'young-adult-hardcover'],
-      books: []
+      books: [],
+      hotBooks: null
     }
   }
 
@@ -26,24 +29,31 @@ export default class Home extends React.Component {
       axios.get('/api/mylibrary', { headers: { Authorization: `Bearer ${auth.getToken()}` } })
         .then(res => this.setState({ books: res.data.user.books, user: res.data.user }))
         .catch(err => this.setState({ error: err.response.data.message }))
+
+      axios.get('/api/books/get')
+        .then(res => {
+          console.log('hello')
+          console.log(res.data)
+          const books = res.data
+          let hotBooks = books.filter(book => {
+            return book.comments.length > 0
+          })
+          hotBooks = _.shuffle(hotBooks)
+          this.setState({ hotBooks })
+        })
+        .catch(err => this.setState({ error: err.response.data.message }))
     }
   }
-
-  latestBookReadHomePage() {
-
-  }
-
-  latestBookWishListHomePage() {
-
-  }
-
-  latestBookMyLibraryHomePage() {
+  showWishListFromClick() {
 
   }
 
   render() {
     const categories = this.state.defaultCategories
-    console.log(this.state.defaultCategories)
+
+    console.log(this.state)
+
+
 
 
     if (!auth.isLoggedIn()) {
@@ -144,9 +154,8 @@ export default class Home extends React.Component {
       </>
 
     } else {
-      if (!this.state.user) return <h1>Waiting</h1>
+      if (!this.state.user || !this.state.hotBooks) return <h1>Waiting</h1>
       console.log(this.state.user)
-
       return <>
         <main className="user-home-main">
           <div className="UserMainHomeContainer">
@@ -156,12 +165,12 @@ export default class Home extends React.Component {
                 <div className="LatestBookCard">
                   <div className="LatestBookCardImageContainer">
                     <figure>
-                      <img src={this.state.books[this.state.books.length - 1].thumbnail} alt="" className="LatestBookCardContent"></img>
+                      {this.state.books && <Link to='/mylibrary'><img src={this.state.books[0].thumbnail} alt="" className="LatestBookCardContent"></img></Link>}
                     </figure>
                   </div>
                   <div className="SearchTitleandAuthorInfo">
-                    <h4 className="SearchTheTitle">Hi</h4>
-                    <h5 className="SearchAuthor">Bye</h5>
+                    {/* <h4 className="SearchTheTitle">{this.state.books[0].title}</h4>
+                    <h5 className="SearchAuthor"><strong>{this.state.books[0].author}</strong></h5> */}
                   </div>
                 </div>
               </div>
@@ -170,12 +179,12 @@ export default class Home extends React.Component {
                 <div className="LatestBookCard">
                   <div className="LatestBookCardImageContainer">
                     <figure>
-                      <img src="" alt="" className="LatestBookCardContent"></img>
+                      {this.state.bookRead && <img src={this.state.user.booksRead[0].thumbnail} alt="" className="LatestBookCardContent"></img>}
                     </figure>
                   </div>
                   <div className="SearchTitleandAuthorInfo">
-                    <h4 className="SearchTheTitle">Hi</h4>
-                    <h5 className="SearchAuthor">Bye</h5>
+                    {/* <h4 className="SearchTheTitle">{this.state.user.booksRead[0].title}</h4>
+                    <h5 className="SearchAuthor"><strong>{this.state.user.booksRead[0].author}</strong></h5> */}
                   </div>
                 </div>
               </div>
@@ -186,16 +195,16 @@ export default class Home extends React.Component {
                 <div className="LatestBookCard">
                   <div className="LatestBookCardImageContainer">
                     <figure>
-                      <img src="" alt="" className="LatestBookCardContent"></img>
+                      {this.state.booksWishList && <img src={this.state.user.booksWishList[0].thumbnail} alt="" className="LatestBookCardContent"></img>}
                     </figure>
                   </div>
                   <div className="SearchTitleandAuthorInfo">
-                    <h4 className="SearchTheTitle">Hi</h4>
-                    <h5 className="SearchAuthor">Bye</h5>
+                    {/* <h4 className="SearchTheTitle">{this.state.user.booksWishList[0].title}</h4>
+                    <h5 className="SearchAuthor"><strong>{this.state.user.booksWishList[0].author}</strong></h5> */}
                   </div>
                 </div>
               </div>
-              <div className="LatestBookCards">
+              <div className="LatestBookCards" id="LatestBookCardsRated">
                 <h2 className="LatestBookCardsTitle">Latest Book Added to Books Rated</h2>
                 <div className="LatestBookCard">
                   <div className="LatestBookCardImageContainer">
@@ -204,8 +213,8 @@ export default class Home extends React.Component {
                     </figure>
                   </div>
                   <div className="SearchTitleandAuthorInfo">
-                    <h4 className="SearchTheTitle">Hi</h4>
-                    <h5 className="SearchAuthor">Bye</h5>
+                    <h4 className="SearchTheTitle"></h4>
+                    <h5 className="SearchAuthor"></h5>
                   </div>
                 </div>
               </div>
