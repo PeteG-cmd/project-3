@@ -52,7 +52,7 @@ router.route('/books/booksRead')
 
 
 // router.route('/books/booksByLikedCategories')
-//   .post(secureRoute, booksController, addBookBooksByLikedCategories)
+//   .post(secureRoute, booksController.addBooksByLikedCategories)
 
 
 // Book Comment Routes

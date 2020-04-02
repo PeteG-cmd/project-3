@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import auth from '../lib/auth'
+import { Link } from 'react-router-dom'
 
 import SlickCarousel from './SlickCarousel'
 
@@ -28,23 +29,14 @@ export default class Home extends React.Component {
         .catch(err => this.setState({ error: err.response.data.message }))
     }
   }
-
-  latestBookReadHomePage() {
-
-  }
-
-  latestBookWishListHomePage() {
-
-  }
-
-  latestBookMyLibraryHomePage() {
+  showWishListFromClick() {
 
   }
 
   render() {
     const categories = this.state.defaultCategories
-    console.log(this.state.defaultCategories)
-
+    // console.log(this.state.defaultCategories)
+    
 
     if (!auth.isLoggedIn()) {
       return <>
@@ -146,7 +138,6 @@ export default class Home extends React.Component {
     } else {
       if (!this.state.user) return <h1>Waiting</h1>
       console.log(this.state.user)
-
       return <>
         <main className="user-home-main">
           <div className="UserMainHomeContainer">
@@ -156,12 +147,12 @@ export default class Home extends React.Component {
                 <div className="LatestBookCard">
                   <div className="LatestBookCardImageContainer">
                     <figure>
-                      <img src={this.state.books[this.state.books.length - 1].thumbnail} alt="" className="LatestBookCardContent"></img>
+                      <Link to='/mylibrary'><img src={this.state.books[0].thumbnail} alt="" className="LatestBookCardContent"></img></Link>
                     </figure>
                   </div>
                   <div className="SearchTitleandAuthorInfo">
-                    <h4 className="SearchTheTitle">Hi</h4>
-                    <h5 className="SearchAuthor">Bye</h5>
+                    <h4 className="SearchTheTitle">{this.state.books[0].title}</h4>
+                    <h5 className="SearchAuthor"><strong>{this.state.books[0].author}</strong></h5>
                   </div>
                 </div>
               </div>
@@ -170,12 +161,12 @@ export default class Home extends React.Component {
                 <div className="LatestBookCard">
                   <div className="LatestBookCardImageContainer">
                     <figure>
-                      <img src="" alt="" className="LatestBookCardContent"></img>
+                      <img src={this.state.user.booksRead[0].thumbnail} alt="" className="LatestBookCardContent"></img>
                     </figure>
                   </div>
                   <div className="SearchTitleandAuthorInfo">
-                    <h4 className="SearchTheTitle">Hi</h4>
-                    <h5 className="SearchAuthor">Bye</h5>
+                    <h4 className="SearchTheTitle">{this.state.user.booksRead[0].title}</h4>
+                    <h5 className="SearchAuthor"><strong>{this.state.user.booksRead[0].author}</strong></h5>
                   </div>
                 </div>
               </div>
@@ -186,16 +177,16 @@ export default class Home extends React.Component {
                 <div className="LatestBookCard">
                   <div className="LatestBookCardImageContainer">
                     <figure>
-                      <img src="" alt="" className="LatestBookCardContent"></img>
+                      <img src={this.state.user.booksWishList[0].thumbnail} alt="" className="LatestBookCardContent"></img>
                     </figure>
                   </div>
                   <div className="SearchTitleandAuthorInfo">
-                    <h4 className="SearchTheTitle">Hi</h4>
-                    <h5 className="SearchAuthor">Bye</h5>
+                    <h4 className="SearchTheTitle">{this.state.user.booksWishList[0].title}</h4>
+                    <h5 className="SearchAuthor"><strong>{this.state.user.booksWishList[0].author}</strong></h5>
                   </div>
                 </div>
               </div>
-              <div className="LatestBookCards">
+              <div className="LatestBookCards" id="LatestBookCardsRated">
                 <h2 className="LatestBookCardsTitle">Latest Book Added to Books Rated</h2>
                 <div className="LatestBookCard">
                   <div className="LatestBookCardImageContainer">
@@ -204,8 +195,8 @@ export default class Home extends React.Component {
                     </figure>
                   </div>
                   <div className="SearchTitleandAuthorInfo">
-                    <h4 className="SearchTheTitle">Hi</h4>
-                    <h5 className="SearchAuthor">Bye</h5>
+                    <h4 className="SearchTheTitle"></h4>
+                    <h5 className="SearchAuthor"></h5>
                   </div>
                 </div>
               </div>
