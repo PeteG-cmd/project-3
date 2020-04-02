@@ -39,7 +39,7 @@ class NavBar extends React.Component {
 
       <div className={`navbar-menu ${this.state.navMobileOpen ? 'is-active' : ''}`}>
         <div className="navbar-start">
-          <Link className="navbar-item" to="/">Home</Link>
+          {/* <Link className="navbar-item" to="/">Home</Link> */}
 
           {isLoggedIn && <div
             className="navbar-item has-dropdown is-hoverable">

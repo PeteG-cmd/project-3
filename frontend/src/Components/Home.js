@@ -50,9 +50,7 @@ export default class Home extends React.Component {
 
   render() {
     const categories = this.state.defaultCategories
-
     console.log(this.state)
-
 
 
 
@@ -145,12 +143,12 @@ export default class Home extends React.Component {
               </div>
             </section>
           </div>
-          <footer id="NonUserHomeMainfooter">
-            <div>
-              <p>CopyRight By Maxwell Jam, Peter Pan, Gordon Ramsay</p>
-            </div>
-          </footer>
         </main>
+        <footer id="NonUserHomeMainfooter">
+          <div>
+            <p>CopyRight By Maxwell Jam, Peter Pan, Gordon Ramsay</p>
+          </div>
+        </footer>
       </>
 
     } else {
@@ -179,12 +177,8 @@ export default class Home extends React.Component {
                 <div className="LatestBookCard">
                   <div className="LatestBookCardImageContainer">
                     <figure>
-                      {this.state.user.booksRead.length > 0 && <img src={this.state.user.booksRead[0].thumbnail} alt="" className="LatestBookCardContent"></img>}
+                      {this.state.user.booksRead.length > 0 && <Link to='/mylibrary'><img src={this.state.user.booksRead[0].thumbnail} alt="" className="LatestBookCardContent"></img></Link>}
                     </figure>
-                  </div>
-                  <div className="SearchTitleandAuthorInfo">
-                    {/* <h4 className="SearchTheTitle">{this.state.user.booksRead[0].title}</h4>
-                    <h5 className="SearchAuthor"><strong>{this.state.user.booksRead[0].author}</strong></h5> */}
                   </div>
                 </div>
               </div>
@@ -195,26 +189,18 @@ export default class Home extends React.Component {
                 <div className="LatestBookCard">
                   <div className="LatestBookCardImageContainer">
                     <figure>
-                      {this.state.user.booksWishList.length > 0 && <img src={this.state.user.booksWishList[0].thumbnail} alt="" className="LatestBookCardContent"></img>}
+                      {this.state.user.booksWishList.length > 0 && <Link to='/mylibrary'><img src={this.state.user.booksWishList[0].thumbnail} alt="" className="LatestBookCardContent"></img></Link>}
                     </figure>
-                  </div>
-                  <div className="SearchTitleandAuthorInfo">
-                    {/* <h4 className="SearchTheTitle">{this.state.user.booksWishList[0].title}</h4>
-                    <h5 className="SearchAuthor"><strong>{this.state.user.booksWishList[0].author}</strong></h5> */}
                   </div>
                 </div>
               </div>
-              <div className="LatestBookCards" id="LatestBookCardsRated">
+              <div className="LatestBookCards" >
                 <h2 className="LatestBookCardsTitle">Latest Book Added to Books Rated</h2>
                 <div className="LatestBookCard">
-                  <div className="LatestBookCardImageContainer">
+                  <div className="LatestBookCardImageContainer" id="LatestBookCardsRated">
                     <figure>
                       <img src="https://www.gijoeelite.com/assets/images/no%20image.jpg" alt="" className="LatestBookCardContent" id="RatedBooksImg"></img>
                     </figure>
-                  </div>
-                  <div className="SearchTitleandAuthorInfo">
-                    <h4 className="SearchTheTitle"></h4>
-                    <h5 className="SearchAuthor"></h5>
                   </div>
                 </div>
               </div>
@@ -233,16 +219,24 @@ export default class Home extends React.Component {
                 </div>
               </section>
               <div className="UserHomeBookCommentsContainer">
-                COMMENTS
+                <div className="HomeCommentsTitle">
+                  <h2 id="HomeCommentsTitleContent">The Hottest Books being talked about right now...</h2>
+                </div>
+                <div className="HomeCommentsImages">
+                  <img src={this.state.hotBooks[0].thumbnail} alt=""></img>
+                  <img src={this.state.hotBooks[1].thumbnail} alt=""></img>
+                  <img src={this.state.hotBooks[2].thumbnail} alt=""></img>
+                </div>
               </div>
             </div>
           </div>
-          <footer id="UserHomeMainfooter">
-            <div>
-              <p>CopyRight By Maxwell Jam, Peter Pan, Gordon Ramsay</p>
-            </div>
-          </footer>
+
         </main>
+        <footer id="UserHomeMainfooter">
+          <div>
+            <p>CopyRight By Maxwell Jam, Peter Pan, Gordon Ramsay</p>
+          </div>
+        </footer>
       </>
 
     }
