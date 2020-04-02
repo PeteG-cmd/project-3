@@ -68,8 +68,8 @@ class UserProfile extends React.Component {
   render() {
     //Stops the issue of trying to render a null object.  Will only try and render once something has been returned
     if (!this.state.books || !this.state.user) return <h1>Wait for info</h1>
-    console.log(this.state.categories)
-    // console.log(this.state.books)
+    // console.log(this.state.categories)
+    console.log(this.state.books)
     // console.log(this.state.user)
     return <main className="hero is-fullheight">
 
