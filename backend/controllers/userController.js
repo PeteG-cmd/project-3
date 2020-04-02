@@ -4,8 +4,10 @@ const jwt = require('jsonwebtoken')
 const { secret } = require('../config/enviroment')
 
 function register(req, res) {
+  console.log(req)
   User
     .create(req.body)
+
     .then(user => {
       const token = jwt.sign({ sub: user._id }, secret, { expiresIn: '8h' })
       res.status(202).send({ message: `Thanks for joining us ${user.username}`, token })

@@ -165,7 +165,7 @@ export default class Home extends React.Component {
                 <div className="LatestBookCard">
                   <div className="LatestBookCardImageContainer">
                     <figure>
-                      {this.state.books && <Link to='/mylibrary'><img src={this.state.books[0].thumbnail} alt="" className="LatestBookCardContent"></img></Link>}
+                      {this.state.books.length > 0 && <Link to='/mylibrary'><img src={this.state.books[0].thumbnail} alt="" className="LatestBookCardContent"></img></Link>}
                     </figure>
                   </div>
                   <div className="SearchTitleandAuthorInfo">
@@ -179,7 +179,7 @@ export default class Home extends React.Component {
                 <div className="LatestBookCard">
                   <div className="LatestBookCardImageContainer">
                     <figure>
-                      {this.state.bookRead && <img src={this.state.user.booksRead[0].thumbnail} alt="" className="LatestBookCardContent"></img>}
+                      {this.state.user.booksRead.length > 0 && <img src={this.state.user.booksRead[0].thumbnail} alt="" className="LatestBookCardContent"></img>}
                     </figure>
                   </div>
                   <div className="SearchTitleandAuthorInfo">
@@ -195,7 +195,7 @@ export default class Home extends React.Component {
                 <div className="LatestBookCard">
                   <div className="LatestBookCardImageContainer">
                     <figure>
-                      {this.state.booksWishList && <img src={this.state.user.booksWishList[0].thumbnail} alt="" className="LatestBookCardContent"></img>}
+                      {this.state.user.booksWishList.length > 0 && <img src={this.state.user.booksWishList[0].thumbnail} alt="" className="LatestBookCardContent"></img>}
                     </figure>
                   </div>
                   <div className="SearchTitleandAuthorInfo">

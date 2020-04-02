@@ -148,7 +148,7 @@ class UserProfile extends React.Component {
                 <div className="tile is-child box">
                   <p> <strong> Number of Books In Library:</strong> {this.state.books.length}</p>
                   <p> <strong> Last Book Added:</strong></p>
-                  <p>{this.state.books[this.state.books.length - 1].title}</p>
+                  {this.state.books.length > 0 && <p>{this.state.books[this.state.books.length - 1].title}</p>}
                 </div>
 
                 <div className="tile is-child box">

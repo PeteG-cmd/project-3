@@ -87,6 +87,14 @@ const RegisterForm = ({ handleSubmit, handleChange, errors, data }) => {
         {errors.passwordConfirmation.message}
       </small>}
     </div>
+    <label for="avatar">Choose a profile picture:</label>
+
+    <input type="file"
+      id="avatar" name="avatar"
+      accept="image/png, image/jpeg" />
+
+
+
     <button className="button is-success">
       Register
     </button>
