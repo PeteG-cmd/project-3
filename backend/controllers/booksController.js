@@ -54,11 +54,18 @@ function getBooks(req, res) {
     .find({
       _id: {
         $in: currentUser.books
-      } 
+      }
     })
     .then(books => {
-      console.log(books)
-      res.status(201).send({ books, currentUser })
+      User.findById(currentUser._id)
+        .populate('books')
+        .populate('booksRead')
+        .populate('booksWishList')
+        .then(user => {
+          console.log(books)
+          res.status(201).send({ books, user })
+        })
+     
     })
 
 }

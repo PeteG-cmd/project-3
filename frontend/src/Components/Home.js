@@ -17,14 +17,14 @@ export default class Home extends React.Component {
 
   componentDidMount() {
     if (auth.isLoggedIn()) {
-      axios
-        .post('/api/profile', {}, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
-        .then(res => {
-          this.setState({ user: res.data })
-          console.log(res.data)
-        }) 
+      // axios
+      //   .post('/api/profile', {}, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+      //   .then(res => {
+      //     this.setState({ user: res.data })
+      //     console.log(res.data)
+      // }) 
       axios.get('/api/mylibrary', { headers: { Authorization: `Bearer ${auth.getToken()}` } })
-        .then(res => this.setState({ books: res.data }))
+        .then(res => this.setState({ books: res.data.user.books, user: res.data.user }))
         .catch(err => this.setState({ error: err.response.data.message }))
     }
   }
@@ -34,11 +34,11 @@ export default class Home extends React.Component {
   }
 
   latestBookWishListHomePage() {
-    
+
   }
 
   latestBookMyLibraryHomePage() {
-    
+
   }
 
   render() {
@@ -156,8 +156,8 @@ export default class Home extends React.Component {
                 <div className="LatestBookCard">
                   <div className="LatestBookCardImageContainer">
                     <figure>
-                      <img src="" alt="" className="LatestBookCardContent"></img>
-                    </figure> 
+                      <img src={this.state.books[this.state.books.length - 1].thumbnail} alt="" className="LatestBookCardContent"></img>
+                    </figure>
                   </div>
                   <div className="SearchTitleandAuthorInfo">
                     <h4 className="SearchTheTitle">Hi</h4>
@@ -171,7 +171,7 @@ export default class Home extends React.Component {
                   <div className="LatestBookCardImageContainer">
                     <figure>
                       <img src="" alt="" className="LatestBookCardContent"></img>
-                    </figure> 
+                    </figure>
                   </div>
                   <div className="SearchTitleandAuthorInfo">
                     <h4 className="SearchTheTitle">Hi</h4>
@@ -187,7 +187,7 @@ export default class Home extends React.Component {
                   <div className="LatestBookCardImageContainer">
                     <figure>
                       <img src="" alt="" className="LatestBookCardContent"></img>
-                    </figure> 
+                    </figure>
                   </div>
                   <div className="SearchTitleandAuthorInfo">
                     <h4 className="SearchTheTitle">Hi</h4>
@@ -201,7 +201,7 @@ export default class Home extends React.Component {
                   <div className="LatestBookCardImageContainer">
                     <figure>
                       <img src="https://www.gijoeelite.com/assets/images/no%20image.jpg" alt="" className="LatestBookCardContent" id="RatedBooksImg"></img>
-                    </figure> 
+                    </figure>
                   </div>
                   <div className="SearchTitleandAuthorInfo">
                     <h4 className="SearchTheTitle">Hi</h4>

@@ -21,7 +21,7 @@ class UserLibrary extends React.Component {
     axios.get('/api/mylibrary', { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then(res => {
         console.log(res.data)
-        this.setState({ books: res.data.books, filteredBooks: res.data.books, user: res.data.currentUser })
+        this.setState({ books: res.data.books, filteredBooks: res.data.books, user: res.data.user })
       })
       .catch(err => this.setState({ error: err.response.data.message }))
   }
@@ -69,7 +69,7 @@ class UserLibrary extends React.Component {
         console.log(res.data)
         document.querySelector('.ShowAllButtonEdit').style.visibility = 'hidden'
         document.querySelector('.ShowAllButtonEdit').style.display = 'none'
-        this.setState({ books: res.data.books, filteredBooks: res.data.books, user: res.data.currentUser })
+        this.setState({ books: res.data.books, filteredBooks: res.data.books, user: res.data.user })
       })
       .catch(err => this.setState({ error: err.response.data.message }))
   }
