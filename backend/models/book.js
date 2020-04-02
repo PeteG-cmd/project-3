@@ -8,8 +8,8 @@ const schema = new mongoose.Schema({
   isbnNumber: { type: String },
   author: { type: String, required: true },
   thumbnail: { type: String, required: true },
-  pageCount: { type: Number, required: true },
-  language: { type: String, required: true },
+  pageCount: { type: Number, required: false },
+  language: { type: String, required: false },
   categories: { type: String, required: true },
   // comments: [{ type: mongoose.Schema.ObjectId, ref: 'Comment' }]
   comments: [Comment]

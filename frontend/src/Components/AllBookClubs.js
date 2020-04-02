@@ -1,12 +1,12 @@
 import React from 'react'
 import axios from 'axios'
 import auth from '../lib/auth'
-import Spinner from './Common/Spinner'
+import { Spinner } from './Common/Spinner'
 import { Link } from 'react-router-dom'
 import SearchFormBookClubs from './SearchFormBookClubs'
 
 
-class CreateBookClub extends React.Component {
+class AllBookClubs extends React.Component {
 
   constructor() {
     super()
@@ -71,7 +71,7 @@ class CreateBookClub extends React.Component {
 
   render() {
 
-    if (!this.state.bookClubs) return <Spinner />
+    if (!this.state.bookClubs) return <div className="AllBookClubsSpinner"><Spinner /></div>
 
     const userCurrentInvitesSent = this.state.userCurrentInvitesSent
     const userBookClubs = this.state.userBookClubs
@@ -89,9 +89,9 @@ class CreateBookClub extends React.Component {
         </div>
         {this.state.filteredBookClubs.map((bookClub, index) => {
           return <div key={index} className='bookClubJoinTab'>
-            <p>Bookclub Name: {bookClub.bookClubName}</p>
-            <p>Description: {bookClub.descriptionBio}</p>
-            <p>Admin: {bookClub.adminUser.username}</p>
+            <p><span className="Allbookclubstitle">Bookclub Name:</span> {bookClub.bookClubName}</p>
+            <p><span className="Allbookclubstitle">Description:</span> {bookClub.descriptionBio}</p>
+            <p><span className="Allbookclubstitle">Admin:</span> {bookClub.adminUser.username}</p>
 
             {userCurrentInvitesSent.includes(bookClub._id) ? <button className='button is-warning is-rounded'>Invite Pending</button> : userBookClubs.includes(bookClub._id) ? <Link to={`/bookclub/${bookClub._id}`}><button className='button is-success is-focused is-rounded'>Go to Book Club</button></Link> : <button className='button is-link is-rounded' onClick={() => this.handleSubmit(bookClub._id)}>Join</button>}
           </div>
@@ -102,4 +102,4 @@ class CreateBookClub extends React.Component {
 }
 
 
-export default CreateBookClub
+export default AllBookClubs

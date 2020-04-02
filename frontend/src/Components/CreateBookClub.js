@@ -2,6 +2,7 @@ import React from 'react'
 import axios from 'axios'
 import auth from '../lib/auth'
 
+
 class CreateBookClub extends React.Component {
 
   constructor() {
@@ -32,7 +33,6 @@ class CreateBookClub extends React.Component {
   }
 
 
-
   render() {
     return <main className="hero is-fullheight" id="CreateBookClubhero">
       <div className="hero-body" id="CreateBookClubhero-body">
@@ -54,7 +54,7 @@ class CreateBookClub extends React.Component {
                         </label>
                         <div className="control has-icons-left">
                           <input
-                            onChange={(event) => this.handleChange(event)}                            type="text"
+                            onChange={(event) => this.handleChange(event)} type="text"
                             name="bookClubName"
                             bookclubname={this.state.bookClub.bookClubName}
                             className="input"
@@ -66,7 +66,7 @@ class CreateBookClub extends React.Component {
                       </div>
                       <div className="field">
                         <label className="label">
-                        Add a brief description of the Book Club:
+                          Add a brief description of the Book Club:
                         </label>
                         <div className="control has-icons-left">
                           <input

@@ -68,7 +68,6 @@ class UpdateBioModal extends React.Component {
   }
 
   handleSubmit(event) {
-    // console.log('Hello')
     event.preventDefault()
     axios.put('/api/profile', 
       this.state.data, { headers: { Authorization: `Bearer ${auth.getToken()}` } })

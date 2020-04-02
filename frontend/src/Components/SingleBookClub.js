@@ -4,7 +4,7 @@ import auth from '../lib/auth'
 
 import BookClubComment from './BookClubComment'
 
-import Spinner from './Common/Spinner'
+import { Spinner } from './Common/Spinner'
 
 
 

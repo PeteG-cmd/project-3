@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import auth from '../lib/auth'
-import Spinner from './Common/Spinner'
+import { Spinner } from './Common/Spinner'
 import Moment from 'react-moment'
 
 import EditCommentModal from './EditCommentModal'
@@ -121,7 +121,7 @@ class BookComment extends React.Component {
                     onChange={(event) => this.handleChange(event)} type='text' name='comment' comment={this.state.comment}>
 
                   </textarea>
-                  <button className="" id="commentSubmitButton">Submit</button>
+                  <button className="button" id="commentSubmitButton">Submit</button>
                 </form>
               </div>
             </div>
