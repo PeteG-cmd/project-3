@@ -195,11 +195,7 @@ export default class Home extends React.Component {
                 <div className="LatestBookCard">
                   <div className="LatestBookCardImageContainer">
                     <figure>
-<<<<<<< HEAD
-                     <Link to='/mylibrary'><img src={this.state.user.booksWishList[0].thumbnail} alt="" className="LatestBookCardContent"></img></Link>
-=======
                       {this.state.booksWishList && <img src={this.state.user.booksWishList[0].thumbnail} alt="" className="LatestBookCardContent"></img>}
->>>>>>> development
                     </figure>
                   </div>
                   <div className="SearchTitleandAuthorInfo">
