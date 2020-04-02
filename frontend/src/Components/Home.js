@@ -1,6 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import auth from '../lib/auth'
+import lodash from 'lodash'
 
 import SlickCarousel from './SlickCarousel'
 
@@ -11,7 +12,8 @@ export default class Home extends React.Component {
     this.state = {
       user: null,
       defaultCategories: ['hardcover-fiction', 'hardcover-nonfiction', 'young-adult-hardcover'],
-      books: []
+      books: [],
+      hotBooks: null
     }
   }
 
@@ -25,6 +27,19 @@ export default class Home extends React.Component {
       // }) 
       axios.get('/api/mylibrary', { headers: { Authorization: `Bearer ${auth.getToken()}` } })
         .then(res => this.setState({ books: res.data.user.books, user: res.data.user }))
+        .catch(err => this.setState({ error: err.response.data.message }))
+
+      axios.get('/api/books/get')
+        .then(res => {
+          console.log('hello')
+          console.log(res.data)
+          const books = res.data
+          let hotBooks = books.filter(book => {
+            return book.comments.length > 0
+          })
+          hotBooks = _.shuffle(hotBooks)
+          this.setState({ hotBooks })
+        })
         .catch(err => this.setState({ error: err.response.data.message }))
     }
   }
@@ -44,6 +59,7 @@ export default class Home extends React.Component {
   render() {
     const categories = this.state.defaultCategories
     console.log(this.state.defaultCategories)
+    console.log(this.state)
 
 
     if (!auth.isLoggedIn()) {
@@ -144,7 +160,7 @@ export default class Home extends React.Component {
       </>
 
     } else {
-      if (!this.state.user) return <h1>Waiting</h1>
+      if (!this.state.user || !this.state.hotBooks) return <h1>Waiting</h1>
       console.log(this.state.user)
 
       return <>

@@ -1,5 +1,6 @@
 const User = require('../models/user')
 const Book = require('../models/book')
+const _ = require('lodash')
 
 
 function addBook(req, res) {
@@ -13,7 +14,7 @@ function addBook(req, res) {
           .then(newBook => {
             User.findById(req.body.user._id)
               .then(user => {
-                user.books.push(newBook)
+                user.books.unshift(newBook)
                 return user.save()
               })
               .then(user => res.status(201).send({ user, message: 'Book Created and added to User' }))
@@ -27,7 +28,7 @@ function addBook(req, res) {
                 if (user.books.includes(newBook._id)) {
                   res.status(201).send({ user, message: 'Library already contains this book, and so does the user, forwarding' })
                 } else {
-                  user.books.push(newBook)
+                  user.books.unshift(newBook)
                   return user.save()
                     .then(user => res.status(201).send({ user, message: 'Library already contains this book, however the book has now been added to User' }))
                 }
@@ -41,9 +42,19 @@ function addBook(req, res) {
 function indexBooks(req, res) {
   Book
     .find()
+    // .populate('comments')
     .then(books => {
+      // console.log(books)
+      // // const newBooks = books._shuffle
+      // const filterBooks = books.filter(book => {
+      //   console.log(book.comments.length)
+      //   return book.comments.length !== 0
+      // })
+      // console.log(filterBooks)
       res.send(books)
     })
+
+    
 }
 
 function getBooks(req, res) {
@@ -118,7 +129,7 @@ function addBookToBooksRead(req, res) {
   User.findById(currentUser._id)
     .then(user => {
       if (user.booksRead.includes(req.body._id)) return res.status(400).send({ message: 'This book is already in your Read Books Library ' })
-      user.booksRead.push(req.body._id)
+      user.booksRead.unshift(req.body._id)
       console.log(user.booksRead)
       // const filterBooks = user.books.filter(book => {
       //   console.log(book)
@@ -148,7 +159,7 @@ function addBookToWishList(req, res) {
   User.findById(currentUser._id)
     .then(user => {
       if (user.booksWishList.includes(req.body._id)) return res.status(400).send({ message: 'This book is already in your Library ' })
-      user.booksWishList.push(req.body._id)
+      user.booksWishList.unshift(req.body._id)
       // const filterBooks = user.books.filter(book => {
       //   return book.toString() !== req.body._id.toString()
       // })
