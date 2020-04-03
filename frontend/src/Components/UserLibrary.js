@@ -36,7 +36,7 @@ class UserLibrary extends React.Component {
     this.setState({ query: searchQuery, filteredBooks: filteredBooks })
   }
 
- 
+
   handleDelete(bookId) {
 
     console.log(this.props)
@@ -58,7 +58,7 @@ class UserLibrary extends React.Component {
     document.querySelector('.BooksWishListTile').style.display = 'none'
     console.log(this.state.user)
     // const booksRead = this.state.user.map(book => {
-      
+
     // })
     this.setState({ filteredBooks: this.state.user.booksRead })
   }
