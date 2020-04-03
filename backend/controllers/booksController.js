@@ -60,6 +60,7 @@ function indexBooks(req, res) {
 function getBooks(req, res) {
   const currentUser = req.currentUser
   req.body.user = currentUser
+  console.log(currentUser)
 
   Book
     .find({
@@ -78,6 +79,7 @@ function getBooks(req, res) {
         })
      
     })
+    .catch(err => res.send(err))
 
 }
 

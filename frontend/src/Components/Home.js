@@ -29,13 +29,12 @@ export default class Home extends React.Component {
       axios.get('/api/mylibrary', { headers: { Authorization: `Bearer ${auth.getToken()}` } })
         .then(res => this.setState({ books: res.data.user.books, user: res.data.user }))
         .catch(err => this.setState({ error: err.response.data.message }))
+       
 
       axios.get('/api/books/get')
         .then(res => {
 
-          console.log('hello')
-          console.log(res.data.hotBooks)
-          const books = res.data.hotBooks
+          const books = res.data
           let hotBooks = books.filter(book => {
             return book.comments.length > 0
           })
@@ -44,6 +43,7 @@ export default class Home extends React.Component {
 
         })
         .catch(err => this.setState({ error: err.response.data.message }))
+      
     }
   }
   showWishListFromClick() {
@@ -154,6 +154,7 @@ export default class Home extends React.Component {
       </>
 
     } else {
+      console.log('hey')
       if (!this.state.user || !this.state.hotBooks) return <h1>Waiting</h1>
       console.log(this.state.user)
       return <>

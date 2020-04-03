@@ -5,8 +5,14 @@ const bodyParser = require('body-parser')
 const mongoose = require('mongoose')
 const router = require('./router')
 
+const path = require('path')
+const dist = path.join(__dirname, 'dist')
+
+const { dbURI, port } = require('./config/enviroment')
+
+
 mongoose.connect(
-  'mongodb://localhost/book-club-db',
+  dbURI,
   { useNewUrlParser: true, useUnifiedTopology: true, useCreateIndex: true },
   // This tells us if we've successfully connected!
   (err) => {
@@ -17,12 +23,22 @@ mongoose.connect(
 const expressServer = express()
 expressServer.use(bodyParser.json())
 
+
+
 expressServer.use((req, res, next) => {
   console.log(`Incoming ${req.method} to ${req.url}`)
   next()
 })
 
 expressServer.use('/api', router)
+expressServer.use('/', express.static(dist))
 
+expressServer.get('*', function(req, res) {
+  res.sendFile(path.join(dist, 'index.html'))
+})
 
-expressServer.listen(8000)
+expressServer.listen(port)
+
+module.exports = {
+  expressServer
+}
