@@ -14,7 +14,7 @@ export default class Home extends React.Component {
       user: null,
       defaultCategories: ['hardcover-fiction', 'hardcover-nonfiction', 'young-adult-hardcover'],
       books: [],
-      hotBooks: null
+      hotBooks: []
     }
   }
 
@@ -32,16 +32,16 @@ export default class Home extends React.Component {
 
       axios.get('/api/books/get')
         .then(res => {
-          if (res.data.length > 0) {
-            console.log('hello')
-            console.log(res.data)
-            const books = res.data
-            let hotBooks = books.filter(book => {
-              return book.comments.length > 0
-            })
-            hotBooks = _.shuffle(hotBooks)
-            this.setState({ hotBooks })
-          }
+
+          console.log('hello')
+          console.log(res.data.hotBooks)
+          const books = res.data.hotBooks
+          let hotBooks = books.filter(book => {
+            return book.comments.length > 0
+          })
+          hotBooks = _.shuffle(hotBooks)
+          this.setState({ hotBooks })
+
         })
         .catch(err => this.setState({ error: err.response.data.message }))
     }
