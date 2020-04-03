@@ -32,14 +32,16 @@ export default class Home extends React.Component {
 
       axios.get('/api/books/get')
         .then(res => {
-          console.log('hello')
-          console.log(res.data)
-          const books = res.data
-          let hotBooks = books.filter(book => {
-            return book.comments.length > 0
-          })
-          hotBooks = _.shuffle(hotBooks)
-          this.setState({ hotBooks })
+          if (res.data.length > 0) {
+            console.log('hello')
+            console.log(res.data)
+            const books = res.data
+            let hotBooks = books.filter(book => {
+              return book.comments.length > 0
+            })
+            hotBooks = _.shuffle(hotBooks)
+            this.setState({ hotBooks })
+          }
         })
         .catch(err => this.setState({ error: err.response.data.message }))
     }
@@ -222,12 +224,12 @@ export default class Home extends React.Component {
                 <div className="HomeCommentsTitle">
                   <h2 id="HomeCommentsTitleContent">The Hottest Books being talked about right now...</h2>
                 </div>
-                <div className="HomeCommentsImages">
+                {this.state.hotBooks.length > 0 && <div className="HomeCommentsImages">
                   <Link to={`/book/${this.state.hotBooks[0].webId}`} book={this.state.hotBooks[0]}><img src={this.state.hotBooks[0].thumbnail} alt=""></img></Link>
                   <Link to={`/book/${this.state.hotBooks[1].webId}`} book={this.state.hotBooks[1]}><img src={this.state.hotBooks[1].thumbnail} alt=""></img></Link>
                   <Link to={`/book/${this.state.hotBooks[2].webId}`} book={this.state.hotBooks[2]}><img src={this.state.hotBooks[2].thumbnail} alt=""></img></Link>
-                 
-                </div>
+
+                </div>}
                 <div className="HomeCommentsTitle">
                   <h2 id="HomeCommentsTitleContent">...Join the converstation now!</h2>
                 </div>
