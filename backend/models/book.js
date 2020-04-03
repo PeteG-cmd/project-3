@@ -10,7 +10,7 @@ const schema = new mongoose.Schema({
   thumbnail: { type: String, required: true },
   pageCount: { type: Number, required: false },
   language: { type: String, required: false },
-  categories: { type: String, required: true },
+  categories: { type: String, required: false },
   // comments: [{ type: mongoose.Schema.ObjectId, ref: 'Comment' }]
   comments: [Comment]
 
