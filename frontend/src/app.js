@@ -6,7 +6,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import 'bulma'
 import './styles/style.scss'
 
-import NavBar from './Components/Navbar'
+import NavBar from './Components/NavBar'
 import Home from './Components/Home'
 
 import Register from './Components/Register'
