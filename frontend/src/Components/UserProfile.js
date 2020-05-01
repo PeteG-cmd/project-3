@@ -17,7 +17,8 @@ class UserProfile extends React.Component {
       user: null,
       profile: {},
       books: null,
-      categories: []
+      categories: [],
+      userImage: null
     }
   }
 
@@ -33,9 +34,11 @@ class UserProfile extends React.Component {
 
     axios.post('/api/profile', {}, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then(res => {
-        console.log(res)
+        console.log(res.data)
+        res.data.image[0].imageData = res.data.image[0].imageData.split('/')[2]
         //Maps thru exisiting categories data to populate categories on user profile
         this.setState({ user: res.data })
+        console.log(this.state.user)
         const categories = res.data.categories.map((category, index) => {
           return category.category
         })
@@ -65,6 +68,31 @@ class UserProfile extends React.Component {
       .catch(err => this.setState({ errors: err.response.data.errors }))
   }
 
+  uploadImage(image) {
+    console.log(image)
+  
+    let imageFormObj = new FormData()
+
+    imageFormObj.append('imageName', 'multer-image-' + Date.now())
+    imageFormObj.append('imageData', image.target.files[0])
+    console.log(image.target.files[0])
+
+    // stores a readable instance of 
+    // the image being uploaded using multer
+  
+
+    axios.post('/api/uploadmulter', imageFormObj, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+      .then((data) => {
+        if (data.data.success) {
+          alert("Image has been successfully uploaded using multer")
+
+        }
+      })
+      .catch((err) => {
+        alert("Error while uploading image using multer")
+      })
+  }
+
   render() {
     //Stops the issue of trying to render a null object.  Will only try and render once something has been returned
     if (!this.state.books || !this.state.user) return <h1>Wait for info</h1>
@@ -82,12 +110,16 @@ class UserProfile extends React.Component {
               <div className="tile is-child box">
                 {/* <p className="title">Profile Picture</p> */}
                 <figure className="image is-128x128 has-image-centered">
-                  <img className="is-rounded" src="https://bulma.io/images/placeholders/128x128.png" />
+                  <img className="is-rounded" src={`http://localhost:8000/static/${this.state.user.image[0].imageData}`} />
                   {/* Upload picture link */}
 
                   <div id="file-button-center" className="file is-light is-danger">
                     <label className="file-label">
-                      <input className="file-input" type="file" name="resume" />
+                      <input onChange={(image) => this.uploadImage(image)}
+                        className='fileInput'
+                        type="file"
+                        id="avatar"
+                        name="avatar" />
                       <span className="file-cta">
                         <span className="file-icon">
                           <i className="fas fa-upload"></i>

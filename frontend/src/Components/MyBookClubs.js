@@ -19,7 +19,7 @@ class MyBookClubs extends React.Component {
     setTimeout(() => {
       axios.get('/api/bookClubs/mybookclubs', { headers: { Authorization: `Bearer ${auth.getToken()}` } })
         .then(res => this.setState({ bookClubs: res.data, filteredMyBookClubs: res.data }))
-    }, 3000)
+    }, 500)
   }
 
   handleSearch(event) {

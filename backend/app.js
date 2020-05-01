@@ -8,6 +8,8 @@ const router = require('./router')
 const path = require('path')
 const dist = path.join(__dirname, 'dist')
 
+// const uploads = path.join(__dirname, 'uploads')
+
 const { dbURI, port } = require('./config/enviroment')
 
 
@@ -20,9 +22,9 @@ mongoose.connect(
     else console.log('Mongoose connected!')
   })
 
+
 const expressServer = express()
 expressServer.use(bodyParser.json())
-
 
 
 expressServer.use((req, res, next) => {
@@ -30,10 +32,11 @@ expressServer.use((req, res, next) => {
   next()
 })
 
+expressServer.use('/static', express.static(path.join(__dirname, 'uploads')))
 expressServer.use('/api', router)
 expressServer.use('/', express.static(dist))
 
-expressServer.get('*', function(req, res) {
+expressServer.get('*', function (req, res) {
   res.sendFile(path.join(dist, 'index.html'))
 })
 

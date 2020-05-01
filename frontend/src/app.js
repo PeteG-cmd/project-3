@@ -31,7 +31,7 @@ import MyBookClubs from './Components/MyBookClubs'
 import UserLibrary from './Components/UserLibrary'
 
 const App = () => (
-  
+
   <BrowserRouter>
     <NavBar />
     <Switch>
@@ -40,8 +40,9 @@ const App = () => (
       <Route path="/login" component={Login} />
       <Route exact path="/categories" component={CategoriesShownToNewUser} />
       <Route exact path="/profile/:user_id" component={UserProfile} />
+      <Route path="/books/new/:title" component={SearchNewBooks} />
       <Route exact path="/books/new" component={SearchNewBooks} />
-      <Route exact path="/books/:book_id" component={DetailedBookPage}/>
+      <Route exact path="/books/:book_id" component={DetailedBookPage} />
       <Route exact path="/book/:webId" component={SingleBook} />
       <Route exact path="/books/:book_id/comments" component={BookComment} />
       <Route exact path="/bookclubs" component={AllBookClubs} />
@@ -52,7 +53,7 @@ const App = () => (
 
     </Switch>
   </BrowserRouter>
-  
+
 )
 
 ReactDOM.render(

@@ -29,14 +29,14 @@ class AllBookClubs extends React.Component {
   }
 
   updateState() {
-    this.myInterval = setInterval(() => {
+    // this.myInterval = setInterval(() => {
 
-      axios.get('/api/bookclubs', { headers: { Authorization: `Bearer ${auth.getToken()}` } })
-        .then(res => {
-          console.log(res)
-          this.setState({ bookClubs: res.data.bookclubs, userBookClubs: res.data.currentUser.bookClubs, userCurrentInvitesSent: res.data.currentUser.invitesSent, filteredBookClubs: res.data.bookclubs })
-        })
-    }, 3000)
+    axios.get('/api/bookclubs', { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+      .then(res => {
+        console.log(res)
+        this.setState({ bookClubs: res.data.bookclubs, userBookClubs: res.data.currentUser.bookClubs, userCurrentInvitesSent: res.data.currentUser.invitesSent, filteredBookClubs: res.data.bookclubs })
+      })
+    // }, 3000)
   }
 
   handleSubmit(bookClubId) {

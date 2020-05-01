@@ -38,7 +38,7 @@ class SingleBookClub extends React.Component {
         .then(res => this.setState({ bookClub: res.data.bookclub, user: res.data.user }))
         .catch(err => this.props.history.push('/bookclubs/mybookclubs'))
 
-    }, 3000)
+    }, 500)
   }
 
   handleRequest(memberId, event) {

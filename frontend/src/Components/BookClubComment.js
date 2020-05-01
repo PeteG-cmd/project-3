@@ -73,6 +73,7 @@ class BookClubComment extends React.Component {
 
     if (!this.state.bookClub || !this.state.user) return <Spinner />
     const userId = this.state.user._id
+    console.log(this.state)
     return <>
       <div className="allComments">
         {this.state.bookClub.comments && this.state.bookClub.comments.map((comment, index) => {

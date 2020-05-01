@@ -48,6 +48,7 @@ function getProfile(req, res) {
   console.log(req)
   console.log(req.body.user._id)
   User.findById(req.body.user._id)
+    .populate('image')
     .then(user => {
       if (!user) return res.status(404).send({ message: 'This user does not exist' })
       res.status(201).send(user)

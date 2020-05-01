@@ -6,9 +6,33 @@ const categoriesController = require('./controllers/categoriesController')
 const userController = require('./controllers/userController')
 const bookClubsController = require('./controllers/bookClubsController')
 const commentsController = require('./controllers/commentsController')
+const imagesController = require('./controllers/imagesController')
+
 
 // Used for members only routes
 const secureRoute = require('./lib/secureRoute')
+
+const User = require('./models/user')
+const Image = require('./models/image')
+var multer = require('multer')
+
+var upload = multer({ dest: 'backend/uploads' })
+
+router.route('/avatar/:pic_id')
+  .get(function (req, res) {
+    console.log(req)
+    Image
+      .findById(req.params.pic_id)
+      .then(result => {
+        res.contentType('image/jpeg')
+        res.send(result)
+      })
+  })
+
+router.route('/uploadmulter')
+  .post(upload.single('imageData'), secureRoute, imagesController.uploadPhoto)
+
+ 
 
 
 // User routes
@@ -23,7 +47,7 @@ router.route('/profile')
 router.route('/categories')
   .post(secureRoute, categoriesController.addCategories)
   .get(secureRoute, categoriesController.getCategories)
-  // .delete(secureRoute, categoriesController.deleteCategories)
+// .delete(secureRoute, categoriesController.deleteCategories)
 //   .put(secureRoute, catergoriesController.editCatergories)   // Check Peter's function name
 
 
