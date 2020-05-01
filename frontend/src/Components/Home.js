@@ -30,12 +30,11 @@ export default class Home extends React.Component {
         .then(res => this.setState({ books: res.data.user.books, user: res.data.user }))
         .catch(err => this.setState({ error: err.response.data.message }))
 
+
       axios.get('/api/books/get')
         .then(res => {
 
-          console.log('hello')
-          console.log(res.data.hotBooks)
-          const books = res.data.hotBooks
+          const books = res.data
           let hotBooks = books.filter(book => {
             return book.comments.length > 0
           })
@@ -44,6 +43,7 @@ export default class Home extends React.Component {
 
         })
         .catch(err => this.setState({ error: err.response.data.message }))
+
     }
   }
   showWishListFromClick() {
@@ -58,8 +58,35 @@ export default class Home extends React.Component {
 
     if (!auth.isLoggedIn()) {
       return <>
-        <main className="non-user-home-main">
-          <div className="HomePageContainer">
+        <main>
+          <section className="heroBannerHome hero is-primary is-medium">
+
+            <div className="hero-body">
+              <div className="container has-text-centered">
+                <h1 className="title">
+                  Booked-up!
+      </h1>
+                <h2 className="subtitle">
+                  The only place for Book lovers
+      </h2>
+              </div>
+            </div>
+
+
+            <div className="hero-foot">
+              <nav className="tabs is-fullwidth">
+                <div className="container">
+                  <ul>
+                    
+                    <li><Link to={'/books/new'}><a>Find a Book</a></Link></li>
+                    <li><Link to={'/register'}><a>Join the Converstaion</a></Link></li>
+                  </ul>
+                </div>
+              </nav>
+            </div>
+          </section>
+
+          {/* <div className="HomePageContainer">
             <section className="HomePageInfoContainer">
               <div className="AboutHomePageInfoContainer">
                 <div className="AboutHomePageInfoContent">
@@ -112,8 +139,8 @@ export default class Home extends React.Component {
                 </div>
               </div>
             </section>
-            <section className="NonUserHomePageCarouselContainer">
-              <div className="NonUserHomePageCarouselContent">
+            <section className="NonUserHomePageCarouselContainer"> */}
+          {/* <div className="NonUserHomePageCarouselContent">
                 <div className="CarouselTitle1">
                   <h2 className="CarouselTitleContent">Current Fiction Best Sellers</h2>
                 </div>
@@ -122,29 +149,54 @@ export default class Home extends React.Component {
                     <SlickCarousel categories={categories[0]} />
                   </div>
                 </div>
-              </div>
-              <div className="NonUserHomePageCarouselContent">
+              
+              </div> */}
+
+          <div className="columns is-multiline is-mobile">
+            <div className='bookColumn column is-2-desktop is-one-third-tablet is-half-mobile'>
+              <h2 className='bookColumnLabel'>Current Fiction Best Sellers</h2>
+            </div>
+
+            <SlickCarousel categories={categories[0]} />
+
+            <div className='bookColumn column is-2-desktop is-one-third-tablet is-half-mobile'>
+              <h2 className='bookColumnLabel'>Current Non Fiction Best Sellers</h2>
+            </div>
+
+            <SlickCarousel categories={categories[1]} />
+
+            <div className='bookColumn column is-2-desktop is-one-third-tablet is-half-mobile'>
+              <h2 className='bookColumnLabel'>Current Young Adult Best Sellers</h2>
+            </div>
+
+            <SlickCarousel categories={categories[2]} />
+
+          </div>
+
+
+
+          {/* <div className="NonUserHomePageCarouselContent">
                 <div className="CarouselTitle1">
                   <h2 className="CarouselTitleContent">Current Non-Fiction Best Sellers</h2>
                 </div>
                 <div className="NonUserCarouselImagesContainer">
                   <div className="CarouselImages">
-                    <SlickCarousel categories={categories[1]} />
-                  </div>
+                    {/* <SlickCarousel categories={categories[1]} /> */}
+          {/* </div>
                 </div>
-              </div>
-              <div className="NonUserHomePageCarouselContent">
+              </div> */}
+          {/* <div className="NonUserHomePageCarouselContent">
                 <div className="CarouselTitle1">
                   <h2 className="CarouselTitleContent">Current Young-Adult Best Sellers</h2>
                 </div>
                 <div className="NonUserCarouselImagesContainer" id="SlickCarousel3">
-                  <div className="CarouselImages">
-                    <SlickCarousel categories={categories[2]} />
-                  </div>
+                  <div className="CarouselImages"> */}
+          {/* <SlickCarousel categories={categories[2]} /> */}
+          {/* </div>
                 </div>
               </div>
             </section>
-          </div>
+          </div> */}
         </main>
         <footer id="NonUserHomeMainfooter">
           <div>
@@ -154,6 +206,7 @@ export default class Home extends React.Component {
       </>
 
     } else {
+      console.log('hey')
       if (!this.state.user || !this.state.hotBooks) return <h1>Waiting</h1>
       console.log(this.state.user)
       return <>
@@ -224,7 +277,7 @@ export default class Home extends React.Component {
                 <div className="HomeCommentsTitle">
                   <h2 id="HomeCommentsTitleContent">The Hottest Books being talked about right now...</h2>
                 </div>
-                {this.state.hotBooks.length > 0 && <div className="HomeCommentsImages">
+                {this.state.hotBooks.length > 2 && <div className="HomeCommentsImages">
                   <Link to={`/book/${this.state.hotBooks[0].webId}`} book={this.state.hotBooks[0]}><img src={this.state.hotBooks[0].thumbnail} alt=""></img></Link>
                   <Link to={`/book/${this.state.hotBooks[1].webId}`} book={this.state.hotBooks[1]}><img src={this.state.hotBooks[1].thumbnail} alt=""></img></Link>
                   <Link to={`/book/${this.state.hotBooks[2].webId}`} book={this.state.hotBooks[2]}><img src={this.state.hotBooks[2].thumbnail} alt=""></img></Link>

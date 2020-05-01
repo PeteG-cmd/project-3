@@ -13,7 +13,8 @@ class Register extends React.Component {
         email: '',
         username: '',
         password: '',
-        passwordConfirmation: ''
+        passwordConfirmation: '',
+        avatar: ''
       },
       errors: {}
     }
@@ -24,6 +25,33 @@ class Register extends React.Component {
     const data = { ...this.state.data, [name]: value }
     this.setState({ data })
     console.log(this.state.data)
+  }
+
+  uploadImage(image) {
+    console.log(image)
+
+    let imageFormObj = new FormData()
+
+    imageFormObj.append("imageName", "multer-image-" + Date.now())
+    imageFormObj.append("imageData", image.target.files[0])
+    console.log(image.target.files[0])
+
+    // stores a readable instance of 
+    // the image being uploaded using multer
+    this.setState({
+      avatar: URL.createObjectURL(image.target.files[0])
+    })
+
+    axios.post('api/uploadmulter', imageFormObj, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+      .then((data) => {
+        if (data.data.success) {
+          alert("Image has been successfully uploaded using multer")
+
+        }
+      })
+      .catch((err) => {
+        alert("Error while uploading image using multer")
+      })
   }
 
   handleSubmit(event) {
@@ -49,10 +77,11 @@ class Register extends React.Component {
                 <div className="column is-one-third"></div>
                 <div className="column is-block">
                   <div className="box" id="registerbox">
-                    <h1 className="title">Chapter 3: Register</h1>
+                    <h1 className="title">Chapter 1: Register</h1>
                     <RegisterForm
                       handleSubmit={(event) => this.handleSubmit(event)}
                       handleChange={(event) => this.handleChange(event)}
+                      uploadImage={(image) => this.uploadImage(image)}
                       errors={errors}
                       data={this.state.data}
                     />

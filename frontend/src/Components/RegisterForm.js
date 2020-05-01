@@ -1,8 +1,8 @@
 import React from 'react'
 
-const RegisterForm = ({ handleSubmit, handleChange, errors, data }) => {
+const RegisterForm = ({ handleSubmit, handleChange, uploadImage, errors, data }) => {
   console.log(data)
-  const { email, username, password, passwordConfirmation } = data
+  const { email, username, password, passwordConfirmation, avatar } = data
   return <form
     className="form"
     onSubmit={(event) => handleSubmit(event)}
@@ -87,11 +87,15 @@ const RegisterForm = ({ handleSubmit, handleChange, errors, data }) => {
         {errors.passwordConfirmation.message}
       </small>}
     </div>
-    <label for="avatar">Choose a profile picture:</label>
+    <label className='label'>Choose a profile picture:</label>
 
-    <input type="file"
-      id="avatar" name="avatar"
-      accept="image/png, image/jpeg" />
+    <input
+      onChange={(image) => uploadImage(image)}
+      type="file"
+      id="avatar"
+      name="avatar"
+      
+    />
 
 
 

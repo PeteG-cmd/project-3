@@ -1,6 +1,8 @@
 
 const User = require('../models/user')
+const Image = require('../models/image')
 const BookClub = require('../models/bookClub')
+
 
 
 
@@ -47,6 +49,8 @@ function get(req, res) {
     .populate('adminUser')
     .populate('joinRequests')
     .populate('comments.user')
+    // .populate('comments.user.image')
+    // .populate({ path: 'comments', model: 'Comment', populate: { path: 'user', model: 'User', populate: { path: 'image', model: 'Image' } } })
 
     .then(bookclub => {
       console.log(bookclub.members)
