@@ -17,7 +17,8 @@ class UserProfile extends React.Component {
       user: null,
       profile: {},
       books: null,
-      categories: []
+      categories: [],
+      userImage: null
     }
   }
 
@@ -33,9 +34,13 @@ class UserProfile extends React.Component {
 
     axios.post('/api/profile', {}, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
       .then(res => {
-        console.log(res)
+        console.log(res.data)
+        if (res.data.image[0]) {
+          res.data.image[0].imageData = res.data.image[0].imageData.split('/')[2] 
+        } 
         //Maps thru exisiting categories data to populate categories on user profile
         this.setState({ user: res.data })
+        console.log(this.state.user)
         const categories = res.data.categories.map((category, index) => {
           return category.category
         })
@@ -65,6 +70,31 @@ class UserProfile extends React.Component {
       .catch(err => this.setState({ errors: err.response.data.errors }))
   }
 
+  uploadImage(image) {
+    console.log(image)
+
+    let imageFormObj = new FormData()
+
+    imageFormObj.append('imageName', 'multer-image-' + Date.now())
+    imageFormObj.append('imageData', image.target.files[0])
+    console.log(image.target.files[0])
+
+    // stores a readable instance of 
+    // the image being uploaded using multer
+
+
+    axios.post('/api/uploadmulter', imageFormObj, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+      .then((data) => {
+        if (data.data.success) {
+          alert("Image has been successfully uploaded using multer")
+
+        }
+      })
+      .catch((err) => {
+        alert("Error while uploading image using multer")
+      })
+  }
+
   render() {
     //Stops the issue of trying to render a null object.  Will only try and render once something has been returned
     if (!this.state.books || !this.state.user) return <h1>Wait for info</h1>
@@ -82,12 +112,16 @@ class UserProfile extends React.Component {
               <div className="tile is-child box">
                 {/* <p className="title">Profile Picture</p> */}
                 <figure className="image is-128x128 has-image-centered">
-                  <img className="is-rounded" src="https://bulma.io/images/placeholders/128x128.png" />
+                  {this.state.user.image[0] && <img className="is-rounded" src={`http://localhost:8000/static/${this.state.user.image[0].imageData}`} />}
                   {/* Upload picture link */}
 
                   <div id="file-button-center" className="file is-light is-danger">
                     <label className="file-label">
-                      <input className="file-input" type="file" name="resume" />
+                      <input onChange={(image) => this.uploadImage(image)}
+                        className='fileInput'
+                        type="file"
+                        id="avatar"
+                        name="avatar" />
                       <span className="file-cta">
                         <span className="file-icon">
                           <i className="fas fa-upload"></i>
@@ -196,7 +230,7 @@ class UserProfile extends React.Component {
                     value="advice-how-to-and-miscellaneous"
                     checked={this.state.categories.includes('advice-how-to-and-miscellaneous') ? true : false}
                   />
-                          Advice and How To
+                  Advice and How To
                 </label>
                 <label className="checkbox">
                   <input
@@ -205,7 +239,7 @@ class UserProfile extends React.Component {
                     value="animals"
                     checked={this.state.categories.includes('animals') ? true : false}
                   />
-                          Animals
+                  Animals
                 </label>
                 <label className="checkbox">
                   <input
@@ -214,7 +248,7 @@ class UserProfile extends React.Component {
                     value="business-books"
                     checked={this.state.categories.includes('business-books') ? true : false}
                   />
-                          Business
+                  Business
                 </label>
                 <label className="checkbox">
                   <input
@@ -223,7 +257,7 @@ class UserProfile extends React.Component {
                     value="celebrities"
                     checked={this.state.categories.includes('celebrities') ? true : false}
                   />
-                          Celebrities
+                  Celebrities
                 </label>
                 <label className="checkbox">
                   <input
@@ -232,7 +266,7 @@ class UserProfile extends React.Component {
                     value="paperback-books"
                     checked={this.state.categories.includes('paperback-books') ? true : false}
                   />
-                          Children’s Paperback Books
+                  Children’s Paperback Books
                 </label>
                 <label className="checkbox">
                   <input
@@ -241,7 +275,7 @@ class UserProfile extends React.Component {
                     value="picture-books"
                     checked={this.state.categories.includes('picture-books') ? true : false}
                   />
-                          Children’s Picture Books
+                  Children’s Picture Books
                 </label>
                 <label className="checkbox">
                   <input
@@ -250,7 +284,7 @@ class UserProfile extends React.Component {
                     value="mass-market-paperback"
                     checked={this.state.categories.includes('mass-market-paperback') ? true : false}
                   />
-                          Fiction
+                  Fiction
                 </label>
                 <label className="checkbox">
                   <input
@@ -259,7 +293,7 @@ class UserProfile extends React.Component {
                     value="paperback-nonfiction"
                     checked={this.state.categories.includes('paperback-nonfiction') ? true : false}
                   />
-                          Non-Fiction
+                  Non-Fiction
                 </label>
                 <label className="checkbox">
                   <input
@@ -268,7 +302,7 @@ class UserProfile extends React.Component {
                     value="crime-and-punishment"
                     checked={this.state.categories.includes('crime-and-punishment') ? true : false}
                   />
-                          Crime and Punishment
+                  Crime and Punishment
                 </label>
                 <label className="checkbox">
                   <input
@@ -277,7 +311,7 @@ class UserProfile extends React.Component {
                     value="culture"
                     checked={this.state.categories.includes('culture') ? true : false}
                   />
-                          Culture
+                  Culture
                 </label>
                 <label className="checkbox">
                   <input
@@ -286,7 +320,7 @@ class UserProfile extends React.Component {
                     value="education"
                     checked={this.state.categories.includes('education') ? true : false}
                   />
-                          Education
+                  Education
                 </label>
                 <label className="checkbox">
                   <input
@@ -295,7 +329,7 @@ class UserProfile extends React.Component {
                     value="espionage"
                     checked={this.state.categories.includes('espionage') ? true : false}
                   />
-                          Espionage
+                  Espionage
                 </label>
                 <label className="checkbox">
                   <input
@@ -304,7 +338,7 @@ class UserProfile extends React.Component {
                     value="food-and-fitness"
                     checked={this.state.categories.includes('food-and-fitness') ? true : false}
                   />
-                          Food and Diet
+                  Food and Diet
                 </label>
                 <label className="checkbox">
                   <input
@@ -313,7 +347,7 @@ class UserProfile extends React.Component {
                     value="fashion-manners-and-customs"
                     checked={this.state.categories.includes('fashion-manners-and-customs') ? true : false}
                   />
-                          Fashion
+                  Fashion
                 </label>
                 <label className="checkbox">
                   <input
@@ -322,7 +356,7 @@ class UserProfile extends React.Component {
                     value="family"
                     checked={this.state.categories.includes('family') ? true : false}
                   />
-                          Parenthood and Family
+                  Parenthood and Family
                 </label>
                 <label className="checkbox">
                   <input
@@ -331,7 +365,7 @@ class UserProfile extends React.Component {
                     value="games-and-activities"
                     checked={this.state.categories.includes('games-and-activities') ? true : false}
                   />
-                          Games and Activities
+                  Games and Activities
                 </label>
                 <label className="checkbox">
                   <input
@@ -340,7 +374,7 @@ class UserProfile extends React.Component {
                     value="graphic-books-and-manga"
                     checked={this.state.categories.includes('graphic-books-and-manga') ? true : false}
                   />
-                          Graphic Books and Manga
+                  Graphic Books and Manga
                 </label>
                 <label className="checkbox">
                   <input
@@ -349,7 +383,7 @@ class UserProfile extends React.Component {
                     value="health"
                     checked={this.state.categories.includes('health') ? true : false}
                   />
-                          Health
+                  Health
                 </label>
                 <label className="checkbox">
                   <input
@@ -358,7 +392,7 @@ class UserProfile extends React.Component {
                     value="humor"
                     checked={this.state.categories.includes('humor') ? true : false}
                   />
-                          Humour
+                  Humour
                 </label>
                 <label className="checkbox">
                   <input
@@ -367,7 +401,7 @@ class UserProfile extends React.Component {
                     value="relationships"
                     checked={this.state.categories.includes('relationships') ? true : false}
                   />
-                          Relationships
+                  Relationships
                 </label>
                 <label className="checkbox">
                   <input
@@ -376,7 +410,7 @@ class UserProfile extends React.Component {
                     value="hardcover-political-books"
                     checked={this.state.categories.includes('hardcover-political-books') ? true : false}
                   />
-                          Politics
+                  Politics
                 </label>
                 <label className="checkbox">
                   <input
@@ -385,7 +419,7 @@ class UserProfile extends React.Component {
                     value="race-and-civil-rights"
                     checked={this.state.categories.includes('race-and-civil-rights') ? true : false}
                   />
-                          Race and Civil Rights
+                  Race and Civil Rights
                 </label>
                 <label className="checkbox">
                   <input
@@ -394,7 +428,7 @@ class UserProfile extends React.Component {
                     value="religion-spirituality-and-faith"
                     checked={this.state.categories.includes('religion-spirituality-and-faith') ? true : false}
                   />
-                          Religion, Spirituality and Faith
+                  Religion, Spirituality and Faith
                 </label>
                 <label className="checkbox">
                   <input
@@ -403,7 +437,7 @@ class UserProfile extends React.Component {
                     value="science"
                     checked={this.state.categories.includes('science') ? true : false}
                   />
-                          Science
+                  Science
                 </label>
                 <label className="checkbox">
                   <input
@@ -412,7 +446,7 @@ class UserProfile extends React.Component {
                     value="sports"
                     checked={this.state.categories.includes('sports') ? true : false}
                   />
-                          Sport and Fitness
+                  Sport and Fitness
                 </label>
                 <label className="checkbox">
                   <input
@@ -421,7 +455,7 @@ class UserProfile extends React.Component {
                     value="travel"
                     checked={this.state.categories.includes('travel') ? true : false}
                   />
-                          Travel
+                  Travel
                 </label>
                 <label className="checkbox">
                   <input
@@ -430,7 +464,7 @@ class UserProfile extends React.Component {
                     value="young-adult"
                     checked={this.state.categories.includes('young-adult') ? true : false}
                   />
-                          Young Adult
+                  Young Adult
                 </label>
 
                 <div>

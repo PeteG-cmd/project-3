@@ -14,36 +14,33 @@ class SearchNewBooks extends React.Component {
     // this.fetchBooks = this.fetchBooks.bind(this)
   }
 
-  // componentDidMount() {
-  //   if (1===1) {
-  //     this.setState({ query: this.props.searchQuery })
-  //     console.log(this.props)
-  //     setTimeout(() => {
-  //       this.fetchBooks()
-  //     }, 1000)
+  componentDidMount() {
+    if (this.props.match.params.title) {
+      this.setState({ query: this.props.match.params.title })
+      setTimeout(() => {
+        this.fetchBooks()
+      }, 500)
+    }
 
-  //   }
-
-
-  // }
+  }
 
   handleSearch(event) {
     let query = event.target.value
     query = query.split(' ').join('+')
-    console.log(query)
     this.setState({ query })
   }
 
   fetchBooks(event) {
     if (this.state.query.length > 4) {
-      event.preventDefault()
+      if (event) {
+        event.preventDefault()
+      }
       axios
         .get(
           `https://www.googleapis.com/books/v1/volumes?q=intitle:${this.state.query}`,
         )
         .then(res => {
-
-          console.log(res)
+          console.log('hello')
           this.setState({ books: res.data.items })
         })
     }

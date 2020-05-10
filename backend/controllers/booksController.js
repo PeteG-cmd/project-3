@@ -44,13 +44,6 @@ function indexBooks(req, res) {
     .find()
     // .populate('comments')
     .then(books => {
-      // console.log(books)
-      // // const newBooks = books._shuffle
-      // const filterBooks = books.filter(book => {
-      //   console.log(book.comments.length)
-      //   return book.comments.length !== 0
-      // })
-      // console.log(filterBooks)
       res.send(books)
     })
 

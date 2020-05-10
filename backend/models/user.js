@@ -22,43 +22,37 @@ const schema = new mongoose.Schema({
   categories: [Catergory],
   bookClubs: [{ type: mongoose.Schema.ObjectId, ref: 'BookClub' }],
   // invites: [{ type: mongoose.Schema.ObjectId, ref: 'Invite' }]
-  invitesSent: [{ type: mongoose.Schema.ObjectId, ref: 'BookClub' }]
+  invitesSent: [{ type: mongoose.Schema.ObjectId, ref: 'BookClub' }],
+  image: [{ type: mongoose.Schema.ObjectId, ref: 'Image' }]
 })
 
 
 schema.plugin(require('mongoose-unique-validator'))
 schema.plugin(mongooseHidden)
 
-
-
-// Save passwordConfirmation from our request as a temporary field
-// called _passwordConfirmation
 schema.
   virtual('passwordConfirmation')
   .set(function setPasswordConfirmation(passwordConfirmation) {
-    // _ is a convention, it means a temporary field
     this._passwordConfirmation = passwordConfirmation
   })
 
 schema
   .pre('validate', function checkPassword(next) {
     if (this.isModified('password') && this._passwordConfirmation !== this.password) {
-      this.invalidate('passwordConfirmation', 'should match') // Invalid!
+      this.invalidate('passwordConfirmation', 'should match')
     }
-    next() // Tells mongoose we're done
+    next() 
   })
 
-// Pre lets you tap into the schemas lifecycle
+
 schema
   .pre('save', function hashPassword(next) {
-    if (this.isModified('password')) { // If the password has been created or changed
-      this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync()) // Encrypt the password
+    if (this.isModified('password')) { 
+      this.password = bcrypt.hashSync(this.password, bcrypt.genSaltSync()) 
     }
-    next() // Tells mongoose we're done
+    next() 
   })
 
-// Method to check if the password user tries to login with is the same
-// as the one we've encrypted
 schema.methods.validatePassword = function validatePassword(password) {
   return bcrypt.compareSync(password, this.password)
 }

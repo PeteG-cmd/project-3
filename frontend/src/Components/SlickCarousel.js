@@ -15,64 +15,57 @@ class SlickCarousel extends React.Component {
       dots: true,
       redirect: null,
       searchRedirect: null,
-      book: null
+      bookClicked: null
 
     }
   }
   componentDidMount() {
-    setTimeout(() => {
-      const categories = this.props.categories
-      console.log(categories)
-      if (Array.isArray(categories)) {
 
-        //This removes the dots from the carousel for a logged in user, as if they have selected a lot of Categories there are too many dots and does not look good.
-        this.setState({ dots: false })
+    const categories = this.props.categories
+    if (Array.isArray(categories)) {
 
-        categories.map(category => {
-          axios
-            .get(
-              `https://api.nytimes.com/svc/books/v3/lists/current/${category.category}.json?api-key=xnqPkpbQTWj1Fg96GhJlFbplC0GMseLd`,
-            )
-            .then(res => {
-              let bookList = this.state.bookList.concat(res.data.results.books)
-              bookList = _.shuffle(bookList)
-              this.setState({ bookList })
-              console.log(res.data)
-              console.log('Hello')
-            })
-            .catch(err => console.error(err))
+      //This removes the dots from the carousel for a logged in user, as if they have selected a lot of Categories there are too many dots and does not look good.
+      this.setState({ dots: false })
 
-        })
-
-
-      } else {
-
-        // This puts dots on the Carousel for the default categories if the user is not logged in.
-        this.setState({ dots: false })
+      categories.map(category => {
         axios
           .get(
-            `https://api.nytimes.com/svc/books/v3/lists/current/${categories}.json?api-key=xnqPkpbQTWj1Fg96GhJlFbplC0GMseLd`,
+            `https://api.nytimes.com/svc/books/v3/lists/current/${category.category}.json?api-key=xnqPkpbQTWj1Fg96GhJlFbplC0GMseLd`,
           )
           .then(res => {
-            this.setState({ bookList: res.data.results.books })
-            console.log(res.data)
-
+            let bookList = this.state.bookList.concat(res.data.results.books)
+            bookList = _.shuffle(bookList)
+            this.setState({ bookList })
           })
           .catch(err => console.error(err))
-      }
 
-    }, 2000)
+      })
+
+
+    } else {
+
+      // This puts dots on the Carousel for the default categories if the user is not logged in.
+      this.setState({ dots: false })
+      axios
+        .get(
+          `https://api.nytimes.com/svc/books/v3/lists/current/${categories}.json?api-key=xnqPkpbQTWj1Fg96GhJlFbplC0GMseLd`,
+        )
+        .then(res => {
+          this.setState({ bookList: res.data.results.books })
+        })
+        .catch(err => console.error(err))
+    }
+
   }
 
   handleClick(book) {
     console.log(book)
     axios.get(`https://www.googleapis.com/books/v1/volumes?q=isbn:${book.primary_isbn13}`)
       .then(res => {
-
         if (!(res.data.items)) return this.setState({ searchRedirect: { title: book.title } })
         if (res.data.items[0].volumeInfo.title.toLowerCase() !== book.title.toLowerCase()) return this.setState({ searchRedirect: { title: book.title } })
         const linkTo = res.data.items[0].id
-        this.setState({ redirect: linkTo, book: res.data.items[0] })
+        this.setState({ redirect: linkTo, bookClicked: res.data.items[0] })
 
       })
 
@@ -81,10 +74,10 @@ class SlickCarousel extends React.Component {
 
 
   render() {
-    console.log(this.state.searchRedirect)
     const webId = this.state.redirect
-    if (this.state.redirect) return <Redirect to={`/book/${webId}`} book={this.state.book} />
-    if (this.state.searchRedirect) return <Redirect to={'/books/new'} searchQuery={this.state.searchRedirect} />
+    const titleForDirect = this.state.searchRedirect
+    if (this.state.redirect) return <Redirect to={{ pathname: `/book/${webId}`, state: { book: this.state.bookClicked } }} />
+    if (this.state.searchRedirect) return <Redirect to={{ pathname: `/books/new/${titleForDirect.title}`, state: { book: this.state.bookClicked } }} />
     if (this.state.bookList.length === 0) return <div className="CarouselSpinner"><CarouselSpinner /></div>
 
     const settings = {
@@ -98,10 +91,24 @@ class SlickCarousel extends React.Component {
       cssEase: 'linear',
       pauseOnHover: false
     }
-    return (
 
+    if (!(Array.isArray(this.props.categories))) {
+      return <>
+        {this.state.bookList.map((book, index) => {
 
-      <Slider {...settings}>
+          return <div key={index} className='bookColumn column is-2-desktop is-one-third-tablet is-half-mobile'>
+            <img
+              src={book.book_image}
+              alt={`${book.title} by ${book.author}`}
+              onClick={() => this.handleClick(book)}
+            />
+          </div>
+        })}
+      </>
+
+    } else {
+
+      return <Slider {...settings}>
         {this.state.bookList.map((book, index) => {
           return <figure key={index} className="CarouselImgDiv">
             {/* <h3>{book.title}</h3> */}
@@ -115,24 +122,7 @@ class SlickCarousel extends React.Component {
         })}
       </Slider>
 
-
-    )
+    }
   }
 }
 export default SlickCarousel
-
-
-// .then(res => {
-//   this.state.bookList.map(book => {
-//     const isbn = book.primary_isbn10
-//     const myBook = book
-//     axios
-//       .get(`https://www.googleapis.com/books/v1/volumes?q=isbn:${isbn}`)
-//       .then(res => {
-//         console.log(book)
-//         const bookList = { ...this.state.bookList, [myBook]: { book_image: res.data.volumeInfo.imageLinks.thumbnail } }
-//         this.setState({ bookList })
-//       })
-//   })
-//   console.log(this.state.bookList)
-// })

@@ -26,14 +26,21 @@ class SingleBook extends React.Component {
 
 
   componentDidMount() {
-    const webId = this.props.match.params.webId
-    axios.get(`https://www.googleapis.com/books/v1/volumes?q=id:${webId}`)
-      .then(res => {
-        this.setState({ book: res.data.items[0] })
-        this.updateDetails(res.data.items[0])
-      })
+    console.log(this.props)
+    if (this.props.location.state) {
+      console.log('toooo')
+      this.setState({ book: this.props.location.state.book })
+      this.updateDetails(this.props.location.state.book)
+    } else {
+      const webId = this.props.match.params.webId
+      axios.get(`https://www.googleapis.com/books/v1/volumes?q=id:${webId}`)
+        .then(res => {
+          this.setState({ book: res.data.items[0] })
+          this.updateDetails(res.data.items[0])
+        })
 
-      .catch(error => console.error(error))
+        .catch(error => console.error(error))
+    }
   }
 
   handleSubmit(event) {
