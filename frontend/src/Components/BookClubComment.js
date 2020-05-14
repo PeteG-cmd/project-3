@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios'
 import auth from '../lib/auth'
-import  { Spinner } from './Common/Spinner'
+import { Spinner } from './Common/Spinner'
 import Moment from 'react-moment'
 import EditCommentModal from './EditBookClubCommentModal'
 
@@ -22,34 +22,45 @@ class BookClubComment extends React.Component {
 
   componentDidMount() {
     console.log(this.props.bookClub)
-    this.setState({ bookClub: this.props.bookClub, user: this.props.user })
-    this.getComments()
+    this.setState({ bookClub: this.props.bookClub })
+    setTimeout(() => {
+      this.getComments()
+    }, 500)
+    
   }
 
   componentWillUnmount() {
     clearInterval(this.myInterval)
   }
 
+
   handleSubmit(event) {
     event.preventDefault()
     const bookClubId = this.state.bookClub._id
     axios.post(`/api/bookclub/${bookClubId}/comments`, this.state.comment, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
-      .then(res => this.setState({ bookClub: res.data }))
+      .then(res => {
+        console.log(res.data)
+        this.setState({ bookClub: res.data })
+      })
       .catch(err => this.setState({ error: err.response.data.message }))
 
   }
   getComments() {
-    this.myInterval = setInterval(() => {
-      const bookClubId = this.state.bookClub._id
-      axios.get(`/api/bookclub/${bookClubId}/comments`, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
-        .then(res => this.setState({ bookClub: res.data }))
-        .catch(err => this.setState({ error: err.response.data.message }))
+    // this.myInterval = setInterval(() => {
+    const bookClubId = this.state.bookClub._id
+    axios.get(`/api/bookclub/${bookClubId}/comments`, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
+      .then(res => {
+        console.log(res.data)
+        // res.data.user.image[0].imageData = res.data.user.image[0].imageData.split('/')[2]
+        this.setState({ bookClub: res.data, user: this.props.user })
+      })
+      .catch(err => this.setState({ error: err.response.data.message }))
 
-    }, 3000)
+    // }, 3000)
 
   }
 
- 
+
 
   handleChange(event) {
     const { name, value } = event.target
@@ -77,11 +88,12 @@ class BookClubComment extends React.Component {
     return <>
       <div className="allComments">
         {this.state.bookClub.comments && this.state.bookClub.comments.map((comment, index) => {
+          // {comment.user.image[0].imageData = comment.user.image[0].imageData.split('/')[2]}
           const dateToFormat = `${comment.createdAt}`
           return <article className="CommentContainer" key={index}>
             <figure className="CommentProfileImage">
               <p className="image is-64x64">
-                <img src="https://bulma.io/images/placeholders/128x128.png"></img>
+                <img src={`http://localhost:8000/static/${comment.user.image[0].imageData.split('/')[2]}`}></img>
               </p>
             </figure>
 
@@ -123,11 +135,11 @@ class BookClubComment extends React.Component {
 
       <div className="addComment">
         <article className="media">
-          <figure className="media-left">
+          {/* <figure className="media-left">
             <p className="image is-64x64">
-              <img src="https://bulma.io/images/placeholders/128x128.png"></img>
+              <img src={`http://localhost:8000/static/${this.state.user.image[0].imageData}`}></img>
             </p>
-          </figure>
+          </figure> */}
           <div className="media-content">
             <div className="field">
               <div className="control">

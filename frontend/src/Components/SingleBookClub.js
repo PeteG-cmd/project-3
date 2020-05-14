@@ -31,14 +31,14 @@ class SingleBookClub extends React.Component {
   }
 
   updatePage() {
-    this.myInterval = setInterval(() => {
+    // this.myInterval = setInterval(() => {
 
       const bookClubId = this.props.match.params.bookclub_id
       axios.get(`/api/bookclub/${bookClubId}`, { headers: { Authorization: `Bearer ${auth.getToken()}` } })
         .then(res => this.setState({ bookClub: res.data.bookclub, user: res.data.user }))
         .catch(err => this.props.history.push('/bookclubs/mybookclubs'))
 
-    }, 500)
+    // }, 500)
   }
 
   handleRequest(memberId, event) {

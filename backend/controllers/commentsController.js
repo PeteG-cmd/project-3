@@ -1,6 +1,7 @@
 const Comment = require('../models/comment')
 const Book = require('../models/book')
 const BookClub = require('../models/bookClub')
+const User = require('../models/user')
 
 function addComment(req, res) {
 
@@ -58,12 +59,23 @@ function deleteBookComment(req, res) {
     .catch(error => res.send(error))
 }
 
+
 function getBookClubComment(req, res) {
   const currentUser = req.currentUser
   req.body.user = currentUser
+  console.log(currentUser)
 
   BookClub.findById(req.params.bookclub_id)
-    .populate('comments.user')
+    // .populate('comments.user')
+    // .populate('user.image')
+    .populate({
+      path: 'comments.user',
+      model: 'User',
+      populate: {
+        path: 'image',
+        model: 'Image'
+      }
+    })
     .then(bookclub => {
       if (!(currentUser.bookClubs.includes(bookclub._id))) return res.status(400).send({ message: 'Unauthorized' })
       if (!bookclub) return res.status(404).send({ message: 'Book Not found' })
@@ -79,14 +91,34 @@ function addBookClubComment(req, res) {
   console.log(req.body)
 
   BookClub.findById(req.params.bookclub_id)
-    .populate('comments.user')
+    .populate({
+      path: 'comments.user',
+      model: 'User',
+      populate: {
+        path: 'image',
+        model: 'Image'
+      }
+    })
     .then(bookclub => {
       if (!(currentUser.bookClubs.includes(bookclub._id))) return res.status(400).send({ message: 'Unauthorized' })
       if (!bookclub) return res.status(404).send({ message: 'Book Not found' })
       bookclub.comments.unshift(req.body)
       return bookclub.save()
     })
-    .then(bookclub => res.status(201).send(bookclub))
+    .then(bookclub => {
+      BookClub.findById(bookclub._id)
+        .populate({
+          path: 'comments.user',
+          model: 'User',
+          populate: {
+            path: 'image',
+            model: 'Image'
+          }
+        })
+        .then(updatedBookclub => {
+          res.status(201).send(updatedBookclub)
+        })
+    })
     .catch(err => res.status(400).send({ message: 'Comments must be at least 20 characters long' }))
 }
 
@@ -95,6 +127,14 @@ function editBookClubComment(req, res) {
 
   BookClub
     .findById(req.params.bookclub_id)
+    .populate({
+      path: 'comments.user',
+      model: 'User',
+      populate: {
+        path: 'image',
+        model: 'Image'
+      }
+    })
     .then(bookclub => {
       if (!bookclub) return res.status(404).send({ message: 'BookClub Not found' })
       const comment = bookclub.comments.id(req.params.comment_id)
@@ -114,6 +154,14 @@ function deleteBookClubComment(req, res) {
 
   BookClub
     .findById(req.params.bookclub_id)
+    .populate({
+      path: 'comments.user',
+      model: 'User',
+      populate: {
+        path: 'image',
+        model: 'Image'
+      }
+    })
     .then(bookclub => {
       console.log(bookclub)
       if (!bookclub) return res.status(404).send({ message: 'BookClub Not found' })
