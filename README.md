@@ -66,11 +66,6 @@ This project was made to be viewed on a laptop. Due to time restrictions, it is 
 | Browser                              | Chrome |
 | Version control | Git and GitHub
 
-<p align="center">
-  <img height=380 alt="home" src="./images/SearchBooks.jpg">
-</p>
-
-## Approach
 
 ## Planning
 
