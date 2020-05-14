@@ -1,109 +1,26 @@
-# project-3
+### ![GA](https://cloud.githubusercontent.com/assets/40461/8183776/469f976e-1432-11e5-8199-6ac91363302b.png) General Assembly, Software Engineering Immersive
 
+# Birdie Time
 
-DATABASES
+by [Jamie Maxwell](https://github.com/Jamie66m), [Peter Gilbert](https://github.com/PeteG-cmd), [Gordon Gyakyi](https://github.com/Intravenous)
 
-//USER
+<p align="center">
+  <img height=380 alt="home" src="./images/Booked-up.jpg">
+</p>
 
-  username: { type: String, required: true, unique: true },
-  email: { type: String, required: true, minLength: 8, unique: true },
-  password: { type: String, required: true, hide: true },
-  booksRead: [book ids],
-  bookWishlist: [book ids],
-  rated books: [{book id, rating }] // think about this
-  likedCatagories: []
-  virualBookClubs: [ids],
-  invites: []
+## Overview
 
+Booked Up is the third project that we completed during our Software Engineering Immersive at General Assembly. It is a MERN stack web application allowing book lovers to search through thousands of books, create their own library and discuss these books in virtual book clubs. 
 
-//VIRTUAL BOOK CLUBS
+This project was completed by a group of 3 and we were given just over a week to complete the project. At the beginning we knew that we really wanted to offer the user the ability of being able to communicate with other users and discuss books they have read or just have a general conversation about their love for reading. The most important aspect of the project that we wanted to get right was creating a journey for the user through the site and giving a quality UX. 
 
-its own id,
-A description of the book club
-bookclubName
-A list of user ids
-comments,
-invites: []
+The books displayed to the user came from two external APIs, Google Books API and NY Times API. We would only store the books in the database that the user added to their library in order to improve performance. 
 
+Check out Booked-Up on [Heroku](https://booked-up.herokuapp.com/), or find the GitHub repo [here](https://github.com/PeteG-cmd/project-3)
 
+#### Please note
 
-//CATEGORIES
-
-This will hold the categories from the NY times list
-
-
-
-//BOOKS
-
-Title,
-ISBN Number,
-Description, //this is the quick description of storyline
-Author,
-ImageUrl, //big thumnail
-publisher,
-published Date,
-page Count,
-average rating,
-genre, //this is called the category in the API
-
-
-
-//COMMENTS - WILL BELONG TO A BOOK AND HAVE A USER ID
-
-Text 
-WILL BELONG TO A BOOK AND HAVE A USER ID //NOT RQUIRED
-WILL BELONG TO A BOOK CLUB // NOT REQUIRED
-DateTime
-
-
-
-//INVITES
-
-WILL BE ITS OWN SCHEMA BUT WILL HOLD USER ID AND BOOKCLUB ID //THINK ABOUT THIS 
-DateTime
-
-
-
-
-ROUTES
-
-USER ROUTES
-
-api/register POST
-api/login POST
-api/profile/:user_id GET
-
-CATEGORIES ROUTES
-
-api/categories GET => Shows the categories
-api/categories/:userId POST / PUT => add the categories for the user (If a user does not supply any values all categories all will be applied, and this will somehow be flagged to the user)
-
-
-
-
-api/home GET  (THEN OUR SERVER WILL GET RECOMENDATIONS BASED ON CATEGORIES FROM NY TIMES)
-
-api/books/new POST =>
-
-(Check if the book is already in our library, and if it is, only add the user reference, and also has a checkbox to say if this is a book they have read, or is on their wishlist) => We then direct back to profile, where the book appears and then has button where they can add a comment. When thewy click on the book it takes them to the book page, where all comments about that book are visible. 
-
-api/book/:book_id => will take you to the book page where comments are possible and viewable. If you are not logged in then you cant comment
-
-api/book/:book_id/comments POST / PUT /DELETE=> post a new comment
-
-
-
-api/bookclub/new POST => create a new book club
-api/bookclubs GET => get a list of all book clubs
-api/bookclub GET => displaying the bio of the bookclub and requesting join. this could potentially be a modal.
-api/bookclubs/myBookclubs => GET / DELETE
-
-api/bookclubs/myBookClubs/:bookclubID POST => THIS IS TO JOIN & send the invite request
-api/bookclubs/myBookClubs/:bookclubId/comments POST => Add a comment on a book club if authorised
-
-
-
-
+This project was made to be viewed on a laptop. Due to time restrictions, it is not yet mobile responsive. All form fields are required on registration to create an account.
 
 
 
