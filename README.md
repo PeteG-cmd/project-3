@@ -2,6 +2,125 @@
 
 # Booked-Up
 
+
+<img src='images/bookedup - logo-mobile.png'>
+
+
+<p align="center">
+  <img height=380 alt="home" src="./images/Booked-UpUserProfile.jpg">
+</p>
+
+
+<IMG SRC='images/Screenshot 2020-05-10 at 12.47.33.png'>
+
+## Overview
+
+Booked Up is the third project that we completed during our Software Engineering Immersive at General Assembly. It is a MERN stack web application allowing book lovers to search through thousands of books, create their own library and discuss these books in virtual book clubs. 
+
+This project was completed by a group of 3 and we were given just over a week to complete the project. At the beginning we knew that we really wanted to offer the user the ability of being able to communicate with other users and discuss books they have read or just have a general conversation about their love for reading. The most important aspect of the project that we wanted to get right was creating a journey for the user through the site and giving a quality UX. 
+
+The books displayed to the user come from two external APIs, Google Books API and NY Times API. We would only store the books in the database that the user added to their library in order to improve performance. 
+
+Check out Booked-Up on [Heroku](https://booked-up.herokuapp.com/), or find the GitHub repo [here](https://github.com/PeteG-cmd/project-3)
+
+#### Please note
+
+This project was made to be viewed on a laptop. Due to time restrictions, it is not yet mobile completely responsive. All form fields are required on registration to create an account.
+
+
+## Table of contents
+1. [Brief](#Brief)
+2. [Technologies used](#Technologies-used)
+3. [Approach](#Approach)
+    - [Planning](#Planning)
+    - [Wireframes](#Wireframes)
+    - [Back-end](#Back-end)
+    - [Front-end](#Front-end)
+4. [Screenshots](#Screenshots)
+5. [Winners](#Winners)
+6. [Challengers](#Challengers)
+7. [Future features](#Future-features)
+8. [Lessons learned](#Lessons-learned)
+
+## Brief
+
+* Work in a team, using **git to code collaboratively**.
+* **Build a full-stack application** by making your own backend and your own front-end
+* **Use an Express API** to serve your data from a Mongo database
+* **Consume your API with a separate front-end** built with React
+* **Be a complete product** which most likely means multiple relationships and CRUD functionality for at least a couple of models
+
+## Technologies Used
+
+| Category | List |
+| ---- | --- |
+| Languages                            | Javascript (ECMAScript6), CSS3, Sass, HTML5 |
+| Front-end Web Application Framework  | React.js |
+| Server Environment                   | Express |
+| Database                             | MongoDB and Mongoose|
+| REST client                          | Insomnia |
+| CSS Framework                        | Bulma |
+| Libraries                            | Slick Carousel, Moment, React-Loader, Multer
+| Typefaces                            | Font Awesome |
+| Text Editor                          | VS Code |
+| Browser                              | Chrome |
+| Version control | Git and GitHub
+
+<p align="center">
+  <img height=380 alt="home" src="./images/SearchBooks.jpg">
+</p>
+
+## Approach
+
+## Planning
+
+We quickly came to the decision that we wanted to create a Book Club app. The next thing we discussed was what API's to use and we needed one's that were going to help us achieve some of the features we wanted to implement. The NY Times API we knew would be great for displaying the books from a category a user had chosen and the Google Books API provided us with so many books and end points that we knew we could gather all the necessary information to display to the user when deciding to add a book to the library and thus to the database.
+
+After this initial step we moved onto drawing out the layout and writing up the models and the endpoints we would need. We tried to put ourselves in the shoes of the user to imagine what they would want on their profile and how they would want to interact with the site and what they would want to get out of the site.
+
+We decided that it would be best when working on a specific feature to set up the backend and create a front end at the same time as we felt this would be the most efficient and effective way of working on the project as we wanted to be able to see the immediate results.
+
+<p align="center">
+  <img height=380 alt="home" src="./images/P3WhiteboredPlan.jpg">
+</p>
+
+## Wireframes
+
+Several wireframes were put together on a site called MockFlow.
+
+#### Homepage
+
+<p align="center">
+  <img height=380 alt="home" src="./images/Booked-UpHomeWire.jpg">
+</p>
+
+
+#### User Home
+
+<p align="center">
+  <img height=380 alt="home" src="./images/Booked-UpUserHomeWire.jpg">
+</p>
+
+#### User Profile
+
+<p align="center">
+  <img height=380 alt="home" src="./images/Booked-UpUserProfile.jpg">
+</p>
+
+
+#### Book Club
+
+<p align="center">
+  <img height=380 alt="home" src="./images/Booked-UpBookClubWire.jpg">
+</p>
+
+#### Detailed Book Page
+
+<p align="center">
+  <img height=380 alt="home" src="./images/DetailedBookWire.jpg">
+</p>
+
+
 ## Backend
 
 
@@ -109,138 +228,7 @@ For this reason, when dealing with comments we used the following code to ensure
 	    })
 
 
-## Front End
 
-### BookClubs
-
-
-### Search Component
-
-The search component was an interesting aspect to this project, as we used two different API's, and this led to a situation where a user was able to click on a book supplied by the NY Time best seller list, and we then needed to search the Google Books API for this book, so that we were able to import it in to our library with all the required information.
-
-The problem arose in that the ISBN numbers supplied by NY Times are reliable, but searching Google Books API with them is not, (as for one reason or another it is not designed that way). About 90% of the time it would work, but occasionally it would not find the correct book. For this reason we implemented some checks on the title and author of the returned book, and if they were not a close enough match then we redirected the user to the search page, and automatically searched by the books title, and then displayed the results to the user, who could then select the required book. A sample of this process can be seen below.
-
-#### Homepage
-
-PUT IN SAMPLE OF DIFFERENT CODE
-
-
-
-
-
-<p align="center">
-  <img height=380 alt="home" src="./images/Booked-UpUserProfile.jpg">
-</p>
-
-
-#### Book Club
-
-## Overview
-
-Booked Up is the third project that we completed during our Software Engineering Immersive at General Assembly. It is a MERN stack web application allowing book lovers to search through thousands of books, create their own library and discuss these books in virtual book clubs. 
-
-This project was completed by a group of 3 and we were given just over a week to complete the project. At the beginning we knew that we really wanted to offer the user the ability of being able to communicate with other users and discuss books they have read or just have a general conversation about their love for reading. The most important aspect of the project that we wanted to get right was creating a journey for the user through the site and giving a quality UX. 
-
-The books displayed to the user come from two external APIs, Google Books API and NY Times API. We would only store the books in the database that the user added to their library in order to improve performance. 
-
-Check out Booked-Up on [Heroku](https://booked-up.herokuapp.com/), or find the GitHub repo [here](https://github.com/PeteG-cmd/project-3)
-
-#### Please note
-
-This project was made to be viewed on a laptop. Due to time restrictions, it is not yet mobile responsive. All form fields are required on registration to create an account.
-
-
-## Table of contents
-1. [Brief](#Brief)
-2. [Technologies used](#Technologies-used)
-3. [Approach](#Approach)
-    - [Planning](#Planning)
-    - [Wireframes](#Wireframes)
-    - [Back-end](#Back-end)
-    - [Front-end](#Front-end)
-4. [Screenshots](#Screenshots)
-5. [Winners](#Winners)
-6. [Challengers](#Challengers)
-7. [Future features](#Future-features)
-8. [Lessons learned](#Lessons-learned)
-
-## Brief
-
-* Work in a team, using **git to code collaboratively**.
-* **Build a full-stack application** by making your own backend and your own front-end
-* **Use an Express API** to serve your data from a Mongo database
-* **Consume your API with a separate front-end** built with React
-* **Be a complete product** which most likely means multiple relationships and CRUD functionality for at least a couple of models
-
-## Technologies Used
-
-| Category | List |
-| ---- | --- |
-| Languages                            | Javascript (ECMAScript6), CSS3, Sass, HTML5 |
-| Front-end Web Application Framework  | React.js |
-| Server Environment                   | Express |
-| Database                             | MongoDB and Mongoose|
-| REST client                          | Insomnia |
-| CSS Framework                        | Bulma |
-| Libraries                            | Slick Carousel, Moment, React-Loader, Multer
-| Typefaces                            | Font Awesome |
-| Text Editor                          | VS Code |
-| Browser                              | Chrome |
-| Version control | Git and GitHub
-
-<p align="center">
-  <img height=380 alt="home" src="./images/SearchBooks.jpg">
-</p>
-
-## Approach
-
-## Planning
-
-We quickly came to the decision that we wanted to create a Book Club app. The next thing we discussed was what API's to use and we needed one's that were going to help us achieve some of the features we wanted to implement. The NY Times API we knew would be great for displaying the books from a category a user had chosen and the Google Books API provided us with so many books and end points that we knew we could gather all the necessary information to display to the user when deciding to add a book to the library and thus to the database.
-
-After this initial step we moved onto drawing out the layout and writing up the models and the endpoints we would need. We tried to put ourselves in the shoes of the user to imagine what they would want on their profile and how they would want to interact with the site and what they would want to get out of the site.
-
-We decided that it would be best when working on a specific feature to set up the backend and create a front end at the same time as we felt this would be the most efficient and effective way of working on the project as we wanted to be able to see the immediate results.
-
-<p align="center">
-  <img height=380 alt="home" src="./images/P3WhiteboredPlan.jpg">
-</p>
-
-## Wireframes
-
-Several wireframes were put together on a site called MockFlow.
-
-#### Homepage
-
-<p align="center">
-  <img height=380 alt="home" src="./images/Booked-UpHomeWire.jpg">
-</p>
-
-
-#### User Home
-
-<p align="center">
-  <img height=380 alt="home" src="./images/Booked-UpUserHomeWire.jpg">
-</p>
-
-#### User Profile
-
-<p align="center">
-  <img height=380 alt="home" src="./images/Booked-UpUserProfile.jpg">
-</p>
-
-
-#### Book Club
-
-<p align="center">
-  <img height=380 alt="home" src="./images/Booked-UpBookClubWire.jpg">
-</p>
-
-#### Detailed Book Page
-
-<p align="center">
-  <img height=380 alt="home" src="./images/DetailedBookWire.jpg">
-</p>
 
 
 ## Front-end
@@ -249,6 +237,40 @@ The front end of the application was built using a number of React components. I
 
 #### Home
 The logged-out home screen presented the user with register and login buttons. Added to this, the user was also presented with a number of carousels, showing books with data served from the NY Times best-seller lists.
+
+
+### Search Component
+
+The search component was an interesting aspect to this project, as we used two different API's, and this led to a situation where a user was able to click on a book supplied by the NY Time best seller list, and we then needed to search the Google Books API for this book, so that we were able to import it in to our library with all the required information.
+
+The problem arose in that the ISBN numbers supplied by NY Times are reliable, but searching Google Books API with them is not, (as for one reason or another it is not designed that way). About 90% of the time it would work, but occasionally it would not find the correct book. For this reason we implemented some checks on the title and author of the returned book, and if they were not a close enough match then we redirected the user to the search page, and automatically searched by the books title, and then displayed the results to the user, who could then select the required book. A sample of this process can be seen below.
+
+
+	handleClick(book) {
+	    console.log(book)
+	    axios.get(`https://www.googleapis.com/books/v1/volumes?q=isbn:${book.primary_isbn13}`)
+	      .then(res => {
+	        if (!(res.data.items)) return this.setState({ searchRedirect: { title: book.title } })
+	        if (res.data.items[0].volumeInfo.title.toLowerCase() !== book.title.toLowerCase()) return this.setState({ searchRedirect: { title: book.title } })
+	        const linkTo = res.data.items[0].id
+	        this.setState({ redirect: linkTo, bookClicked: res.data.items[0] })
+	
+	      })
+	
+	      .catch(error => console.error(error))
+	  }
+
+This code performs a check on the book title from NY Times and Google books, and if there is a match it redirects to the 'add books' page, otherwise it redirects to the search page. 
+
+On the search page, when the component mounts it then checks if a query has been passed through as props, and if so it automatically searches and displays the results for the passed value.
+
+	 componentDidMount() {
+	    if (this.props.match.params.title) {
+	      this.setState({ query: this.props.match.params.title })
+	        this.fetchBooks()
+	    }
+	  }
+
 
 #### User Profile and categories
 One of the components that I worked on heavily was the UserProfile.js.
@@ -475,9 +497,7 @@ It was important to have checks on this just incase there were no comments on an
 
 #### BookClub with user waiting approval
 
-<p align="center">
-  <img height=380 alt="home" src="./images/Userawaitingapprovalfromadmin.jpg">
-</p>
+<img src='images/booked-up-bookclub.png'>
 
  
 ## Challenges
@@ -491,18 +511,4 @@ It was important to have checks on this just incase there were no comments on an
 ## Lessons Learned
 * That although Git and GitHub are great tools for managing the coding workflow, you still need to ensure that you communicate with your team outside of these tools. Failure to do this, can lead to issues that could otherwise have been easily avoided.
 
-<p align="center">
-  <img height=380 alt="home" src="./images/Userawaitingapprovalfromadmin.jpg">
-</p>
-
  
-## Challenges
-* The logic required to show previously selected user categories, on the profile page, was a challenge. Although the categories on the profile page enabled you to change your selections, for it to be user friendly, it needed to show you what you had already selected when you first registered. The mapping solution worked well in the end, however, given more time, I would have liked to have refactored the original category code. Removing the 'hard-coded' elements of the initial category code, I think would have made the process of displaying and updating the categories on the profile page easier.
- 
- ## Successes 
-* Working successfully in a team and using Git and GitHub as the means of controlling our workflow was a big success.  It's not something that I had ever done before and although the merge process could sometimes be tricky, it was good to get practise using it.
-* A second success was being able to integrate a backend into a project.  Having our own API meant we were able to do more with a logged-in user than had previously been the case.
-## Potential Future Feature
-* Improving some of the aspects of the UX would be a future feature to incorporate as currently, it's not always obvious how a user can access some of the important functionality of the site. For example, adding a book to a Wishlist or marking it as read, can only be done when you try to add a comment for a book.  It would be good if this could be done directly from the library or when you look at the detail of a book, rather than just when you add a comment to a book.
-## Lessons Learned
-* That although Git and GitHub are great tools for managing the coding workflow, you still need to ensure that you communicate with your team outside of these tools. Failure to do this, can lead to issues that could otherwise have been easily avoided.
