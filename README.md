@@ -1,5 +1,6 @@
-# project-3
+### ![GA](https://cloud.githubusercontent.com/assets/40461/8183776/469f976e-1432-11e5-8199-6ac91363302b.png) General Assembly, Software Engineering Immersive
 
+# Booked-Up
 
 ## Backend
 
@@ -119,6 +120,7 @@ The search component was an interesting aspect to this project, as we used two d
 
 The problem arose in that the ISBN numbers supplied by NY Times are reliable, but searching Google Books API with them is not, (as for one reason or another it is not designed that way). About 90% of the time it would work, but occasionally it would not find the correct book. For this reason we implemented some checks on the title and author of the returned book, and if they were not a close enough match then we redirected the user to the search page, and automatically searched by the books title, and then displayed the results to the user, who could then select the required book. A sample of this process can be seen below.
 
+#### Homepage
 
 PUT IN SAMPLE OF DIFFERENT CODE
 
@@ -126,8 +128,12 @@ PUT IN SAMPLE OF DIFFERENT CODE
 
 
 
+<p align="center">
+  <img height=380 alt="home" src="./images/Booked-UpUserProfile.jpg">
+</p>
 
 
+#### Book Club
 
 ## Overview
 
@@ -182,6 +188,9 @@ This project was made to be viewed on a laptop. Due to time restrictions, it is 
 | Browser                              | Chrome |
 | Version control | Git and GitHub
 
+<p align="center">
+  <img height=380 alt="home" src="./images/SearchBooks.jpg">
+</p>
 
 ## Approach
 
@@ -482,4 +491,18 @@ It was important to have checks on this just incase there were no comments on an
 ## Lessons Learned
 * That although Git and GitHub are great tools for managing the coding workflow, you still need to ensure that you communicate with your team outside of these tools. Failure to do this, can lead to issues that could otherwise have been easily avoided.
 
+<p align="center">
+  <img height=380 alt="home" src="./images/Userawaitingapprovalfromadmin.jpg">
+</p>
 
+ 
+## Challenges
+* The logic required to show previously selected user categories, on the profile page, was a challenge. Although the categories on the profile page enabled you to change your selections, for it to be user friendly, it needed to show you what you had already selected when you first registered. The mapping solution worked well in the end, however, given more time, I would have liked to have refactored the original category code. Removing the 'hard-coded' elements of the initial category code, I think would have made the process of displaying and updating the categories on the profile page easier.
+ 
+ ## Successes 
+* Working successfully in a team and using Git and GitHub as the means of controlling our workflow was a big success.  It's not something that I had ever done before and although the merge process could sometimes be tricky, it was good to get practise using it.
+* A second success was being able to integrate a backend into a project.  Having our own API meant we were able to do more with a logged-in user than had previously been the case.
+## Potential Future Feature
+* Improving some of the aspects of the UX would be a future feature to incorporate as currently, it's not always obvious how a user can access some of the important functionality of the site. For example, adding a book to a Wishlist or marking it as read, can only be done when you try to add a comment for a book.  It would be good if this could be done directly from the library or when you look at the detail of a book, rather than just when you add a comment to a book.
+## Lessons Learned
+* That although Git and GitHub are great tools for managing the coding workflow, you still need to ensure that you communicate with your team outside of these tools. Failure to do this, can lead to issues that could otherwise have been easily avoided.
