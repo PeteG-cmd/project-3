@@ -77,7 +77,7 @@ export default class Home extends React.Component {
               <nav className="tabs is-fullwidth">
                 <div className="container">
                   <ul>
-                    
+
                     <li><Link to={'/books/new'}><a>Find a Book</a></Link></li>
                     <li><Link to={'/register'}><a>Join the Converstaion</a></Link></li>
                   </ul>
