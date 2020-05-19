@@ -40,9 +40,9 @@ This project was made to be viewed on a laptop. Due to time restrictions, it is 
 ## Brief
 
 * Work in a team, using **git to code collaboratively**.
-* **Build a full-stack application** by making your own backend and your own front-end
-* **Use an Express API** to serve your data from a Mongo database
-* **Consume your API with a separate front-end** built with React
+* **Build a full-stack application** by making the backend and the front-end
+* **Use an Express API** to serve data from a Mongo database
+* **Consume the API with a separate front-end** built with React
 * **Be a complete product** which most likely means multiple relationships and CRUD functionality for at least a couple of models
 
 ## Technologies Used
