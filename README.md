@@ -2,16 +2,11 @@
 
 # Booked-Up
 
-
-<img src='images/bookedup - logo-mobile.png'>
-
+by [Jamie Maxwell](https://github.com/Jamie66m), [Peter Gilbert](https://github.com/PeteG-cmd), [Gordon Gyakyi](https://github.com/Intravenous)
 
 <p align="center">
-  <img height=380 alt="home" src="./images/Booked-UpUserProfile.jpg">
+  <img height=380 alt="home" src="./images/Booked-up.jpg">
 </p>
-
-
-<IMG SRC='images/Screenshot 2020-05-10 at 12.47.33.png'>
 
 ## Overview
 
