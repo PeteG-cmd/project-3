@@ -36,7 +36,7 @@
     "file-loader": "^6.0.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
-    "moment": "^2.24.0",
+    "moment": "^2.29.2",
     "mongoose": "^5.7.12",
     "mongoose-hidden": "^1.8.1",
     "mongoose-unique-validator": "^2.0.3",
